@@ -2047,3 +2047,128 @@ vesselness, orientation fields and matched filtering (items 1, 2, 5, 6 and 9 of 
 user's list). What remains untouched by this result is the structurally
 identifiable merge population, and changing the base segmentation rather than
 post-processing it.
+
+### exp110: the best-path test, and one correction to exp109 (2026-09-16 12:02 UTC)
+
+exp109 rejected endpoint continuation using the *mean* learned-foreground
+probability in a cone. That statistic is wrong for the question: a geodesic follows
+the cheapest path, and a thin supported thread inside a mostly empty cone is exactly
+what a shortest-path method exists to find. This audit casts rays at one-degree
+steps and reports per-ray statistics instead.
+
+| feature | AUC | near median | healthy median | best operating point |
+|---|---|---|---|---|
+| truth_best_ray (LABEL) | 0.621 | **0.4074** | 0.0000 | net -27, precision 0.292 |
+| best_ray_mean | 0.493 | 0.0082 | 0.0137 | net -38 |
+| **best_ray_min** | **0.226** | 0.0000 | 0.0000 | net -34 |
+| cone_max | 0.466 | 0.1255 | 0.2353 | net -49 |
+| spine_best_ray | 0.479 | 0.0165 | 0.0281 | net -33 |
+| **dark_best_ray** | **0.611** | 0.1773 | 0.1455 | net -35, precision 0.157 |
+
+The label validates the instrument: along its best ray a truncated mask has truth
+covering 41% of the path, against 0% for healthy masks.
+
+**The conclusion survives, for a sharper reason than exp109 gave.** `best_ray_min`
+is 0.0000 for both populations: every ray in the cone crosses at least one pixel of
+zero learned support, which is precisely what breaks a geodesic. And the best ray's
+mean support is *lower* ahead of truncations (0.0082) than ahead of healthy masks
+(0.0137) - the field is quieter exactly where the missing filament is.
+
+**One result reopens a closed door.** `dark_best_ray` - raw absorption against a
+sigma-25 background, owing nothing to any network - reaches AUC 0.611 with near
+median 0.1773 against healthy 0.1455. It is the only image-derived feature today
+above 0.6. So the earlier phrasing that the extent is not recoverable from tested
+photometric signals was itself too strong: unlearned absorption along the forward
+ray does carry signal. It remains unusable alone (net -35, precision 0.157, because
+858 healthy masks swamp 56 targets), but as a gate combined with another signal it
+is not dead.
+
+Methodological note for the record: exp109's rejection was made on a statistic that
+could not see the hypothesis it was testing. The lesson is the same one that has
+recurred all session - match the statistic to the mechanism, not to convenience.
+
+### exp111: the width profile does carry structure that one scalar destroyed (2026-09-16 12:08 UTC)
+
+The user's objection to stopping at width CV and rho was that two profiles can share
+a scalar summary while differing obviously in local structure. Measured on
+oracle-splittable merges (24) against healthy 1:1 masks (858):
+
+| feature | AUC | merge median | healthy median | best operating point |
+|---|---|---|---|---|
+| **mean_slope** | **0.809** | 0.1486 | 0.0818 | net -18, precision 0.000 |
+| max_slope | 0.765 | 0.4264 | 0.2500 | net -17, precision 0.053 |
+| saddle_depth | 0.750 | 0.5186 | 0.1652 | net -16, precision 0.100 |
+| peak_ratio | 0.718 | 2.8000 | 2.1858 | net -17, precision 0.095 |
+| rho (earlier) | 0.304 | 0.5788 | 0.6923 | net -18 |
+| width_cv (earlier) | 0.665 | 0.2611 | 0.2150 | net -18 |
+| peak_count | 0.529 | 3.0000 | 3.0000 | net -38 |
+
+The objection was right: mean_slope reaches 0.809 and saddle depth separates
+threefold (0.519 against 0.165) where the coefficient of variation managed 0.665.
+
+**But the precision wall is structural, not a feature deficiency.** With 24 targets
+against 858 healthy masks, the top 2% of the healthy population alone outnumbers
+every target, so even AUC 0.809 yields no net-positive operating point. Any
+merge-splitting rule must either accept a much smaller recall at very high
+specificity, or be gated by something that first shrinks the candidate set.
+
+### Corrections accepted from the independent assessment (2026-09-16)
+
+1. **The geodesic rejection argument was invalid.** exp110 concluded that a path is
+   broken because every ray crosses a pixel of zero learned support. With a finite
+   cost `c(x) = alpha*(1-P(x)) + ...` that pixel is expensive, not impassable, and
+   Dijkstra crosses it when competing paths cost more. Only infinite cost or
+   forbidden traversal blocks a path. The correct quantity is a real minimum path
+   cost `C*(p)`, which exp112 now computes.
+2. **Status accounting.** Of the sixteen approaches, three were tested directly,
+   three partially, and ten were never implemented. Demotion by a shared
+   precondition is not refutation, and this log should not read as if it were.
+3. Two places where the assessment and this log differ, stated for the record:
+   orientation *was* measured in exp109 (structure-tensor ridge direction against
+   the mask axis inside the cone, AUC 0.532, near median 0.736 against healthy
+   0.720) though never as a gate along a path, which remains open; and the
+   width-profile follow-up it lists as queued is the exp111 entry above.
+
+The assessment's recommended direction is the one exp112 takes: build the cost
+field from raw absorption and structure-tensor orientation rather than the learned
+field, because exp110 showed the network is quieter ahead of truncations (0.0082)
+than ahead of healthy masks (0.0137) while raw absorption separates them at 0.611.
+
+### exp112: the geodesic test done correctly, full sample (2026-09-16 12:27 UTC)
+
+Answers the assessment's technical correction. Cost is finite everywhere -
+`alpha*(1-dark) + beta*(1-orientation) + step` - so a low-evidence pixel is
+expensive rather than impassable, and Dijkstra crosses it when competing paths cost
+more. The field is built from the raw photograph (absorption against a sigma-25
+background, structure-tensor ridge alignment), not the learned field, because
+exp110 showed the network is quieter ahead of truncations than ahead of healthy
+masks. Minimum cost of reaching 20 px ahead within a 45-degree cone, full
+population: 56 near-threshold, 858 healthy.
+
+| feature | AUC | negated | near median | healthy median | best operating point |
+|---|---|---|---|---|---|
+| truth (LABEL) | 0.640 | - | 0.2929 | 0.1000 | caught 8, damaged 30, precision 0.210, net -22 |
+| cost | 0.441 | **0.559** | 1.1065 | 1.1608 | caught 1, damaged 18, net -17 |
+| dark | 0.605 | - | 0.1857 | 0.1366 | caught 2, damaged 18, net -16 |
+| orientation | 0.518 | - | 0.8738 | 0.8656 | caught 0, damaged 18, net -18 |
+
+The label separates, so the path search works. Truncated masks do have cheaper
+(0.559 negated) and darker (0.605) continuations - the hypothesis's direction - but
+at the 98th percentile of the healthy population the cost feature catches 1 of 56
+while damaging 18. The correction changed the method and not the outcome: endpoint
+continuation is now tested properly rather than dismissed on an invalid argument,
+and it still yields no usable trigger.
+
+Process error worth recording: the ETA given for this run was ~50 minutes; it
+finished in six. The per-instance cost was extrapolated from a bounded run whose
+early photographs were unrepresentative, and no progress output existed to correct
+the estimate mid-run. Long audits should print progress.
+
+**Where the deterministic line stands.** Every candidate trigger measured today
+fails at the same wall: 56 targets against 858 healthy masks means the top 2% of
+the healthy population outnumbers every target, so features with real ranking
+signal - width mean_slope 0.809, neck rho 0.712, dark absorption 0.605, path cost
+0.559 - all produce net-negative operating points. The obstacle is class imbalance
+in the candidate set, not absence of signal. Any future repair must first shrink
+the candidate set by an independent mechanism, or accept very low recall at
+extreme specificity.
