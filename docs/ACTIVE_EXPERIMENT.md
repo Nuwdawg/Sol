@@ -1906,3 +1906,144 @@ One item of the user's sequence remains genuinely untested: cross-architecture
 disagreement between exp002 and exp097, since the 2026-09-16 local run passed the
 same pool twice and measured self-consistency instead. exp097's pool lives in
 exp098's kernel output, so that runs as a CPU kernel.
+
+### exp108: the missing area is truncation, not thinness (2026-09-16 11:20 UTC)
+
+The audit the user identified as the most valuable next measurement: of the ~575
+missing truth pixels in near-threshold 1:1 masks, where are they? Two skeleton-free
+measures - axial fraction (missing pixels projecting outside the mask's own extent
+on its principal axis) and distance from each missing pixel to the nearest mask
+pixel. Healthy matched pairs are the control.
+
+| population | n | missing px | axial fraction | axial px | dist median | dist p90 | within 3 px | beyond 10 px | half-width |
+|---|---|---|---|---|---|---|---|---|---|
+| near threshold 0.40-0.50 | 50 | 699 | **0.590** | 376 | **10.9** | 30.7 | 0.263 | 0.514 | 2.2 |
+| matched >= 0.50 | 791 | 207 | 0.132 | 26 | 2.0 | 5.0 | 0.757 | 0.000 | 3.0 |
+
+**Truncation dominates.** The two populations are qualitatively different rather
+than shifted: healthy masks are marginally thin at the boundary (76% of their small
+deficit within 3 px, none beyond 10 px), while near-threshold masks are cut short -
+59% of the deficit lies beyond the mask's extent, a median 10.9 px away with a p90
+of 30.7 px, on bodies whose median half-width is only 2.2 px.
+
+Two consequences:
+
+1. **Algorithm choice is settled.** Endpoint continuation along a supported path,
+   not local boundary refinement. A graph cut in a narrow band around the mask
+   cannot reach a stub 10-30 px past the end; a geodesic from the endpoint can.
+2. **It explains every failed trigger.** The annulus support, boundary
+   disagreement and width statistics all sample a 4 px ring around the mask. The
+   defect is 10-30 px beyond it. Those audits were measuring the wrong place, so
+   their null results say nothing about evidence further along the axis.
+
+Method note: the first two runs of this audit produced no output because the file
+was written without an `if __name__ == "__main__"` block - it imported cleanly and
+did nothing. Silence from a script is not a negative result.
+
+Population bookkeeping, raised by the user: exp105b reported 55/845 and exp106
+reported 56/858 for supposedly the same strict-1:1 populations. Verified cause -
+exp105b emitted at min_area 300 (the baseline rule), exp106 at min_area 100 (the
+ensemble's best rule). Reproduced exactly: min_area 300 gives 55/845, min_area 100
+gives 56/858. Later audits must pin the emission rule explicitly rather than
+inherit a default.
+
+### exp106 corrected: features rescored in both directions (2026-09-16 11:27 UTC)
+
+The user caught a methodological error: an AUC of 0.397 is not absence of signal,
+it is a feature ranking the classes backwards, worth 0.603 negated. The original
+operating-point search scanned only the hypothesised high side, so features
+pointing the other way were rejected without being tested. Rescored over both
+directions, emission rule pinned at min_area 100 (56 near / 858 healthy):
+
+| feature | AUC | AUC negated | best over both sides |
+|---|---|---|---|
+| sem_delta | 0.543 | 0.457 | high q0.98: 5/56 caught, 18 damaged, precision 0.217, net -13 |
+| sem_exterior | 0.397 | 0.603 | low q0.98: 3/56, 18 damaged, precision 0.143, net -15 |
+| **sem_interior** | **0.365** | **0.635** | low q0.98: 5/56, 18 damaged, precision 0.217, net -13 |
+| spine_delta | 0.517 | 0.483 | high q0.98: 5/56, 18 damaged, precision 0.217, net -13 |
+| spine_exterior | 0.402 | 0.598 | low q0.98: 3/56, 18 damaged, precision 0.143, net -15 |
+
+The strongest variant was never scored before: **low semantic support inside the
+mask**, AUC 0.635 negated. Its interpretation is the user's - these are instances
+where the semantic model is itself weak, which argues for an uncertainty *gate*
+rather than directional growth. No operating point is net-positive (best -13 at
+precision 0.217), so it fails as a standalone trigger.
+
+**Correction to the earlier overclaim.** The previous entry concluded that a
+substantial part of the annotated extent is "not photometrically distinguishable
+in H-alpha at all". The evidence does not support that. What is established is
+narrower: the extent is *not recoverable from the tested photometric and semantic
+signals* - this learned field's annulus statistics, simple intensity criteria, and
+the geometry summaries. Orientation fields, multiscale ridge structure, texture and
+contextual continuation remain untested.
+
+exp108 then explained why all of these read near chance: every one of them samples
+a 4 px ring around the mask, while the defect lies a median 10.9 px beyond the
+mask's end with a p90 of 30.7 px. The measurements were taken in the wrong place.
+The next evidence test must look along the axis, ahead of the endpoint, inside an
+angular cone - not around the boundary.
+
+### exp107: cross-architecture disagreement fails too (2026-09-16 11:28 UTC)
+
+The last untested trigger from the user's sequence, run properly this time: exp002
+(yolo11m-seg at 1280) and exp097 (YOLOv8l-seg at 2048) as independent second
+opinions for each other, both directions, emission pinned at conf 0.35 / erosion 1
+/ min_area 100.
+
+| audited pool | second opinion | near/healthy | AUC | best operating point |
+|---|---|---|---|---|
+| exp002 | exp097 | 56 / 858 | 0.595 | q0.95: caught 8/56, damaged 43, precision 0.157, net -35 |
+| exp097 | exp002 | 65 / 795 | 0.574 | q0.98: caught 3/65, damaged 16, precision 0.158, net -13 |
+
+Every operating point is net-negative, and at q0.98 the forward direction catches
+**zero** of 56. Genuine cross-architecture disagreement performs the same as the
+accidental self-pool measurement (0.597): weak ranking signal, unusable precision.
+
+That closes the trigger search on ring geometry. Seven feature families now
+rejected on precision at realistic operating points - three geometry marginals,
+their combination, the narrow-neck statistic, five semantic and spine annulus
+variants in both directions, and cross-architecture disagreement in both
+directions. Every one samples a 4 px ring around the mask.
+
+exp108 explains the common failure: the defect is not at the boundary. It sits a
+median 10.9 px beyond the mask's end (p90 30.7 px) on bodies with a 2.2 px median
+half-width. Searching a 4 px ring for a stub 10-30 px further along the axis cannot
+work, whatever the feature. The next measurement must sample **ahead of the
+endpoint, inside an angular cone**, which is what exp109 does.
+
+### exp109: there is nothing ahead of the endpoint to walk along (2026-09-16 11:32 UTC)
+
+exp108 showed the defect sits 10-30 px beyond the mask's end, so this audit samples
+there: a 35-degree cone, 4-30 px ahead of each principal-axis endpoint, measuring
+the learned foreground field, the spine field and structure-tensor orientation
+agreement. Both directions scored, emission pinned at conf 0.35 / erosion 1 /
+min_area 100 (56 near, 858 healthy).
+
+| feature | AUC | near median | healthy median | best over both directions |
+|---|---|---|---|---|
+| truth_ahead (LABEL) | 0.655 | 0.0343 | 0.0000 | net -25, precision 0.295 |
+| sem | 0.489 | **0.0005** | 0.0008 | net -34 |
+| spine | 0.508 | 0.0017 | 0.0021 | net -34 |
+| orientation | 0.532 | 0.7360 | 0.7204 | net -42 |
+
+**The instrument is valid**: `truth_ahead` separates the populations (0.655, near
+median 0.0343 against healthy 0.0000), so the cone geometry and endpoint extraction
+are right and truncated masks really do have truth ahead of them.
+
+**The evidence is absent.** exp085's foreground probability in that exact cone is
+0.0005 - five ten-thousandths - where the annotator drew filament. Spine
+probability is 0.0017. Orientation agreement is 0.736 against 0.720, chance.
+
+A geodesic needs a low-cost path to follow. Here the cost field is uniformly
+maximal precisely where the missing filament lies, so endpoint continuation has
+nothing to walk along. Note also that even the oracle label reaches only precision
+0.295: acting on perfect knowledge of "truth is ahead" would still damage more
+healthy masks than it repairs at that operating point, because the healthy
+population outnumbers the target 15 to 1.
+
+This closes, on measurement rather than opinion, the family of methods that
+require forward image evidence: endpoint geodesics, elastica continuation,
+vesselness, orientation fields and matched filtering (items 1, 2, 5, 6 and 9 of the
+user's list). What remains untouched by this result is the structurally
+identifiable merge population, and changing the base segmentation rather than
+post-processing it.
