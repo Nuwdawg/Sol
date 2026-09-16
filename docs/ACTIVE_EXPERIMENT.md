@@ -1664,3 +1664,245 @@ available, which matters for a pipeline with a separate verifier.
 first run died on my own bug - `--link` and `--vote` interpolated into a
 subprocess argument list as floats rather than strings, `TypeError: expected str,
 bytes or os.PathLike object, not float` - fixed and re-pushed.
+
+### exp102: cross-architecture pooling is the first ensemble that works (2026-09-16 10:12 UTC)
+
+exp002's D4 pool (yolo11m-seg, trained at 1280) and exp097's best.pt D4 pool
+(YOLOv8l-seg, trained at 2048), fused at instance level with the support
+denominator set to the model count. CPU only, no inference: both pools already
+existed. Each pool was also swept alone in the same run.
+
+| source | PQ | conf | erosion | area | TP | FP | FN |
+|---|---|---|---|---|---|---|---|
+| exp002 D4 alone | 0.457492 | 0.40 | 1 px | 100 | 835 | 346 | 490 |
+| exp097 best.pt D4 alone | 0.466806 | 0.35 | none | 300 | 819 | 269 | 506 |
+| **two-architecture ensemble** | **0.468146** | 0.35 | 1 px | 100 | 852 | 328 | 473 |
+
+**+0.001340 over the best single model, +0.012282 over the baseline.** Small, but
+27 times the gain from pooling three checkpoints of one training run (+0.000050),
+and it confirms the diagnosis those two results imply together: **ensemble value
+comes from different training, not different epochs.** Two networks that differ in
+architecture, resolution and optimisation disagree about marginal filaments;
+snapshots of one trajectory do not.
+
+The recall arithmetic is the point. exp097 alone finds 819 filaments, exp002 alone
+835, the union 852, and misses drop to 473 from 506. False positives sit between
+the two parents rather than adding up, which is what the pixel vote is for.
+
+One operating-point surprise worth acting on: the ensemble's best rule uses
+**erosion 1 px and minimum area 100** - exp002's preference - not exp097's grow 0
+and area 300. Mixed pools do not inherit either parent's emission rule, so the
+rule has to be re-swept per pool rather than carried over. exp104 was already
+sweeping that axis, including dilation, which the frozen scorer refuses to try.
+
+Still below the 0.472 that a printed 0.40 needs, so no submission slot was spent.
+
+### exp105: the near-threshold failures are shape, not topology (2026-09-16 10:26 UTC)
+
+`scripts/audit_threshold_structure.py`. Motivation, from the user's derivation:
+under PQ = sum(IoU)/(TP + FP/2 + FN/2), an object at IoU 0.49 contributes 0 to the
+numerator and a full unit to the denominator; at 0.51 it contributes 0.51 and the
+denominator is unchanged. A threshold crossing is worth about ten times a
+comparable polish of an already-matched pair. The audit builds the bipartite
+prediction-truth overlap graph per record - not per-truth maxima, because matching
+is global - and classifies its connected components. Baseline reproduced exactly
+first: PQ 0.4558638687, TP/FP/FN 860/397/465.
+
+| component | count | in the 0.4-0.5 band |
+|---|---|---|
+| 1:1 | 953 | **55** |
+| N:1 fragmentation | 29 | 5 |
+| 1:N merge | 24 | 5 |
+| N:M | 4 | 1 |
+| 0:1 invisible | 286 | 0 |
+| 1:0 spurious | 211 | 0 |
+
+**83% of near-threshold failures are 1:1: one prediction, one truth, wrong shape.**
+Topology accounts for 11 of 66. This argues *against* the spine-graph decomposition
+that was about to be prioritised, and the order matters: building junction pairing
+first would have targeted an eighth of the opportunity.
+
+Oracle bounds, using truth only to set a ceiling and never as an inference rule:
+
+- **union** the predictions overlapping one truth: 30 candidates, **14 cross 0.5**.
+  Consistent with exp088's 13 for pair-joining, so that earlier number was not an
+  artefact of only testing pairs.
+- **split** a prediction covering several truths by truth assignment: 28
+  candidates, **40 truths cross 0.5**. The split direction is about three times the
+  merge direction - an asymmetry no previous audit had measured, since exp088
+  tested joining only.
+
+Two populations are untouchable by any reshaping: 286 of 465 misses have zero
+overlap with any prediction, and 211 false positives touch no truth. Those are
+detection errors, not geometry errors, and they are why mask surgery alone cannot
+reach the goal.
+
+**Revised plan.** Deterministic geometry remains the right instrument, but aimed
+at 1:1 shape rather than junctions: local boundary correction conditioned on an
+observable proxy (width variation along the spine, tangent discontinuity, semantic
+support disagreeing with the mask edge), since the 0.4-0.5 band itself is only
+visible with ground truth and using it directly would be an oracle. The 40-rescue
+split direction stays worth a bounded implementation afterwards, because splitting
+needs a narrow-neck test on one mask rather than a full spine graph.
+
+### exp105b: near-threshold masks are too small, but nothing observable marks them (2026-09-16 10:31 UTC)
+
+Follow-up to the component audit, restricted to strict 1:1 pairs - one prediction,
+one truth, no other overlap either way.
+
+| population | n | median IoU | excess/inter | missing/inter | elongation | width CV | solidity |
+|---|---|---|---|---|---|---|---|
+| near threshold 0.40-0.50 | 55 | 0.459 | 0.18 | **0.76** | 4.49 | 0.149 | 0.494 |
+| matched >= 0.50 | 845 | 0.692 | 0.20 | 0.19 | 4.00 | 0.154 | 0.552 |
+
+**Direction is clear: these masks are under-segmented**, median 575 truth pixels
+missing against 139 spurious. Growing exactly these 55 objects would add about
+0.51 each to the numerator. CORRECTION (user, 2026-09-16): the denominator does
+NOT fall. An unmatched pair contributes FP/2 + FN/2 = 1 and a match contributes
+TP = 1, so the denominator is unchanged and the entire gain is the numerator
+appearing. The leverage argument stands on that alone: rescuing a 0.49 miss adds
+about 0.51 to the numerator, polishing a 0.55 match to 0.60 adds 0.05.
+
+**The trigger does not exist in the geometry tested.** Elongation separates by
+12.4% of the healthy median, solidity by 10.5%, spine width variation by 2.9% -
+medians that close with overlapping distributions, not a decision rule. At
+inference time there is no ground truth to say which masks sit in the band, so
+without a discriminator the only option is growing everything, and exp088 already
+measured that: one uniform dilation drops PQ from 0.4559 to 0.4286.
+
+This is a negative result about the *proxy*, not about the opportunity. Two
+observable discriminators remain untested and both are now motivated by measured
+results rather than intuition:
+
+1. **Cross-architecture edge disagreement.** exp102 showed two independently
+   trained networks carry complementary information (+0.001340 pooled, against
+   +0.000050 for three checkpoints of one run). Where exp002 and exp097 disagree
+   about a boundary, the mask edge is uncertain; where they agree, it is not.
+2. **Semantic support contradicting the mask edge.** exp085's field reaches mask
+   Dice 0.703 and spine Dice 0.635. Foreground extending beyond a mask boundary is
+   observable evidence that the mask is short - exactly the error measured here.
+
+Sequencing that follows from the two audits: the split repair comes first among
+deterministic components, because a narrow neck is directly observable on a single
+mask and the oracle showed 40 rescues; 1:1 growth waits on a discriminator, since
+its oracle is 55 rescues but its trigger is currently unavailable.
+
+### exp105c: geometry is dead, and the neck trigger fails on precision (2026-09-16 10:44 UTC)
+
+Two audits the user required before any deterministic repair could be built.
+
+**1. Does the geometry carry joint signal, not just similar medians?** Measured by
+rank AUC, near-threshold 1:1 (n=55) against healthy 1:1 (n=845):
+
+| feature | AUC | distance from chance |
+|---|---|---|
+| elongation | 0.539 | 0.039 |
+| solidity | 0.424 | 0.076 |
+| width CV | 0.457 | 0.043 |
+| fixed combination | 0.548 | 0.048 |
+
+All within 0.08 of chance, individually and combined. Geometry is genuinely dead
+as a trigger for "this mask stopped too early", not merely unpromising in its
+marginals.
+
+**2. Is "narrow neck" a measured trigger or an intuition?** rho = minimum interior
+width / median width, from the distance transform projected on the principal axis
+(no skeleton: skeletons are unstable under small boundary perturbations).
+
+Oracle-splittable merges median rho 0.629, healthy 1:1 median 0.750, **AUC 0.712** -
+which sounds usable until the operating points are examined:
+
+| rho cut | merges caught | healthy masks cut | precision | net objects |
+|---|---|---|---|---|
+| 0.45 | 2/24 | 30 | 0.062 | -28 |
+| 0.55 | 5/24 | 100 | 0.048 | -95 |
+| 0.65 | 16/24 | 223 | 0.067 | -207 |
+| 0.70 | 17/24 | 312 | 0.052 | -295 |
+
+**Every operating point is strongly negative.** 24 positives against 845 negatives
+means even a good-looking AUC yields 3-7% precision, and each false split destroys
+a true positive while adding a false positive. The 40-rescue oracle bound was an
+upper bound on a repair whose trigger does not exist at usable precision. The
+narrow-neck splitter is rejected before implementation, on measurement.
+
+Corrected arithmetic, from the user: crossing 0.5 leaves the denominator unchanged
+(FP/2 + FN/2 = 1 becomes TP = 1); the gain is entirely the numerator appearing.
+The earlier claim in exp105b that it "removes a full unit of denominator" was wrong
+and has been patched in place.
+
+What survives: the two discriminators that are causally connected to the measured
+error rather than correlated with it - semantic foreground persisting immediately
+outside a mask boundary (directional evidence of under-segmentation), and
+cross-architecture disagreement at that boundary (uncertainty gating). Both need
+assets that live on Kaggle, so they are a kernel, not local work.
+
+### exp104: dilation is dead on the 2048 ensemble too (2026-09-16 10:45 UTC)
+
+160 grid cells over the exp102 ensemble pool, parity reproduced before any cell
+was believed. Best per morphology level, each at its own best confidence and area:
+
+| grow | best PQ | conf | area | TP | FP | FN |
+|---|---|---|---|---|---|---|
+| -2 | 0.431059 | 0.35 | 100 | 812 | 367 | 513 |
+| **-1** | **0.468146** | 0.35 | 100 | 852 | 328 | 473 |
+| 0 | 0.441242 | 0.35 | 300 | 820 | 357 | 505 |
+| +1 | 0.382756 | 0.35 | 500 | 737 | 415 | 588 |
+| +2 | 0.305542 | 0.35 | 800 | 589 | 489 | 736 |
+
+The optimum is interior at -1 and falls away symmetrically. **The hypothesis that a
+sharper 2048-trained model would prefer dilation was wrong**, and the guard in
+`sweep.evaluate_thresholds` that refuses positive grow was protecting a real
+result rather than an outdated one. Minimum area 100 beats 300 by 0.0006; 500 and
+800 lose clearly.
+
+Nothing clears the 0.472 needed to print 0.40, so no submission slot was spent.
+Best measured configuration for the session stays the two-architecture ensemble at
+0.468146 (conf 0.35, erosion 1 px, area 100), +0.012282 over the baseline.
+
+This also sharpens the surviving hypothesis rather than weakening it. Near-threshold
+masks are under-segmented by a median 575 pixels, yet *uniform* dilation costs
+0.027 PQ here. Growth must therefore be triggered per instance or not at all, which
+is exactly what the semantic-support and cross-architecture-disagreement audits are
+built to test.
+
+### exp106: semantic support does not mark the under-grown masks either (2026-09-16 11:06 UTC)
+
+The strongest surviving hypothesis, tested with the only independent foreground
+evidence in the repository: exp085's saved probability maps, native 2048, from the
+run that scored mask Dice 0.703 and spine Dice 0.635. No refitting; ground truth
+only labels the two populations for scoring the discriminator.
+
+Per instance, following the user's formulation: exterior annulus support
+mean(P | dilate(M,4) \ M) against inner band mean(P | M \ erode(M,4)), on 56
+near-threshold 1:1 masks versus 858 healthy ones.
+
+| feature | AUC | near median | healthy median | best operating point |
+|---|---|---|---|---|
+| sem_delta | 0.543 | -0.5126 | -0.5264 | precision 0.122, net -37 |
+| **sem_exterior** | **0.397** | +0.3220 | +0.3844 | precision 0.039, net -165 |
+| sem_ratio | 0.448 | +0.3894 | +0.4110 | precision 0.064, net -41 |
+| spine_delta | 0.517 | -0.4516 | -0.4477 | precision 0.122, net -37 |
+| spine_exterior | 0.402 | +0.4233 | +0.4853 | precision 0.055, net -162 |
+
+**`sem_exterior` is 0.397, below chance.** Near-threshold masks carry *less*
+semantic foreground immediately outside them than healthy masks do - the opposite
+of what under-segmentation predicts. The field does not see the missing extent.
+
+That converges with two earlier measurements rather than contradicting them:
+exp103 found filaments are not separable from the chromospheric network by any
+single-pixel intensity criterion, and exp088 found 284 of 465 misses have zero
+overlap with any prediction. The most defensible reading is that a substantial
+part of the annotated extent is **not photometrically distinguishable** in H-alpha
+at all, so no observable field can trigger its restoration.
+
+Triggers now measured and rejected, all on precision at realistic operating
+points rather than on AUC: three geometry marginals, their fixed combination, the
+narrow-neck statistic, self-pool boundary disagreement, and five variants of
+semantic and spine support. The narrowed hypothesis - identify under-grown
+instances from independent foreground evidence - has been tested against every
+independent evidence source available here and has not survived.
+
+One item of the user's sequence remains genuinely untested: cross-architecture
+disagreement between exp002 and exp097, since the 2026-09-16 local run passed the
+same pool twice and measured self-consistency instead. exp097's pool lives in
+exp098's kernel output, so that runs as a CPU kernel.

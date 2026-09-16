@@ -13,7 +13,8 @@
   ],
   "dataset_sources": [],
   "kernel_sources": [
-    "cosmicwitness/sol-exp098-exp097-evaluation-t4"
+    "cosmicwitness/sol-exp098-exp097-evaluation-t4",
+    "cosmicwitness/sol-exp102-pool-ensemble-cpu"
   ],
   "model_sources": []
 }

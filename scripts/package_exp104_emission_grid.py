@@ -27,6 +27,7 @@ import tarfile
 
 ROOT = Path(__file__).resolve().parents[1]
 EVALUATION_KERNEL = "cosmicwitness/sol-exp098-exp097-evaluation-t4"
+ENSEMBLE_KERNEL = "cosmicwitness/sol-exp102-pool-ensemble-cpu"
 KERNEL_ID = "cosmicwitness/sol-exp104-emission-grid-cpu"
 ANNOTATIONS_SHA256 = "5da9e92b5a1a1947fd5d57adb6688269625c48ec1ef884daf2a01618c9ed54a1"
 FILES = [
@@ -74,14 +75,16 @@ subprocess.check_call([sys.executable,'-m','pip','install','-q','pycocotools'])
 source=Path('/kaggle/input')
 annotations=next(source.rglob('MAGFiLO_1.0_Annotations_kaggle2026_train.json'))
 assert hashlib.sha256(annotations.read_bytes()).hexdigest()=={ANNOTATIONS_SHA256!r}
-pools=sorted(source.rglob('d4_pool_{stem}.json'))
-assert pools,'exp098 pool for {stem} is not mounted: '+str(sorted(p.name for p in source.rglob('d4_pool_*.json')))
-print('POOL',str(pools[0]),flush=True)
+ensemble=sorted(source.rglob('ensemble_pool.json'))
+pools=ensemble if ensemble else sorted(source.rglob('d4_pool_{stem}.json'))
+label='exp102_ensemble' if ensemble else 'exp097_{stem}'
+assert pools,'no pool mounted: '+str(sorted(p.name for p in source.rglob('*pool*.json')))
+print('POOL',label,str(pools[0]),flush=True)
 subprocess.run([sys.executable,'-u','-m','experiments.exp_097_runpod_yolo.src.sweep_emission',
  '--annotations',str(annotations),'--output','/kaggle/working/emission_grid',
- '--pool','exp097_{stem}='+str(pools[0]),
+ '--pool',label+'='+str(pools[0]),
  '--parity-pool',str(root/'data/exp033_cached_tta/candidates_0.5_0.5.json'),
- '--grows',{args.grows!r},'--areas',{args.areas!r},'--confs',{args.confs!r}],
+ '--grows='+{args.grows!r},'--areas='+{args.areas!r},'--confs='+{args.confs!r}],
  cwd=root,check=True,timeout=28000)
 print('KERNEL_COMPLETE',flush=True)
 '''
@@ -97,7 +100,7 @@ print('KERNEL_COMPLETE',flush=True)
         # No `machine_shape` on a CPU kernel: a null value fails the push.
         "enable_internet": True,
         "competition_sources": ["filament-segmentation-2026"],
-        "dataset_sources": [], "kernel_sources": [EVALUATION_KERNEL], "model_sources": [],
+        "dataset_sources": [], "kernel_sources": [EVALUATION_KERNEL, ENSEMBLE_KERNEL], "model_sources": [],
     }, indent=2), encoding="utf-8")
     print(json.dumps(dict(directory=str(directory), checkpoint=args.checkpoint,
                           grows=args.grows, areas=args.areas, kernel_bytes=len(wrapper)), indent=2))
