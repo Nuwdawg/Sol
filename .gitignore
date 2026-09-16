@@ -18,3 +18,10 @@ __pycache__/
 .venv/
 venv/
 .ipynb_checkpoints/
+
+# Publisher PDF of the Reche & Cid paper: copyrighted, kept locally only.
+1-s2.0-S0094576526004649-main.pdf
+
+# Upstream MORDEN clone: another author's repository, re-clone rather than vendor.
+# git clone https://github.com/irisaltHu/MORDEN.git third_party/MORDEN
+third_party/

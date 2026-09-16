@@ -3,15 +3,18 @@
 The tiny synthetic dataset tests the lifecycle only. It is not solar validation.
 """
 import json
+from pathlib import Path
 import subprocess
 import sys
 
 import cv2
 import numpy as np
+import pytest
 from ultralytics import YOLO
 
 
-def test_training_cli_lifecycle(tmp_path):
+@pytest.mark.parametrize('fp32_validation,criterion_name', [(False,'chunked'),(True,'chunked'),(True,'roi')])
+def test_training_cli_lifecycle(tmp_path, fp32_validation, criterion_name):
     dataset = tmp_path / "dataset"
     for fold in ("train", "val"):
         (dataset / "images" / fold).mkdir(parents=True)
@@ -31,15 +34,33 @@ def test_training_cli_lifecycle(tmp_path):
                "--project", str(tmp_path / "runs"), "--name", "smoke",
                "--device", "cpu", "--imgsz", "64", "--batch", "1",
                "--epochs", "1", "--chunk-size", "2", "--workers", "0"]
+    if fp32_validation:
+        command.append('--fp32-validation')
+    command.extend(['--criterion',criterion_name])
     completed = subprocess.run(command, capture_output=True, text=True,
                                encoding="utf-8", errors="replace", timeout=180)
     assert completed.returncode == 0, completed.stdout + completed.stderr
     run = tmp_path / "runs" / "smoke"
     report = json.loads((run / "resolved_experiment.json").read_text())
-    assert report["criterion"] == "ChunkedSegmentationLoss"
+    assert report["criterion"] == ('ChunkedSegmentationLoss' if criterion_name=='chunked' else 'ROISegmentationLoss')
     assert report["resolved"]["mask_ratio"] == 1
     assert report["resolved"]["imgsz"] == 64
+    assert report['resolved']['warmup_bias_lr'] == 0.0
+    assert report['validation_precision'] == ('fp32' if fp32_validation else 'upstream')
     assert (run / "weights" / "last.pt").is_file()
     restored = YOLO(run / "weights" / "last.pt")
     predictions = restored.predict(np.full((64, 64, 3), 180, np.uint8), imgsz=64, device="cpu", verbose=False)
     assert len(predictions) == 1
+    if fp32_validation:
+        probe = [sys.executable, '-m', 'scripts.probe_training', '--data', str(data_yaml),
+                 '--weights', str(seed), '--output', str(tmp_path/'resource_probe'),
+                 '--imgsz', '64', '--batch', '1', '--chunk-size', '2', '--device', 'cpu', '--steps', '2']
+        probe.extend(['--criterion',criterion_name])
+        completed = subprocess.run(probe, capture_output=True, text=True,
+                                   encoding='utf-8', errors='replace', timeout=180)
+        assert completed.returncode == 0, completed.stdout + completed.stderr
+        report = json.loads((tmp_path/'resource_probe/probe.json').read_text())
+        assert report['status'] == 'complete'
+        assert len(report['steps']) == 2
+        assert report['fp32_validator_metrics']
+        assert Path(report['reloaded_checkpoint']).is_file()

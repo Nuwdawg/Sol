@@ -51,7 +51,7 @@ class ChunkedSegmentationLoss(v8SegmentationLoss):
             losses[1] = self.calculate_segmentation_loss(
                 fg, masks, indices, boxes, batch["batch_idx"].view(-1, 1), proto, coefficients, size)
         else:
-            losses[1] = proto.sum() * 0 + coefficients.sum() * 0
+            losses[1] = proto.reshape(-1)[0] * 0 + coefficients.reshape(-1)[0] * 0
         losses[1] *= self.hyp.box
         return losses * proto.shape[0], losses.detach()
 
@@ -81,7 +81,9 @@ class ChunkedSegmentationLoss(v8SegmentationLoss):
         areas = xyxy2xywh(normalized)[..., 2:].prod(2)
         boxes = normalized * proto.new_tensor([width, height, width, height])
         # Connect both heads even when an image (or the whole batch) is empty.
-        loss = proto.sum() * 0 + pred_masks.sum() * 0
+        # FP16 reductions over native prototypes can overflow before multiplying
+        # by zero. A zero-valued indexed connection gives the same zero gradients.
+        loss = proto.reshape(-1)[0] * 0 + pred_masks.reshape(-1)[0] * 0
         for i in range(len(fg_mask)):
             positive = fg_mask[i].nonzero(as_tuple=True)[0]
             image_masks = masks[i] if self.overlap else masks[batch_idx.view(-1) == i]

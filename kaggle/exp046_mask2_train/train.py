@@ -20,6 +20,7 @@ from transformers import Mask2FormerForUniversalSegmentation, Mask2FormerConfig,
 
 from shared.data_split import make_split, assert_disjoint
 from shared.query_mask_loss import match_queries, query_mask_loss
+from shared.mask2_checkpointing import enable_checkpointing, enable_fp32_sampling
 
 
 def load_data(annotations):
@@ -74,14 +75,19 @@ def main():
     parser.add_argument('--backend', choices=['cpu', 'tpu'], default='tpu')
     parser.add_argument('--probe-steps', type=int, default=0)
     parser.add_argument('--smoke-model', action='store_true')
+    parser.add_argument('--bf16', action='store_true')
+    parser.add_argument('--checkpoint-activations', action='store_true')
     parser.add_argument('--seconds', type=int, default=36000)
     parser.add_argument('--max-epochs', type=int, default=50)
+    parser.add_argument('--resume', type=Path, default=None,
+                        help='optional prior checkpoint to continue from')
     args = parser.parse_args()
     if args.smoke_model and not args.probe_steps:
         raise ValueError('The small random model is only a lifecycle check')
     args.output.mkdir(parents=True, exist_ok=True)
     started = time.perf_counter()
     torch.manual_seed(2026); torch.set_num_threads(4); cv2.setNumThreads(1)
+    fp32_sampling = enable_fp32_sampling() if args.bf16 else False
     rng = np.random.default_rng(2026)
     if args.backend == 'tpu':
         os.environ['PJRT_DEVICE'] = 'TPU'
@@ -117,9 +123,19 @@ def main():
     else:
         model = Mask2FormerForUniversalSegmentation.from_pretrained(
             model_name, num_labels=1, ignore_mismatched_sizes=True)
+    resumed_steps = 0
+    if args.resume is not None:
+        saved = torch.load(args.resume, map_location='cpu', weights_only=True)
+        if saved.get('loss') != 'Hungarian class+BCE+Dice' or saved.get('size') != args.size:
+            raise ValueError('resume checkpoint does not match training contract')
+        model.load_state_dict(saved['model'], strict=True)
+        resumed_steps = int(saved.get('steps', 0))
+    checkpointed = enable_checkpointing(model, args.backend) if args.checkpoint_activations else []
     model.to(device).train(); sync()
     event('model_ready', backend=args.backend, size=args.size, split=split.summary(),
-          loss='Hungarian class+BCE+Dice', smoke=args.smoke_model)
+          loss='Hungarian class+BCE+Dice', smoke=args.smoke_model,
+          bf16=args.bf16, checkpointed_layers=len(checkpointed), fp32_sampling=fp32_sampling,
+          resumed_steps=resumed_steps)
     backbone, decoder = [], []
     for name, parameter in model.named_parameters():
         (backbone if 'pixel_level_module.encoder' in name else decoder).append(parameter)
@@ -138,7 +154,8 @@ def main():
         temporary = args.output/'checkpoint.partial.pt'
         saved = dict(model={k:v.detach().cpu() for k,v in model.state_dict().items()},
                      config=model.config.to_dict(), steps=step, size=args.size,
-                     model_name=model_name, loss='Hungarian class+BCE+Dice', split_seed=2026)
+                     model_name=model_name, loss='Hungarian class+BCE+Dice', split_seed=2026,
+                     resumed_steps=resumed_steps)
         torch.save(saved, temporary)
         temporary.replace(args.output/'checkpoint.pt')
         event('checkpoint_saved', steps=step)
@@ -153,12 +170,15 @@ def main():
         image_id = order[step % len(order)]
         pixels, target, present = sample(records[image_id], instances[image_id], images, args.size, rng)
         optimizer.zero_grad(set_to_none=True)
-        outputs = model(pixel_values=pixels.to(device)); sync()
+        with torch.autocast(device.type, dtype=torch.bfloat16, enabled=args.bf16):
+            outputs = model(pixel_values=pixels.to(device))
+        sync()
         if args.probe_steps: event('forward', step=step+1)
         assigned = match_queries(outputs.class_queries_logits, outputs.masks_queries_logits,
                                  target, present)
         assigned = tuple(value.to(device) for value in assigned); sync()
-        loss = query_mask_loss(outputs.class_queries_logits, outputs.masks_queries_logits, *assigned)
+        # Keep the supervised reductions in FP32 under mixed precision.
+        loss = query_mask_loss(outputs.class_queries_logits.float(), outputs.masks_queries_logits.float(), *assigned)
         sync()
         loss.backward(); sync()
         if args.probe_steps: event('backward', step=step+1)
@@ -200,7 +220,8 @@ def main():
                   smoke_model=args.smoke_model, losses=losses, seconds=timings,
                   checkpoint_reload=True, validation_forward=True,
                   loss='Hungarian class+BCE+Dice', elapsed_seconds=time.perf_counter()-started,
-                  code_sha256=hashlib.sha256(Path(__file__).read_bytes()).hexdigest())
+                  code_sha256=hashlib.sha256(Path(__file__).read_bytes()).hexdigest(),
+                  bf16=args.bf16, checkpointed_layers=len(checkpointed), fp32_sampling=fp32_sampling)
     (args.output/'train_report.json').write_text(json.dumps(report,indent=2))
     event('complete', steps=completed)
 

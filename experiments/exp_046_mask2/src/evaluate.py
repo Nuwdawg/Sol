@@ -18,12 +18,14 @@ from experiments.exp_033_inference.src.sweep import encode, evaluate_thresholds,
 from shared.utils import check_no_overlap, paint_panoptic
 
 CURRENT_BEST_PQ = 0.45707595553373687
-MASK_THRESHOLDS = (.4, .5, .6)
+MASK_THRESHOLDS = (.35, .4, .5, .6)
 CONFIDENCES = (.2, .4, .6, .8)
 
 
 def image_tensor(path, size):
     image = cv2.imread(str(path), cv2.IMREAD_GRAYSCALE)
+    if image is not None and image.ndim == 3 and image.shape[2] == 1:
+        image = image[:, :, 0]
     if image is None or image.shape != (2048, 2048):
         raise ValueError(f'Invalid native photograph: {path}')
     pixels = cv2.resize(image, (size, size), interpolation=cv2.INTER_AREA)
@@ -35,9 +37,9 @@ def image_tensor(path, size):
 
 @torch.inference_mode()
 def infer(model, path, size):
-    output = model(pixel_values=image_tensor(path, size))
-    classes = output.class_queries_logits[0].softmax(-1)[:, 0].numpy()
-    probabilities = output.masks_queries_logits[0].sigmoid().numpy()
+    output = model(pixel_values=image_tensor(path, size).to(next(model.parameters()).device))
+    classes = output.class_queries_logits[0].softmax(-1)[:, 0].cpu().numpy()
+    probabilities = output.masks_queries_logits[0].sigmoid().cpu().numpy()
     if not np.isfinite(classes).all() or not np.isfinite(probabilities).all():
         raise ValueError('Nonfinite CPU inference')
     return classes, probabilities
@@ -84,6 +86,8 @@ def main():
     parser.add_argument('--test-images', type=Path)
     parser.add_argument('--output', required=True, type=Path)
     parser.add_argument('--limit', type=int, default=0, help='Partial smoke check; never writes a submission')
+    parser.add_argument('--device', default='cpu')
+    parser.add_argument('--force-submission', action='store_true', help='Explicit user-requested public probe despite local score')
     args = parser.parse_args()
     torch.set_num_threads(4); cv2.setNumThreads(1)
     torch.manual_seed(2026)
@@ -96,6 +100,7 @@ def main():
         raise ValueError('Full evaluation requires at least one epoch at 1024px')
     model = Mask2FormerForUniversalSegmentation(Mask2FormerConfig.from_dict(saved['config']))
     model.load_state_dict(saved['model'], strict=True); model.eval()
+    model.to(args.device)
     records, split = records_for(args.annotations)
     names = sorted(records)
     if args.limit:
@@ -121,7 +126,7 @@ def main():
     best = max(results, key=lambda row:row['pq'])
     report = dict(complete=not args.limit, checkpoint_sha256=checkpoint_hash,
                   annotation_sha256=hashlib.sha256(args.annotations.read_bytes()).hexdigest(),
-                  device='cpu', size=saved['size'], split=split.summary(),
+                  device=args.device, size=saved['size'], split=split.summary(),
                   validation_photographs=len(records), sweep=results, best=best,
                   current_best_pq=CURRENT_BEST_PQ,
                   eligible_for_submission=not args.limit and best['pq'] > CURRENT_BEST_PQ,
@@ -129,7 +134,7 @@ def main():
     (args.output/'validation.json').write_text(json.dumps(report,indent=2))
     print(json.dumps(dict(event='validation_done', best=best,
                           eligible=report['eligible_for_submission'])),flush=True)
-    if not report['eligible_for_submission'] or args.test_images is None:
+    if args.limit or (not report['eligible_for_submission'] and not args.force_submission) or args.test_images is None:
         return
     test_files = sorted(args.test_images.glob('*.jpeg'))
     if len(test_files) != 180:

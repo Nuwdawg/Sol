@@ -1,0 +1,30 @@
+{
+  "native_size": 512,
+  "anchors": 64,
+  "box": [
+    100.3,
+    120.7,
+    180.8,
+    240.4
+  ],
+  "gradient_parity": true,
+  "measurements": [
+    {
+      "criterion": "ChunkedSegmentationLoss",
+      "seconds": [
+        5.73089689999324,
+        1.5391296000016155
+      ],
+      "loss": 1.6327035427093506
+    },
+    {
+      "criterion": "ROISegmentationLoss",
+      "seconds": [
+        0.6096352000022307,
+        0.5560659000038868
+      ],
+      "loss": 1.6327036619186401
+    }
+  ],
+  "scope": "CPU mask-loss component only; no full-model speed claim"
+}

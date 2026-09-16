@@ -6,7 +6,7 @@ from pathlib import Path
 import tarfile
 
 root = Path(__file__).resolve().parents[1]
-files = ['shared/__init__.py', 'shared/data_split.py', 'shared/query_mask_loss.py',
+files = ['shared/__init__.py', 'shared/data_split.py', 'shared/query_mask_loss.py', 'shared/mask2_checkpointing.py',
          'kaggle/exp046_mask2_train/train.py']
 buffer = io.BytesIO()
 with tarfile.open(fileobj=buffer, mode='w:gz') as archive:
@@ -14,8 +14,8 @@ with tarfile.open(fileobj=buffer, mode='w:gz') as archive:
         archive.add(root/name, arcname='train.py' if name.endswith('/train.py') else name)
 payload = base64.b64encode(buffer.getvalue()).decode()
 for slug, arguments, timeout in [
-    ('exp046-mask2-train', [], 39600),
-    ('exp047-mask2-real-probe', ['--probe-steps','3','--seconds','2700'], 3300),
+    ('exp046-mask2-train', ['--bf16','--checkpoint-activations'], 39600),
+    ('exp047-mask2-real-probe', ['--probe-steps','4','--seconds','5100','--bf16','--checkpoint-activations'], 5400),
 ]:
     directory = root/'kaggle'/slug.replace('-', '_')
     directory.mkdir(exist_ok=True)

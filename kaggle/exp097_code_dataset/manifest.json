@@ -1,0 +1,20 @@
+{
+  "files": {
+    "experiments/exp_002_yolo_seg/src/prepare_yolo.py": "6a2c52b6242e8fc03cee26df751f69c06315820e445497411ac7f452c07fd421",
+    "experiments/exp_097_runpod_yolo/__init__.py": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "experiments/exp_097_runpod_yolo/pod/bootstrap.sh": "ee6b9e834c791a158dcd374c9c35c6536cb7044ea6f9a41ee2c6d21e57353909",
+    "experiments/exp_097_runpod_yolo/src/__init__.py": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "experiments/exp_097_runpod_yolo/src/convergence.py": "b05a3fe05a365ce27b6faa0d2718a9e32ebb5fe29c33d7fd57e3d944d9a04d5a",
+    "experiments/exp_097_runpod_yolo/src/events.py": "5a558c5a44a0b07bbe410d949a2d9041f6fb90b68f27937aa49b523834e44bf5",
+    "experiments/exp_097_runpod_yolo/src/fetch_data.py": "b68d40d29415b10f453f3fc331ad7509e918613e2b86fe53a8a2d513f2e64a79",
+    "experiments/exp_097_runpod_yolo/src/gpu_monitor.py": "07044df41c29150223de7eb479214ac5bb23835e17f724fa25ac6259102d3877",
+    "experiments/exp_097_runpod_yolo/src/kaggle_sync.py": "583570aafe5daada50f51c5d834c273bc3dbc49f66eaeb99778e945b11160f71",
+    "experiments/exp_097_runpod_yolo/src/preflight.py": "19c2c10802c172713031e5faca37c3a1533cd77885f85dc31a1215f1b05f029c",
+    "experiments/exp_097_runpod_yolo/src/telemetry.py": "c45703fa41206b75e4c123a8cd248b327278fdb548c24c7da8afe05e9651c1b5",
+    "experiments/exp_097_runpod_yolo/src/train.py": "08e4379676c504734410992cfa054ec05f31679378a1aa761f0e41c59abd7100",
+    "shared/__init__.py": "a5d8360a9c1a06dc42b0b1c336e0cfaa7e7edd4605ee67daf1049bc0798edb36",
+    "shared/data_split.py": "f534c584da409642b0462d48c5c88f1658e6ce9f310b22996ca4461369ce780e"
+  },
+  "payload": "sol_exp097_code.payload",
+  "payload_sha256": "bce589a9632954335e1530390ce3ebc51dbf4313489fa992f3b5bf22be2c1bc9"
+}

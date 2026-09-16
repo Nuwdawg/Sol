@@ -1,0 +1,22 @@
+{
+  "id": "cosmicwitness/sol-exp063-submission-probes",
+  "title": "Sol exp063 submission probes",
+  "code_file": "kernel.py",
+  "language": "python",
+  "kernel_type": "script",
+  "is_private": true,
+  "enable_gpu": true,
+  "enable_tpu": false,
+  "enable_internet": true,
+  "dataset_sources": [],
+  "machine_shape": "NvidiaTeslaT4",
+  "competition_sources": [
+    "filament-segmentation-2026"
+  ],
+  "kernel_sources": [
+    "cosmicwitness/sol-exp002-yolo-seg",
+    "cosmicwitness/sol-exp031-frozen",
+    "cosmicwitness/sol-exp058-mask2-tpu-continuation"
+  ],
+  "model_sources": []
+}

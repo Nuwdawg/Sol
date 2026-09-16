@@ -69,6 +69,19 @@ def test_empty_batch_has_finite_zero_gradients():
         assert torch.count_nonzero(grad) == 0
 
 
+@pytest.mark.parametrize('empty',[False,True])
+def test_fp16_validation_zero_connection_does_not_overflow(empty):
+    proto=torch.ones(1,2,256,256,dtype=torch.float16)
+    coefficients=torch.zeros(1,1,2,dtype=torch.float16)
+    assert torch.isinf(proto.sum())  # Reproduces the old sum()*0 failure.
+    args=(torch.tensor([[not empty]]),torch.ones(1,256,256),torch.zeros(1,1,dtype=torch.long),
+          torch.tensor([[[0.,0.,256.,256.]]]),torch.zeros(1),proto,coefficients,torch.tensor([256,256]))
+    with torch.no_grad():
+        loss=criterion(True,8).calculate_segmentation_loss(*args)
+    assert torch.isfinite(loss)
+    torch.testing.assert_close(loss.float(),torch.tensor(0. if empty else 0.69314718056,dtype=torch.float16).float())
+
+
 def test_checkpoint_does_not_retain_expanded_targets():
     args = inputs(True)
     saved_shapes = []

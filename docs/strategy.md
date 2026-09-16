@@ -1,5 +1,14 @@
 # Strategy
 
+**Current decision rule (2026-09-13):** follow the user-provided
+[competition host guidance](HOST_GUIDANCE.md). Judging includes individual
+prediction quality and algorithmic reasoning, not just PQ. Retain the >0.46
+public-score objective, but review native-resolution predictions and meaningful
+tradeoffs alongside scores. The historical claims below that residual error is
+unreachable, corrections were destined to fail, or annotation agreement implies
+a numerical ceiling are hypotheses, not established facts or operating rules.
+Do not mistake the participant's consensus characterization for the metric spec.
+
 Where the effort is going, why, and what would show it to be wrong.
 Companion to `docs/leaderboard-analysis.md`, which holds the measurements this
 argues from; every number here is transcribed from a file in `results/`.

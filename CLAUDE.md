@@ -1,5 +1,27 @@
 # Working notes for this repository
 
+## Governing competition guidance (user instruction, 2026-09-13)
+
+Read [the host guidance](docs/HOST_GUIDANCE.md) when choosing experiments or
+interpreting scores. The user explicitly requires it to inform our decisions.
+The host says judging considers individual predictions and algorithmic logic,
+not solely a scalar PQ score. Boundary variability reflects the physical problem;
+it is not proof that useful improvement is impossible or that the task is merely
+matching an annotation convention.
+
+Continue pursuing the user's >0.46 public-score goal while protecting prediction
+quality. Review representative native-resolution predictions and changed masks
+alongside metrics before promoting a variant. Look for retained filament detail,
+misses, spurious detections, merges/splits and implausible boundary changes.
+Do not declare a noise ceiling, suppress plausible objects, or distort boundaries
+solely to fit a leaderboard story. Record tradeoffs and reproducible algorithmic
+reasons. Keep the official metric and per-annotator evaluation unchanged; the
+participant's claim about a "multiple-annotated consensus" is not a metric spec.
+
+Earlier strategy prose about irreducible disagreement and why corrections must
+fail contains unproven generalizations. Preserve its measurements, but do not use
+those claims as current operating rules.
+
 Written after a two-day effort that moved the leaderboard score not at all. The
 experiments are in `docs/leaderboard-analysis.md` and the reasoning in
 `docs/strategy.md`. This file is the other half: the mistakes, so they are not
@@ -163,3 +185,60 @@ the decision, stop.
 - CPU inference is bit-for-bit identical to GPU inference here (same CSV MD5).
   GPU hours belong to training.
 - The public MAGFiLO release contains the test annotations. Do not train on it.
+
+## 14. Enumerate what is running before you launch
+
+The handoff stated that exp087 "was prepared but not launched" and that Kaggle
+reported the slug did not exist. Both halves were checked against the slug
+`sol-exp087-morden-continue-t4`. The previous agent's push had actually
+succeeded under `sol-exp087-morden-continuation-t4`, the slug Kaggle derives
+from the *title* "Sol exp087 MORDEN continuation T4". Trusting the handoff, a
+second identical continuation was pushed and ran on a second T4 for about ten
+minutes before the duplicate was found.
+
+Two separate faults combined:
+
+- A status query for one guessed slug is not a check for running work.
+  `kaggle kernels list --user <user> --sort-by dateRun` lists what actually ran.
+- Kaggle derives the slug from the title, not from the `id` field. When the two
+  disagree the push either 409s or silently lands on a different slug than the
+  one every later status call will use. Keep `title` and `id` slug-identical.
+
+**Rule:** before pushing any kernel, list the account's kernels by run date and
+confirm nothing equivalent is already RUNNING. Never infer "not launched" from a
+single slug lookup, and never inherit that inference from a handoff document.
+
+## 15. Kaggle datasets rewrite what you upload
+
+Found while shipping exp097's code to a RunPod pod through a private Kaggle
+dataset:
+
+- **Kaggle auto-extracts archives.** An uploaded `sol_exp097_code.tar.gz` was
+  listed afterwards as its extracted files. The single tarball whose SHA256 the pod
+  was going to verify no longer existed. Ship integrity-checked bundles under a
+  non-archive name (`.payload`) and check the listing, not the upload message.
+- **Kaggle CLI 2.2.4 on Windows breaks on `-p` paths with forward slashes.** It
+  flattens the path into a temporary filename by replacing only `os.sep`, so
+  `-p kaggle/exp097_code_dataset` made a nested temporary path and failed with
+  `[Errno 2]` before uploading anything. Run the command from inside the folder
+  with `-p .`.
+- Parallel Bash tool calls share one working directory. A `cd` in one call can
+  move the other, so use absolute paths when calls run together.
+
+**Rule:** after any Kaggle dataset upload, list its files and sizes and compare
+them with what was intended before anything depends on the dataset.
+
+## 16. A pinned library is a source to read, not an API to assume
+
+exp097's pod reached training and then died inside its own `on_train_start`, on
+`len()` of `dataset.ims`. In Ultralytics 8.4.153 a complete RAM cache is an
+`_ImageCache` object, not a list. The callbacks had unit tests, but every test
+supplied a list, which was exactly the assumption under test (section 6). Reading
+the pinned version's source afterwards found three more defects in the same file,
+among them `on_fit_epoch_end` being called a second time by `final_eval`, which
+would have written a phantom epoch into the convergence history.
+
+**Rule:** when driver code touches a library's internals, read those internals in
+the exact pinned version, then run the real code against that version before it
+costs money. The rehearsal belongs on free compute: exp099 runs the identical
+payload on a Kaggle T4 in about ten minutes.
