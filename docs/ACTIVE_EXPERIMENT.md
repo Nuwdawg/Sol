@@ -1595,10 +1595,17 @@ the threshold keeps 80% of truth pixels, averaged over three photographs:
 | elongated black top-hat, 6 orientations | 0.378 | 0.1202 | 0.2641 |
 
 A usable proposal stage needs that fraction well under 0.05. At 0.30 the "proposal"
-is a third of the sun. **Filaments are not separable from the chromospheric
-network by any single-pixel intensity criterion**, which is consistent with the
-project's history: the largest classical gain here came from erosion of learned
-masks (exp_005, +0.03 public), not from thresholding raw intensity.
+is a third of the sun. Filaments are not separable from the chromospheric network by
+any of the tested single-pixel intensity criteria applied **globally over the whole
+disk**, which is consistent with the project's history: the largest classical gain
+here came from erosion of learned masks (exp_005, +0.03 public), not from
+thresholding raw intensity.
+
+SCOPE CORRECTION (2026-09-16, per the testing manual, method 5): this result tests
+global proposal generation only. It does not test local ridge evidence sampled
+inside a forward endpoint corridor at scales matched to filament width with the
+correct dark-ridge polarity, which remains untested. Global disk occupancy of 26.2%
+must not be cited as a rejection of local vesselness.
 
 What the numbers redirect toward: none of the three quantities measures *length*.
 A filament is a connected dark ridge tens to hundreds of pixels long; network
@@ -2155,20 +2162,121 @@ population: 56 near-threshold, 858 healthy.
 The label separates, so the path search works. Truncated masks do have cheaper
 (0.559 negated) and darker (0.605) continuations - the hypothesis's direction - but
 at the 98th percentile of the healthy population the cost feature catches 1 of 56
-while damaging 18. The correction changed the method and not the outcome: endpoint
-continuation is now tested properly rather than dismissed on an invalid argument,
-and it still yields no usable trigger.
+while damaging 18.
+
+**Scope of this result, corrected against the testing manual.** exp112 tested a
+*trigger statistic* - the minimum path cost - and nothing else. It never converted
+a selected path into mask area, never reran the official scorer, and therefore
+never tested the geodesic *operator*. The manual lists that exact mistake as an
+invalid conclusion: "evaluating centreline overlap but not reconstructed mask PQ".
+So the correct status for method 1 is **partially tested**: the cost statistic is a
+weak discriminator, while the repair itself - path plus width reconstruction plus
+official rescoring - remains untested, as do its required controls (random-direction
+path of equal area, straight tangent extension, matched-area dilation).
 
 Process error worth recording: the ETA given for this run was ~50 minutes; it
 finished in six. The per-instance cost was extrapolated from a bounded run whose
 early photographs were unrepresentative, and no progress output existed to correct
 the estimate mid-run. Long audits should print progress.
 
-**Where the deterministic line stands.** Every candidate trigger measured today
-fails at the same wall: 56 targets against 858 healthy masks means the top 2% of
-the healthy population outnumbers every target, so features with real ranking
-signal - width mean_slope 0.809, neck rho 0.712, dark absorption 0.605, path cost
-0.559 - all produce net-negative operating points. The obstacle is class imbalance
-in the candidate set, not absence of signal. Any future repair must first shrink
-the candidate set by an independent mechanism, or accept very low recall at
-extreme specificity.
+**Where the deterministic line stands - corrected statement.** Several
+instance-level *triggers* have been audited and are not deployable globally:
+width mean_slope 0.809, neck rho 0.712, dark absorption 0.605 and geodesic path
+cost 0.559 all carry ranking signal yet produce net-negative operating points,
+because 56 targets sit against 858 healthy masks and the top 2% of the healthy
+population outnumbers every target.
+
+That is a statement about triggers, not about repairs, and the earlier phrasing
+that the post-processing line is "fully audited" or "exhausted" was wrong. This
+log's own accounting contradicts it: of the sixteen approaches, three were tested
+directly, three partially, and ten were never implemented. A failed trigger does
+not refute the repair it was meant to gate.
+
+The correct next step, from the user's testing manual: stop searching for another
+universal classifier. For each remaining repair, disable the deployability
+question, give it an ORACLE gate on validation, and measure only its maximum
+recoverable PQ. Rank the repairs by that ceiling. Kill the ones whose perfect
+selector gains nothing; build a deployable gate only for repairs whose oracle gain
+is material. Two reservoirs are separate and must be costed separately: detection
+headroom (284 of 465 misses have zero overlap with any prediction, unreachable by
+mask repair) and existing-instance repair headroom.
+
+### exp113: oracle ceilings for the split and union repair families (2026-09-16 12:59 UTC)
+
+First application of the testing manual's Appendix B step 1: measure a repair
+family's maximum recoverable PQ before spending any effort on a trigger for it.
+Both operators here READ GROUND TRUTH and are upper bounds only. Neither is a
+postprocessor and neither may be submitted.
+
+Baseline recomputed from source artifacts and asserted before anything ran:
+PQ 0.4558638687, TP/FP/FN 860/397/465.
+
+| oracle repair | delta PQ | PQ after | TP | FP | FN | crossings up | down |
+|---|---|---|---|---|---|---|---|
+| **split_by_truth** | **+0.022342** | 0.4782063111 | 900 | 386 | 425 | 40 | 0 |
+| union_fragments | +0.011579 | 0.4674425105 | 874 | 354 | 451 | 14 | 0 |
+
+The split operator divided 28 merged predictions into 57 pieces; the union
+operator merged 26 fragment groups.
+
+**Both families pass step 1, and the split family is large.** +0.022342 is roughly
+twice the total gain from all ensemble and training work this session (+0.012282
+for cross-architecture pooling), and it reaches 0.4782 - above the 0.472 that a
+printed 0.40 requires.
+
+A predicted failure mode did not occur. Splitting increases the prediction count,
+so false positives were expected to rise; instead they fell from 397 to 386,
+because each rescued truth converts an FP and an FN into a TP at once. Zero
+downward crossings in both repairs, so neither ceiling is bought by damaging
+healthy objects.
+
+**What this corrects about earlier reasoning.** exp105c rejected the narrow-neck
+splitter on trigger precision (3-7%, net -207 objects) and exp111 rejected the
+width-profile gate the same way, both *before* the family's ceiling was known.
+That is the sequencing error the manual names: a failed trigger does not refute a
+repair. With the ceiling now measured at +0.0223, the gate question is worth real
+effort, and the earlier trigger results become evidence about which gate is needed
+rather than grounds for abandoning the family.
+
+Still absent: any deployable method. An oracle ceiling is not a submission
+candidate, and no slot should be spent on one.
+
+### exp113b: growth ceilings, and a correction to exp108's operational reading (2026-09-16 13:19 UTC)
+
+Appendix B step 1 completed across all four repair families. Every operator reads
+ground truth and is an upper bound only. Baseline re-asserted first:
+PQ 0.4558638687, TP/FP/FN 860/397/465.
+
+| oracle repair | delta PQ | PQ after | TP | FP | FN | masks touched | pixels added | crossings up/down |
+|---|---|---|---|---|---|---|---|---|
+| **growth_full** (absolute bound) | **+0.032510** | 0.4883737 | 909 | 348 | 416 | 49 | 56,352 | 49 / 0 |
+| split_by_truth | +0.022342 | 0.4782063 | 900 | 386 | 425 | 28 | - | 40 / 0 |
+| growth_lateral | +0.018865 | 0.4747293 | 901 | 356 | 424 | 47 | 15,928 | 41 / 0 |
+| growth_axial | +0.018103 | 0.4739665 | 897 | 360 | 428 | 41 | 12,499 | 37 / 0 |
+| union_fragments | +0.011579 | 0.4674425 | 874 | 354 | 451 | 26 | - | 14 / 0 |
+
+**Correction to exp108's operational reading.** That entry concluded the
+axial/lateral decomposition "settles the algorithm choice" in favour of endpoint
+continuation over boundary refinement, because 59% of the missing area is axial.
+The ceilings contradict it: lateral recovers **+0.018865** against axial's
+**+0.018103**, and does so with 47 masks touched against 41. Area share does not
+predict recoverable PQ, because a thin lateral deficit needs only a few pixels per
+boundary to push an instance across IoU 0.5, while a distal stub 10-30 px long
+needs many. Active contours and graph cuts (manual methods 3 and 4) are therefore
+not the secondary family this log called them.
+
+**Additivity.** axial + lateral = +0.036968 against the full-growth bound of
++0.032510, so the two populations overlap and no combined growth operator can
+exceed +0.0325 on strict 1:1 near-threshold masks.
+
+**What the ranking implies for effort.** Split leads the single families at
++0.022342 and already has candidate gate features measured: width `mean_slope`
+AUC 0.809, saddle depth 0.750, neck rho 0.712. Those were previously treated as
+rejections; with the ceiling known they are the starting point for a gate. The
+growth families are close behind but need a trigger that no audit has yet found,
+and their evidence channels (local endpoint ridge at correct scale and polarity,
+orientation with coherence weighting, matched filtering) remain untested per the
+manual's method sections 5, 6 and 9.
+
+Every number here is an oracle bound. Nothing in this entry is deployable, and no
+submission slot should be spent on any of it.
