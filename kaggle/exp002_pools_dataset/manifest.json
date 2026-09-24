@@ -1,0 +1,14 @@
+{
+  "exp002_test_views_0.json": {
+    "sha256": "64bcca7aa9336b1f27d62a268fa0b37e832794e10f545922ddb8a9c1e04b9cd3",
+    "bytes": 2012411
+  },
+  "exp002_test_views_1.json": {
+    "sha256": "7969298940e3f670278d07600467949ed32c27bf3cc9df1d9ec9c3558f3cb4c6",
+    "bytes": 2099338
+  },
+  "exp002_val_pool.json": {
+    "sha256": "225fa4b32cc9185ebbf34bfa4d57cc626cb2cf2859b523537204ccf330534bdd",
+    "bytes": 435349
+  }
+}
