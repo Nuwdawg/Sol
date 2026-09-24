@@ -1,0 +1,21 @@
+{
+  "id": "cosmicwitness/sol-exp077-semantic-complement",
+  "title": "Sol exp077 semantic complement",
+  "code_file": "kernel.py",
+  "language": "python",
+  "kernel_type": "script",
+  "is_private": true,
+  "enable_gpu": false,
+  "enable_tpu": true,
+  "enable_internet": true,
+  "machine_shape": "Tpu1VmV38",
+  "competition_sources": [
+    "filament-segmentation-2026"
+  ],
+  "dataset_sources": [],
+  "model_sources": [],
+  "kernel_sources": [
+    "cosmicwitness/sol-exp004-tpu",
+    "cosmicwitness/sol-exp066-sam2-boundary-probe"
+  ]
+}
