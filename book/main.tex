@@ -1,0 +1,164 @@
+\documentclass[11pt,oneside]{book}
+\input{preamble.tex}
+\input{generated/paper_numbers.tex}
+\input{generated/book_numbers.tex}
+
+\begin{document}
+\frontmatter
+
+\begin{titlepage}
+\centering
+\vspace*{1.2in}
+{\fontsize{34}{40}\selectfont\itshape Finding Filaments\par}
+\vspace{0.25in}
+{\Large Instance segmentation of solar filaments\\ in full-disk \Ha{} images\par}
+\vspace{0.5in}
+{\large A documented pipeline, the pitfalls along the way,\\ and the experiments that did not work\par}
+\vfill
+\begin{tikzpicture}
+  \foreach \c/\x in {vizblue/0, vizorange/0.55, vizaqua/1.1, vizviolet/1.65, vizyellow/2.2}
+    \fill[\c] (\x,0) rectangle ++(0.45,0.08);
+\end{tikzpicture}
+\par\vspace{0.3in}
+{\large Written for Kasozi Ismail\par}
+\vspace{0.12in}
+{\normalsize Kaggle team \texttt{supersede}\par}
+\vspace{0.04in}
+{\normalsize\href{mailto:k.kasozi69@gmail.com}{\texttt{k.kasozi69@gmail.com}}\par}
+\vspace{0.2in}
+{\normalsize September 2026\par}
+\vspace*{0.4in}
+\end{titlepage}
+
+\chapter*{Preface}
+\markboth{Preface}{}
+\addcontentsline{toc}{chapter}{Preface}
+
+\section*{Introduction}
+Solar filaments are the long, dark structures that cross the disk of the Sun when it is
+photographed in the red \Ha{} line of hydrogen. Each one is a cloud of cool, dense plasma held up
+by the Sun's magnetic field, and its eruption can be accompanied by a coronal mass ejection.
+Catalogues of filaments are therefore useful for studying the solar cycle and for forecasting
+space weather, but drawing them by hand is slow. The Solar Filament Segmentation Challenge 2026, a
+Kaggle competition, asked for a program that finds every filament in a full-disk \Ha{} image from
+the Global Oscillation Network Group (GONG) and outlines each one as a separate mask.
+
+This book is a detailed account of one entry to that challenge. It is written for readers who
+want to build on the work: solar physicists who need filament masks, and machine-learning
+practitioners who want to apply instance segmentation to solar images. We think that three parts
+of it are useful beyond the competition.
+\begin{enumerate}[leftmargin=*,itemsep=2pt]
+\item \textbf{A complete, documented pipeline.} The book follows every step from the annotation
+file to a Mask2Former model that predicts at the native resolution of $2048\times2048$ pixels, and
+from its predictions to the file that the competition scores. Each step is explained and tied to
+the code that performs it.
+\item \textbf{Pitfalls that carry over to other projects.} Two standard libraries turn the same
+annotated polygon into masks of different sizes (Section~\ref{sec:masks-fat}). A validation split
+that keeps each photograph on one side still leaks information, because a filament survives on the
+disk for days (Section~\ref{sec:val-time}). And a transformer trained only on crops meets
+unfamiliar positional embeddings when it is applied to a whole image
+(Section~\ref{sec:train-sampling}). All three are easy to miss.
+\item \textbf{Negative results.} Between 24 August and 21 September 2026 we ran more than 140
+numbered experiments, and most of them did not improve the model. We describe them in some detail,
+because the reasons they failed tell us a good deal about the data, the metric and the models, and
+because an idea whose failure has been measured and written down need not be tried again.
+\end{enumerate}
+The final model reaches a panoptic quality of \HostPQ{} on our validation split and \BestPublic{}
+on the competition's public leaderboard. We quote these numbers because the decisions in the book
+rest on measurements of this kind. Chapter~\ref{ch:submission} discusses what they show and what
+they do not, and Section~\ref{sec:intro-previous} explains why no published result can yet be
+compared with them.
+
+\section*{Target audience}
+Most of the book assumes a reader who already knows the main families of image models. We
+assume that you have trained a convolutional network, that you know roughly how YOLO and the
+Vision Transformer (ViT) work, and that you can read Python and PyTorch. We do not assume any
+knowledge of solar physics, of segmentation metrics, or of this repository. Chapter~\ref{ch:transformers}
+reviews the transformer machinery that the final model uses (attention, Swin, DETR) from first
+principles, so familiarity with it helps but is not required. Readers who want a fuller
+introduction to deep learning can consult \citet{bishop}.
+
+\section*{A measurement-driven approach}
+Murphy's textbook~\citep{murphy}, whose layout this book borrows, argues for a principled, model-based approach
+to machine learning in place of a cookbook of heuristics. The corresponding principle in this
+book is that each design decision should rest on a measurement. Three kinds of measurement recur
+throughout. The first is an exact reproduction of a baseline, made before any change is compared
+with it. The second is an \emph{oracle}, which uses the ground truth to find the best score that
+a whole family of methods could possibly reach; it tells us whether an idea is worth building
+before we build it. The third is a short calculation, based on the structure of the metric, of
+what a change must achieve before it can raise the score at all. We introduce these tools in
+Chapters~\ref{ch:metric} and~\ref{ch:validation}, and we use them in most of the chapters that
+follow.
+
+\section*{A practical approach}
+Nearly everything in this book is backed by code in the repository, and we refer to files by
+their path, for example \file{shared/utils.py}. Every figure that shows data names the function
+that drew it, in the form ``Figure generated by \file{book/make\_book\_figures.py:fig\_split}'',
+so that you can regenerate the figure and modify it. Diagrams that do not come from data say
+where they are drawn. When we quote a number from the history of the project, we name the
+experiment that produced it, for example exp013. The full record of each experiment is kept in
+\file{docs/ACTIVE\_EXPERIMENT.md} and \file{docs/leaderboard-analysis.md}, and
+Appendix~\ref{app:ledger} lists all of them in order.
+
+\section*{How the book is organised}
+Chapter~\ref{ch:intro} gives an overview of the problem and of our results.
+Chapters~\ref{ch:data}--\ref{ch:validation} lay the foundations: the Sun and the data
+(Chapter~\ref{ch:data}), how masks are represented and compared (Chapter~\ref{ch:masks}), the
+competition's metric (Chapter~\ref{ch:metric}), and how we validate models
+(Chapter~\ref{ch:validation}). Chapters~\ref{ch:paradigms}--\ref{ch:recall} describe the
+approaches we tried, in roughly the order in which we tried them: dense semantic segmentation
+(Chapter~\ref{ch:paradigms}), YOLO instance segmentation (Chapter~\ref{ch:yolo}), test-time
+augmentation and ensembles (Chapter~\ref{ch:tta}), correcting masks after prediction
+(Chapter~\ref{ch:post}), and recovering the filaments that a detector misses
+(Chapter~\ref{ch:recall}). Chapters~\ref{ch:transformers}--\ref{ch:submission} describe the
+final model: the transformer architecture it is built on (Chapter~\ref{ch:transformers}), how
+we trained it (Chapter~\ref{ch:training}), and how its predictions become a submission and how
+good that submission is (Chapter~\ref{ch:submission}). Chapter~\ref{ch:lessons} collects what we
+learned about experimental method, much of it from our own mistakes. The appendices describe the
+computing infrastructure, list every experiment, give a map of the code and summarise the
+notation.
+
+\section*{Starred sections}
+As in Murphy's book, a section whose title ends in an asterisk (*) contains detail that can be
+skipped on a first reading without losing the thread of the chapter.
+
+\section*{Exercises}
+Each chapter ends with exercises. Most of them ask you to reproduce a number from the chapter,
+to derive a result that the chapter used without proof, or to extend one of its analyses. Doing
+a few of them is the quickest way to become familiar with the code and the data.
+
+\section*{Scope}
+The book describes the project as it stood on 21 September 2026. The competition closes on
+15 November 2026, so later work will extend the story. One rule holds throughout: the public
+MAGFiLO release contains the annotations of the competition's test photographs, and we never
+train on it (Section~\ref{sec:data-rules} explains why).
+
+\tableofcontents
+
+\mainmatter
+\include{chapters/ch01_introduction}
+\include{chapters/ch02_data}
+\include{chapters/ch03_masks}
+\include{chapters/ch04_metric}
+\include{chapters/ch05_validation}
+\include{chapters/ch06_paradigms}
+\include{chapters/ch07_yolo}
+\include{chapters/ch08_tta}
+\include{chapters/ch09_postprocessing}
+\include{chapters/ch10_recall}
+\include{chapters/ch11_transformers}
+\include{chapters/ch12_training}
+\include{chapters/ch13_submission}
+\include{chapters/ch14_lessons}
+
+\appendix
+\include{chapters/appA_infrastructure}
+\include{chapters/appB_ledger}
+\include{chapters/appC_code}
+\include{chapters/appD_notation}
+
+\backmatter
+\bibliographystyle{plainnat}
+\bibliography{refs}
+
+\end{document}

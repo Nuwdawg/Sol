@@ -1,0 +1,104 @@
+\chapter{Infrastructure: Kaggle and RunPod}\label{app:infra}
+
+\section{Where the computing happens}\label{sec:infra-where}
+Almost none of the computation in this project runs on the computer that holds the repository. From
+15 September 2026 onwards we followed an explicit rule: nothing is downloaded to the local machine,
+and no local bandwidth is spent. Code is written locally, shipped to remote machines and run there,
+and only small artefacts, such as reports, CSV files, figures and PDF documents, come back. We used two
+kinds of remote machine: Kaggle kernels, which are free within a weekly quota, and GPUs rented from
+RunPod, which are paid for by the hour.
+
+\section{Kaggle kernels}\label{sec:infra-kaggle}
+A Kaggle \keyterm{kernel} (which Kaggle now also calls a notebook) is a script that Kaggle runs on its
+own hardware, with the competition data and any chosen datasets mounted read-only under
+\file{/kaggle/input}. The following facts about kernels shaped how we worked.
+\begin{itemize}[leftmargin=*,itemsep=2pt]
+\item \textbf{Hardware.} Kaggle offers kernels with CPUs only, with one or two NVIDIA T4 GPUs (16 GB
+each), or with a TPU v5e with eight cores. During the project our account had about 30 GPU hours and
+20 TPU hours per week, one TPU session at a time, and a limit of 12 hours per session.
+\item \textbf{Outputs.} Only the files written under \file{/kaggle/working} survive a session. An early
+experiment lost 1.5 hours of training because it wrote its checkpoints to \file{/kaggle/temp}.
+\item \textbf{Metadata.} Each kernel folder contains a file \file{kernel-metadata.json}, which names
+the script, the datasets and other kernels to mount, and whether a GPU and internet access are enabled.
+Kaggle derives the address of a kernel (its ``slug'') from its \emph{title}, not from the \texttt{id}
+field of this file. When the two disagree, a push can land at an address that no later status query
+looks at, so we keep them identical.
+\item \textbf{Knowing what runs.} The command \texttt{kaggle kernels list --user <user> --sort-by
+dateRun} lists the kernels that actually ran. A status query for a single guessed name is not a
+reliable check (Section~\ref{sec:lessons-config}).
+\item \textbf{Chaining sessions.} A kernel can mount its own earlier output, which in principle allows
+twelve-hour sessions to be chained. However, a kernel that is stopped by the time limit is
+\emph{cancelled}, and the output of a cancelled kernel cannot be mounted. Any plan that relies on
+chaining must be tested on that path.
+\item \textbf{CPU and GPU agree.} Inference on Kaggle's CPUs produced a submission file identical, bit
+for bit, to the one produced by inference on a GPU (the two files had the same MD5 hash). We therefore
+used CPU kernels freely for inference and scoring, and kept the GPU hours for training.
+\end{itemize}
+
+\subsection{TPUs}\label{sec:infra-tpu}
+Kaggle's TPU trained the dense U-Nets well: exp004 ran 300 epochs at 1024 pixels in 3.8 hours. It used
+a single Python process with SPMD sharding across the eight cores, because the usual launcher, which
+starts one process per core, failed while the TPU was starting up on Kaggle's image. The XLA compiler
+recompiles the model for every new tensor shape, so the batches had to have fixed shapes, and every
+call to \texttt{.item()} stalls the pipeline, so we read the losses only once per epoch. YOLO training
+never ran on the TPU, because compilation timed out, and the first Mask2Former trained there far too
+slowly to finish (Section~\ref{sec:train-first}).
+
+\section{Datasets as a means of transport}\label{sec:infra-datasets}
+Private Kaggle datasets carry code to the remote machines and bring weights back. Two properties of
+Kaggle's datasets determined how we use them.
+\begin{itemize}[leftmargin=*,itemsep=2pt]
+\item \textbf{Kaggle unpacks archives.} After an upload, a \file{.tar.gz} file is listed as the files
+it contains, so a single archive whose SHA-256 hash a remote machine intended to check no longer
+exists. We therefore ship code as a tar archive renamed to \file{.payload}, and the receiving machine
+verifies its SHA-256 hash before running anything.
+\item \textbf{The listing must be checked.} After every upload we list the dataset's files and their
+sizes, and compare them with what we intended to upload, before anything depends on the dataset.
+\end{itemize}
+On Windows, the version of the Kaggle command-line tool that we used failed on \texttt{-p} arguments
+containing forward slashes; running the tool from inside the folder with \texttt{-p .} avoided the
+problem. Downloading the logs of a kernel required setting \texttt{PYTHONUTF8=1}, because otherwise a
+single non-ASCII character in the log produced an empty file.
+
+\section{RunPod}\label{sec:infra-runpod}
+We trained two models on rented GPUs:
+\begin{center}\small
+\begin{tabular}{@{}llccc@{}}
+\toprule
+experiment & GPU & per hour & length & cost \\
+\midrule
+exp097 (YOLOv8l-seg) & L40, 48 GB & \$0.69 & 124 epochs & \$2.74 \\
+exp139 (Mask2Former) & H100 NVL, 94 GB & \$2.59 & 50 epochs & about \$4.80 \\
+\bottomrule
+\end{tabular}
+\end{center}
+Two early machines for exp097 that failed before training began added \$0.22 to the cost.
+
+A rented machine starts from a standard PyTorch image and runs a bootstrap script. The script downloads
+the code payload from a private Kaggle dataset, checks its SHA-256 hash, reproduces a known validation
+score to prove that the scorer works on that machine, runs a short preflight that measures speed and
+memory, and only then starts training. Checkpoints are uploaded to a private Kaggle dataset, whose
+listing the machine verifies before it stops itself. If any command fails, an error handler uploads the
+logs and stops the machine, so that a failure costs minutes rather than hours. For the same reason, the
+diagnostics that a failed machine uploads, and not the provider's own log, are the place to look for the
+cause of a failure (Section~\ref{sec:train-run}).
+
+The Kaggle access key reaches a rented machine only through its environment, when the machine is
+created, and it is never written to a file in the repository or to a log. Spending is bounded in two
+ways: the trainer projects its cost from its measured speed and stops at a cap, and the hourly price of
+every new machine is stated and approved before the machine is created.
+
+\section{Submitting and watching}\label{sec:infra-submit}
+A submission is a single command:
+\begin{lstlisting}[language=bash,caption={Submitting a CSV file to the competition.},label=lst:infra-submit]
+kaggle competitions submit -c filament-segmentation-2026 -f submission.csv -m "exp139 epoch 40 ..."
+\end{lstlisting}
+The message attached to a submission has a practical use. The script
+\file{scripts/watch\_and\_submit.sh} polls kernels, downloads each finished submission file and submits
+it, and it decides whether a file has already been submitted by comparing messages. An earlier version
+compared file names instead, and since every kernel calls its output \file{submission.csv}, it skipped a
+new file because an old submission had the same name. Finally, \file{scripts/alarm.ps1} plays a sound and
+shows a window when a long job ends:
+\begin{lstlisting}[language=bash,caption={The end-of-job alarm on Windows.},label=lst:infra-alarm]
+powershell -ExecutionPolicy Bypass -File scripts\alarm.ps1 -Message "book built" -Seconds 15
+\end{lstlisting}

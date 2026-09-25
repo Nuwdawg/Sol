@@ -1,0 +1,92 @@
+\chapter{The Experiment Ledger}\label{app:ledger}
+
+This appendix lists our experiments in the order in which they were run, together with the result
+that decided each one and the chapter that describes it. Validation numbers are PQ on the canonical split
+(Chapter~\ref{ch:validation}); ``public'' is the leaderboard's two-decimal score. The full record of
+each experiment is in \file{docs/leaderboard-analysis.md} (up to exp031) and
+\file{docs/ACTIVE\_EXPERIMENT.md} (from exp033).
+
+{\small
+\setlength{\tabcolsep}{4pt}
+\begin{longtable}{@{}>{\raggedright\arraybackslash}p{1.95cm}>{\raggedright\arraybackslash}p{5.5cm}>{\raggedright\arraybackslash}p{3.9cm}>{\raggedright\arraybackslash}p{0.75cm}@{}}
+\toprule
+experiment & what was tried & decisive result & ch. \\
+\midrule
+\endfirsthead
+\toprule
+experiment & what was tried & decisive result & ch. \\
+\midrule
+\endhead
+\bottomrule
+\endfoot
+exp001 & U-Net++ (EfficientNet-B4) at 512, semantic mask then connected components & 0.2957; public 0.26 & 6 \\
+exp002 & YOLO11m-seg at 1280, 149 epochs, stopped by a time budget & 0.3736 tuned; public 0.32 & 7 \\
+exp002 & the same weights, inference at the native 2048 & 0.4064; public 0.33 & 7 \\
+exp004 & U-Net (ResNet-34) at 1024, 300 epochs on TPU, flip averaging & public 0.28 & 6 \\
+exp004 & spine-seeded instances, ablated on degraded annotations & $+0.0005$; dropped & 6 \\
+exp005 & centre and offset grouping, ablated with noisy offsets & $\le 0$; dropped & 6 \\
+exp005 & erode every mask by one pixel, confidence 0.35 & 0.4404; public 0.36 & 7 \\
+exp005 & gradient-boosted emission over shape features & $-0.017$ against confidence & 10 \\
+exp006 & rasteriser comparison; half-pixel polygon offset & target IoU 0.898 $\to$ 0.959 & 3, 7 \\
+exp007 & first eight-view TTA, binary vote & 0.4035; lost & 8 \\
+exp008, 009 & crop refiner trained on synthetic damage & 0.4322 ($-0.008$); public 0.35 & 9 \\
+exp010 & YOLO11m at 2048 on a T4; fell to \texttt{mask\_ratio} 2; 62 of 400 epochs & 0.4274; public 0.36 & 7 \\
+exp011, 012, 018 & refiner trained on 3,429 real detector errors & learned the identity; $-0.031$ & 9 \\
+exp013 & error decomposition with oracles & orphans: 49\% of FP, 59\% of FN & 9, 10 \\
+exp014 & orphan rates of the model and of annotators & 19.8\% against 19.4\% & 10 \\
+exp015 & CPU inference path & bit-identical to GPU & A \\
+exp016 & recall ceiling of the pool at confidence 0.05 & 83.2\% covered, 2.1\% unseen & 10 \\
+exp017 & sub-pixel trim by a higher cut on the logit field & no better than erosion & 9 \\
+exp019 & re-ranker on the logit-field profile & promotes nothing & 10 \\
+exp021, 023 & second YOLO as a veto on the first & $+0.0007$; public 0.36; deployment bug caught & 5, 8 \\
+exp022 & widened operating-point sweep & the old point was optimal & -- \\
+exp024 & inference resolution for a 2048-trained model & peak at the native 2048 & 7 \\
+exp025--027 & crop verifier labelled by ``any annotator'' & 72\% versus 17\% precision & 10 \\
+exp028 & high-recall probe submission & 0.3865; public 0.32 & 5, 10 \\
+exp029 & snapping masks to the intensity edge & destroys masks & 9 \\
+exp030 & pixel averaging of two YOLO models' masks & $-0.0005$ & 8 \\
+exp031 & YOLO at 1536, full-resolution loss, 50 annealed epochs & 0.4343; public 0.36 & 7 \\
+exp033, 037 & eight-view fusion with the threshold re-swept & 0.4571 ($+0.0166$); public 0.38 & 8 \\
+exp043, 044 & public Mask R-CNN notebook reproduced exactly & public 0.34 & 6 \\
+exp046--058 & first Mask2Former, TPU, 1024 px, about 4 epochs & 0.300, then 0.247; public 0.20 & 12 \\
+exp048 & that Mask2Former fused with YOLO D4 & 0.4472 against 0.4571 & 12 \\
+exp057 & fine D4 threshold sweep & 0.4586; public 0.38 & 5, 8 \\
+exp059--061 & soft vote; mask NMS; weight interpolation & all below D4 & 8 \\
+exp062 & D4 at confidence 0.35 & 0.4559; public 0.39 & 8 \\
+exp063 & public probes of the variants & 0.37, 0.36, 0.38, 0.20 & 8 \\
+exp064, 065 & extra low-confidence or small masks & public 0.38 & 10 \\
+exp066 & SAM2 redraws each detection & 0.358 against 0.459 & 9 \\
+exp067, 068 & YOLO11m at 2048, chunked full-resolution loss & D4 0.4470 & 7 \\
+exp070, 073 & ROI mask loss; continuation & 1.58 against 2.86 s per step; D4 0.4555 & 7 \\
+exp071 & exp068 with a recall floor of 0.05 & 0.4510 & -- \\
+exp072, 075 & another model's boundary for matched detections & all 640 swaps lose & 9 \\
+exp076 & physics features rescue weak proposals & 0.4546 against 0.4559 & 10 \\
+exp081, 082 & semantic support admits 77 masks & 0.4594; public 0.38 & 10 \\
+exp083, 084 & pruning by view count; by area & both lose & 8, 10 \\
+exp085, 087 & semantic and spine model after Hu et al. & PQ 0.3227 on its own & 10 \\
+exp086, 090 & limb-aware semantic pruning & 0.4606; public 0.39 & 10 \\
+exp088 & headroom audit against annotators & majority-mask IoU 0.81 against 0.68 & 9 \\
+exp091--094 & refiner v2 on harvested proposals & a resampling artefact; $-0.0023$ & 9 \\
+exp095 & the public 0.55 inference recipe on own weights & 0.4111 against 0.4469 & 7 \\
+exp097, 099 & YOLOv8l-seg at 2048 on an L40, convergence control, T4 rehearsal & converged at epoch 124; \$2.74 & 7 \\
+exp098, 100 & scoring exp097's checkpoints & D4 0.4668; public 0.39 & 7 \\
+exp101 & three checkpoints of one run, 24 views & $+0.00005$ & 8 \\
+exp102, 119 & two YOLO architectures fused & 0.4681; public 0.39 & 8 \\
+exp103 & classical physics proposals & keep 26--38\% of the disk & 10 \\
+exp104 & morphology on the ensemble & one-pixel erosion best & 7 \\
+exp105--112 & near-miss audits and repair triggers & AUC at most 0.81; precision wall & 9 \\
+exp113 & oracle ceilings of four repair families & $+0.012$ to $+0.033$ & 9 \\
+exp114--117 & real repair operators under a perfect gate & at most 34\% of a ceiling & 9 \\
+exp118 & re-admitting discarded candidates & oracle $+0.0208$; blind admission loses & 10 \\
+exp120--126 & feature verifiers & at most $+0.0017$ & 10 \\
+exp124 & cross-architecture confirmation & AUC 0.688; no gain & 10 \\
+exp129--132 & every miss classified by pipeline stage & 4.8\% never proposed & 10 \\
+exp134 & per-record CNN verifier on crops & at chance & 10 \\
+exp135--138 & mask-grid and annotator ceilings & stride 4: 0.914; annotators 0.576 & 12 \\
+\textbf{exp139} & \textbf{Mask2Former Swin-S at native resolution, H100} & \textbf{0.4705; public 0.41} & 11--13 \\
+exp140 & calibrated YOLOv8l and Mask2Former ensemble & 0.4715; public 0.40 & 8 \\
+exp141, 143, 144 & soup; epoch 50; eight-view fusion & 0.4688, 0.4621, 0.4700; public 0.40 each & 8, 13 \\
+exp142 & training on all records & stopped by a division by zero & 12 \\
+exp145 & the organisers' notebook on exp139 & identical to 9 decimals & 13 \\
+\end{longtable}
+}

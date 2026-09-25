@@ -1,0 +1,67 @@
+\chapter{A Map of the Code}\label{app:code}
+
+The repository has one rule of organisation: shared, tested building blocks live in
+\file{shared/}; each experiment lives in its own folder under \file{experiments/}; the scripts that
+package work for Kaggle or RunPod live in \file{scripts/}; and the folders that Kaggle actually runs
+live in \file{kaggle/}. This appendix is a guide to the files the book refers to.
+
+\section{Shared building blocks}
+\begin{description}[style=unboxed,leftmargin=1em,itemsep=3pt,font=\normalfont\small,before=\raggedright]
+\item[\file{shared/utils.py}] The metric and the submission format: \texttt{compute\_pq} and
+\texttt{aggregate\_pq} (pooled PQ, Chapter~\ref{ch:metric}), \texttt{paint\_panoptic} (disjoint
+masks by score, Section~\ref{sec:masks-paint}), \texttt{encode\_rle} and \texttt{decode\_rle}
+(Section~\ref{sec:masks-rle}), \texttt{write\_submission} and \texttt{check\_no\_overlap}.
+\item[\file{shared/data\_split.py}] The canonical split by photograph with station stratification and seed
+2026, and the temporal split (Chapter~\ref{ch:validation}).
+\item[\file{shared/preprocessing.py}, \file{shared/solar\_disk.py}] Finding the solar disk, CLAHE, limb flattening.
+\item[\file{shared/consensus.py}] Fusing several annotators' masks into one consensus mask.
+\item[\file{shared/chunked\_mask\_loss.py}, \file{shared/roi\_mask\_loss.py}] Full-resolution YOLO mask losses
+that fit in memory (Section~\ref{sec:yolo-retrain}).
+\item[\file{shared/query\_mask\_loss.py}, \file{shared/mask2\_checkpointing.py}] The first Mask2Former's custom
+loss and checkpointing (Section~\ref{sec:train-first}).
+\end{description}
+
+\section{Experiments}
+Each experiment folder holds a \file{src/} directory and, for the early ones, a README and a
+results file. The ones the book quotes most:
+\begin{description}[style=unboxed,leftmargin=1em,itemsep=3pt,font=\normalfont\small,before=\raggedright]
+\item[\file{experiments/exp\_001\_baseline}] The semantic baseline: model, loss, post-processing, and the
+design-ceiling measurement (Chapter~\ref{ch:paradigms}).
+\item[\file{experiments/exp\_002\_yolo\_seg}] YOLO data preparation, including the half-pixel polygon offset
+(\file{prepare\_yolo.py}), prediction and threshold tuning (Chapter~\ref{ch:yolo}).
+\item[\file{experiments/exp\_004\_spine\_tpu}, \file{exp\_005\_center\_offset}] The TPU U-Net and the two decoder
+ablations (Chapter~\ref{ch:paradigms}).
+\item[\file{experiments/exp\_033\_inference}] The shared sweep (\file{sweep.py}) that scored every model
+from exp033 on, and the eight-view fusion (\file{cached\_tta.py}, Chapter~\ref{ch:tta}).
+\item[\file{experiments/exp\_097\_runpod\_yolo}] The converged YOLOv8l-seg run: convergence controller,
+preflight, telemetry, ensembles (Chapters~\ref{ch:yolo} and~\ref{ch:tta}).
+\item[\file{experiments/exp\_103\_classical}] The physics-based proposal stage (Chapter~\ref{ch:recall}).
+\item[\file{experiments/exp\_113\_ceilings}] Oracle ceilings and repair operators (Chapter~\ref{ch:post}).
+\item[\file{experiments/exp\_139\_mask2former}] The final model: \file{data.py} (crops, whole frames,
+sampler), \file{model.py} (construction, parameter groups, prediction), \file{fast\_ops.py} (the CUDA
+kernel check and batched matching), \file{train.py} (the loop, schedule and exact accumulation),
+\file{evaluate.py} and \file{submit.py} (Chapters~\ref{ch:transformers}--\ref{ch:submission}).
+\item[\file{experiments/exp\_140\_three\_way\_ensemble}] Isotonic calibration and the cross-model fusion
+(Section~\ref{sec:tta-calibration}).
+\item[\file{experiments/exp\_145\_host\_evaluation}] The organisers' notebook run verbatim, and the
+annotator-agreement measurement (Section~\ref{sec:sub-eval}).
+\end{description}
+
+\section{Scripts, kernels, tests and documents}
+\begin{description}[style=unboxed,leftmargin=1em,itemsep=3pt,font=\normalfont\small,before=\raggedright]
+\item[\file{scripts/package\_*.py}] Each builds a Kaggle kernel folder or a dataset payload for one
+experiment, with its SHA-256 recorded.
+\item[\file{scripts/audit\_*.py}, \file{scripts/run\_*.py}] Measurements that need no training: headroom, error
+structure, verifiers, ceilings.
+\item[\file{scripts/watch\_and\_submit.sh}, \file{scripts/alarm.ps1}] Watching kernels and submitting their files;
+the end-of-job alarm (Appendix~\ref{app:infra}).
+\item[\file{kaggle/}] One folder per kernel or dataset, each with its \file{kernel-metadata.json} or
+\file{dataset-metadata.json}.
+\item[\file{tests/}] Unit tests. \file{test\_pq\_matches\_official.py} pins the metric against the organisers'
+implementation in 25 cases; others pin the sweep's prefix painting, the losses and the data code.
+\item[\file{docs/}] \file{ACTIVE\_EXPERIMENT.md} and \file{leaderboard-analysis.md} are the experiment log;
+\file{strategy.md} the early reasoning; \file{PREREGISTRATION.md} the predictions written before runs;
+\file{HOST\_GUIDANCE.md} the organisers' guidance on judging.
+\item[\file{paper/}, \file{book/}] The competition report and this book, each with a script that draws its figures
+from data and writes its numbers as \LaTeX{} macros.
+\end{description}

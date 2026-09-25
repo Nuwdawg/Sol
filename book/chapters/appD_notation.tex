@@ -1,0 +1,69 @@
+\chapter{Notation}\label{app:notation}
+
+\section{Symbols}
+{\small
+\begin{longtable}{@{}p{3.0cm}p{9.3cm}@{}}
+\toprule
+symbol & meaning \\
+\midrule
+\endfirsthead
+\toprule
+symbol & meaning \\
+\midrule
+\endhead
+\bottomrule
+\endfoot
+$\mathbf{x}$ & a photograph, $2048\times2048$ grey pixels \\
+$\mathbf{u}$ & a pixel position \\
+$m$, $m_k$, $m_q$ & a binary mask; of instance $k$; of query $q$ \\
+$s_k$, $s_q$ & a confidence score \\
+$p$, $g$ & a predicted mask and an annotated (ground-truth) mask \\
+$\IoU(p,g)$ & intersection over union, $|p\cap g|/|p\cup g|$ \\
+$\TP$, $\FP$, $\FN$ & true positives, false positives, false negatives, pooled over records \\
+$\PQ$, $\SQ$, $\RQ$ & panoptic, segmentation and recognition quality; $\PQ=\SQ\times\RQ$ \\
+$q$ & mean IoU of a set of matches (Chapters~\ref{ch:metric} and~\ref{ch:recall}) \\
+$k$, $m$ & correct and incorrect admitted candidates (Section~\ref{sec:recall-arith}) \\
+$\sigma(z)$ & the sigmoid $1/(1+e^{-z})$; $\sigma$ is also used for a Gaussian's width \\
+$\mathcal{L}$ & a loss \\
+$\mathbf{q}_i,\mathbf{k}_j,\mathbf{v}_j$ & query, key and value vectors of attention \\
+$Q, K, V$ & the same vectors stacked as matrix rows \\
+$d_k$ & the dimension of queries and keys \\
+$N$ & number of object queries (100) \\
+$\varnothing$ & the ``no object'' class \\
+$\mathbf{e}_q$, $\mathbf{F}$ & a query's mask embedding; the per-pixel embeddings \\
+$P_j$, $c_{dj}$ & YOLO prototype $j$; detection $d$'s coefficient for it \\
+$\eta_t$ & the learning rate at step $t$ \\
+$\rho$ & correlation between two predictors' errors \\
+$S$, $D$ & the numerator and the denominator of PQ (Section~\ref{sec:metric-leverage}) \\
+$t=s^{\alpha}u^{\beta}$ & the task-aligned metric of the YOLO assigner (Section~\ref{sec:yolo-training}) \\
+$\lambda$, $\nu$ & the link threshold and the vote fraction of instance fusion (Algorithm~\ref{alg:tta-fuse}); $\lambda$ also denotes weight decay \\
+$P$ & the number of points sampled per mask in the Mask2Former loss (12,544) \\
+$n_b$, $w_b$ & the annotated masks and the class weight of micro-batch $b$ (Section~\ref{sec:train-accumulation}) \\
+TPR, FPR & the true-positive and false-positive rates of a trigger (Section~\ref{sec:post-gate}) \\
+\end{longtable}
+}
+
+\section{Abbreviations}
+{\small
+\begin{longtable}{@{}p{3.0cm}p{9.3cm}@{}}
+\toprule
+abbreviation & meaning \\
+\midrule
+\endfirsthead
+\bottomrule
+\endfoot
+AUC & area under the receiver operating characteristic curve \\
+AP, mAP & average precision; its mean over classes or IoU thresholds \\
+CIoU, DFL & complete-IoU box loss; distribution focal loss (both used for YOLO's boxes) \\
+CLAHE & contrast-limited adaptive histogram equalisation \\
+D4 & the eight rotations and reflections of a square (test-time augmentation) \\
+DETR & detection transformer \\
+FP16, BF16, FP32 & half-precision, bfloat16 and single-precision floating point \\
+GONG & Global Oscillation Network Group, the six-station H$\alpha$ network \\
+H$\alpha$ & the red hydrogen line at 656.3 nm \\
+MSDeformAttn & multi-scale deformable attention \\
+NMS & non-maximum suppression \\
+RLE & run-length encoding \\
+TTA & test-time augmentation \\
+\end{longtable}
+}

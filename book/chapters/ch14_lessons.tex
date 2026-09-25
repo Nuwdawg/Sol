@@ -1,0 +1,233 @@
+\chapter{Lessons: How This Project Could Have Fooled Itself}\label{ch:lessons}
+
+\section{Introduction}\label{sec:lessons-why}
+\epigraph{To consult the statistician after an experiment is finished is often merely to ask him to
+conduct a post mortem examination. He can perhaps say what the experiment died of.}{Ronald Fisher,
+address to the Indian Statistical Congress \citeyearpar{fisher1938}}
+
+Most of our time went into experiments that failed, and a fair share of the failures were failures of
+\emph{method} rather than of ideas: a setting that was not what we believed it to be, a number
+measured in the wrong place, or a conclusion that went further than its evidence. The repository keeps
+a list of these mistakes in its working notes (\file{CLAUDE.md}), written so that they would not be
+repeated. In this chapter we organise that list into a small number of principles. None of the
+principles is new: many of them appear in accounts of the hidden costs of machine-learning
+systems~\citep{sculley2015} and of the ways in which machine-learning papers claim more than their
+evidence supports~\citep{lipton2019}. What justifies a chapter is that each of them cost this project real time or money,
+and each comes with a concrete example that shows how easily it is violated.
+
+The principles fall into five groups: knowing what is actually running
+(Section~\ref{sec:lessons-config}), measuring the right quantity in the right place
+(Section~\ref{sec:lessons-measure}), asking the question that the metric asks
+(Section~\ref{sec:lessons-question}), claiming no more than the evidence supports
+(Section~\ref{sec:lessons-claims}), and spending limited resources deliberately
+(Section~\ref{sec:lessons-spend}). Section~\ref{sec:lessons-checklist} condenses them into a checklist.
+
+\section{Knowing what is actually running}\label{sec:lessons-config}
+
+\paragraph{Configurations must be read back from the run.} We believed that exp010 was running with
+full-resolution mask supervision (\texttt{mask\_ratio=1}), because its validation loop ran for 45
+iterations, which implied a batch size of 2. But the batch size says nothing about the resolution of
+the masks. The run's own \file{args.yaml} said \texttt{mask\_ratio: 2}, because a silent fallback had
+changed the very setting that the experiment was designed to test, and twelve GPU hours measured the
+wrong configuration (Section~\ref{sec:yolo-exp010}). After any run starts, we should read its resolved
+configuration and confirm that it is the one we intended. \citet{sculley2015} discuss the errors
+that accumulate in the configuration of machine-learning systems under the name
+\emph{configuration debt}.
+
+\paragraph{State must be queried again before it is reported.} On one occasion we reported a run as
+healthy ``twenty minutes in'', on the basis of a status check that was already out of date; the run had
+failed after five minutes. The state of a remote job changes, and a report about it should rest on a
+fresh query.
+
+\paragraph{A library is source code.} Ultralytics silently replaced a learning rate that we had
+requested, resumed from a folder that nobody had chosen, and halved a batch after an out-of-memory error
+(Section~\ref{sec:yolo-lessons}). A rented machine failed inside our own training callbacks, because
+they had been written against an assumed version of the library's internals and tested only against
+that assumption (Section~\ref{sec:yolo-exp097}). When our code touches a library's internals, we should
+read those internals in the exact version that we pin, and rehearse the real code against that version
+on free hardware before it costs money.
+
+\paragraph{Before launching anything, list what is already running.} A handoff note stated that an
+experiment ``was prepared but not launched'', and a status query for one guessed name seemed to confirm
+it. In fact the experiment was running under a different name, which Kaggle had derived from its
+title rather than from its identifier (Appendix~\ref{app:infra}). A duplicate was launched and ran for
+ten minutes before anyone noticed. A query about one guessed name is not a check for running work, and
+a claim that something was ``not launched'' should never be inherited from a note without checking it.
+
+\section{Measuring the right thing, in the right place}\label{sec:lessons-measure}
+
+\paragraph{The rule that is deployed must be the rule that was validated.} We validated a fusion rule
+with its second model run at a confidence floor of 0.05, and then prepared it for deployment with the
+floor at 0.30. The deployment file had 979 rows where the validated rule gave 1,229, and only the count
+of rows revealed the mistake (Section~\ref{sec:val-traps}). The deployment path should import the
+validation path, and it should reproduce a validated number before it writes anything
+(Section~\ref{sec:sub-replay}).
+
+\paragraph{Measurements belong at the metric's resolution.} A refiner's gain of $+0.0118$ at the level
+of crops turned out to be an artefact of resampling, because the same measurement gave $+0.0117$ with
+no model at all (Section~\ref{sec:post-v2}). We should measure at the resolution, on the population and
+in the units that the metric uses: native pixels, all records, and pooled counts.
+
+\paragraph{Every number comes from a stage of the pipeline.} The statement that ``284 misses have zero
+overlap'' described the predictions emitted after the confidence floor, and not the output of the
+detector; in the full pool of candidates only 65 of those filaments had never been proposed
+(Section~\ref{sec:recall-stages}). A statistic measured downstream of a filter cannot describe what the
+filter removed.
+
+\paragraph{Like must be compared with like.} SQ is an average over matched pairs only. Comparing it with
+a per-instance IoU averaged over all instances compares a filtered population with an unfiltered one, and
+it once made our masks look as good as those of a published method when nothing of the kind had been
+shown (Section~\ref{sec:metric-sq-properties}).
+
+\paragraph{Memory experiments need separate processes.} When we tested several memory configurations in
+one process, two of them produced byte-identical out-of-memory errors although the batch size between
+them had halved. The second configuration had never run, because \texttt{torch.cuda.empty\_cache()}
+cannot free memory that an earlier trainer still references, and every later measurement was
+contaminated (Section~\ref{sec:yolo-exp031}). Each memory experiment should run in its own process, and
+the allocator settings must be made before anything imports PyTorch.
+
+\paragraph{Silence is not a result.} A script written without an
+\texttt{if \_\_name\_\_ == "\_\_main\_\_"} block imported cleanly and did nothing, twice, and its
+empty output could easily have been read as a negative result. We should check that a script actually
+ran before interpreting its output.
+
+\section{Asking the question the metric asks}\label{sec:lessons-question}
+
+\paragraph{The training objective must ask the metric's question.} The crop verifier was labelled
+positive if \emph{any} annotator had drawn a filament, whereas the metric asks whether \emph{this}
+annotator drew it. The model was right 72\% of the time on the first question and 17\% of the time on
+the second (Section~\ref{sec:recall-crop}). Before choosing labels, we should write down the exact
+question that the metric asks.
+
+\paragraph{A synthetic test that encodes an assumption cannot test it.} Snapping masks to the edge of
+the intensity scored an IoU of 0.9995 on a synthetic filament and destroyed real masks, because the
+synthetic filament had the hard edge whose existence was under test (Section~\ref{sec:post-free}). A
+sanity check confirms that code runs; only real data can test an idea, and we should always say which of
+the two we are doing.
+
+\paragraph{An ablation needs headroom.} Two ablations of instance decoders were run on annotated masks,
+where the control already scored 0.9995, so no decoder could have shown a gain
+(Section~\ref{sec:par-headroom}). The score of the control should be computed first; if it is already at
+the ceiling, the ablation cannot answer its question.
+
+\paragraph{Ceiling, operator and gate, in that order.} Several repair ideas were dropped because their
+triggers failed, before anyone had measured whether the repair itself was worth anything
+(Section~\ref{sec:post-protocol}). A failed trigger says nothing about the repair that it was meant to
+activate.
+
+\section{Claiming no more than the evidence supports}\label{sec:lessons-claims}
+
+\paragraph{A result about one side of the confusion matrix is a result about that side.} False positives
+occurred at the rate at which annotators disagree with each other, and our notes extended this finding
+to the misses, where it was false: only 2.1\% of the annotated filaments were invisible to the detector
+(Section~\ref{sec:recall-orphans}). Later, after the verifier failed, the notes over-corrected in the
+other direction. Two reversals on one question within a single day came from letting a measurement of one
+quantity stand in for another.
+
+\paragraph{Failed formulations are not a proof of impossibility.} After five methods for correcting
+boundaries had failed, our notes declared the annotated boundary unrecoverable by any method applied
+after prediction (Section~\ref{sec:post-overreach}). The measurements were sound, but the generalisation
+was not. The competition's host has described uncertain boundaries as part of the physical problem,
+and has encouraged participants to concentrate on the quality of their predictions rather than on the
+score alone; nothing in that description implies that useful improvement is impossible.
+
+\paragraph{Agreement between annotators is not a bound.} Two annotators agree with each other at a PQ of
+0.34 and a mean IoU of 0.58. These numbers describe people. They do not limit what a model can score
+against any one of them, and our model exceeds the first of them comfortably
+(Section~\ref{sec:metric-agreement}).
+
+\paragraph{The primary source should be read.} The abstract of the MAGFiLO paper reports 1,593
+observations, which suggested that the public release could double our training data. The release in
+fact holds 958 distinct photographs, of which the competition already uses 887, and it contains the
+annotations of the test set (Section~\ref{sec:data-history}). The apparent doubling amounted to about 71
+photographs, and using them would have been cheating.
+
+\paragraph{The first explanation of a failure is a hypothesis.} We blamed rented machines that stopped
+within minutes on an exhausted account. The diagnostics that the machines had uploaded showed a division
+by zero in our own code (Section~\ref{sec:train-run}). The evidence that a failure leaves behind should
+be read before its cause is named.
+
+\section{Spending limited resources deliberately}\label{sec:lessons-spend}
+
+\paragraph{Numbers already measured should change what we do.} Validation said that a fusion rule
+changed 9 instances out of 1,238. We submitted it anyway, and it turned out to be 99.3\% identical to an
+earlier submission. When a measurement says that a change is negligible, it should stop the spending.
+
+\paragraph{A schedule should fit the session.} A cosine schedule sized for 400 epochs, but cut off at
+epoch 62, never left its peak learning rate (Section~\ref{sec:yolo-exp010}). A short schedule that
+anneals fully is better than a long one that is cut off (Section~\ref{sec:train-optim}).
+
+\paragraph{A sweep should be costed before it runs.} Caching dense $2048\times2048$ masks for three levels
+of erosion needed about 27 GB of memory, and the process was killed. Masks kept as run-length encodings
+cost kilobytes, and \texttt{pycocotools} computes IoU on them directly (Section~\ref{sec:masks-rle}). In
+another case, a grid of 120 points took hours, whereas a coarse grid followed by a fine one found the
+same optimum in minutes.
+
+\paragraph{The lifecycle that will actually happen is the one to test.} A plan to chain twelve-hour
+Kaggle sessions relied on one session reading the output of the previous one. We tested this for a
+session that had \emph{completed}. A training session, however, ends by reaching the time limit, and is
+then \emph{cancelled}, and the output of a cancelled session cannot be mounted by the next one.
+
+\paragraph{A watcher must check what has already been done.} A background loop waited for GPU quota and
+then launched a training kernel. When the quota reset, we launched the kernel by hand, and the loop,
+which was still running, came within two minutes of launching a duplicate. A watcher that acts must check
+whether its action has already happened, and not only whether the action is possible.
+
+\section{A checklist}\label{sec:lessons-checklist}
+Figure~\ref{fig:lessons-flow} condenses the path that an idea followed during the better weeks of the
+project, from its first formulation to a submission. Each step can end an idea cheaply, before the next
+and more expensive step is taken.
+
+\begin{figure}[t]
+\centering
+\begin{tikzpicture}[
+  st/.style={box=#1, text width=5.2cm, minimum height=0.62cm, font=\sffamily\scriptsize,
+             execute at begin node={\hyphenpenalty=10000}},
+  why/.style={note, anchor=west, text width=4.9cm, align=left}]
+  \node[st=inkmuted] (a) at (0,0) {write down the metric's exact question and the expected gain};
+  \node[st=vizblue] (b) at (0,-0.95) {measure the family's ceiling with an oracle};
+  \node[st=vizblue] (c) at (0,-1.9) {measure the operator under a perfect gate};
+  \node[st=vizaqua] (d) at (0,-2.85) {build the real trigger; check its break-even rate};
+  \node[st=vizaqua] (e) at (0,-3.8) {validate at native resolution, pooled, all records};
+  \node[st=vizorange] (f) at (0,-4.75) {gain larger than its noise? paired bootstrap};
+  \node[st=vizorange] (g) at (0,-5.7) {replay the validated number in the deployment path};
+  \node[st=inkmuted] (h) at (0,-6.65) {look at native-resolution predictions; then submit};
+  \foreach \u/\v in {a/b, b/c, c/d, d/e, e/f, f/g, g/h} \draw[flow] (\u) -- (\v);
+  \node[why] at (3.1,0) {Chapter~\ref{ch:metric}; Section~\ref{sec:recall-crop}};
+  \node[why] at (3.1,-0.95) {too small a ceiling: stop here};
+  \node[why] at (3.1,-1.9) {operator recovers little: fix it or stop};
+  \node[why] at (3.1,-2.85) {Equation~\eqref{eq:post-gate}};
+  \node[why] at (3.1,-3.8) {Sections~\ref{sec:val-traps} and~\ref{sec:post-v2}};
+  \node[why] at (3.1,-4.75) {the leaderboard cannot see less than about 0.01};
+  \node[why] at (3.1,-5.7) {Section~\ref{sec:sub-replay}};
+  \node[why] at (3.1,-6.65) {the hosts judge predictions, not only scores};
+\end{tikzpicture}
+\caption{The path from an idea to a submission. Each step can end the idea cheaply, before the next,
+more expensive step is taken. \drawnin{book/chapters/ch14\_lessons.tex}}
+\label{fig:lessons-flow}
+\end{figure}
+
+Three questions summarise the whole chapter, and we found it useful to ask them before believing any
+number. First, where exactly was the number measured: at which stage of the pipeline, on which
+population, at which resolution, and in which units? Second, what does the control score under the same
+measurement? Third, what would the number have been if the idea had been worthless? Until all three
+questions have answers, we do not yet know what the number means.
+
+\section*{Exercises}
+\begin{exercise}{Finding the configuration}
+Choose any training run in \file{kaggle/} or \file{experiments/}. Find the file that records the
+configuration with which it actually ran, and list every value that differs from the defaults in its
+source code.
+\end{exercise}
+
+\begin{exercise}{A lesson of your own}
+Choose one experiment from Appendix~\ref{app:ledger} whose conclusion you find surprising. Write down the
+measurement that supports it, the population and resolution at which the measurement was taken, and one
+way in which the conclusion could be wrong.
+\end{exercise}
+
+\begin{exercise}{Designing a watcher}
+Write pseudocode for a background job that waits for a Kaggle kernel to finish and then submits its
+output. List every condition that it must check before submitting, including those that this chapter's
+examples suggest.
+\end{exercise}
