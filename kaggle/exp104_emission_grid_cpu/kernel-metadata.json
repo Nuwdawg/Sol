@@ -1,0 +1,20 @@
+{
+  "id": "cosmicwitness/sol-exp104-emission-grid-cpu",
+  "title": "sol exp104 emission grid cpu",
+  "code_file": "kernel.py",
+  "language": "python",
+  "kernel_type": "script",
+  "is_private": true,
+  "enable_gpu": false,
+  "enable_tpu": false,
+  "enable_internet": true,
+  "competition_sources": [
+    "filament-segmentation-2026"
+  ],
+  "dataset_sources": [],
+  "kernel_sources": [
+    "cosmicwitness/sol-exp098-exp097-evaluation-t4",
+    "cosmicwitness/sol-exp102-pool-ensemble-cpu"
+  ],
+  "model_sources": []
+}
