@@ -1,0 +1,4 @@
+# Stored with CRLF, byte-identical to the exp097 payload that ran on the pod.
+# See tests/test_exp097_packaging.py and kaggle/exp097_code_dataset/manifest.json.
+experiments/exp_002_yolo_seg/src/prepare_yolo.py -text
+shared/data_split.py -text
