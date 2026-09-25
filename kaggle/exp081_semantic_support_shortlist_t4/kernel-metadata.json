@@ -1,0 +1,21 @@
+{
+  "id": "cosmicwitness/sol-exp081-semantic-support-shortlist-t4",
+  "title": "Sol exp081 semantic support shortlist T4",
+  "code_file": "kernel.py",
+  "language": "python",
+  "kernel_type": "script",
+  "is_private": true,
+  "enable_gpu": true,
+  "enable_tpu": false,
+  "enable_internet": true,
+  "machine_shape": "NvidiaTeslaT4",
+  "competition_sources": [
+    "filament-segmentation-2026"
+  ],
+  "dataset_sources": [],
+  "model_sources": [],
+  "kernel_sources": [
+    "cosmicwitness/sol-exp004-tpu",
+    "cosmicwitness/sol-exp066-sam2-boundary-probe"
+  ]
+}
