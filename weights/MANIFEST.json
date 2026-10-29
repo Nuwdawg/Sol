@@ -1,0 +1,74 @@
+{
+ "part_bytes": 47185920,
+ "files": {
+  "mask2former_exp139_e040.pt": {
+   "bytes": 275763231,
+   "sha256": "7f39b5c8c9d45d62c202d6b5059d9b555027b633c13cad22bcee540afd0b6f87",
+   "what": "Mask2Former Swin-S, exp139 epoch 40 (validation PQ 0.4705, public 0.41)",
+   "origin": "Kaggle dataset cosmicwitness/sol-exp139-mask2former-weights, file model_e040.pt",
+   "parts": [
+    {
+     "file": "mask2former_exp139_e040.pt.part00",
+     "bytes": 47185920,
+     "sha256": "0021415a9fa7e6ab0add67b4da23c3e656f075d1f12cd3108315470f359820d0"
+    },
+    {
+     "file": "mask2former_exp139_e040.pt.part01",
+     "bytes": 47185920,
+     "sha256": "0d23ab33d2e56c426497896305e5e2835ec2fb2505b79ff46ccf7d701aeb332d"
+    },
+    {
+     "file": "mask2former_exp139_e040.pt.part02",
+     "bytes": 47185920,
+     "sha256": "5af5d19ec1f6bc7a4ca7bb79228128cd3babae8ab5ffe64b4e21e015df2a0c75"
+    },
+    {
+     "file": "mask2former_exp139_e040.pt.part03",
+     "bytes": 47185920,
+     "sha256": "26b21dca133ab04be3ef9406d12ea8d4fbada14f8ea8b0d9942c52ff8df632cb"
+    },
+    {
+     "file": "mask2former_exp139_e040.pt.part04",
+     "bytes": 47185920,
+     "sha256": "8d64979b4c5ce50a4faa4505fb94752d18e18a1edf5d78c92100453f50ff25d6"
+    },
+    {
+     "file": "mask2former_exp139_e040.pt.part05",
+     "bytes": 39833631,
+     "sha256": "91a71331d9afe42539bb6712e199f029286225f89bc59ee9b74c221d112b7843"
+    }
+   ]
+  },
+  "yolov8l_exp097_stage2_best.pt": {
+   "bytes": 92812417,
+   "sha256": "5771693bc1f986c0194ea8b402633d6351a26a69ba3cadf8349a850d59d6f9c5",
+   "what": "YOLOv8l-seg at 2048 px, exp097 stage2_best (D4 validation PQ 0.4668)",
+   "origin": "Kaggle dataset cosmicwitness/sol-exp097-yolov8l-2048, file stage2_best.pt",
+   "parts": [
+    {
+     "file": "yolov8l_exp097_stage2_best.pt.part00",
+     "bytes": 47185920,
+     "sha256": "271bb01c29238552d2b1c52e8d51b5e7c320aaac47e3de5b5d8c7a449e9c3773"
+    },
+    {
+     "file": "yolov8l_exp097_stage2_best.pt.part01",
+     "bytes": 45626497,
+     "sha256": "17d89a0c3f2cfa236a69275d431af60974a97aa80424e80033901e86780881e6"
+    }
+   ]
+  },
+  "yolo11m_exp002_best.pt": {
+   "bytes": 45331574,
+   "sha256": "d9c6641edb1fec427212d0c35b008c923361e9fcf5004905a69c883714d93389",
+   "what": "YOLO11m-seg trained at 1280 px, exp002 best",
+   "origin": "Kaggle kernel cosmicwitness/sol-exp002-yolo-seg, output checkpoints/best.pt",
+   "parts": [
+    {
+     "file": "yolo11m_exp002_best.pt",
+     "bytes": 45331574,
+     "sha256": "d9c6641edb1fec427212d0c35b008c923361e9fcf5004905a69c883714d93389"
+    }
+   ]
+  }
+ }
+}
