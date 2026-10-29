@@ -25,3 +25,7 @@ venv/
 # Upstream MORDEN clone: another author's repository, re-clone rather than vendor.
 # git clone https://github.com/irisaltHu/MORDEN.git third_party/MORDEN
 third_party/
+
+# Reassembled checkpoints and reproduction work folders (rebuilt from weights/ parts).
+weights/assembled/
+reproduce/work/

@@ -8,9 +8,18 @@ Every other experiment lives on its own branch `exp/NNN-*`, which works when che
 The experiment log is `docs/ACTIVE_EXPERIMENT.md` (from exp033) and `docs/leaderboard-analysis.md` (up to exp031).
 The appendix `book/chapters/appB_ledger.tex` lists every experiment with its decisive result.
 
+## Reproduce the final submission
+
+The final submission is exp169's vote over exp139's Mask2Former, two YOLO models and eleven views of each
+photograph, with exp199's guard that keeps large Mask2Former filaments (validation PQ 0.4889, public 0.41):
+`final_decision/results/submission_exp169_guarded.csv`. The weights are stored in `weights/`. To rebuild the
+file without training, run `python reproduce/run.py --data <MAGFiLO_1.0_Kaggle_2026> --work reproduce/work`,
+or open the notebook `reproduce/reproduce_final_submission.ipynb`. See `reproduce/README.md` for the stages and
+what has been verified, and `final_decision/` for how this submission was chosen.
+
 ## Reproduce the final model
 
-1. Install the dependencies: `pip install -r requirements.txt transformers==4.57.6 scipy`.
+1. Install the dependencies: `pip install torch==2.8.0 --index-url https://download.pytorch.org/whl/cu128`, then `pip install -r requirements.txt`.
 2. Put the competition data outside git (the `data/` folder is ignored).
 3. Train: `python -m experiments.exp_139_mask2former.src.train --annotations <train json> --images <image dir> --output <run dir>`.
    Run `--help` for the schedule, crop and precision options. The pod launcher is `experiments/exp_139_mask2former/pod/bootstrap.sh`.
@@ -96,7 +105,7 @@ These files are copies. The original lives on the branch named.
 
 ## Dependencies not in requirements.txt
 
-The root `requirements.txt` does not list these imported packages: `kernels`, `pytest`, `requests`, `scipy`, `shapely`, `torch_xla`, `transformers`, `ultralytics`. No versions are pinned here.
+The root `requirements.txt` pins the final pipeline (torch, transformers, kernels, ultralytics) and lists its other packages. Older experiments also import `pytest`, `requests`, `shapely` and `torch_xla`. The exp001 list is `requirements-exp001.txt`.
 
 ## Licence
 
