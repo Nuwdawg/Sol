@@ -1,7 +1,14 @@
 # Packages of the final submission (exp169 rule + exp199 guard) and of exp139's training.
-# torch must come from the CUDA 12.8 index: pip install torch==2.8.0 --index-url https://download.pytorch.org/whl/cu128
-# These four are the versions every final-pipeline kernel installed (kernel logs, docs/ACTIVE_EXPERIMENT.md line 3366):
+# Install torch and torchvision together from the CUDA 12.8 index first. On Kaggle, remove the image's
+# torchaudio before that, since it is built for a different torch:
+#   pip uninstall -y torchaudio
+#   pip install torch==2.8.0 torchvision==0.23.0 --index-url https://download.pytorch.org/whl/cu128
+# The Mask2Former cache kernels (exp151a, exp157) ran torch 2.8.0+cu128 and transformers 4.57.6 with no
+# torchvision installed; kernels 0.12.3 is the version read back on the training pod
+# (docs/ACTIVE_EXPERIMENT.md line 3366). The YOLO test pools (exp161) were made with ultralytics 8.4.153
+# on the Kaggle image's own torch. Ultralytics needs torchvision: 0.23.0 is the release for torch 2.8.0.
 torch==2.8.0
+torchvision==0.23.0
 transformers==4.57.6
 kernels==0.12.3
 ultralytics==8.4.153
@@ -11,4 +18,5 @@ pycocotools>=2.0.7
 opencv-python-headless>=4.8
 numpy>=1.26
 scipy>=1.11
+pandas>=2.0
 # The old exp001 (Colab U-Net) list is requirements-exp001.txt.

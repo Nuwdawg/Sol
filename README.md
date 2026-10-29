@@ -19,7 +19,7 @@ what has been verified, and `final_decision/` for how this submission was chosen
 
 ## Reproduce the final model
 
-1. Install the dependencies: `pip install torch==2.8.0 --index-url https://download.pytorch.org/whl/cu128`, then `pip install -r requirements.txt`.
+1. Install the dependencies: `pip install torch==2.8.0 torchvision==0.23.0 --index-url https://download.pytorch.org/whl/cu128`, then `pip install -r requirements.txt`.
 2. Put the competition data outside git (the `data/` folder is ignored).
 3. Train: `python -m experiments.exp_139_mask2former.src.train --annotations <train json> --images <image dir> --output <run dir>`.
    Run `--help` for the schedule, crop and precision options. The pod launcher is `experiments/exp_139_mask2former/pod/bootstrap.sh`.

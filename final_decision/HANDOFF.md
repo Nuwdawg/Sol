@@ -5,13 +5,21 @@
 is validated (0.48893 vs 0.48895, so it passes non-inferiority) and reviewed, and its test file is
 `results/submission_exp169_guarded.csv` (SHA256 `EC00408E...`). Two things remain. The credential
 here cannot submit (`competitions.participate` denied), so the user uploads the file by hand. Then
-comes section 3, reproducibility, whose rehearsal needs one Kaggle T4 session. The code that
-sections 1-2 used is now in `experiments/` (exp147-exp169 recovered unchanged; exp185, exp195
-and exp199 added).
+comes section 3, reproducibility. Everything in it is done except the rehearsal on a GPU:
+- the code is in `experiments/` (exp147-exp169 recovered unchanged; exp185, exp195 and exp199 added);
+- the three checkpoints are in `weights/`;
+- `reproduce/` holds `run.py`, the notebook and the stored validation predictions;
+- `requirements.txt` pins torch, torchvision, transformers, kernels and ultralytics (the rest after
+  the rehearsal's `pip freeze`).
 
-Read `decision_brief.pdf` first. Nothing below has been run. The user must approve before you
-start (prompt, Phase 4). Budget: RunPod $12 (spend none of it on this plan), Kaggle free T4/CPU,
-5 submissions per day, Kaggle deadline 2026-11-15 06:00 UTC, report and code 2026-11-15 23:59 CDT.
+On CPU the vote and guard rebuild the submitted file byte for byte. A one-photograph smoke test of
+the two GPU stages matched the stored model outputs exactly. The full rehearsal needs one Kaggle
+2 x T4 session, about 1.5 h (`reproduce/README.md`).
+
+Read `decision_brief.pdf` first. The plan below was written before any of it ran; the status
+above says what has. The user must approve before you start (prompt, Phase 4). Budget: RunPod
+$12 (spend none of it on this plan), Kaggle free T4/CPU, 5 submissions per day, Kaggle deadline
+2026-11-15 06:00 UTC, report and code 2026-11-15 23:59 CDT.
 
 Follow `CLAUDE.md` (repo root) throughout. In particular: list the account's kernels by run date
 before every push (section 14), keep kernel `title` and `id` slug-identical, read back every

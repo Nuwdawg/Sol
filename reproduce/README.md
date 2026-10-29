@@ -15,13 +15,16 @@ every checkpoint is stored in `weights/` and is only loaded.
 | `check` | compare with the submitted file (SHA256, else instance by instance) | `reproduce/run.py` | seconds |
 
 ```bash
-pip install torch==2.8.0 --index-url https://download.pytorch.org/whl/cu128
+pip uninstall -y torchaudio      # on Kaggle: the image's copy is built for another torch
+pip install torch==2.8.0 torchvision==0.23.0 --index-url https://download.pytorch.org/whl/cu128
 pip install -r requirements.txt
 python reproduce/run.py --data /path/to/MAGFiLO_1.0_Kaggle_2026 --work reproduce/work
 ```
 
-The notebook `reproduce_final_submission.ipynb` runs the same stages one cell at a time, with an
-explanation of each.
+On Kaggle `--data` can be left out: `run.py` finds the competition folder under `/kaggle/input`
+the way the original kernels did. The notebook `reproduce_final_submission.ipynb` runs the same
+stages one cell at a time, with an explanation of each. It works from inside the repository or
+from the folder that holds a clone named `Sol`.
 
 ## What has been verified, and what not yet
 
@@ -31,12 +34,24 @@ explanation of each.
   then the guarded file (`EC00408E...`). Run through `run.py` itself, with those outputs placed where
   the GPU stages write them, the rule, guard and check stages end with `CHECK identical: true`. The
   weights rebuild byte-identical to the Kaggle originals.
-- **Not yet run: `m2f` and `yolo` on a GPU.** They regenerate those model outputs from the stored
-  weights. Two things may stop the result being byte-identical:
+- **Smoke-tested on CPU (2026-10-29): `m2f` and `yolo`, one photograph each.** `run.py --stages m2f
+  yolo --limit 1` ran the stored weights with the pinned packages (torch 2.8.0+cpu, torchvision
+  0.23.0, transformers 4.57.6, ultralytics 8.4.153). Every output matched the stored one
+  (`smoke_test.log`):
+  - Mask2Former, test photograph `20110120105534Ch`: all 132 candidates of the 11 views match the
+    T4 cache, with the same count per view, mask IoU 1.0 and scores within 1e-5. This ran on
+    PyTorch's deformable-attention loop, not the hub kernel the T4 used.
+  - YOLOv8l and YOLO11m, validation photograph `20110220082634Lh`: 3 and 4 instances, IoU 1.0, scores
+    within 3e-7 of the stored pools.
+  - Time: Mask2Former took 8.3 min per photograph on 4 CPU cores, about 25 hours for all 180.
+- **Not yet run: `m2f` and `yolo` on all 180 photographs**, which needs a GPU (about 70 min on two
+  T4s). Two things may still stop the result being byte-identical:
   - exp002's YOLO11m views were made with an older Ultralytics patch release on CPU, and exp033
-    found boundary pixels can move between releases;
+    found boundary pixels can move between releases (the smoke photograph did not move);
   - GPU arithmetic may differ slightly.
-  `check` then reports instance-level agreement instead of a hash match.
+
+  `check` then reports instance-level agreement instead of a hash match. The `M2F_KERNEL` lines
+  say whether each shard ran the deformable-attention build of the original caches.
 
 ## Stored inputs (`artefacts/`, SHA256 in `artefacts/SHA256SUMS`)
 

@@ -54,8 +54,12 @@ Code: `experiments/exp_199_swinb_votes/src/guard.py` (one function for validatio
   file byte for byte (`CC15EA41...`), and the guard then gives this file (`EC00408E...`). The same
   passes through `run.py`'s own layout: its rule, guard and check stages end with `CHECK identical:
   true`.
-- **Not yet run:** the two GPU stages, which regenerate the cached model outputs from the stored
-  weights. See `../../reproduce/README.md`.
+- **Smoke-tested on CPU, one photograph each:** the two GPU stages, which regenerate the cached
+  model outputs from the stored weights. All 132 Mask2Former candidates (11 views of a test
+  photograph) and all 7 YOLO instances (a validation photograph, both models) match the stored
+  outputs: mask IoU 1.0, scores within 1e-5.
+- **Not yet run:** the two GPU stages on all 180 photographs (about 70 min on two T4s; 25 hours on
+  CPU). See `../../reproduce/README.md`.
 
 ## Not done, and why
 

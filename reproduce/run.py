@@ -11,14 +11,14 @@ The final submission is exp169's rule with exp199's large-filament guard:
               stored one before its test pool is used; GPU, about 15 min each;
   4. rule     exp169's vote (`experiments/exp_169_joint_submission`), which first replays its
               validation score from the stored validation predictions and checks that the
-              Mask2Former test path rebuilds exp139's submitted file; CPU, about 30 min;
+              Mask2Former test path rebuilds exp139's submitted file; CPU, about 17 min;
   5. guard    re-add the large Mask2Former filaments the vote deleted
               (`experiments/exp_199_swinb_votes/src/guard.py`); CPU, one minute;
   6. check    compare the result with the submitted file (`final_decision/results/`).
 
 Every stage stops on a failed check; none of them changes a model.
 
-    python reproduce/run.py --data /path/to/MAGFiLO_1.0_Kaggle_2026 --work /path/to/work [--stages ...]
+    python reproduce/run.py [--data /path/to/MAGFiLO_1.0_Kaggle_2026] --work /path/to/work [--stages ...]
 """
 from __future__ import annotations
 
@@ -59,6 +59,14 @@ def wait(processes: list[subprocess.Popen], what: str) -> None:
         raise SystemExit(f"{what} failed: exit codes {codes}")
 
 
+def find_data() -> Path:
+    """The competition folder under /kaggle/input, wherever Kaggle mounted it (the kernels' own lookup)."""
+    found = next(Path("/kaggle/input").rglob("MAGFiLO_1.0_Annotations_kaggle2026_train.json"), None)
+    if found is None:
+        raise SystemExit("--data not given and no competition folder found under /kaggle/input")
+    return found.parents[1]
+
+
 def paths(data: Path) -> dict:
     annotations = data / "train" / "MAGFiLO_1.0_Annotations_kaggle2026_train.json"
     found = dict(annotations=annotations, train=data / "train" / "train_images", test=data / "test" / "test_images")
@@ -78,7 +86,28 @@ def stage_weights(work: Path, _) -> None:
     assemble(work / "weights")
 
 
+def kernel_readback(folder: Path) -> None:
+    """Which deformable-attention kernel each Mask2Former shard ran, from its event log.
+
+    exp151a and exp157 ran the hub build at snapshot a4431ff2... (torch28-cxx11-cu128). cache.py asks
+    for the latest build and falls back to the PyTorch loop if it fails its check; either may move a
+    mask by a pixel, which the later stages measure.
+    """
+    for log in sorted(folder.glob("e040_events_shard*.log")):
+        lines = log.read_text().splitlines()
+        hub = [json.loads(line.split(" ", 1)[1]) for line in lines if line.startswith("KERNEL ")]
+        fallback = any(line.startswith("KERNEL_FALLBACK") for line in lines)
+        source = "pytorch (fallback)" if fallback else "hub" if hub else "pytorch (no GPU)"
+        same = bool(hub) and not fallback and "a4431ff2d5767c279f0ff2335a87a6828b77c7a0" in hub[0]["path"]
+        print("M2F_KERNEL", json.dumps(dict(log=log.name, source=source, original_build=same)), flush=True)
+        if not same:
+            print(f"WARNING: {log.name} did not run the deformable-attention kernel of the original caches",
+                  flush=True)
+
+
 def stage_m2f(work: Path, data: dict) -> None:
+    for stale in (work / "m2f").glob("e040_events_shard*.log"):   # cache.py appends to its logs
+        stale.unlink()
     wait([python("experiments.exp_147_candidate_cache.src.cache",
                  "--weights", str(work / "weights" / "mask2former_exp139_e040.pt"),
                  "--annotations", str(data["annotations"]), "--train-images", str(data["train"]),
@@ -88,6 +117,7 @@ def stage_m2f(work: Path, data: dict) -> None:
     cache = json.loads((work / "m2f" / "e040_test_cache.json").read_text())
     if cache["model"]["sha256"] != "7f39b5c8c9d45d62c202d6b5059d9b555027b633c13cad22bcee540afd0b6f87":
         raise SystemExit("the test cache was not made with exp139 epoch 40")
+    kernel_readback(work / "m2f")
     print("M2F", json.dumps({mode: sum(len(e.get(mode, [])) for e in cache["photographs"].values())
                              for mode in ("full", "d4", "shift")}), flush=True)
 
@@ -158,7 +188,8 @@ def stage_check(work: Path, _) -> None:
 
 def main() -> None:
     parser = argparse.ArgumentParser(description=__doc__, formatter_class=argparse.RawDescriptionHelpFormatter)
-    parser.add_argument("--data", type=Path, required=True, help="the competition folder MAGFiLO_1.0_Kaggle_2026")
+    parser.add_argument("--data", type=Path, help="the competition folder MAGFiLO_1.0_Kaggle_2026 "
+                                                  "(default: found under /kaggle/input)")
     parser.add_argument("--work", type=Path, required=True)
     parser.add_argument("--stages", nargs="+", choices=STAGES, default=list(STAGES))
     parser.add_argument("--limit", type=int, default=0, help="smoke test: first N photographs in m2f and yolo")
@@ -169,7 +200,7 @@ def main() -> None:
         raise SystemExit("--limit is for the m2f and yolo stages only")
     args.work.mkdir(parents=True, exist_ok=True)
     sys.path.insert(0, str(ROOT))
-    data = paths(args.data)
+    data = paths(args.data or find_data())
     for name in STAGES:
         if name in args.stages:
             print("STAGE", name, flush=True)
