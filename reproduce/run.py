@@ -34,6 +34,7 @@ ROOT = Path(__file__).resolve().parents[1]
 ART = ROOT / "reproduce" / "artefacts"
 SUBMITTED = ROOT / "final_decision" / "results" / "submission_exp169_guarded.csv"
 STAGES = ("weights", "m2f", "yolo", "rule", "guard", "check")
+LIMIT = 0          # --limit N: smoke test of the GPU stages on N photographs (rule/guard/check need all 180)
 YOLO = {"yolov8l": ("yolov8l_exp097_stage2_best.pt", ART / "exp098_yolov8l_val_pool.json"),
         "yolo11m": ("yolo11m_exp002_best.pt", ART / "exp002_yolo11m_val_pool.json")}
 
@@ -82,7 +83,8 @@ def stage_m2f(work: Path, data: dict) -> None:
                  "--weights", str(work / "weights" / "mask2former_exp139_e040.pt"),
                  "--annotations", str(data["annotations"]), "--train-images", str(data["train"]),
                  "--test-images", str(data["test"]), "--output", str(work / "m2f"),
-                 "--no-val", "--test-modes", "full,d4,shift", "--tag", "e040")], "Mask2Former cache")
+                 "--no-val", "--test-modes", "full,d4,shift", "--tag", "e040",
+                 *(["--limit", str(LIMIT)] if LIMIT else []))], "Mask2Former cache")
     cache = json.loads((work / "m2f" / "e040_test_cache.json").read_text())
     if cache["model"]["sha256"] != "7f39b5c8c9d45d62c202d6b5059d9b555027b633c13cad22bcee540afd0b6f87":
         raise SystemExit("the test cache was not made with exp139 epoch 40")
@@ -100,7 +102,7 @@ def stage_yolo(work: Path, data: dict) -> None:
         wait([python("experiments.exp_161_yolo_test_pool.src.pool", "--weights", str(work / "weights" / weights),
                      "--annotations", str(data["annotations"]), "--train-images", str(data["train"]),
                      "--test-images", str(data["test"]), "--output", str(out),
-                     "--shard", str(shard), "--shards", str(gpus),
+                     "--shard", str(shard), "--shards", str(gpus), *(["--limit", str(LIMIT)] if LIMIT else []),
                      env={"CUDA_VISIBLE_DEVICES": str(shard)} if torch.cuda.is_available() else None)
               for shard in range(gpus)], f"{tag} pool")
         for split in ("val", "test"):
@@ -111,6 +113,8 @@ def stage_yolo(work: Path, data: dict) -> None:
         # The validation pool must agree with the stored one that exp169 was tuned on.
         ours = load_pool(out / "val_pool.json")
         theirs = load_pool(stored)
+        if LIMIT:                                   # smoke test: only the photographs it covered
+            theirs = {name: theirs[name] for name in ours if name in theirs}
         agreement = compare(ours, theirs)
         total = sum(len(v) for v in theirs.values())
         agreement.update(instances=total, missing_photographs=sorted(set(theirs) - set(ours))[:5])
@@ -157,7 +161,12 @@ def main() -> None:
     parser.add_argument("--data", type=Path, required=True, help="the competition folder MAGFiLO_1.0_Kaggle_2026")
     parser.add_argument("--work", type=Path, required=True)
     parser.add_argument("--stages", nargs="+", choices=STAGES, default=list(STAGES))
+    parser.add_argument("--limit", type=int, default=0, help="smoke test: first N photographs in m2f and yolo")
     args = parser.parse_args()
+    global LIMIT
+    LIMIT = args.limit
+    if LIMIT and set(args.stages) & {"rule", "guard", "check"}:
+        raise SystemExit("--limit is for the m2f and yolo stages only")
     args.work.mkdir(parents=True, exist_ok=True)
     sys.path.insert(0, str(ROOT))
     data = paths(args.data)
