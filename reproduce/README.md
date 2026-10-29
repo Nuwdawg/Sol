@@ -28,8 +28,9 @@ explanation of each.
 - **Verified on CPU (2026-10-29).** The `rule` and `guard` stages were run on the model outputs that
   produced the submissions: the exp151a and exp157 test caches, the exp161 YOLOv8l pool and exp002's
   YOLO11m views. They reproduce exp169's submitted file byte for byte (SHA256 `CC15EA41...`), and
-  then the guarded file (`EC00408E...`). The same check, run through `run.py`'s own file layout, is
-  in `final_decision/results/RESULTS.md`. The weights rebuild byte-identical to the Kaggle originals.
+  then the guarded file (`EC00408E...`). Run through `run.py` itself, with those outputs placed where
+  the GPU stages write them, the rule, guard and check stages end with `CHECK identical: true`. The
+  weights rebuild byte-identical to the Kaggle originals.
 - **Not yet run: `m2f` and `yolo` on a GPU.** They regenerate those model outputs from the stored
   weights. Two things may stop the result being byte-identical:
   - exp002's YOLO11m views were made with an older Ultralytics patch release on CPU, and exp033

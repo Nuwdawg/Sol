@@ -43,6 +43,20 @@ Code: `experiments/exp_199_swinb_votes/src/guard.py` (one function for validatio
 `EC00408E7F8ED78A350EEC50FCC1F96824A9851D972310F9408B4B64D7D966A7`. Its expected public score is
 0.41, the same as exp169: the change is 9 instances out of 1,150.
 
+## Reproducibility kit (for the competition's code and weights requirement)
+
+- `weights/` holds the three checkpoints the submission uses, as parts under 46 MB with a SHA256
+  manifest: Mask2Former exp139 e40, YOLOv8l exp097 stage2_best, YOLO11m exp002. `weights/assemble.py`
+  rebuilds each one byte-identical to its Kaggle original.
+- `reproduce/run.py` and `reproduce/reproduce_final_submission.ipynb` run six checked stages: weights,
+  Mask2Former test candidates, YOLO pools, exp169's vote, guard, comparison with this file.
+- **Verified on CPU.** exp169's builder, run on the cached model outputs, rebuilds exp169's submitted
+  file byte for byte (`CC15EA41...`), and the guard then gives this file (`EC00408E...`). The same
+  passes through `run.py`'s own layout: its rule, guard and check stages end with `CHECK identical:
+  true`.
+- **Not yet run:** the two GPU stages, which regenerate the cached model outputs from the stored
+  weights. See `../../reproduce/README.md`.
+
 ## Not done, and why
 
 - **Submission.** The Kaggle credential in this environment can read but not submit: the API
