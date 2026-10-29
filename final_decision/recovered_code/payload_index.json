@@ -1,0 +1,1567 @@
+{
+ "shared/__init__.py": {
+  "a5d8360a9c1a06dc42b0b1c336e0cfaa7e7edd4605ee67daf1049bc0798edb36": [
+   "sol-exp146-report-eval-t4",
+   "sol-exp146b-image-miou-cpu",
+   "sol-exp147-candidate-cache-t4",
+   "sol-exp148-gong-probe-cpu",
+   "sol-exp149-evidence-fusion-cpu",
+   "sol-exp150-finetune-t4",
+   "sol-exp151a-e040-test-cache-t4",
+   "sol-exp153-recall-anatomy-cpu",
+   "sol-exp154-view-masks-cpu",
+   "sol-exp157-shift-cache-t4",
+   "sol-exp158-view-submission-cpu",
+   "sol-exp159-yolo-votes-cpu",
+   "sol-exp160-limb-anatomy-cpu",
+   "sol-exp161-yolo-test-pool-t4",
+   "sol-exp162-final-submission-cpu",
+   "sol-exp162b-final-submission-cpu",
+   "sol-exp163-protect-confident-cpu",
+   "sol-exp164-semantic-votes-t4",
+   "sol-exp165-semantic-final-cpu",
+   "sol-exp166-yolo-mask-votes-cpu",
+   "sol-exp167-snapshot-votes-cpu",
+   "sol-exp168-joint-tuning-cpu",
+   "sol-exp169-joint-submission-cpu",
+   "sol-exp170-more-yolo-pools-t4",
+   "sol-exp171-more-votes-cpu",
+   "sol-exp172-rotation-votes-cpu",
+   "sol-exp173a-quality-control-t4",
+   "sol-exp173b-quality-base-alldata-t4",
+   "sol-exp174-unlabelled-frames-cpu",
+   "sol-exp176a-teacher-frames-cpu",
+   "sol-exp176b-teacher-frames-cpu",
+   "sol-exp176c-teacher-frames-cpu",
+   "sol-exp176d-teacher-frames-cpu",
+   "sol-exp182-domain-gap-cpu",
+   "sol-exp182b-transfer-cpu",
+   "sol-exp183a-frames-probe-tpu",
+   "sol-exp184a-vote-caches-t4",
+   "sol-exp185-m2f-votes-cpu",
+   "sol-exp187-paste-head-t4",
+   "sol-exp190a-session-long-t4",
+   "sol-exp190b-session-long-t4",
+   "sol-exp194a-rfdetr-smoke-cpu",
+   "sol-exp194b-rfdetr-train-t4",
+   "sol-exp194c-rfdetr-smoke-tpu",
+   "sol-exp195a-family-votes-cpu",
+   "sol-exp195b-family-votes-cpu",
+   "sol-exp197-focal-dice-t4",
+   "sol-exp198a-swinb-cache-cpu",
+   "sol-exp198b-swinb-cache-cpu",
+   "sol-exp198c-swinb-cache-cpu",
+   "sol-exp198d-swinb-cache-cpu",
+   "sol-exp198e-swinb-cache-cpu"
+  ]
+ },
+ "shared/data_split.py": {
+  "f534c584da409642b0462d48c5c88f1658e6ce9f310b22996ca4461369ce780e": [
+   "sol-exp146-report-eval-t4",
+   "sol-exp146b-image-miou-cpu",
+   "sol-exp147-candidate-cache-t4",
+   "sol-exp148-gong-probe-cpu",
+   "sol-exp149-evidence-fusion-cpu",
+   "sol-exp150-finetune-t4",
+   "sol-exp151a-e040-test-cache-t4",
+   "sol-exp153-recall-anatomy-cpu",
+   "sol-exp154-view-masks-cpu",
+   "sol-exp157-shift-cache-t4",
+   "sol-exp158-view-submission-cpu",
+   "sol-exp159-yolo-votes-cpu",
+   "sol-exp160-limb-anatomy-cpu",
+   "sol-exp161-yolo-test-pool-t4",
+   "sol-exp162-final-submission-cpu",
+   "sol-exp162b-final-submission-cpu",
+   "sol-exp163-protect-confident-cpu",
+   "sol-exp164-semantic-votes-t4",
+   "sol-exp165-semantic-final-cpu",
+   "sol-exp166-yolo-mask-votes-cpu",
+   "sol-exp167-snapshot-votes-cpu",
+   "sol-exp168-joint-tuning-cpu",
+   "sol-exp169-joint-submission-cpu",
+   "sol-exp170-more-yolo-pools-t4",
+   "sol-exp171-more-votes-cpu",
+   "sol-exp172-rotation-votes-cpu",
+   "sol-exp173a-quality-control-t4",
+   "sol-exp173b-quality-base-alldata-t4",
+   "sol-exp176a-teacher-frames-cpu",
+   "sol-exp176b-teacher-frames-cpu",
+   "sol-exp176c-teacher-frames-cpu",
+   "sol-exp176d-teacher-frames-cpu",
+   "sol-exp182-domain-gap-cpu",
+   "sol-exp182b-transfer-cpu",
+   "sol-exp183a-frames-probe-tpu",
+   "sol-exp184a-vote-caches-t4",
+   "sol-exp185-m2f-votes-cpu",
+   "sol-exp187-paste-head-t4",
+   "sol-exp190a-session-long-t4",
+   "sol-exp190b-session-long-t4",
+   "sol-exp194a-rfdetr-smoke-cpu",
+   "sol-exp194b-rfdetr-train-t4",
+   "sol-exp194c-rfdetr-smoke-tpu",
+   "sol-exp195a-family-votes-cpu",
+   "sol-exp195b-family-votes-cpu",
+   "sol-exp197-focal-dice-t4",
+   "sol-exp198a-swinb-cache-cpu",
+   "sol-exp198b-swinb-cache-cpu",
+   "sol-exp198c-swinb-cache-cpu",
+   "sol-exp198d-swinb-cache-cpu",
+   "sol-exp198e-swinb-cache-cpu"
+  ]
+ },
+ "shared/utils.py": {
+  "97c2ffb5c4b0b870775769988295533ddf5142499080f41df4fe31b2b6e17a44": [
+   "sol-exp146-report-eval-t4",
+   "sol-exp146b-image-miou-cpu",
+   "sol-exp147-candidate-cache-t4",
+   "sol-exp149-evidence-fusion-cpu",
+   "sol-exp150-finetune-t4",
+   "sol-exp151a-e040-test-cache-t4",
+   "sol-exp153-recall-anatomy-cpu",
+   "sol-exp154-view-masks-cpu",
+   "sol-exp157-shift-cache-t4",
+   "sol-exp158-view-submission-cpu",
+   "sol-exp159-yolo-votes-cpu",
+   "sol-exp160-limb-anatomy-cpu",
+   "sol-exp161-yolo-test-pool-t4",
+   "sol-exp162-final-submission-cpu",
+   "sol-exp162b-final-submission-cpu",
+   "sol-exp163-protect-confident-cpu",
+   "sol-exp165-semantic-final-cpu",
+   "sol-exp166-yolo-mask-votes-cpu",
+   "sol-exp167-snapshot-votes-cpu",
+   "sol-exp168-joint-tuning-cpu",
+   "sol-exp169-joint-submission-cpu",
+   "sol-exp170-more-yolo-pools-t4",
+   "sol-exp171-more-votes-cpu",
+   "sol-exp172-rotation-votes-cpu",
+   "sol-exp173a-quality-control-t4",
+   "sol-exp173b-quality-base-alldata-t4",
+   "sol-exp176a-teacher-frames-cpu",
+   "sol-exp176b-teacher-frames-cpu",
+   "sol-exp176c-teacher-frames-cpu",
+   "sol-exp176d-teacher-frames-cpu",
+   "sol-exp182-domain-gap-cpu",
+   "sol-exp182b-transfer-cpu",
+   "sol-exp183a-frames-probe-tpu",
+   "sol-exp184a-vote-caches-t4",
+   "sol-exp185-m2f-votes-cpu",
+   "sol-exp187-paste-head-t4",
+   "sol-exp190a-session-long-t4",
+   "sol-exp190b-session-long-t4",
+   "sol-exp194a-rfdetr-smoke-cpu",
+   "sol-exp194b-rfdetr-train-t4",
+   "sol-exp194c-rfdetr-smoke-tpu",
+   "sol-exp195a-family-votes-cpu",
+   "sol-exp195b-family-votes-cpu",
+   "sol-exp197-focal-dice-t4",
+   "sol-exp198a-swinb-cache-cpu",
+   "sol-exp198b-swinb-cache-cpu",
+   "sol-exp198c-swinb-cache-cpu",
+   "sol-exp198d-swinb-cache-cpu",
+   "sol-exp198e-swinb-cache-cpu"
+  ]
+ },
+ "shared/solar_disk.py": {
+  "25b30f7a9583ad9994a30467d9b13918a8156922850e51dec4763b630ab9e9c9": [
+   "sol-exp146-report-eval-t4",
+   "sol-exp146b-image-miou-cpu",
+   "sol-exp148-gong-probe-cpu",
+   "sol-exp149-evidence-fusion-cpu",
+   "sol-exp153-recall-anatomy-cpu",
+   "sol-exp154-view-masks-cpu",
+   "sol-exp158-view-submission-cpu",
+   "sol-exp159-yolo-votes-cpu",
+   "sol-exp160-limb-anatomy-cpu",
+   "sol-exp162-final-submission-cpu",
+   "sol-exp162b-final-submission-cpu",
+   "sol-exp163-protect-confident-cpu",
+   "sol-exp165-semantic-final-cpu",
+   "sol-exp166-yolo-mask-votes-cpu",
+   "sol-exp167-snapshot-votes-cpu",
+   "sol-exp168-joint-tuning-cpu",
+   "sol-exp169-joint-submission-cpu",
+   "sol-exp171-more-votes-cpu",
+   "sol-exp172-rotation-votes-cpu",
+   "sol-exp174-unlabelled-frames-cpu",
+   "sol-exp176a-teacher-frames-cpu",
+   "sol-exp176b-teacher-frames-cpu",
+   "sol-exp176c-teacher-frames-cpu",
+   "sol-exp176d-teacher-frames-cpu",
+   "sol-exp182-domain-gap-cpu",
+   "sol-exp182b-transfer-cpu",
+   "sol-exp183a-frames-probe-tpu",
+   "sol-exp185-m2f-votes-cpu",
+   "sol-exp195a-family-votes-cpu",
+   "sol-exp195b-family-votes-cpu"
+  ]
+ },
+ "shared/preprocessing.py": {
+  "19676149730147b82a429a37c517f2f8b5bb096f6259554a86d6ed09d2653cde": [
+   "sol-exp146-report-eval-t4",
+   "sol-exp146b-image-miou-cpu",
+   "sol-exp164-semantic-votes-t4"
+  ]
+ },
+ "experiments/exp_033_inference/__init__.py": {
+  "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855": [
+   "sol-exp146-report-eval-t4",
+   "sol-exp146b-image-miou-cpu",
+   "sol-exp147-candidate-cache-t4",
+   "sol-exp149-evidence-fusion-cpu",
+   "sol-exp150-finetune-t4",
+   "sol-exp151a-e040-test-cache-t4",
+   "sol-exp153-recall-anatomy-cpu",
+   "sol-exp154-view-masks-cpu",
+   "sol-exp157-shift-cache-t4",
+   "sol-exp158-view-submission-cpu",
+   "sol-exp159-yolo-votes-cpu",
+   "sol-exp160-limb-anatomy-cpu",
+   "sol-exp161-yolo-test-pool-t4",
+   "sol-exp162-final-submission-cpu",
+   "sol-exp162b-final-submission-cpu",
+   "sol-exp163-protect-confident-cpu",
+   "sol-exp165-semantic-final-cpu",
+   "sol-exp166-yolo-mask-votes-cpu",
+   "sol-exp167-snapshot-votes-cpu",
+   "sol-exp168-joint-tuning-cpu",
+   "sol-exp169-joint-submission-cpu",
+   "sol-exp170-more-yolo-pools-t4",
+   "sol-exp171-more-votes-cpu",
+   "sol-exp172-rotation-votes-cpu",
+   "sol-exp173a-quality-control-t4",
+   "sol-exp173b-quality-base-alldata-t4",
+   "sol-exp176a-teacher-frames-cpu",
+   "sol-exp176b-teacher-frames-cpu",
+   "sol-exp176c-teacher-frames-cpu",
+   "sol-exp176d-teacher-frames-cpu",
+   "sol-exp182-domain-gap-cpu",
+   "sol-exp182b-transfer-cpu",
+   "sol-exp183a-frames-probe-tpu",
+   "sol-exp184a-vote-caches-t4",
+   "sol-exp185-m2f-votes-cpu",
+   "sol-exp187-paste-head-t4",
+   "sol-exp190a-session-long-t4",
+   "sol-exp190b-session-long-t4",
+   "sol-exp194a-rfdetr-smoke-cpu",
+   "sol-exp194b-rfdetr-train-t4",
+   "sol-exp194c-rfdetr-smoke-tpu",
+   "sol-exp195a-family-votes-cpu",
+   "sol-exp195b-family-votes-cpu",
+   "sol-exp197-focal-dice-t4",
+   "sol-exp198a-swinb-cache-cpu",
+   "sol-exp198b-swinb-cache-cpu",
+   "sol-exp198c-swinb-cache-cpu",
+   "sol-exp198d-swinb-cache-cpu",
+   "sol-exp198e-swinb-cache-cpu"
+  ]
+ },
+ "experiments/exp_033_inference/src/__init__.py": {
+  "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855": [
+   "sol-exp146-report-eval-t4",
+   "sol-exp146b-image-miou-cpu",
+   "sol-exp147-candidate-cache-t4",
+   "sol-exp149-evidence-fusion-cpu",
+   "sol-exp150-finetune-t4",
+   "sol-exp151a-e040-test-cache-t4",
+   "sol-exp153-recall-anatomy-cpu",
+   "sol-exp154-view-masks-cpu",
+   "sol-exp157-shift-cache-t4",
+   "sol-exp158-view-submission-cpu",
+   "sol-exp159-yolo-votes-cpu",
+   "sol-exp160-limb-anatomy-cpu",
+   "sol-exp161-yolo-test-pool-t4",
+   "sol-exp162-final-submission-cpu",
+   "sol-exp162b-final-submission-cpu",
+   "sol-exp163-protect-confident-cpu",
+   "sol-exp165-semantic-final-cpu",
+   "sol-exp166-yolo-mask-votes-cpu",
+   "sol-exp167-snapshot-votes-cpu",
+   "sol-exp168-joint-tuning-cpu",
+   "sol-exp169-joint-submission-cpu",
+   "sol-exp170-more-yolo-pools-t4",
+   "sol-exp171-more-votes-cpu",
+   "sol-exp172-rotation-votes-cpu",
+   "sol-exp173a-quality-control-t4",
+   "sol-exp173b-quality-base-alldata-t4",
+   "sol-exp176a-teacher-frames-cpu",
+   "sol-exp176b-teacher-frames-cpu",
+   "sol-exp176c-teacher-frames-cpu",
+   "sol-exp176d-teacher-frames-cpu",
+   "sol-exp182-domain-gap-cpu",
+   "sol-exp182b-transfer-cpu",
+   "sol-exp183a-frames-probe-tpu",
+   "sol-exp184a-vote-caches-t4",
+   "sol-exp185-m2f-votes-cpu",
+   "sol-exp187-paste-head-t4",
+   "sol-exp190a-session-long-t4",
+   "sol-exp190b-session-long-t4",
+   "sol-exp194a-rfdetr-smoke-cpu",
+   "sol-exp194b-rfdetr-train-t4",
+   "sol-exp194c-rfdetr-smoke-tpu",
+   "sol-exp195a-family-votes-cpu",
+   "sol-exp195b-family-votes-cpu",
+   "sol-exp197-focal-dice-t4",
+   "sol-exp198a-swinb-cache-cpu",
+   "sol-exp198b-swinb-cache-cpu",
+   "sol-exp198c-swinb-cache-cpu",
+   "sol-exp198d-swinb-cache-cpu",
+   "sol-exp198e-swinb-cache-cpu"
+  ]
+ },
+ "experiments/exp_033_inference/src/sweep.py": {
+  "9923412adb27609fe2d70a51e7baa80559addf99ca85999c65cd8fc062b6c01b": [
+   "sol-exp146-report-eval-t4",
+   "sol-exp146b-image-miou-cpu",
+   "sol-exp147-candidate-cache-t4",
+   "sol-exp149-evidence-fusion-cpu",
+   "sol-exp150-finetune-t4",
+   "sol-exp151a-e040-test-cache-t4",
+   "sol-exp153-recall-anatomy-cpu",
+   "sol-exp154-view-masks-cpu",
+   "sol-exp157-shift-cache-t4",
+   "sol-exp158-view-submission-cpu",
+   "sol-exp159-yolo-votes-cpu",
+   "sol-exp160-limb-anatomy-cpu",
+   "sol-exp161-yolo-test-pool-t4",
+   "sol-exp162-final-submission-cpu",
+   "sol-exp162b-final-submission-cpu",
+   "sol-exp163-protect-confident-cpu",
+   "sol-exp165-semantic-final-cpu",
+   "sol-exp166-yolo-mask-votes-cpu",
+   "sol-exp167-snapshot-votes-cpu",
+   "sol-exp168-joint-tuning-cpu",
+   "sol-exp169-joint-submission-cpu",
+   "sol-exp170-more-yolo-pools-t4",
+   "sol-exp171-more-votes-cpu",
+   "sol-exp172-rotation-votes-cpu",
+   "sol-exp173a-quality-control-t4",
+   "sol-exp173b-quality-base-alldata-t4",
+   "sol-exp176a-teacher-frames-cpu",
+   "sol-exp176b-teacher-frames-cpu",
+   "sol-exp176c-teacher-frames-cpu",
+   "sol-exp176d-teacher-frames-cpu",
+   "sol-exp182-domain-gap-cpu",
+   "sol-exp182b-transfer-cpu",
+   "sol-exp183a-frames-probe-tpu",
+   "sol-exp184a-vote-caches-t4",
+   "sol-exp185-m2f-votes-cpu",
+   "sol-exp187-paste-head-t4",
+   "sol-exp190a-session-long-t4",
+   "sol-exp190b-session-long-t4",
+   "sol-exp194a-rfdetr-smoke-cpu",
+   "sol-exp194b-rfdetr-train-t4",
+   "sol-exp194c-rfdetr-smoke-tpu",
+   "sol-exp195a-family-votes-cpu",
+   "sol-exp195b-family-votes-cpu",
+   "sol-exp197-focal-dice-t4",
+   "sol-exp198a-swinb-cache-cpu",
+   "sol-exp198b-swinb-cache-cpu",
+   "sol-exp198c-swinb-cache-cpu",
+   "sol-exp198d-swinb-cache-cpu",
+   "sol-exp198e-swinb-cache-cpu"
+  ]
+ },
+ "experiments/exp_033_inference/src/cached_tta.py": {
+  "f412a55a51afdc81347690bd47bae15d60766b6fc18e4b11490e194f3263b0c6": [
+   "sol-exp146-report-eval-t4",
+   "sol-exp146b-image-miou-cpu",
+   "sol-exp147-candidate-cache-t4",
+   "sol-exp150-finetune-t4",
+   "sol-exp151a-e040-test-cache-t4",
+   "sol-exp154-view-masks-cpu",
+   "sol-exp157-shift-cache-t4",
+   "sol-exp158-view-submission-cpu",
+   "sol-exp159-yolo-votes-cpu",
+   "sol-exp160-limb-anatomy-cpu",
+   "sol-exp161-yolo-test-pool-t4",
+   "sol-exp162-final-submission-cpu",
+   "sol-exp162b-final-submission-cpu",
+   "sol-exp163-protect-confident-cpu",
+   "sol-exp165-semantic-final-cpu",
+   "sol-exp166-yolo-mask-votes-cpu",
+   "sol-exp167-snapshot-votes-cpu",
+   "sol-exp168-joint-tuning-cpu",
+   "sol-exp169-joint-submission-cpu",
+   "sol-exp170-more-yolo-pools-t4",
+   "sol-exp171-more-votes-cpu",
+   "sol-exp172-rotation-votes-cpu",
+   "sol-exp173a-quality-control-t4",
+   "sol-exp173b-quality-base-alldata-t4",
+   "sol-exp176a-teacher-frames-cpu",
+   "sol-exp176b-teacher-frames-cpu",
+   "sol-exp176c-teacher-frames-cpu",
+   "sol-exp176d-teacher-frames-cpu",
+   "sol-exp182-domain-gap-cpu",
+   "sol-exp182b-transfer-cpu",
+   "sol-exp183a-frames-probe-tpu",
+   "sol-exp184a-vote-caches-t4",
+   "sol-exp185-m2f-votes-cpu",
+   "sol-exp187-paste-head-t4",
+   "sol-exp190a-session-long-t4",
+   "sol-exp190b-session-long-t4",
+   "sol-exp194a-rfdetr-smoke-cpu",
+   "sol-exp194b-rfdetr-train-t4",
+   "sol-exp194c-rfdetr-smoke-tpu",
+   "sol-exp195a-family-votes-cpu",
+   "sol-exp195b-family-votes-cpu",
+   "sol-exp197-focal-dice-t4",
+   "sol-exp198a-swinb-cache-cpu",
+   "sol-exp198b-swinb-cache-cpu",
+   "sol-exp198c-swinb-cache-cpu",
+   "sol-exp198d-swinb-cache-cpu",
+   "sol-exp198e-swinb-cache-cpu"
+  ]
+ },
+ "experiments/exp_139_mask2former/__init__.py": {
+  "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855": [
+   "sol-exp146-report-eval-t4",
+   "sol-exp146b-image-miou-cpu",
+   "sol-exp147-candidate-cache-t4",
+   "sol-exp150-finetune-t4",
+   "sol-exp151a-e040-test-cache-t4",
+   "sol-exp157-shift-cache-t4",
+   "sol-exp173a-quality-control-t4",
+   "sol-exp173b-quality-base-alldata-t4",
+   "sol-exp176a-teacher-frames-cpu",
+   "sol-exp176b-teacher-frames-cpu",
+   "sol-exp176c-teacher-frames-cpu",
+   "sol-exp176d-teacher-frames-cpu",
+   "sol-exp182-domain-gap-cpu",
+   "sol-exp182b-transfer-cpu",
+   "sol-exp183a-frames-probe-tpu",
+   "sol-exp184a-vote-caches-t4",
+   "sol-exp187-paste-head-t4",
+   "sol-exp190a-session-long-t4",
+   "sol-exp190b-session-long-t4",
+   "sol-exp197-focal-dice-t4",
+   "sol-exp198a-swinb-cache-cpu",
+   "sol-exp198b-swinb-cache-cpu",
+   "sol-exp198c-swinb-cache-cpu",
+   "sol-exp198d-swinb-cache-cpu",
+   "sol-exp198e-swinb-cache-cpu"
+  ]
+ },
+ "experiments/exp_139_mask2former/src/__init__.py": {
+  "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855": [
+   "sol-exp146-report-eval-t4",
+   "sol-exp146b-image-miou-cpu",
+   "sol-exp147-candidate-cache-t4",
+   "sol-exp150-finetune-t4",
+   "sol-exp151a-e040-test-cache-t4",
+   "sol-exp157-shift-cache-t4",
+   "sol-exp173a-quality-control-t4",
+   "sol-exp173b-quality-base-alldata-t4",
+   "sol-exp176a-teacher-frames-cpu",
+   "sol-exp176b-teacher-frames-cpu",
+   "sol-exp176c-teacher-frames-cpu",
+   "sol-exp176d-teacher-frames-cpu",
+   "sol-exp182-domain-gap-cpu",
+   "sol-exp182b-transfer-cpu",
+   "sol-exp183a-frames-probe-tpu",
+   "sol-exp184a-vote-caches-t4",
+   "sol-exp187-paste-head-t4",
+   "sol-exp190a-session-long-t4",
+   "sol-exp190b-session-long-t4",
+   "sol-exp197-focal-dice-t4",
+   "sol-exp198a-swinb-cache-cpu",
+   "sol-exp198b-swinb-cache-cpu",
+   "sol-exp198c-swinb-cache-cpu",
+   "sol-exp198d-swinb-cache-cpu",
+   "sol-exp198e-swinb-cache-cpu"
+  ]
+ },
+ "experiments/exp_139_mask2former/src/data.py": {
+  "9b3054ddcc819f99c24780c5ff06d502d1133514a8b33547ae08de3a40e6f6e9": [
+   "sol-exp146-report-eval-t4",
+   "sol-exp146b-image-miou-cpu",
+   "sol-exp147-candidate-cache-t4",
+   "sol-exp150-finetune-t4",
+   "sol-exp151a-e040-test-cache-t4",
+   "sol-exp157-shift-cache-t4",
+   "sol-exp173a-quality-control-t4",
+   "sol-exp173b-quality-base-alldata-t4",
+   "sol-exp176a-teacher-frames-cpu",
+   "sol-exp176b-teacher-frames-cpu",
+   "sol-exp176c-teacher-frames-cpu",
+   "sol-exp176d-teacher-frames-cpu",
+   "sol-exp182-domain-gap-cpu",
+   "sol-exp182b-transfer-cpu",
+   "sol-exp183a-frames-probe-tpu",
+   "sol-exp184a-vote-caches-t4",
+   "sol-exp187-paste-head-t4",
+   "sol-exp190a-session-long-t4",
+   "sol-exp190b-session-long-t4",
+   "sol-exp197-focal-dice-t4",
+   "sol-exp198a-swinb-cache-cpu",
+   "sol-exp198b-swinb-cache-cpu",
+   "sol-exp198c-swinb-cache-cpu",
+   "sol-exp198d-swinb-cache-cpu",
+   "sol-exp198e-swinb-cache-cpu"
+  ]
+ },
+ "experiments/exp_139_mask2former/src/model.py": {
+  "f3c20a18972e442c5a988b3955c9e7a95f50a53ceac1d6b873e638ae533f0c79": [
+   "sol-exp146-report-eval-t4",
+   "sol-exp146b-image-miou-cpu",
+   "sol-exp147-candidate-cache-t4",
+   "sol-exp150-finetune-t4",
+   "sol-exp151a-e040-test-cache-t4",
+   "sol-exp157-shift-cache-t4",
+   "sol-exp173a-quality-control-t4",
+   "sol-exp173b-quality-base-alldata-t4",
+   "sol-exp176a-teacher-frames-cpu",
+   "sol-exp176b-teacher-frames-cpu",
+   "sol-exp176c-teacher-frames-cpu",
+   "sol-exp176d-teacher-frames-cpu",
+   "sol-exp182-domain-gap-cpu",
+   "sol-exp182b-transfer-cpu",
+   "sol-exp183a-frames-probe-tpu",
+   "sol-exp184a-vote-caches-t4",
+   "sol-exp187-paste-head-t4",
+   "sol-exp190a-session-long-t4",
+   "sol-exp190b-session-long-t4",
+   "sol-exp197-focal-dice-t4",
+   "sol-exp198a-swinb-cache-cpu",
+   "sol-exp198b-swinb-cache-cpu",
+   "sol-exp198c-swinb-cache-cpu",
+   "sol-exp198d-swinb-cache-cpu",
+   "sol-exp198e-swinb-cache-cpu"
+  ]
+ },
+ "experiments/exp_139_mask2former/src/evaluate.py": {
+  "df143da11fe4b3546bd86e764612d6f592c4252fd38b642c73dc098424bf1817": [
+   "sol-exp146-report-eval-t4",
+   "sol-exp146b-image-miou-cpu",
+   "sol-exp150-finetune-t4",
+   "sol-exp173a-quality-control-t4",
+   "sol-exp173b-quality-base-alldata-t4",
+   "sol-exp176a-teacher-frames-cpu",
+   "sol-exp176b-teacher-frames-cpu",
+   "sol-exp176c-teacher-frames-cpu",
+   "sol-exp176d-teacher-frames-cpu",
+   "sol-exp182-domain-gap-cpu",
+   "sol-exp182b-transfer-cpu",
+   "sol-exp183a-frames-probe-tpu",
+   "sol-exp184a-vote-caches-t4",
+   "sol-exp187-paste-head-t4",
+   "sol-exp190a-session-long-t4",
+   "sol-exp190b-session-long-t4",
+   "sol-exp197-focal-dice-t4",
+   "sol-exp198a-swinb-cache-cpu",
+   "sol-exp198b-swinb-cache-cpu",
+   "sol-exp198c-swinb-cache-cpu",
+   "sol-exp198d-swinb-cache-cpu",
+   "sol-exp198e-swinb-cache-cpu"
+  ]
+ },
+ "experiments/exp_139_mask2former/src/fast_ops.py": {
+  "6c92c64061e6139074e29a4789f7f65399533277bd8c98c8cc0a567797beaaa4": [
+   "sol-exp146-report-eval-t4",
+   "sol-exp146b-image-miou-cpu",
+   "sol-exp147-candidate-cache-t4",
+   "sol-exp150-finetune-t4",
+   "sol-exp151a-e040-test-cache-t4",
+   "sol-exp157-shift-cache-t4",
+   "sol-exp173a-quality-control-t4",
+   "sol-exp173b-quality-base-alldata-t4",
+   "sol-exp176a-teacher-frames-cpu",
+   "sol-exp176b-teacher-frames-cpu",
+   "sol-exp176c-teacher-frames-cpu",
+   "sol-exp176d-teacher-frames-cpu",
+   "sol-exp182-domain-gap-cpu",
+   "sol-exp182b-transfer-cpu",
+   "sol-exp184a-vote-caches-t4",
+   "sol-exp187-paste-head-t4",
+   "sol-exp190a-session-long-t4",
+   "sol-exp190b-session-long-t4",
+   "sol-exp197-focal-dice-t4",
+   "sol-exp198a-swinb-cache-cpu",
+   "sol-exp198b-swinb-cache-cpu",
+   "sol-exp198c-swinb-cache-cpu",
+   "sol-exp198d-swinb-cache-cpu",
+   "sol-exp198e-swinb-cache-cpu"
+  ]
+ },
+ "experiments/exp_146_report_evaluation/__init__.py": {
+  "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855": [
+   "sol-exp146-report-eval-t4",
+   "sol-exp146b-image-miou-cpu"
+  ]
+ },
+ "experiments/exp_146_report_evaluation/src/__init__.py": {
+  "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855": [
+   "sol-exp146-report-eval-t4",
+   "sol-exp146b-image-miou-cpu"
+  ]
+ },
+ "experiments/exp_146_report_evaluation/src/evaluate.py": {
+  "0a6922ddd2f8b681af091d7e8415ce8f00aa1543ced589141683a7cd2935ada5": [
+   "sol-exp146-report-eval-t4",
+   "sol-exp146b-image-miou-cpu"
+  ]
+ },
+ "experiments/exp_146_report_evaluation/src/metrics.py": {
+  "e3e671ea4e903e17a5ccb5075a63e0a92c0e4e3628d523b78ba2eeae48674762": [
+   "sol-exp146-report-eval-t4",
+   "sol-exp146b-image-miou-cpu"
+  ]
+ },
+ "experiments/exp_146_report_evaluation/src/models.py": {
+  "d760f14f5c0a2aad94df4f8fb3f774d741c202f7ebdb420299ddb7c624975a82": [
+   "sol-exp146-report-eval-t4",
+   "sol-exp146b-image-miou-cpu"
+  ]
+ },
+ "experiments/exp_146_report_evaluation/src/image_miou.py": {
+  "e833c4b67f8ffef7d7bd6b55e9c12707a7038e3f2d95252189d531ae023396a8": [
+   "sol-exp146b-image-miou-cpu"
+  ]
+ },
+ "experiments/exp_147_candidate_cache/__init__.py": {
+  "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855": [
+   "sol-exp147-candidate-cache-t4",
+   "sol-exp151a-e040-test-cache-t4",
+   "sol-exp157-shift-cache-t4",
+   "sol-exp184a-vote-caches-t4",
+   "sol-exp198a-swinb-cache-cpu",
+   "sol-exp198b-swinb-cache-cpu",
+   "sol-exp198c-swinb-cache-cpu",
+   "sol-exp198d-swinb-cache-cpu",
+   "sol-exp198e-swinb-cache-cpu"
+  ]
+ },
+ "experiments/exp_147_candidate_cache/src/__init__.py": {
+  "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855": [
+   "sol-exp147-candidate-cache-t4",
+   "sol-exp151a-e040-test-cache-t4",
+   "sol-exp157-shift-cache-t4",
+   "sol-exp184a-vote-caches-t4",
+   "sol-exp198a-swinb-cache-cpu",
+   "sol-exp198b-swinb-cache-cpu",
+   "sol-exp198c-swinb-cache-cpu",
+   "sol-exp198d-swinb-cache-cpu",
+   "sol-exp198e-swinb-cache-cpu"
+  ]
+ },
+ "experiments/exp_147_candidate_cache/src/cache.py": {
+  "c7be313927bbac8dc06cd2fbfc4a74678e8cb3dd25eef218a07af1b2a400cab2": [
+   "sol-exp147-candidate-cache-t4"
+  ],
+  "e18f30178d46e42da281dc34f32ecf6b82ed4b185fad57052861c0494388fbd5": [
+   "sol-exp151a-e040-test-cache-t4"
+  ],
+  "5687bdb38415277f0a9015fad42bd5f0f692719639a32226182d17b3d7ea3857": [
+   "sol-exp157-shift-cache-t4",
+   "sol-exp184a-vote-caches-t4"
+  ],
+  "39b86fc4dee0a7d18565dfcdb79ceb4eca186628111bd827974e07762b0e2fa4": [
+   "sol-exp198a-swinb-cache-cpu",
+   "sol-exp198b-swinb-cache-cpu",
+   "sol-exp198c-swinb-cache-cpu",
+   "sol-exp198d-swinb-cache-cpu",
+   "sol-exp198e-swinb-cache-cpu"
+  ]
+ },
+ "experiments/exp_148_gong_neighbours/__init__.py": {
+  "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855": [
+   "sol-exp148-gong-probe-cpu"
+  ]
+ },
+ "experiments/exp_148_gong_neighbours/src/__init__.py": {
+  "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855": [
+   "sol-exp148-gong-probe-cpu"
+  ]
+ },
+ "experiments/exp_148_gong_neighbours/src/probe.py": {
+  "0b9d9d27f55adba9e1fe75304ee3c6ab59d15075d8fbfb9aba012dfe43139472": [
+   "sol-exp148-gong-probe-cpu"
+  ]
+ },
+ "experiments/exp_149_evidence_fusion/__init__.py": {
+  "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855": [
+   "sol-exp149-evidence-fusion-cpu",
+   "sol-exp153-recall-anatomy-cpu",
+   "sol-exp154-view-masks-cpu",
+   "sol-exp158-view-submission-cpu",
+   "sol-exp159-yolo-votes-cpu",
+   "sol-exp160-limb-anatomy-cpu",
+   "sol-exp162-final-submission-cpu",
+   "sol-exp162b-final-submission-cpu",
+   "sol-exp163-protect-confident-cpu",
+   "sol-exp165-semantic-final-cpu",
+   "sol-exp166-yolo-mask-votes-cpu",
+   "sol-exp167-snapshot-votes-cpu",
+   "sol-exp168-joint-tuning-cpu",
+   "sol-exp169-joint-submission-cpu",
+   "sol-exp171-more-votes-cpu",
+   "sol-exp172-rotation-votes-cpu",
+   "sol-exp185-m2f-votes-cpu",
+   "sol-exp195a-family-votes-cpu",
+   "sol-exp195b-family-votes-cpu"
+  ]
+ },
+ "experiments/exp_149_evidence_fusion/src/__init__.py": {
+  "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855": [
+   "sol-exp149-evidence-fusion-cpu",
+   "sol-exp153-recall-anatomy-cpu",
+   "sol-exp154-view-masks-cpu",
+   "sol-exp158-view-submission-cpu",
+   "sol-exp159-yolo-votes-cpu",
+   "sol-exp160-limb-anatomy-cpu",
+   "sol-exp162-final-submission-cpu",
+   "sol-exp162b-final-submission-cpu",
+   "sol-exp163-protect-confident-cpu",
+   "sol-exp165-semantic-final-cpu",
+   "sol-exp166-yolo-mask-votes-cpu",
+   "sol-exp167-snapshot-votes-cpu",
+   "sol-exp168-joint-tuning-cpu",
+   "sol-exp169-joint-submission-cpu",
+   "sol-exp171-more-votes-cpu",
+   "sol-exp172-rotation-votes-cpu",
+   "sol-exp185-m2f-votes-cpu",
+   "sol-exp195a-family-votes-cpu",
+   "sol-exp195b-family-votes-cpu"
+  ]
+ },
+ "experiments/exp_149_evidence_fusion/src/analyse.py": {
+  "b0a7b6b2ef9e60e079629eba8e2b486e00b874a49df7120a52e71870d138ee06": [
+   "sol-exp149-evidence-fusion-cpu"
+  ]
+ },
+ "experiments/exp_149_evidence_fusion/src/evidence.py": {
+  "c7f23c2e18e9a87012f787d2d87c814bf310a8fd662759cb27e519832574d27b": [
+   "sol-exp149-evidence-fusion-cpu",
+   "sol-exp153-recall-anatomy-cpu",
+   "sol-exp154-view-masks-cpu",
+   "sol-exp158-view-submission-cpu",
+   "sol-exp159-yolo-votes-cpu",
+   "sol-exp160-limb-anatomy-cpu",
+   "sol-exp162-final-submission-cpu",
+   "sol-exp162b-final-submission-cpu",
+   "sol-exp163-protect-confident-cpu",
+   "sol-exp165-semantic-final-cpu",
+   "sol-exp166-yolo-mask-votes-cpu",
+   "sol-exp167-snapshot-votes-cpu",
+   "sol-exp168-joint-tuning-cpu",
+   "sol-exp169-joint-submission-cpu",
+   "sol-exp171-more-votes-cpu",
+   "sol-exp172-rotation-votes-cpu",
+   "sol-exp185-m2f-votes-cpu",
+   "sol-exp195a-family-votes-cpu",
+   "sol-exp195b-family-votes-cpu"
+  ]
+ },
+ "experiments/exp_150_finetune/__init__.py": {
+  "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855": [
+   "sol-exp150-finetune-t4"
+  ]
+ },
+ "experiments/exp_150_finetune/src/__init__.py": {
+  "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855": [
+   "sol-exp150-finetune-t4"
+  ]
+ },
+ "experiments/exp_150_finetune/src/train.py": {
+  "cdf75d53415485781a6420eb4631027b542eb92f5bffe7653346b1fe6df270cf": [
+   "sol-exp150-finetune-t4"
+  ]
+ },
+ "experiments/exp_153_recall_anatomy/__init__.py": {
+  "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855": [
+   "sol-exp153-recall-anatomy-cpu"
+  ]
+ },
+ "experiments/exp_153_recall_anatomy/src/__init__.py": {
+  "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855": [
+   "sol-exp153-recall-anatomy-cpu"
+  ]
+ },
+ "experiments/exp_153_recall_anatomy/src/anatomy.py": {
+  "aeaf680029369cbe160bdecfd2a3b78988cf4d97de4baa6ca0a010f641161ac7": [
+   "sol-exp153-recall-anatomy-cpu"
+  ]
+ },
+ "experiments/exp_152_rule_and_emit/__init__.py": {
+  "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855": [
+   "sol-exp154-view-masks-cpu",
+   "sol-exp158-view-submission-cpu",
+   "sol-exp162-final-submission-cpu",
+   "sol-exp162b-final-submission-cpu",
+   "sol-exp165-semantic-final-cpu",
+   "sol-exp167-snapshot-votes-cpu",
+   "sol-exp169-joint-submission-cpu",
+   "sol-exp171-more-votes-cpu",
+   "sol-exp172-rotation-votes-cpu"
+  ]
+ },
+ "experiments/exp_152_rule_and_emit/src/__init__.py": {
+  "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855": [
+   "sol-exp154-view-masks-cpu",
+   "sol-exp158-view-submission-cpu",
+   "sol-exp162-final-submission-cpu",
+   "sol-exp162b-final-submission-cpu",
+   "sol-exp165-semantic-final-cpu",
+   "sol-exp167-snapshot-votes-cpu",
+   "sol-exp169-joint-submission-cpu",
+   "sol-exp171-more-votes-cpu",
+   "sol-exp172-rotation-votes-cpu"
+  ]
+ },
+ "experiments/exp_152_rule_and_emit/src/emit.py": {
+  "f91db5322e169c4af568175c0ec444dc8857d0a4cf025a49c0daba96e6667f0c": [
+   "sol-exp154-view-masks-cpu"
+  ],
+  "919199b78b4909def470bdc0b2553036e3b5e591ad293c14bc30ebed90c6d04c": [
+   "sol-exp158-view-submission-cpu",
+   "sol-exp162-final-submission-cpu",
+   "sol-exp162b-final-submission-cpu",
+   "sol-exp165-semantic-final-cpu",
+   "sol-exp167-snapshot-votes-cpu",
+   "sol-exp169-joint-submission-cpu",
+   "sol-exp171-more-votes-cpu",
+   "sol-exp172-rotation-votes-cpu"
+  ]
+ },
+ "experiments/exp_154_view_masks/__init__.py": {
+  "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855": [
+   "sol-exp154-view-masks-cpu",
+   "sol-exp158-view-submission-cpu",
+   "sol-exp162-final-submission-cpu",
+   "sol-exp162b-final-submission-cpu",
+   "sol-exp165-semantic-final-cpu",
+   "sol-exp167-snapshot-votes-cpu",
+   "sol-exp169-joint-submission-cpu",
+   "sol-exp171-more-votes-cpu",
+   "sol-exp172-rotation-votes-cpu"
+  ]
+ },
+ "experiments/exp_154_view_masks/src/__init__.py": {
+  "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855": [
+   "sol-exp154-view-masks-cpu",
+   "sol-exp158-view-submission-cpu",
+   "sol-exp162-final-submission-cpu",
+   "sol-exp162b-final-submission-cpu",
+   "sol-exp165-semantic-final-cpu",
+   "sol-exp167-snapshot-votes-cpu",
+   "sol-exp169-joint-submission-cpu",
+   "sol-exp171-more-votes-cpu",
+   "sol-exp172-rotation-votes-cpu"
+  ]
+ },
+ "experiments/exp_154_view_masks/src/view_masks.py": {
+  "fdbd14a344991f265365dcc184e6f21414a34581672e74dc011d8bbcde16c40e": [
+   "sol-exp154-view-masks-cpu",
+   "sol-exp158-view-submission-cpu",
+   "sol-exp162-final-submission-cpu",
+   "sol-exp162b-final-submission-cpu",
+   "sol-exp165-semantic-final-cpu",
+   "sol-exp167-snapshot-votes-cpu",
+   "sol-exp169-joint-submission-cpu",
+   "sol-exp171-more-votes-cpu",
+   "sol-exp172-rotation-votes-cpu"
+  ]
+ },
+ "experiments/exp_156_review/__init__.py": {
+  "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855": [
+   "sol-exp158-view-submission-cpu",
+   "sol-exp162-final-submission-cpu",
+   "sol-exp162b-final-submission-cpu",
+   "sol-exp165-semantic-final-cpu",
+   "sol-exp169-joint-submission-cpu",
+   "sol-exp171-more-votes-cpu",
+   "sol-exp172-rotation-votes-cpu"
+  ]
+ },
+ "experiments/exp_156_review/src/__init__.py": {
+  "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855": [
+   "sol-exp158-view-submission-cpu",
+   "sol-exp162-final-submission-cpu",
+   "sol-exp162b-final-submission-cpu",
+   "sol-exp165-semantic-final-cpu",
+   "sol-exp169-joint-submission-cpu",
+   "sol-exp171-more-votes-cpu",
+   "sol-exp172-rotation-votes-cpu"
+  ]
+ },
+ "experiments/exp_156_review/src/review.py": {
+  "bef5d46f518c9b60508b2851550cd3fcd4d467e3b0c636249b9ceddc7cdd23e7": [
+   "sol-exp158-view-submission-cpu",
+   "sol-exp162-final-submission-cpu",
+   "sol-exp162b-final-submission-cpu",
+   "sol-exp165-semantic-final-cpu",
+   "sol-exp169-joint-submission-cpu",
+   "sol-exp171-more-votes-cpu",
+   "sol-exp172-rotation-votes-cpu"
+  ]
+ },
+ "experiments/exp_157_shift_views/__init__.py": {
+  "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855": [
+   "sol-exp158-view-submission-cpu",
+   "sol-exp159-yolo-votes-cpu",
+   "sol-exp160-limb-anatomy-cpu",
+   "sol-exp162-final-submission-cpu",
+   "sol-exp162b-final-submission-cpu",
+   "sol-exp163-protect-confident-cpu",
+   "sol-exp165-semantic-final-cpu",
+   "sol-exp166-yolo-mask-votes-cpu",
+   "sol-exp167-snapshot-votes-cpu",
+   "sol-exp168-joint-tuning-cpu",
+   "sol-exp169-joint-submission-cpu",
+   "sol-exp171-more-votes-cpu",
+   "sol-exp172-rotation-votes-cpu",
+   "sol-exp185-m2f-votes-cpu",
+   "sol-exp195a-family-votes-cpu",
+   "sol-exp195b-family-votes-cpu"
+  ]
+ },
+ "experiments/exp_157_shift_views/src/__init__.py": {
+  "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855": [
+   "sol-exp158-view-submission-cpu",
+   "sol-exp159-yolo-votes-cpu",
+   "sol-exp160-limb-anatomy-cpu",
+   "sol-exp162-final-submission-cpu",
+   "sol-exp162b-final-submission-cpu",
+   "sol-exp163-protect-confident-cpu",
+   "sol-exp165-semantic-final-cpu",
+   "sol-exp166-yolo-mask-votes-cpu",
+   "sol-exp167-snapshot-votes-cpu",
+   "sol-exp168-joint-tuning-cpu",
+   "sol-exp169-joint-submission-cpu",
+   "sol-exp171-more-votes-cpu",
+   "sol-exp172-rotation-votes-cpu",
+   "sol-exp185-m2f-votes-cpu",
+   "sol-exp195a-family-votes-cpu",
+   "sol-exp195b-family-votes-cpu"
+  ]
+ },
+ "experiments/exp_157_shift_views/src/views.py": {
+  "32c5d3419a0a69a8e3e3eaf3c6f556cf7c9d99d18f628cf374aefe508e646df9": [
+   "sol-exp158-view-submission-cpu",
+   "sol-exp159-yolo-votes-cpu",
+   "sol-exp160-limb-anatomy-cpu",
+   "sol-exp162-final-submission-cpu",
+   "sol-exp162b-final-submission-cpu",
+   "sol-exp163-protect-confident-cpu",
+   "sol-exp165-semantic-final-cpu",
+   "sol-exp166-yolo-mask-votes-cpu",
+   "sol-exp167-snapshot-votes-cpu",
+   "sol-exp168-joint-tuning-cpu",
+   "sol-exp169-joint-submission-cpu",
+   "sol-exp171-more-votes-cpu",
+   "sol-exp172-rotation-votes-cpu",
+   "sol-exp185-m2f-votes-cpu",
+   "sol-exp195a-family-votes-cpu",
+   "sol-exp195b-family-votes-cpu"
+  ]
+ },
+ "experiments/exp_158_view_submission/__init__.py": {
+  "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855": [
+   "sol-exp158-view-submission-cpu"
+  ]
+ },
+ "experiments/exp_158_view_submission/src/__init__.py": {
+  "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855": [
+   "sol-exp158-view-submission-cpu"
+  ]
+ },
+ "experiments/exp_158_view_submission/src/submit.py": {
+  "0162371991e876cb37b0af5aad699164f0b66c7e4ebf96aae1e361686690481b": [
+   "sol-exp158-view-submission-cpu"
+  ]
+ },
+ "experiments/exp_159_yolo_votes/__init__.py": {
+  "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855": [
+   "sol-exp159-yolo-votes-cpu",
+   "sol-exp162-final-submission-cpu",
+   "sol-exp162b-final-submission-cpu",
+   "sol-exp163-protect-confident-cpu",
+   "sol-exp165-semantic-final-cpu",
+   "sol-exp166-yolo-mask-votes-cpu",
+   "sol-exp167-snapshot-votes-cpu",
+   "sol-exp168-joint-tuning-cpu",
+   "sol-exp169-joint-submission-cpu",
+   "sol-exp171-more-votes-cpu",
+   "sol-exp172-rotation-votes-cpu",
+   "sol-exp185-m2f-votes-cpu",
+   "sol-exp195a-family-votes-cpu",
+   "sol-exp195b-family-votes-cpu"
+  ]
+ },
+ "experiments/exp_159_yolo_votes/src/__init__.py": {
+  "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855": [
+   "sol-exp159-yolo-votes-cpu",
+   "sol-exp162-final-submission-cpu",
+   "sol-exp162b-final-submission-cpu",
+   "sol-exp163-protect-confident-cpu",
+   "sol-exp165-semantic-final-cpu",
+   "sol-exp166-yolo-mask-votes-cpu",
+   "sol-exp167-snapshot-votes-cpu",
+   "sol-exp168-joint-tuning-cpu",
+   "sol-exp169-joint-submission-cpu",
+   "sol-exp171-more-votes-cpu",
+   "sol-exp172-rotation-votes-cpu",
+   "sol-exp185-m2f-votes-cpu",
+   "sol-exp195a-family-votes-cpu",
+   "sol-exp195b-family-votes-cpu"
+  ]
+ },
+ "experiments/exp_159_yolo_votes/src/votes.py": {
+  "3c2be46cf1a831eb23e16269f9aebae4973dd09ff6cde79c014b2fb314404efb": [
+   "sol-exp159-yolo-votes-cpu"
+  ],
+  "2514f54d0cc12e2191d9fb0d19c29e9d3688890f56725b07c649bbf6a8526495": [
+   "sol-exp162-final-submission-cpu",
+   "sol-exp162b-final-submission-cpu",
+   "sol-exp163-protect-confident-cpu",
+   "sol-exp165-semantic-final-cpu",
+   "sol-exp166-yolo-mask-votes-cpu",
+   "sol-exp167-snapshot-votes-cpu",
+   "sol-exp168-joint-tuning-cpu",
+   "sol-exp169-joint-submission-cpu",
+   "sol-exp171-more-votes-cpu",
+   "sol-exp172-rotation-votes-cpu",
+   "sol-exp185-m2f-votes-cpu",
+   "sol-exp195a-family-votes-cpu",
+   "sol-exp195b-family-votes-cpu"
+  ]
+ },
+ "experiments/exp_160_limb_anatomy/__init__.py": {
+  "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855": [
+   "sol-exp160-limb-anatomy-cpu"
+  ]
+ },
+ "experiments/exp_160_limb_anatomy/src/__init__.py": {
+  "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855": [
+   "sol-exp160-limb-anatomy-cpu"
+  ]
+ },
+ "experiments/exp_160_limb_anatomy/src/limb.py": {
+  "4d5fd3fe64ee4d826b865e9c99cbdc74e4d9972e1be60c729c7933afc5ea740a": [
+   "sol-exp160-limb-anatomy-cpu"
+  ]
+ },
+ "experiments/exp_007_tta/src/dihedral.py": {
+  "190f8ba462816a8c878afa4d81ccce338c0da0f618524f918b58cc39fb50646f": [
+   "sol-exp161-yolo-test-pool-t4",
+   "sol-exp170-more-yolo-pools-t4"
+  ]
+ },
+ "experiments/exp_161_yolo_test_pool/__init__.py": {
+  "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855": [
+   "sol-exp161-yolo-test-pool-t4",
+   "sol-exp170-more-yolo-pools-t4"
+  ]
+ },
+ "experiments/exp_161_yolo_test_pool/src/__init__.py": {
+  "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855": [
+   "sol-exp161-yolo-test-pool-t4",
+   "sol-exp170-more-yolo-pools-t4"
+  ]
+ },
+ "experiments/exp_161_yolo_test_pool/src/pool.py": {
+  "eaf3fe25b1c5bc16c9435bd1b5d47d74ff5c1f75eae542a7a533e997bf7c0a03": [
+   "sol-exp161-yolo-test-pool-t4"
+  ],
+  "9cc11dcc0d01e4f502277759af2e7fe2ce822b72d29d8dc06d62e938b9f12d64": [
+   "sol-exp170-more-yolo-pools-t4"
+  ]
+ },
+ "experiments/exp_162_final_submission/__init__.py": {
+  "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855": [
+   "sol-exp162-final-submission-cpu",
+   "sol-exp162b-final-submission-cpu",
+   "sol-exp165-semantic-final-cpu",
+   "sol-exp167-snapshot-votes-cpu",
+   "sol-exp169-joint-submission-cpu",
+   "sol-exp171-more-votes-cpu",
+   "sol-exp172-rotation-votes-cpu"
+  ]
+ },
+ "experiments/exp_162_final_submission/src/__init__.py": {
+  "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855": [
+   "sol-exp162-final-submission-cpu",
+   "sol-exp162b-final-submission-cpu",
+   "sol-exp165-semantic-final-cpu",
+   "sol-exp167-snapshot-votes-cpu",
+   "sol-exp169-joint-submission-cpu",
+   "sol-exp171-more-votes-cpu",
+   "sol-exp172-rotation-votes-cpu"
+  ]
+ },
+ "experiments/exp_162_final_submission/src/final.py": {
+  "8420bf6f0d38b431c242448cca220c01dd525382ef967198397c117e7f55478b": [
+   "sol-exp162-final-submission-cpu",
+   "sol-exp165-semantic-final-cpu"
+  ],
+  "a9daec59db51858e749ed4a3a99ab34b03af004011623f79f7c6ed95f924e95f": [
+   "sol-exp162b-final-submission-cpu",
+   "sol-exp167-snapshot-votes-cpu",
+   "sol-exp169-joint-submission-cpu",
+   "sol-exp171-more-votes-cpu",
+   "sol-exp172-rotation-votes-cpu"
+  ]
+ },
+ "experiments/exp_166_yolo_mask_votes/__init__.py": {
+  "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855": [
+   "sol-exp162b-final-submission-cpu",
+   "sol-exp166-yolo-mask-votes-cpu",
+   "sol-exp168-joint-tuning-cpu",
+   "sol-exp169-joint-submission-cpu",
+   "sol-exp171-more-votes-cpu",
+   "sol-exp172-rotation-votes-cpu",
+   "sol-exp185-m2f-votes-cpu",
+   "sol-exp195a-family-votes-cpu",
+   "sol-exp195b-family-votes-cpu"
+  ]
+ },
+ "experiments/exp_166_yolo_mask_votes/src/__init__.py": {
+  "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855": [
+   "sol-exp162b-final-submission-cpu",
+   "sol-exp166-yolo-mask-votes-cpu",
+   "sol-exp168-joint-tuning-cpu",
+   "sol-exp169-joint-submission-cpu",
+   "sol-exp171-more-votes-cpu",
+   "sol-exp172-rotation-votes-cpu",
+   "sol-exp185-m2f-votes-cpu",
+   "sol-exp195a-family-votes-cpu",
+   "sol-exp195b-family-votes-cpu"
+  ]
+ },
+ "experiments/exp_166_yolo_mask_votes/src/mask_votes.py": {
+  "a601316d5bc3480399cd0f77927dca4e21aa7880c54fca8f182d6ea1df4e5494": [
+   "sol-exp162b-final-submission-cpu",
+   "sol-exp166-yolo-mask-votes-cpu",
+   "sol-exp168-joint-tuning-cpu",
+   "sol-exp169-joint-submission-cpu",
+   "sol-exp171-more-votes-cpu",
+   "sol-exp172-rotation-votes-cpu",
+   "sol-exp185-m2f-votes-cpu",
+   "sol-exp195a-family-votes-cpu",
+   "sol-exp195b-family-votes-cpu"
+  ]
+ },
+ "experiments/exp_163_protect_confident/__init__.py": {
+  "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855": [
+   "sol-exp163-protect-confident-cpu"
+  ]
+ },
+ "experiments/exp_163_protect_confident/src/__init__.py": {
+  "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855": [
+   "sol-exp163-protect-confident-cpu"
+  ]
+ },
+ "experiments/exp_163_protect_confident/src/protect.py": {
+  "36158714e5af646cfde5bf6713888d61b7149a8942a934230789add364b17b61": [
+   "sol-exp163-protect-confident-cpu"
+  ]
+ },
+ "experiments/exp_164_semantic_votes/__init__.py": {
+  "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855": [
+   "sol-exp164-semantic-votes-t4"
+  ]
+ },
+ "experiments/exp_164_semantic_votes/src/__init__.py": {
+  "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855": [
+   "sol-exp164-semantic-votes-t4"
+  ]
+ },
+ "experiments/exp_164_semantic_votes/src/support.py": {
+  "e77dd6df17f8edb23c50e43d0a2d00c96f73d1299d7f7724dd12586ecd4315cb": [
+   "sol-exp164-semantic-votes-t4"
+  ]
+ },
+ "experiments/exp_165_semantic_final/__init__.py": {
+  "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855": [
+   "sol-exp165-semantic-final-cpu",
+   "sol-exp167-snapshot-votes-cpu"
+  ]
+ },
+ "experiments/exp_165_semantic_final/src/__init__.py": {
+  "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855": [
+   "sol-exp165-semantic-final-cpu",
+   "sol-exp167-snapshot-votes-cpu"
+  ]
+ },
+ "experiments/exp_165_semantic_final/src/semantic_final.py": {
+  "c3f98fdafec4e25db7e6816dc0d1323f377d07c0572543fbada17cfc335374a5": [
+   "sol-exp165-semantic-final-cpu",
+   "sol-exp167-snapshot-votes-cpu"
+  ]
+ },
+ "experiments/exp_167_snapshot_votes/__init__.py": {
+  "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855": [
+   "sol-exp167-snapshot-votes-cpu"
+  ]
+ },
+ "experiments/exp_167_snapshot_votes/src/__init__.py": {
+  "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855": [
+   "sol-exp167-snapshot-votes-cpu"
+  ]
+ },
+ "experiments/exp_167_snapshot_votes/src/snapshot_votes.py": {
+  "1316880b8dd4c8a5e704591addfafa97d8b9c4a8de1b9b95278efaaa2b124a1d": [
+   "sol-exp167-snapshot-votes-cpu"
+  ]
+ },
+ "experiments/exp_168_joint_tuning/__init__.py": {
+  "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855": [
+   "sol-exp168-joint-tuning-cpu",
+   "sol-exp169-joint-submission-cpu",
+   "sol-exp171-more-votes-cpu",
+   "sol-exp172-rotation-votes-cpu",
+   "sol-exp185-m2f-votes-cpu",
+   "sol-exp195a-family-votes-cpu",
+   "sol-exp195b-family-votes-cpu"
+  ]
+ },
+ "experiments/exp_168_joint_tuning/src/__init__.py": {
+  "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855": [
+   "sol-exp168-joint-tuning-cpu",
+   "sol-exp169-joint-submission-cpu",
+   "sol-exp171-more-votes-cpu",
+   "sol-exp172-rotation-votes-cpu",
+   "sol-exp185-m2f-votes-cpu",
+   "sol-exp195a-family-votes-cpu",
+   "sol-exp195b-family-votes-cpu"
+  ]
+ },
+ "experiments/exp_168_joint_tuning/src/joint.py": {
+  "06a42420090be9e07eab107e425c072f7a8aa11a381740085287ec7e17fea57a": [
+   "sol-exp168-joint-tuning-cpu",
+   "sol-exp169-joint-submission-cpu",
+   "sol-exp171-more-votes-cpu",
+   "sol-exp172-rotation-votes-cpu",
+   "sol-exp185-m2f-votes-cpu",
+   "sol-exp195a-family-votes-cpu",
+   "sol-exp195b-family-votes-cpu"
+  ]
+ },
+ "experiments/exp_169_joint_submission/__init__.py": {
+  "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855": [
+   "sol-exp169-joint-submission-cpu"
+  ]
+ },
+ "experiments/exp_169_joint_submission/src/__init__.py": {
+  "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855": [
+   "sol-exp169-joint-submission-cpu"
+  ]
+ },
+ "experiments/exp_169_joint_submission/src/joint_submit.py": {
+  "2de6a575b9190c18fc93892a8a84c90cd37a71396545d1186bb61c467be3f048": [
+   "sol-exp169-joint-submission-cpu"
+  ]
+ },
+ "experiments/exp_171_more_votes/__init__.py": {
+  "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855": [
+   "sol-exp171-more-votes-cpu"
+  ]
+ },
+ "experiments/exp_171_more_votes/src/__init__.py": {
+  "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855": [
+   "sol-exp171-more-votes-cpu"
+  ]
+ },
+ "experiments/exp_171_more_votes/src/more_votes.py": {
+  "9872bf4ad23722b987fcf663062979f046f1e86d43d90468bd76d82fdb1cedaa": [
+   "sol-exp171-more-votes-cpu"
+  ]
+ },
+ "experiments/exp_172_rotation_votes/__init__.py": {
+  "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855": [
+   "sol-exp172-rotation-votes-cpu"
+  ]
+ },
+ "experiments/exp_172_rotation_votes/src/__init__.py": {
+  "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855": [
+   "sol-exp172-rotation-votes-cpu"
+  ]
+ },
+ "experiments/exp_172_rotation_votes/src/evaluate.py": {
+  "7a832e01a882f480b0b0c6893bbb769e99da80de09dad406b5f57f1a66855d95": [
+   "sol-exp172-rotation-votes-cpu"
+  ]
+ },
+ "experiments/exp_172_rotation_votes/src/rotation.py": {
+  "e6746ff10c37ae05a7e25978a07bb6dc95077da23e930d1c8bfc22e403956321": [
+   "sol-exp172-rotation-votes-cpu"
+  ]
+ },
+ "experiments/exp_173_quality_ema/__init__.py": {
+  "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855": [
+   "sol-exp173a-quality-control-t4",
+   "sol-exp173b-quality-base-alldata-t4",
+   "sol-exp187-paste-head-t4",
+   "sol-exp190a-session-long-t4",
+   "sol-exp190b-session-long-t4",
+   "sol-exp197-focal-dice-t4"
+  ]
+ },
+ "experiments/exp_173_quality_ema/src/__init__.py": {
+  "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855": [
+   "sol-exp173a-quality-control-t4",
+   "sol-exp173b-quality-base-alldata-t4",
+   "sol-exp187-paste-head-t4",
+   "sol-exp190a-session-long-t4",
+   "sol-exp190b-session-long-t4",
+   "sol-exp197-focal-dice-t4"
+  ]
+ },
+ "experiments/exp_173_quality_ema/src/quality.py": {
+  "0fe016cdfc4090fefc971a6156c64b3f8a1bd6acf410a18f23d51d878f805e2d": [
+   "sol-exp173a-quality-control-t4",
+   "sol-exp173b-quality-base-alldata-t4",
+   "sol-exp187-paste-head-t4",
+   "sol-exp190a-session-long-t4",
+   "sol-exp190b-session-long-t4",
+   "sol-exp197-focal-dice-t4"
+  ]
+ },
+ "experiments/exp_173_quality_ema/src/train.py": {
+  "5277e32d123a0b6bb5d6874e8bd19e00b3e93efaee7bbb02a3f213184f22e71f": [
+   "sol-exp173a-quality-control-t4",
+   "sol-exp173b-quality-base-alldata-t4"
+  ],
+  "b2e8efe26f75a4127d0d7170e013670dfe0521286a10baa74c94efbaeb89ad80": [
+   "sol-exp187-paste-head-t4",
+   "sol-exp190a-session-long-t4",
+   "sol-exp190b-session-long-t4",
+   "sol-exp197-focal-dice-t4"
+  ]
+ },
+ "experiments/exp_174_unlabelled_frames/__init__.py": {
+  "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855": [
+   "sol-exp174-unlabelled-frames-cpu",
+   "sol-exp176a-teacher-frames-cpu",
+   "sol-exp176b-teacher-frames-cpu",
+   "sol-exp176c-teacher-frames-cpu",
+   "sol-exp176d-teacher-frames-cpu",
+   "sol-exp182-domain-gap-cpu",
+   "sol-exp182b-transfer-cpu"
+  ]
+ },
+ "experiments/exp_174_unlabelled_frames/src/__init__.py": {
+  "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855": [
+   "sol-exp174-unlabelled-frames-cpu",
+   "sol-exp176a-teacher-frames-cpu",
+   "sol-exp176b-teacher-frames-cpu",
+   "sol-exp176c-teacher-frames-cpu",
+   "sol-exp176d-teacher-frames-cpu",
+   "sol-exp182-domain-gap-cpu",
+   "sol-exp182b-transfer-cpu"
+  ]
+ },
+ "experiments/exp_174_unlabelled_frames/src/collect.py": {
+  "8dbb73e0966ce5060672222d67aa609dd3b644a1cd98fff1a9b82506bf6ee8d0": [
+   "sol-exp174-unlabelled-frames-cpu",
+   "sol-exp176a-teacher-frames-cpu",
+   "sol-exp176b-teacher-frames-cpu",
+   "sol-exp176c-teacher-frames-cpu",
+   "sol-exp176d-teacher-frames-cpu",
+   "sol-exp182-domain-gap-cpu",
+   "sol-exp182b-transfer-cpu"
+  ]
+ },
+ "experiments/exp_176_pseudo_labels/__init__.py": {
+  "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855": [
+   "sol-exp176a-teacher-frames-cpu",
+   "sol-exp176b-teacher-frames-cpu",
+   "sol-exp176c-teacher-frames-cpu",
+   "sol-exp176d-teacher-frames-cpu"
+  ]
+ },
+ "experiments/exp_176_pseudo_labels/src/__init__.py": {
+  "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855": [
+   "sol-exp176a-teacher-frames-cpu",
+   "sol-exp176b-teacher-frames-cpu",
+   "sol-exp176c-teacher-frames-cpu",
+   "sol-exp176d-teacher-frames-cpu"
+  ]
+ },
+ "experiments/exp_176_pseudo_labels/src/teacher.py": {
+  "3480da45dc1fc0b307024f88b512aaa0297218185e17de32ca379abddaab45fa": [
+   "sol-exp176a-teacher-frames-cpu",
+   "sol-exp176b-teacher-frames-cpu",
+   "sol-exp176c-teacher-frames-cpu",
+   "sol-exp176d-teacher-frames-cpu"
+  ]
+ },
+ "experiments/exp_182_domain_gap/__init__.py": {
+  "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855": [
+   "sol-exp182-domain-gap-cpu",
+   "sol-exp182b-transfer-cpu"
+  ]
+ },
+ "experiments/exp_182_domain_gap/src/__init__.py": {
+  "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855": [
+   "sol-exp182-domain-gap-cpu",
+   "sol-exp182b-transfer-cpu"
+  ]
+ },
+ "experiments/exp_182_domain_gap/src/gap.py": {
+  "7dd67de220b7499b05e5574c7aefdf0eafea4f976150ace636e4edb1389c0107": [
+   "sol-exp182-domain-gap-cpu",
+   "sol-exp182b-transfer-cpu"
+  ]
+ },
+ "experiments/exp_182_domain_gap/src/transfer.py": {
+  "28a92e02a174a96c7dc90c1c50566022745d5cd44ab125ebea483d3a217f1bd0": [
+   "sol-exp182b-transfer-cpu"
+  ]
+ },
+ "experiments/exp_183_frames_relabel/__init__.py": {
+  "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855": [
+   "sol-exp183a-frames-probe-tpu"
+  ]
+ },
+ "experiments/exp_183_frames_relabel/src/__init__.py": {
+  "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855": [
+   "sol-exp183a-frames-probe-tpu"
+  ]
+ },
+ "experiments/exp_183_frames_relabel/src/probe.py": {
+  "8c18a06424ce8b55b713b03e183c88bcdca815aa5b11f255438ffbdad3568ee9": [
+   "sol-exp183a-frames-probe-tpu"
+  ]
+ },
+ "experiments/exp_185_m2f_votes/__init__.py": {
+  "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855": [
+   "sol-exp185-m2f-votes-cpu",
+   "sol-exp195a-family-votes-cpu",
+   "sol-exp195b-family-votes-cpu"
+  ]
+ },
+ "experiments/exp_185_m2f_votes/src/__init__.py": {
+  "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855": [
+   "sol-exp185-m2f-votes-cpu",
+   "sol-exp195a-family-votes-cpu",
+   "sol-exp195b-family-votes-cpu"
+  ]
+ },
+ "experiments/exp_185_m2f_votes/src/votes.py": {
+  "970921de01415803650f04f0a13afe3e3e514cb097bafed1e38ad89fcc78d522": [
+   "sol-exp185-m2f-votes-cpu",
+   "sol-exp195a-family-votes-cpu",
+   "sol-exp195b-family-votes-cpu"
+  ]
+ },
+ "experiments/exp_180_quality_head/__init__.py": {
+  "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855": [
+   "sol-exp187-paste-head-t4"
+  ]
+ },
+ "experiments/exp_180_quality_head/src/__init__.py": {
+  "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855": [
+   "sol-exp187-paste-head-t4"
+  ]
+ },
+ "experiments/exp_180_quality_head/src/check_loss.py": {
+  "d3b4ef79bcd384474374d718058537666aa7f08a01fd2b7275e4072b168acd43": [
+   "sol-exp187-paste-head-t4"
+  ]
+ },
+ "experiments/exp_180_quality_head/src/quality_head.py": {
+  "452b8b08408fe68527f95c72abea53a3df1a836326e3995eb6c306cc4de3dd75": [
+   "sol-exp187-paste-head-t4"
+  ]
+ },
+ "experiments/exp_180_quality_head/src/train.py": {
+  "4c26bf845a7ed28c3ea56071c70544c62453ec472939a4eadc77c860ffa200ae": [
+   "sol-exp187-paste-head-t4"
+  ]
+ },
+ "experiments/exp_187_copy_paste/__init__.py": {
+  "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855": [
+   "sol-exp187-paste-head-t4"
+  ]
+ },
+ "experiments/exp_187_copy_paste/src/__init__.py": {
+  "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855": [
+   "sol-exp187-paste-head-t4"
+  ]
+ },
+ "experiments/exp_187_copy_paste/src/data.py": {
+  "0447c821ab2de8f9768b5bc75d5c840f53c81b1a8385c7d7dba9f8d6e20a5f6c": [
+   "sol-exp187-paste-head-t4"
+  ]
+ },
+ "experiments/exp_187_copy_paste/src/train.py": {
+  "dd2da362f6426c6f4f2a077cb0c3821dbb5bc441255dda25932b5168b3e3efd2": [
+   "sol-exp187-paste-head-t4"
+  ]
+ },
+ "experiments/exp_194_rfdetr/__init__.py": {
+  "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855": [
+   "sol-exp194a-rfdetr-smoke-cpu",
+   "sol-exp194b-rfdetr-train-t4",
+   "sol-exp194c-rfdetr-smoke-tpu"
+  ]
+ },
+ "experiments/exp_194_rfdetr/src/__init__.py": {
+  "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855": [
+   "sol-exp194a-rfdetr-smoke-cpu",
+   "sol-exp194b-rfdetr-train-t4",
+   "sol-exp194c-rfdetr-smoke-tpu"
+  ]
+ },
+ "experiments/exp_194_rfdetr/src/dataset.py": {
+  "a674390103073b42442330471f059344f7a6f36fdaed8dc8be90594a98c7b6ce": [
+   "sol-exp194a-rfdetr-smoke-cpu",
+   "sol-exp194b-rfdetr-train-t4",
+   "sol-exp194c-rfdetr-smoke-tpu"
+  ]
+ },
+ "experiments/exp_194_rfdetr/src/run.py": {
+  "33e376747e4be7365f2aa8c4031368ddb4173babde9971d8f15d149d370ef63c": [
+   "sol-exp194a-rfdetr-smoke-cpu"
+  ],
+  "99f18e9f194da8cdf4dd69ada71ebb6a0c74262d4406d582ad68ea919674076a": [
+   "sol-exp194b-rfdetr-train-t4",
+   "sol-exp194c-rfdetr-smoke-tpu"
+  ]
+ },
+ "experiments/exp_195_family_votes/__init__.py": {
+  "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855": [
+   "sol-exp195a-family-votes-cpu",
+   "sol-exp195b-family-votes-cpu"
+  ]
+ },
+ "experiments/exp_195_family_votes/src/__init__.py": {
+  "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855": [
+   "sol-exp195a-family-votes-cpu",
+   "sol-exp195b-family-votes-cpu"
+  ]
+ },
+ "experiments/exp_195_family_votes/src/votes.py": {
+  "75c71fb8f40e281883d807ceb1706f17c027dedd83e94a78f906a5d079c478dd": [
+   "sol-exp195a-family-votes-cpu",
+   "sol-exp195b-family-votes-cpu"
+  ]
+ },
+ "experiments/exp_197_focal_dice/__init__.py": {
+  "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855": [
+   "sol-exp197-focal-dice-t4"
+  ]
+ },
+ "experiments/exp_197_focal_dice/src/__init__.py": {
+  "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855": [
+   "sol-exp197-focal-dice-t4"
+  ]
+ },
+ "experiments/exp_197_focal_dice/src/check_loss.py": {
+  "48e670068cf9c9bbb94354ceea9f5b2aefb7688e152c6df955a45752a316c005": [
+   "sol-exp197-focal-dice-t4"
+  ]
+ },
+ "experiments/exp_197_focal_dice/src/focal.py": {
+  "f7941357dc42888a509c593537244fd399a395919650ab07ad00513b6153e92d": [
+   "sol-exp197-focal-dice-t4"
+  ]
+ },
+ "experiments/exp_197_focal_dice/src/train.py": {
+  "d6ae0dae4377eb5f4538b07a7e148608f7cff1aa7eeb720ecc7d6efb3b2a9ddc": [
+   "sol-exp197-focal-dice-t4"
+  ]
+ }
+}

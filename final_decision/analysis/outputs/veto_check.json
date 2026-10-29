@@ -1,0 +1,680 @@
+{
+ "replay": {
+  "pq": 0.48894859995182627,
+  "sq": 0.6909413791920146,
+  "rq": 0.7076556921856406,
+  "tp": 892,
+  "fp": 304,
+  "fn": 433,
+  "conf": 0.68,
+  "min_area": 100
+ },
+ "dropped_total": {
+  "n": 69,
+  "matched_any_record": 27,
+  "record_pairs": 114,
+  "matched_record_pairs": 32,
+  "share_matched_pairs": 0.281,
+  "median_score": 0.879
+ },
+ "dropped_area>=3000": {
+  "n": 4,
+  "matched_any_record": 1,
+  "record_pairs": 6,
+  "matched_record_pairs": 1,
+  "share_matched_pairs": 0.167,
+  "median_score": 0.874
+ },
+ "dropped_area_1000_3000": {
+  "n": 25,
+  "matched_any_record": 11,
+  "record_pairs": 42,
+  "matched_record_pairs": 13,
+  "share_matched_pairs": 0.31,
+  "median_score": 0.875
+ },
+ "dropped_area<1000": {
+  "n": 40,
+  "matched_any_record": 15,
+  "record_pairs": 66,
+  "matched_record_pairs": 18,
+  "share_matched_pairs": 0.273,
+  "median_score": 0.887
+ },
+ "dropped_score>=0.95": {
+  "n": 2,
+  "matched_any_record": 1,
+  "record_pairs": 3,
+  "matched_record_pairs": 2,
+  "share_matched_pairs": 0.667,
+  "median_score": 0.957
+ },
+ "dropped_reshaped(overlap>0)": {
+  "n": 12,
+  "matched_any_record": 2,
+  "record_pairs": 20,
+  "matched_record_pairs": 2,
+  "share_matched_pairs": 0.1,
+  "median_score": 0.868
+ },
+ "dropped_deleted(no overlap)": {
+  "n": 57,
+  "matched_any_record": 25,
+  "record_pairs": 94,
+  "matched_record_pairs": 30,
+  "share_matched_pairs": 0.319,
+  "median_score": 0.882
+ },
+ "protect": {
+  "(None, None)": {
+   "pq": 0.48895,
+   "sq": 0.69094,
+   "rq": 0.70766,
+   "tp": 892,
+   "fp": 304,
+   "fn": 433
+  },
+  "(3000, 0.85)": {
+   "pq": 0.48835,
+   "sq": 0.69096,
+   "rq": 0.70677,
+   "tp": 893,
+   "fp": 309,
+   "fn": 432
+  },
+  "(3000, 0.9)": {
+   "pq": 0.48895,
+   "sq": 0.69094,
+   "rq": 0.70766,
+   "tp": 892,
+   "fp": 304,
+   "fn": 433
+  },
+  "(2000, 0.85)": {
+   "pq": 0.48704,
+   "sq": 0.69083,
+   "rq": 0.705,
+   "tp": 895,
+   "fp": 319,
+   "fn": 430
+  },
+  "(2000, 0.9)": {
+   "pq": 0.48903,
+   "sq": 0.69083,
+   "rq": 0.70789,
+   "tp": 893,
+   "fp": 305,
+   "fn": 432
+  },
+  "(1000, 0.9)": {
+   "pq": 0.48973,
+   "sq": 0.69042,
+   "rq": 0.70932,
+   "tp": 898,
+   "fp": 309,
+   "fn": 427
+  },
+  "(0, 0.95)": {
+   "pq": 0.48953,
+   "sq": 0.69103,
+   "rq": 0.7084,
+   "tp": 894,
+   "fp": 305,
+   "fn": 431
+  }
+ },
+ "audit": [
+  {
+   "photo": "20110530122834Ch.jpeg",
+   "area": 736,
+   "score": 0.8983201384544373,
+   "records": 1,
+   "tp_records": 0,
+   "overlap_new": 0.0
+  },
+  {
+   "photo": "20110530122834Ch.jpeg",
+   "area": 785,
+   "score": 0.8920426368713379,
+   "records": 1,
+   "tp_records": 1,
+   "overlap_new": 0.0
+  },
+  {
+   "photo": "20110923165814Mh.jpeg",
+   "area": 1660,
+   "score": 0.9227296113967896,
+   "records": 3,
+   "tp_records": 0,
+   "overlap_new": 0.4695966285370259
+  },
+  {
+   "photo": "20110923165814Mh.jpeg",
+   "area": 2197,
+   "score": 0.8555452227592468,
+   "records": 3,
+   "tp_records": 0,
+   "overlap_new": 0.0
+  },
+  {
+   "photo": "20111009110234Ch.jpeg",
+   "area": 1887,
+   "score": 0.8681609630584717,
+   "records": 3,
+   "tp_records": 1,
+   "overlap_new": 0.0
+  },
+  {
+   "photo": "20111206102934Ch.jpeg",
+   "area": 598,
+   "score": 0.858509361743927,
+   "records": 1,
+   "tp_records": 0,
+   "overlap_new": 0.3760611205432937
+  },
+  {
+   "photo": "20120205172414Mh.jpeg",
+   "area": 870,
+   "score": 0.870848536491394,
+   "records": 3,
+   "tp_records": 0,
+   "overlap_new": 0.0
+  },
+  {
+   "photo": "20120217181154Bh.jpeg",
+   "area": 438,
+   "score": 0.9041776061058044,
+   "records": 2,
+   "tp_records": 0,
+   "overlap_new": 0.0
+  },
+  {
+   "photo": "20120331142954Bh.jpeg",
+   "area": 1570,
+   "score": 0.9640341401100159,
+   "records": 2,
+   "tp_records": 2,
+   "overlap_new": 0.0
+  },
+  {
+   "photo": "20120404063154Uh.jpeg",
+   "area": 800,
+   "score": 0.8887820243835449,
+   "records": 3,
+   "tp_records": 1,
+   "overlap_new": 0.0
+  },
+  {
+   "photo": "20120404063154Uh.jpeg",
+   "area": 1325,
+   "score": 0.8871813416481018,
+   "records": 3,
+   "tp_records": 0,
+   "overlap_new": 0.0
+  },
+  {
+   "photo": "20120509163414Mh.jpeg",
+   "area": 1933,
+   "score": 0.8602895140647888,
+   "records": 1,
+   "tp_records": 1,
+   "overlap_new": 0.0
+  },
+  {
+   "photo": "20120729122634Ch.jpeg",
+   "area": 2600,
+   "score": 0.8681427836418152,
+   "records": 3,
+   "tp_records": 1,
+   "overlap_new": 0.0
+  },
+  {
+   "photo": "20120729122634Ch.jpeg",
+   "area": 740,
+   "score": 0.8634568452835083,
+   "records": 3,
+   "tp_records": 0,
+   "overlap_new": 0.0
+  },
+  {
+   "photo": "20120813164714Mh.jpeg",
+   "area": 2359,
+   "score": 0.8745989799499512,
+   "records": 1,
+   "tp_records": 0,
+   "overlap_new": 0.018404907975460124
+  },
+  {
+   "photo": "20120813164714Mh.jpeg",
+   "area": 963,
+   "score": 0.8663989901542664,
+   "records": 1,
+   "tp_records": 0,
+   "overlap_new": 0.0
+  },
+  {
+   "photo": "20120829063134Lh.jpeg",
+   "area": 1289,
+   "score": 0.8575137257575989,
+   "records": 1,
+   "tp_records": 0,
+   "overlap_new": 0.0
+  },
+  {
+   "photo": "20120907141954Bh.jpeg",
+   "area": 1427,
+   "score": 0.8659132122993469,
+   "records": 1,
+   "tp_records": 1,
+   "overlap_new": 0.0
+  },
+  {
+   "photo": "20120928063134Lh.jpeg",
+   "area": 474,
+   "score": 0.8739246129989624,
+   "records": 1,
+   "tp_records": 0,
+   "overlap_new": 0.0
+  },
+  {
+   "photo": "20121114172254Bh.jpeg",
+   "area": 340,
+   "score": 0.911121666431427,
+   "records": 2,
+   "tp_records": 0,
+   "overlap_new": 0.0
+  },
+  {
+   "photo": "20130707134154Bh.jpeg",
+   "area": 4210,
+   "score": 0.8727495074272156,
+   "records": 1,
+   "tp_records": 0,
+   "overlap_new": 0.0
+  },
+  {
+   "photo": "20130717123434Ch.jpeg",
+   "area": 690,
+   "score": 0.9062597155570984,
+   "records": 1,
+   "tp_records": 0,
+   "overlap_new": 0.0
+  },
+  {
+   "photo": "20130807073114Th.jpeg",
+   "area": 705,
+   "score": 0.8735225796699524,
+   "records": 2,
+   "tp_records": 0,
+   "overlap_new": 0.0
+  },
+  {
+   "photo": "20130813060834Lh.jpeg",
+   "area": 635,
+   "score": 0.9058998823165894,
+   "records": 3,
+   "tp_records": 0,
+   "overlap_new": 0.0
+  },
+  {
+   "photo": "20130813060834Lh.jpeg",
+   "area": 626,
+   "score": 0.883800208568573,
+   "records": 3,
+   "tp_records": 0,
+   "overlap_new": 0.0
+  },
+  {
+   "photo": "20130813060834Lh.jpeg",
+   "area": 4179,
+   "score": 0.8574452996253967,
+   "records": 3,
+   "tp_records": 0,
+   "overlap_new": 0.36515912897822445
+  },
+  {
+   "photo": "20131031185614Mh.jpeg",
+   "area": 1685,
+   "score": 0.9344067573547363,
+   "records": 1,
+   "tp_records": 1,
+   "overlap_new": 0.24040332566778702
+  },
+  {
+   "photo": "20131031185614Mh.jpeg",
+   "area": 164,
+   "score": 0.8777121305465698,
+   "records": 1,
+   "tp_records": 0,
+   "overlap_new": 0.020956316410861865
+  },
+  {
+   "photo": "20131031185614Mh.jpeg",
+   "area": 1674,
+   "score": 0.8547347784042358,
+   "records": 1,
+   "tp_records": 0,
+   "overlap_new": 0.4731182795698925
+  },
+  {
+   "photo": "20131130192134Ch.jpeg",
+   "area": 348,
+   "score": 0.8881816267967224,
+   "records": 1,
+   "tp_records": 1,
+   "overlap_new": 0.0
+  },
+  {
+   "photo": "20140406195854Bh.jpeg",
+   "area": 509,
+   "score": 0.9143660664558411,
+   "records": 3,
+   "tp_records": 2,
+   "overlap_new": 0.0
+  },
+  {
+   "photo": "20140414195834Ch.jpeg",
+   "area": 1144,
+   "score": 0.9050000905990601,
+   "records": 3,
+   "tp_records": 2,
+   "overlap_new": 0.0
+  },
+  {
+   "photo": "20140414195834Ch.jpeg",
+   "area": 383,
+   "score": 0.8544202446937561,
+   "records": 3,
+   "tp_records": 2,
+   "overlap_new": 0.0
+  },
+  {
+   "photo": "20140430071914Th.jpeg",
+   "area": 543,
+   "score": 0.9218892455101013,
+   "records": 1,
+   "tp_records": 0,
+   "overlap_new": 0.0
+  },
+  {
+   "photo": "20140513012554Uh.jpeg",
+   "area": 884,
+   "score": 0.8516141176223755,
+   "records": 2,
+   "tp_records": 2,
+   "overlap_new": 0.0
+  },
+  {
+   "photo": "20140522070614Th.jpeg",
+   "area": 2570,
+   "score": 0.8612433075904846,
+   "records": 1,
+   "tp_records": 1,
+   "overlap_new": 0.24124513618677043
+  },
+  {
+   "photo": "20140523195814Mh.jpeg",
+   "area": 5523,
+   "score": 0.8948033452033997,
+   "records": 1,
+   "tp_records": 0,
+   "overlap_new": 0.0
+  },
+  {
+   "photo": "20140802072114Th.jpeg",
+   "area": 849,
+   "score": 0.9057626724243164,
+   "records": 1,
+   "tp_records": 1,
+   "overlap_new": 0.0
+  },
+  {
+   "photo": "20140802072114Th.jpeg",
+   "area": 854,
+   "score": 0.8744114637374878,
+   "records": 1,
+   "tp_records": 0,
+   "overlap_new": 0.0
+  },
+  {
+   "photo": "20140802072114Th.jpeg",
+   "area": 274,
+   "score": 0.8569137454032898,
+   "records": 1,
+   "tp_records": 1,
+   "overlap_new": 0.0
+  },
+  {
+   "photo": "20140818195814Mh.jpeg",
+   "area": 2270,
+   "score": 0.8788776993751526,
+   "records": 1,
+   "tp_records": 0,
+   "overlap_new": 0.0
+  },
+  {
+   "photo": "20140904195814Mh.jpeg",
+   "area": 378,
+   "score": 0.9129220247268677,
+   "records": 1,
+   "tp_records": 0,
+   "overlap_new": 0.0
+  },
+  {
+   "photo": "20140918195854Bh.jpeg",
+   "area": 2016,
+   "score": 0.9506874680519104,
+   "records": 1,
+   "tp_records": 0,
+   "overlap_new": 0.31299603174603174
+  },
+  {
+   "photo": "20140918195854Bh.jpeg",
+   "area": 1430,
+   "score": 0.8705177903175354,
+   "records": 1,
+   "tp_records": 0,
+   "overlap_new": 0.0
+  },
+  {
+   "photo": "20150113105034Ch.jpeg",
+   "area": 936,
+   "score": 0.9027254581451416,
+   "records": 3,
+   "tp_records": 0,
+   "overlap_new": 0.4782608695652174
+  },
+  {
+   "photo": "20150113105034Ch.jpeg",
+   "area": 1191,
+   "score": 0.853941798210144,
+   "records": 3,
+   "tp_records": 0,
+   "overlap_new": 0.4681453515809344
+  },
+  {
+   "photo": "20150323172814Mh.jpeg",
+   "area": 428,
+   "score": 0.8731541037559509,
+   "records": 1,
+   "tp_records": 1,
+   "overlap_new": 0.0
+  },
+  {
+   "photo": "20151011144554Bh.jpeg",
+   "area": 624,
+   "score": 0.868987500667572,
+   "records": 1,
+   "tp_records": 0,
+   "overlap_new": 0.0
+  },
+  {
+   "photo": "20151011144554Bh.jpeg",
+   "area": 233,
+   "score": 0.8669446706771851,
+   "records": 1,
+   "tp_records": 0,
+   "overlap_new": 0.0
+  },
+  {
+   "photo": "20151128133734Ch.jpeg",
+   "area": 576,
+   "score": 0.8907212018966675,
+   "records": 2,
+   "tp_records": 0,
+   "overlap_new": 0.0
+  },
+  {
+   "photo": "20151128133734Ch.jpeg",
+   "area": 872,
+   "score": 0.88673335313797,
+   "records": 2,
+   "tp_records": 0,
+   "overlap_new": 0.0
+  },
+  {
+   "photo": "20151212171154Bh.jpeg",
+   "area": 2093,
+   "score": 0.8608149290084839,
+   "records": 1,
+   "tp_records": 0,
+   "overlap_new": 0.0
+  },
+  {
+   "photo": "20160204133734Ch.jpeg",
+   "area": 492,
+   "score": 0.8954505324363708,
+   "records": 2,
+   "tp_records": 1,
+   "overlap_new": 0.0
+  },
+  {
+   "photo": "20160402025254Uh.jpeg",
+   "area": 343,
+   "score": 0.8823174834251404,
+   "records": 2,
+   "tp_records": 0,
+   "overlap_new": 0.0
+  },
+  {
+   "photo": "20160518011654Uh.jpeg",
+   "area": 758,
+   "score": 0.853359580039978,
+   "records": 1,
+   "tp_records": 1,
+   "overlap_new": 0.0
+  },
+  {
+   "photo": "20160925165814Mh.jpeg",
+   "area": 3985,
+   "score": 0.8747857213020325,
+   "records": 1,
+   "tp_records": 1,
+   "overlap_new": 0.0
+  },
+  {
+   "photo": "20161105222634Lh.jpeg",
+   "area": 460,
+   "score": 0.8920034170150757,
+   "records": 1,
+   "tp_records": 0,
+   "overlap_new": 0.0
+  },
+  {
+   "photo": "20170408133710Th.jpeg",
+   "area": 1261,
+   "score": 0.8803445100784302,
+   "records": 1,
+   "tp_records": 1,
+   "overlap_new": 0.0
+  },
+  {
+   "photo": "20170719235330Lh.jpeg",
+   "area": 1092,
+   "score": 0.850521445274353,
+   "records": 1,
+   "tp_records": 0,
+   "overlap_new": 0.031041069723018146
+  },
+  {
+   "photo": "20171123133730Ch.jpeg",
+   "area": 2527,
+   "score": 0.9109629392623901,
+   "records": 1,
+   "tp_records": 1,
+   "overlap_new": 0.0
+  },
+  {
+   "photo": "20171123133730Ch.jpeg",
+   "area": 1398,
+   "score": 0.9048464298248291,
+   "records": 1,
+   "tp_records": 1,
+   "overlap_new": 0.0
+  },
+  {
+   "photo": "20171123133730Ch.jpeg",
+   "area": 287,
+   "score": 0.8987584114074707,
+   "records": 1,
+   "tp_records": 1,
+   "overlap_new": 0.0
+  },
+  {
+   "photo": "20210223222830Ch.jpeg",
+   "area": 1824,
+   "score": 0.8930469155311584,
+   "records": 3,
+   "tp_records": 0,
+   "overlap_new": 0.0
+  },
+  {
+   "photo": "20210223222830Ch.jpeg",
+   "area": 377,
+   "score": 0.8504323363304138,
+   "records": 3,
+   "tp_records": 1,
+   "overlap_new": 0.0
+  },
+  {
+   "photo": "20211222120130Ch.jpeg",
+   "area": 220,
+   "score": 0.8975991010665894,
+   "records": 1,
+   "tp_records": 0,
+   "overlap_new": 0.0
+  },
+  {
+   "photo": "20220618185332Bh.jpeg",
+   "area": 794,
+   "score": 0.9045081734657288,
+   "records": 1,
+   "tp_records": 1,
+   "overlap_new": 0.0
+  },
+  {
+   "photo": "20220618185332Bh.jpeg",
+   "area": 1467,
+   "score": 0.8780701160430908,
+   "records": 1,
+   "tp_records": 0,
+   "overlap_new": 0.0
+  },
+  {
+   "photo": "20220803074752Th.jpeg",
+   "area": 425,
+   "score": 0.8960682153701782,
+   "records": 1,
+   "tp_records": 0,
+   "overlap_new": 0.0
+  },
+  {
+   "photo": "20220803074752Th.jpeg",
+   "area": 390,
+   "score": 0.8706128001213074,
+   "records": 1,
+   "tp_records": 1,
+   "overlap_new": 0.0
+  }
+ ]
+}
