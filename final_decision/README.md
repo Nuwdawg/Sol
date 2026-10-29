@@ -1,8 +1,8 @@
 # Final experiment decision (2026-10-29)
 
 Result of the task in `sol_final_experiment_prompt.md`: one primary experiment, one fallback, and
-the evidence for both. Nothing here has been run on a GPU, submitted, or trained; the plan waits
-for the user's approval.
+the evidence for both. The plan was approved and run on 2026-10-29, on CPU only: see `results/RESULTS.md`. Nothing
+was trained or submitted.
 
 | file | what it is |
 |---|---|
@@ -13,6 +13,7 @@ for the user's approval.
 | `analysis/` | the CPU-only analyses behind the diagnosis: scripts, outputs, review crops (see `analysis/README.md`) |
 | `recovered_code/` | code of the key Kaggle kernels (exp151a, 161, 169, 190b, 195b, 198a), each file checked against its kernel's SHA256 manifest |
 | `figure_dropped_filaments.jpg` | Figure 1 of the brief |
+| `results/` | **outcome of the run (2026-10-29)**: pilot killed, guarded exp169 file ready to submit (`results/RESULTS.md`) |
 
 Short version: exp169 (validation 0.4889, public 0.41) stays the base. Primary: test whether the
 already-trained Swin-B epoch-32 Mask2Former helps as a second voter, on cached validation

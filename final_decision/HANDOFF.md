@@ -1,4 +1,13 @@
-# Handoff: the final experiment (prepared 2026-10-29, not started)
+# Handoff: the final experiment (prepared and run 2026-10-29)
+
+**Status (2026-10-29, evening).** Section 1 was run and **killed**: CV gain -0.0039 against the
++0.002 bar, and every Swin-B weight lowers PQ (`results/RESULTS.md`). Section 2 was run: the guard
+is validated (0.48893 vs 0.48895, so it passes non-inferiority) and reviewed, and its test file is
+`results/submission_exp169_guarded.csv` (SHA256 `EC00408E...`). Two things remain. The credential
+here cannot submit (`competitions.participate` denied), so the user uploads the file by hand. Then
+comes section 3, reproducibility, whose rehearsal needs one Kaggle T4 session. The code that
+sections 1-2 used is now in `experiments/` (exp147-exp169 recovered unchanged; exp185, exp195
+and exp199 added).
 
 Read `decision_brief.pdf` first. Nothing below has been run. The user must approve before you
 start (prompt, Phase 4). Budget: RunPod $12 (spend none of it on this plan), Kaggle free T4/CPU,
@@ -85,12 +94,16 @@ predictions (rules_and_forum.md); a missing large filament is the visible failur
 **Rule.** After the final rule paints its instances, re-add every exp139 deployed instance
 (single view, score >= 0.85, painted, min area 100) whose area is >= 3,000 px and which no final
 instance overlaps at IoU >= 0.5; paint it into unclaimed pixels only; drop the remnant if < 100 px.
-The cut is set by what the judges see, not tuned for PQ.
+The cut is set by what the judges see, not tuned for PQ. One restriction was added on 2026-10-29
+after the test review: skip instances that final instances already cover by 10% or more. The
+unrestricted rule also re-added the remainders of 2 filaments exp169 had kept in part, which
+split each into two pieces. With it the guard re-adds exactly the 9 deleted filaments.
+Implemented in `experiments/exp_199_swinb_votes/src/guard.py`.
 
-**Acceptance.** Validation in-sample PQ >= rule PQ - 0.001 (measured for exp169: 0.48835 vs
-0.48895, -0.0006, TP +1, FP +5, FN -1; `analysis/veto_check.py`), no overlaps, and a review sheet of
+**Acceptance.** Validation in-sample PQ >= rule PQ - 0.001, no overlaps, and a review sheet of
 the re-added test instances showing filament-like shapes (reject limb arcs, off-disk pixels,
-sunspots). Expected on test: about 9 instances re-added to exp169's 1,141.
+sunspots). Measured: unrestricted 0.48835 (-0.0006); restricted 0.48893 (-0.00002, TP +1,
+FP +2, FN -1); test 9 re-added, 1,150 rows, all filament-like (`results/`).
 
 ## 3. Final selection and reproducibility (needed whatever the pilot says)
 
