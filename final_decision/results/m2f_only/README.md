@@ -30,8 +30,9 @@ ranges below come from the two-decimal rounding:
 | Mask2Former rules with YOLO votes | exp162, exp162b, exp169 (all 0.41) | 0.837-0.849 |
 | YOLO only | nine submissions, 0.32-0.39 | about 0.81-0.85 |
 
-The first two ranges do not overlap: no single factor fits both Mask2Former groups. This file has no
-YOLO in it.
+The first two ranges do not overlap: no single factor fits both Mask2Former groups. exp140, an
+exp097 + exp139 ensemble with YOLO (validation 0.4715, public 0.40), allows 0.838-0.859, again
+below the YOLO-free range. This file has no YOLO in it.
 - If it transfers like the first group: 0.4830 x 0.861-0.864 = 0.416-0.417, which prints **0.42**.
 - If it transfers like exp169: 0.404-0.410, which prints 0.40 or 0.41.
 
@@ -68,5 +69,8 @@ Upload it once.
 - Swin-B voting through its full and seven dihedral views (validation caches only;
   `m2f_only_val_swinb_d4_voter.json`): best 0.4825 in-sample, 0.4759 cross-validated. No better
   than its full view alone, so the dihedral views were not computed on test.
+- exp184a's three weaker Mask2Former models (base e20, control e31, quality e31; cached on validation
+  and test) as further voters (`m2f_family.py`, `m2f_family_val.json`): every weight lowers the score
+  (0.4792-0.4824 against 0.4830-0.4834 without them); cross-validated 0.4783.
 - Splitting predictions that cover two filaments: the splits by the other views flag 6 of 11 such
   predictions, and 11 correct ones too.
