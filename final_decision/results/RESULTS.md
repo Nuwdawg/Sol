@@ -1,12 +1,10 @@
 # Results of the final experiment (run 2026-10-29, CPU only)
 
-> **Update 2026-10-30: see `exp200/README.md` first.** The 0.07 gap between validation and the
-> leaderboard is explained. The board behaves as if each photograph's truth holds every annotator's
-> filaments, matched one-to-one, and that puts seven past submissions on their public scores. Under
-> that scoring, adding Swin-B's confident detections that exp169's instances leave uncovered gains
-> +0.0045 to +0.0096 on validation, positive on both halves. To submit: the probe that decides the
-> question, then `exp200/submission_C1_B_swinb090.csv` (strongest if pooled) and
-> `exp200/submission_C3_exp169_swinb090.csv` (neutral otherwise).
+> **Update 2026-10-30 (evening).** `exp200/README.md` first claimed the board scores every
+> annotator's filaments at once (pooled truth) and built files on it. Its own correction refutes
+> that: the exp_028 recall probe and exp097 stage1/stage2 behave as per-record scoring predicts,
+> and public is about 0.84 x per-record validation over eleven submissions. The final file stays
+> `submission_exp169_guarded.csv` below; the exp200 files are withdrawn.
 
 ## Primary: Swin-B e32 as a second voter in exp169's rule. Killed.
 

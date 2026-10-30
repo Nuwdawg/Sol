@@ -1,5 +1,46 @@
 # exp200: what the leaderboard scores against
 
+## Correction (2026-10-30): the board scores per record, and pooled truth is refuted
+
+The pooled one-to-one hypothesis below was fitted to seven submissions that emit much the same
+things. Two pairs that differ a lot in what they emit contradict it:
+
+| submission | public | per record (val) | pooled 1:1 (val) | 0.84 x per record |
+|---|---|---|---|---|
+| exp_010 detector at conf 0.30 (exp_027's baseline rule) | 0.36 | 0.4274 | 0.3543 | 0.359 |
+| exp_028: the same plus exp_026 verifier promotions at 0.50 | 0.32 | 0.3865 | 0.3472 | 0.324 |
+| exp097 stage2 YOLOv8l D4 conf 0.35 | 0.39 | 0.4668 | 0.3870 | 0.392 |
+| exp097 stage1 YOLOv8l D4 conf 0.25 | 0.38 | 0.4632 | 0.3990 | 0.389 |
+| exp063 mask2 probe (exp058 checkpoint) | 0.20 | 0.2468 | 0.2144 | 0.207 |
+
+- exp_028 minus exp_010: public -0.03 to -0.05; per record -0.041; pooled -0.007.
+- stage1 minus stage2: public -0.02 to 0.00; per record -0.004; pooled +0.012.
+
+`recall_probe.py` rebuilds exp_028 from its original inputs (dataset `sol-exp010-session1`,
+kernel output `sol-exp026-verifier-train`) with `predict_verified.py`'s exact detector call and
+rule. On CPU its test file matches all 1,624 submitted masks byte for byte; on validation it
+reproduces exp_027's recorded TP/FP/FN at gates none, 0.5, 0.6, 0.7 and 0.8. `history.py` now also
+rebuilds exp097 stage1 (exp098's `d4_pool_best.json`) and the mask2 probe (exp063's
+`mask2/candidates_0.4.json`); every rebuilt row matches its recorded per-record PQ within 5e-5.
+
+Across all eleven submissions, the least-squares fit public = 0.8395 x per record falls inside the
+two-decimal rounding interval for ten and misses exp139 by 0.010 (RMS miss 0.0034). Per record
+minus 0.070 misses two (mask2 by 0.018). Pooled one-to-one misses six, by up to 0.022 (exp_028),
+and adding a constant does not fix it. The organisers say the test scoring differs from their
+per-annotator notebook in "subtle" ways they will not disclose (F:753816, 2026-10-29); whatever
+they are, they scale every submission tried by about the same factor and do not reward emitting
+more. So:
+
+- validation per record is the objective, as CLAUDE.md said; public is about 0.84 times it;
+- the pooled-target retrain (`train.py --targets pooled`) trains the wrong question (CLAUDE.md
+  section 4) and must not be run;
+- the union files (C1-C3) and the re-tuned files (probe, A, B) do not gain per record
+  (C3 -0.0009, the others -0.006 to -0.033). exp169 + guard stays the final file.
+
+Everything below is kept as the record of what was measured under the refuted hypothesis.
+
+---
+
 Every model this project built scores 0.06-0.08 lower on the public leaderboard than on validation,
 and other teams report the same gap ("local 0.46, Kaggle 0.40", forum 745880). Nothing tried
 before explained it (`final_decision/decision_brief.pdf`, section 2e). Validation scores each
@@ -105,6 +146,10 @@ misses. Its full-view detections no exp169 instance covers match a still-unmatch
 
 What else was tried:
 - Swin-B as a voter (`swinb_pooled.py`) gains about as much as dropping the YOLO veto, and nothing more.
+- Swin-B as both voter and union source (`voter_union.py`, full view at class probability 0.5 as on
+  test, Swin-B weight 8 or 16, exponent 0.3 or 0.5): the best worse-half gain is +0.0082 (weight 16,
+  exponent 0.5, conf 0.52), against C1's +0.0073, with the threshold chosen on the same halves. Not
+  distinguishable from C1, so no file was built.
 - YOLO detections on top of C1 add at most +0.0009.
 - Growing or shrinking masks by 1 px loses about 0.02 pooled.
 

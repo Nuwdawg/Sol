@@ -1,6 +1,34 @@
 # exp200: why the leaderboard sits 0.07 below validation, and three files to submit (2026-10-30)
 
-**Finding.** The leaderboard behaves as if each test photograph's truth holds every annotator's
+> **Correction, 2026-10-30 evening: the finding below is refuted, and its files are withdrawn.**
+> Two pairs of past submissions differ far more in what they emit than the seven in the table, and
+> pooled truth gets both wrong (`recall_probe.py`, `history.py`; `recall_probe.json`,
+> `history_extended.json`):
+>
+> | pair | public change | per record (val) | pooled one-to-one (val) |
+> |---|---|---|---|
+> | exp_010 (0.36) -> exp_028 recall probe (0.32): verifier-promoted extra candidates | -0.03 to -0.05 | -0.041 | -0.007 |
+> | exp097 stage2 (0.39) -> stage1 at conf 0.25 (0.38) | -0.02 to 0.00 | -0.004 | +0.012 |
+>
+> exp_028 was rebuilt from its own weights: the CPU rebuild of its test file matches all 1,624
+> submitted masks byte for byte, and the validation rebuild reproduces exp_027's recorded TP/FP/FN at
+> every gate. Over eleven submissions with public scores (0.20 to 0.41), **public = 0.84 x the
+> per-record validation PQ** lands inside the rounding interval for ten and misses exp139 by 0.010;
+> pooled one-to-one misses six, by up to 0.022. The leaderboard scores each annotator separately,
+> as validation does, and about 16% lower. This is what CLAUDE.md already said and what exp_028 was
+> submitted in September to show; this folder overrode it without checking exp_028.
+>
+> What follows from it:
+> - **Final file: `../submission_exp169_guarded.csv`** (per record 0.48893, expected public 0.41).
+> - Do not upload the probe, A, B, C1 or C2: per record they lose 0.006 to 0.033, about 0.005 to
+>   0.028 in public. C3 is neutral (-0.0009 per record) and gains nothing either.
+> - Do not run `GPU_PLAN.md` section 1: pooled targets train the "would anyone draw this" question
+>   that sank the exp_026 verifier (CLAUDE.md section 4).
+> - Public 0.42 needs per-record validation of about 0.494 or more; exp169 is 0.4889.
+>
+> The text below is kept as the record of what was measured.
+
+**Finding (refuted, see above).** The leaderboard behaves as if each test photograph's truth holds every annotator's
 filaments at once, matched one-to-one. A filament that three people drew counts as three truths,
 and one prediction can claim only one of them. Scored that way on validation, with no fitted
 constant, seven past submissions land on their public scores:
@@ -45,7 +73,7 @@ validation caches (a validation photograph reproduces its stored candidates exac
 almost nothing if the board turns out not to be pooled. C1 is the strongest if it is. B was chosen
 from many settings, so C1's in-sample gain is somewhat optimistic.
 
-## What to submit (all files non-overlapping, 180 photographs, SHA256 in `SHA256SUMS`)
+## What was proposed (withdrawn; the files and review sheets are in `withdrawn/`, SHA256 in `withdrawn/SHA256SUMS`)
 
 Upload these three first:
 
@@ -73,7 +101,7 @@ Swin-B additions in C1 and C3 are dark, elongated filaments on the disk, some be
 None is removed from its base. One exception: C1's largest addition but one (3,817 px,
 20150619133554Bh) runs over the limb. It is the structure B dropped from exp169.
 
-## How to choose the two final selections
+## How the final selections were to be chosen (withdrawn)
 
 - **Probe shows 0.41 or more**: the board is pooled. Select C1 and C3 (or C1 and whichever of C2/C3
   scored higher).

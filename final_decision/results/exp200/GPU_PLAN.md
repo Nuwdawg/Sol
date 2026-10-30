@@ -1,5 +1,11 @@
 # Next steps that need a GPU (planned, not run)
 
+> **Withdrawn 2026-10-30 evening. Do not run section 1.** It rests on pooled truth, which
+> exp_028 and exp097 stage1/stage2 refute (`README.md` in this folder). The leaderboard scores
+> per record, so pooled targets would train the "would anyone draw this" question that sank the
+> exp_026 verifier (CLAUDE.md section 4). Section 2 (all-data retrain) was already judged not
+> worth it in `../../decision_brief.pdf` (in-sample about equal to held-out, exp150 and exp173b).
+
 Everything that could run on a CPU has been run (`README.md` in this folder). Under the pooled
 truth that explains the leaderboard, exp169 is within about 0.005 of the best rule its model allows.
 The remaining levers change the model. Each costs about $5 of the $12 RunPod credit, or a long

@@ -59,12 +59,23 @@ def main() -> None:
     parser.add_argument("--annotations", type=Path, required=True)
     parser.add_argument("--predictions", type=Path, required=True, help="hypotheses.py's prediction cache")
     parser.add_argument("--yolo11m-pool", type=Path, required=True, help="exp002 D4 validation pool")
+    parser.add_argument("--yolov8l-stage1-pool", type=Path, default=None,
+                        help="exp098 kernel output evaluation/d4_pool_best.json (exp097 stage1 D4)")
+    parser.add_argument("--mask2-candidates", type=Path, default=None,
+                        help="exp063 kernel output mask2/candidates_0.4.json (exp058 checkpoint)")
     parser.add_argument("--output", type=Path, default=None)
     args = parser.parse_args()
     records, _ = records_for(args.annotations)
     names = sorted(records)
     cached = json.loads(args.predictions.read_text())
     y11 = load_pool(args.yolo11m_pool)
+    extra = []                                  # pools recovered from Kaggle kernel outputs on 2026-10-30
+    if args.yolov8l_stage1_pool:
+        stage1 = json.loads(args.yolov8l_stage1_pool.read_text())
+        extra.append(("exp097 stage1 YOLOv8l D4 c.25 a300", 0.38, 0.4632082904, emit(stage1, names, 0.25, 0, 300)))
+    if args.mask2_candidates:
+        mask2 = json.loads(args.mask2_candidates.read_text())
+        extra.append(("exp063 mask2 (exp058) c.6 e1 a300", 0.20, 0.2467558223, emit(mask2, names, 0.6, 1, 300)))
     # (submission, public, recorded validation PQ or None, predictions)
     rows = [
         ("exp169 joint rule", 0.41, 0.48894859995, cached["exp169"]),
@@ -74,11 +85,13 @@ def main() -> None:
         ("exp065 YOLO11m D4 c.35 e1 a100", 0.38, None, emit(y11, names, 0.35, 1, 100)),
         ("exp057 YOLO11m D4 c.385 e1 a100", 0.38, 0.45864, emit(y11, names, 0.385, 1, 100)),
         ("exp064 YOLO11m D4 c.30 e1 a300", 0.38, None, emit(y11, names, 0.30, 1, 300)),
-    ]
+    ] + extra
     report = []
     print(f"{'submission':48s} {'public':>6s} {'record':>8s} {'pooled 1:1':>10s}  recorded")
     for label, public, recorded, preds in rows:
         rec, pooled = score({n: preds[n] for n in names}, records)
+        if recorded is not None and abs(rec["pq"] - recorded) > 5e-5:
+            raise SystemExit(f"{label}: rebuilt per-record PQ {rec['pq']:.6f} differs from the recorded {recorded}")
         report.append(dict(submission=label, public=public, recorded=recorded, record=rec, pooled_1to1=pooled))
         print(f"{label:48s} {public if public else '':>6} {rec['pq']:8.4f} {pooled['pq']:10.4f}  {recorded or ''}")
     if args.output:

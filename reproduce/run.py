@@ -16,8 +16,9 @@ The final submission is exp169's rule with exp199's large-filament guard:
               (`experiments/exp_199_swinb_votes/src/guard.py`); CPU, one minute;
   6. check    compare the result with the submitted file (`final_decision/results/`).
 
-exp200's union files add Swin-B's confident detections that the rule's instances leave uncovered
-(`final_decision/results/exp200/README.md`):
+Two optional stages rebuild exp200's union files, which add Swin-B's confident detections that the
+rule's instances leave uncovered. Those files were withdrawn (they lose per record;
+`final_decision/results/exp200/README.md`), so these stages run only when named in --stages:
 
   7. swinb    Swin-B (exp190b epoch 32) full-view candidates on the 180 test photographs
               (`experiments/exp_200_test_truth/src/swinb_infer.py`); CPU, about 4 h on 4 cores;
@@ -42,7 +43,8 @@ ROOT = Path(__file__).resolve().parents[1]
 ART = ROOT / "reproduce" / "artefacts"
 SUBMITTED = ROOT / "final_decision" / "results" / "submission_exp169_guarded.csv"
 STAGES = ("weights", "m2f", "yolo", "rule", "guard", "check", "swinb", "union")
-EXP200 = ROOT / "final_decision" / "results" / "exp200"
+FINAL = STAGES[:6]                 # the submitted file; swinb and union rebuild withdrawn files
+EXP200 = ROOT / "final_decision" / "results" / "exp200" / "withdrawn"
 UNION = {"submission_C1_B_swinb090.csv": ("B", 0.90),             # file: (base file, Swin-B threshold)
          "submission_C2_exp169_swinb080.csv": ("exp169", 0.80),
          "submission_C3_exp169_swinb090.csv": ("exp169", 0.90)}
@@ -236,7 +238,7 @@ def main() -> None:
     parser.add_argument("--data", type=Path, help="the competition folder MAGFiLO_1.0_Kaggle_2026 "
                                                   "(default: found under /kaggle/input)")
     parser.add_argument("--work", type=Path, required=True)
-    parser.add_argument("--stages", nargs="+", choices=STAGES, default=list(STAGES))
+    parser.add_argument("--stages", nargs="+", choices=STAGES, default=list(FINAL))
     parser.add_argument("--limit", type=int, default=0, help="smoke test: first N photographs in m2f and yolo")
     args = parser.parse_args()
     global LIMIT

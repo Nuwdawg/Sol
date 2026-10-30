@@ -180,6 +180,9 @@ the decision, stop.
 - Validation predicts the leaderboard with an offset of 0.067-0.078, verified
   across a 0.04 range including a deliberately degraded submission. Judge ideas
   on validation before spending a submission.
+- Over eleven submissions with public scores from 0.20 to 0.41, public is
+  about 0.84 x per-record validation PQ (ten inside the rounding interval;
+  `experiments/exp_200_test_truth/README.md`). Pooled truth is refuted (section 17).
 - The public leaderboard shows two decimals. A local spread of 0.013 is
   invisible there — four genuinely different models all printed 0.36.
 - CPU inference is bit-for-bit identical to GPU inference here (same CSV MD5).
@@ -242,3 +245,19 @@ would have written a phantom epoch into the convergence history.
 the exact pinned version, then run the real code against that version before it
 costs money. The rehearsal belongs on free compute: exp099 runs the identical
 payload on a Kaggle T4 in about ten minutes.
+
+## 17. A hypothesis that fits the level must also fit the differences
+
+exp200 explained the validation-to-public gap with "pooled" truth: every annotator's
+filaments in one image, matched one-to-one. It put seven past submissions on their public
+scores with no fitted constant, so new files were built and a GPU retrain was planned on
+it. Those seven barely differ in what they emit, and a constant offset fitted them just as
+well. The exp_028 recall probe, submitted in September to test exactly this, was never
+checked. Rebuilt from its own weights (its test file matched byte for byte), it missed the
+pooled prediction by 0.03, and exp097 stage1 against stage2 missed by 0.012. Per-record
+scoring predicted both.
+
+**Rule:** test a scoring hypothesis on the past submissions that differ most in what they
+emit (recall probes, degraded models), before building on it. A fit to the level is one
+number; the differences between submissions are the evidence. Before overriding a finding
+recorded here, rerun the experiment that established it.
