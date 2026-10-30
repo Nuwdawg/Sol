@@ -45,25 +45,38 @@ validation caches (a validation photograph reproduces its stored candidates exac
 almost nothing if the board turns out not to be pooled. C1 is the strongest if it is. B was chosen
 from many settings, so C1's in-sample gain is somewhat optimistic.
 
-## Submit these three (in this order; all non-overlapping, 180 photographs, SHA256 in `SHA256SUMS`)
+## What to submit (all files non-overlapping, 180 photographs, SHA256 in `SHA256SUMS`)
 
-| file | what it is | pooled (val) | per annotator (val) | expected public if pooled / if per annotator |
-|---|---|---|---|---|
-| `submission_probe_conf044.csv` | exp169 at threshold 0.44, 1,672 instances. **Decides which truth the board uses.** Not for final selection. | 0.4158 | 0.4555 | **0.41** / **0.38-0.39** |
-| `submission_A_conf064_guarded.csv` | exp169 at threshold 0.64 plus the large-filament guard, 1,255 instances. Adds 114, removes none. | 0.4184 | 0.4827 | 0.41-0.42 / 0.40-0.41 |
-| `submission_B_no_yolo_veto_guarded.csv` | Mask2Former views only in the score (YOLO weight 0, exponent 0.5, threshold 0.78) plus the guard, 1,335 instances. Adds 208, removes 14. | 0.4202 | 0.4806 | 0.41-0.42 / 0.40-0.41 |
+Upload these three first:
 
-Review sheets: `review_probe.jpg`, `review_A.jpg`, `review_B.jpg` (largest changes, native crops; red
-= added, blue = removed). Every large addition is a dark, elongated filament on the disk. B's
-largest removal (4,258 px) is a structure that runs over the limb.
+1. `submission_probe_conf044.csv`: exp169 at threshold 0.44 (1,672 instances). It decides which truth
+   the board uses: about 0.41 if pooled, 0.38-0.39 if per annotator. Not a final pick.
+2. `submission_C1_B_swinb090.csv`: the strongest file if the board is pooled.
+3. `submission_C3_exp169_swinb090.csv`: the safe file, neutral if the board is not pooled.
 
-## How to read the results
+Optional: `submission_C2_exp169_swinb080.csv`; `submission_A_conf064_guarded.csv` and
+`submission_B_no_yolo_veto_guarded.csv` (both superseded by C1 and C3).
 
-- **Probe shows 0.41 (or higher)**: the board is pooled. Pick A or B, whichever scores higher, plus
-  exp169 as the two final selections.
-- **Probe shows 0.39 or lower**: the board scores per annotator as validation does. Keep exp169
-  (or `../submission_exp169_guarded.csv`) and drop A and B.
-- **Probe shows 0.40**: inconclusive. Keep exp169 first; A second.
+| file | instances | pooled (val) | per annotator (val) |
+|---|---|---|---|
+| exp169 (as submitted, guarded) | 1,150 | 0.4139 | 0.4889 |
+| probe | 1,672 | 0.4158 | 0.4555 |
+| A | 1,255 | 0.4184 | 0.4827 |
+| B | 1,335 | 0.4202 | 0.4806 |
+| C1 | see `SHA256SUMS` | 0.4235 | 0.4825 |
+| C2 | | 0.4224 | 0.4754 |
+| C3 | | 0.4184 | 0.4881 |
 
-The public board prints two decimals and scores about half of the 180 photographs, so a change of
-+0.005 shows only if it crosses a rounding boundary.
+Review sheets (largest changes at native resolution; red = added, blue = removed):
+`review_probe.jpg`, `review_A.jpg`, `review_B.jpg`, `review_C1.jpg`, `review_C3.jpg`.
+
+## How to choose the two final selections
+
+- **Probe shows 0.41 or more**: the board is pooled. Select C1 and C3 (or C1 and whichever of C2/C3
+  scored higher).
+- **Probe shows 0.39 or lower**: the board scores per annotator. Select exp169
+  (`../submission_exp169_guarded.csv`) and C3.
+- **Probe shows 0.40**: inconclusive. Select C3 and exp169.
+
+The public board prints two decimals and scores about half of the 180 photographs; a gain under
+0.01 shows only if it crosses a rounding boundary. The final ranking uses the other half.

@@ -85,12 +85,38 @@ candidate: one improves PQ when its expected matched IoU exceeds PQ / 2. Both fa
   (0.25-0.50) match a still-unmatched pooled truth 38% of the time, about +0.004 pooled, and lose
   per record. Not used.
 
-So the leaderboard gap is explained, but the explanation does not unlock a large gain from the
-existing predictions. Under pooled truth exp169 is within about 0.005 of the best rule of its
-family. A larger gain would need a model whose scores answer the pooled question, for example
-one trained on all annotators' filaments of a photograph at once.
+So the leaderboard gap is explained, but re-tuning exp169's own predictions gains only about
++0.005. Under pooled truth exp169 is that close to the best rule of its family.
 
-## Test files (`emit_test.py`; parity: exp169's setting rebuilds its submitted file byte for byte)
+## A second model's uncovered detections (`union.py`, `swinb_infer.py`, `union_test.py`)
+
+In multi-annotator validation photographs exp139 has a candidate for 69% of the filaments that 1 of 3
+annotators drew, but scores them low (median 0.54), so exp169 keeps 16% of them. It keeps about 90% of
+those everyone drew. Pooled truth counts both alike. Swin-B (exp190b epoch 32) finds some that exp139
+misses. Its full-view detections no exp169 instance covers match a still-unmatched pooled truth
+40% of the time at score 0.80 and above, against a break-even of about 31%.
+
+| rule | pooled (val) | gain, half A / half B | 95% CI of gain (photo bootstrap) | per record |
+|---|---|---|---|---|
+| exp169 + guard | 0.4139 | | | 0.4889 |
+| C1: B + guard + Swin-B >= 0.90 | 0.4235 | +0.0073 / +0.0123 | +0.0017 to +0.0176 | 0.4825 |
+| C2: exp169 + guard + Swin-B >= 0.80 | 0.4224 | +0.0079 / +0.0094 | +0.0008 to +0.0165 | 0.4754 |
+| C3: exp169 + guard + Swin-B >= 0.90 | 0.4184 | +0.0020 / +0.0074 | +0.0006 to +0.0088 | 0.4881 |
+
+What else was tried:
+- Swin-B as a voter (`swinb_pooled.py`) gains about as much as dropping the YOLO veto, and nothing more.
+- YOLO detections on top of C1 add at most +0.0009.
+- Growing or shrinking masks by 1 px loses about 0.02 pooled.
+
+Swin-B's test candidates were computed on CPU by `swinb_infer.py`, the same forward pass as its
+validation caches (a validation photograph reproduces its 4 candidates at class probability 0.5 or
+above exactly). About 75 s per photograph with two processes on four cores.
+
+A model trained on pooled targets (`experiments/exp_139_mask2former/src/data.py: pooled_targets`,
+`train.py --targets pooled`) is the next step. It needs a GPU; see
+`final_decision/results/exp200/GPU_PLAN.md`.
+
+## Earlier test files (`emit_test.py`; parity: exp169's setting rebuilds its submitted file byte for byte)
 
 | file | what it tests | pooled (val) | per record (val) | expected public: pooled / per record |
 |---|---|---|---|---|
