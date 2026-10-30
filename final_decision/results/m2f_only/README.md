@@ -65,5 +65,8 @@ Upload it once.
   0.4741 cross-validated.
 - Swin-B's support divided by eight views as in exp185 (`m2f_only_val_diluted_voter.json`): the
   test caches hold its full view only, so this dilutes it. Cross-validated 0.471; corrected above.
+- Swin-B voting through its full and seven dihedral views (validation caches only;
+  `m2f_only_val_swinb_d4_voter.json`): best 0.4825 in-sample, 0.4759 cross-validated. No better
+  than its full view alone, so the dihedral views were not computed on test.
 - Splitting predictions that cover two filaments: the splits by the other views flag 6 of 11 such
   predictions, and 11 correct ones too.
