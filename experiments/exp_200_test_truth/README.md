@@ -47,6 +47,14 @@ predictions; no file built):
   Mask2Former instances without YOLO support (match rate per record 0.17-0.34). A size-dependent
   threshold has nothing to gain.
 
+Later the same day (`swinb_gate.py`, `pair_ensemble.py`, `m2f_only.py`, `m2f_only_test.py`; results and
+the file in `final_decision/results/m2f_only/`): Swin-B as a rescue or veto of exp169's borderline
+instances, cross-validated -0.002; a plain average of the two models' full views, 0.4741
+cross-validated; a Mask2Former-only rule (exp139's views plus Swin-B as a voter, no YOLO), 0.4830
+in-sample and 0.4799 cross-validated. The last is below exp169 on validation, but YOLO-free
+Mask2Former submissions have reached the board at 0.861-0.864 x validation and the YOLO-voted rules
+at 0.837-0.849 x, so it was written as a test file.
+
 Everything below is kept as the record of what was measured under the refuted hypothesis.
 
 ---

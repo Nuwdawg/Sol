@@ -1,0 +1,25 @@
+{
+ "val_parity": 0.48296881826980964,
+ "exp169_parity": {
+  "path": "exp169_rebuilt.csv",
+  "rows": 1141,
+  "photographs_with_rows": 178,
+  "conf": 0.68,
+  "min_area": 100,
+  "sha256": "CC15EA4124E56F8AA01DA9270FE140B0830EA754833722696244C60073008106"
+ },
+ "file": {
+  "path": "submission_m2f_only_w8.csv",
+  "rows": 1167,
+  "photographs_with_rows": 180,
+  "conf": 0.84,
+  "min_area": 100,
+  "sha256": "0EF5A352C9DCF86BECD3F198FB5C49F73021C6F2779C23F055CE7908F32E88AB"
+ },
+ "rule": {
+  "m": 8.0,
+  "a": 0.3,
+  "conf": 0.84,
+  "area": 100
+ }
+}

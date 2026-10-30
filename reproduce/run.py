@@ -25,6 +25,12 @@ rule's instances leave uncovered. Those files were withdrawn (they lose per reco
   8. union    rule B (YOLO weight 0, exponent 0.5, threshold 0.78) plus the guard, then the three
               union files, each compared with the stored one (`union_test.py`); CPU, about 20 min.
 
+One optional stage builds the Mask2Former-only two-model file (`final_decision/results/m2f_only/`):
+
+  9. m2f_only exp139's views plus Swin-B as a voter, no YOLO (`experiments/exp_200_test_truth/src/
+              m2f_only_test.py`); needs the m2f and swinb stages; CPU, about 10 min; must rebuild the
+              stored file byte for byte.
+
 Every stage stops on a failed check; none of them changes a model.
 
     python reproduce/run.py [--data /path/to/MAGFiLO_1.0_Kaggle_2026] --work /path/to/work [--stages ...]
@@ -42,9 +48,10 @@ from pathlib import Path
 ROOT = Path(__file__).resolve().parents[1]
 ART = ROOT / "reproduce" / "artefacts"
 SUBMITTED = ROOT / "final_decision" / "results" / "submission_exp169_guarded.csv"
-STAGES = ("weights", "m2f", "yolo", "rule", "guard", "check", "swinb", "union")
+STAGES = ("weights", "m2f", "yolo", "rule", "guard", "check", "swinb", "union", "m2f_only")
 FINAL = STAGES[:6]                 # the submitted file; swinb and union rebuild withdrawn files
 EXP200 = ROOT / "final_decision" / "results" / "exp200" / "withdrawn"
+M2F_ONLY_SHA256 = "0EF5A352C9DCF86BECD3F198FB5C49F73021C6F2779C23F055CE7908F32E88AB"   # final_decision/results/m2f_only
 UNION = {"submission_C1_B_swinb090.csv": ("B", 0.90),             # file: (base file, Swin-B threshold)
          "submission_C2_exp169_swinb080.csv": ("exp169", 0.80),
          "submission_C3_exp169_swinb090.csv": ("exp169", 0.90)}
@@ -231,6 +238,13 @@ def stage_union(work: Path, _) -> None:
         if not exact:
             report.update(compare_csv(out / name, EXP200 / name))
         print("UNION_CHECK", json.dumps(report), flush=True)
+
+
+def stage_m2f_only(work: Path, data: dict) -> None:
+    wait([python("experiments.exp_200_test_truth.src.m2f_only_test", "--annotations", str(data["annotations"]),
+                 "--test-cache", str(work / "m2f" / "e040_test_cache.json"),
+                 "--test-swinb", *map(str, sorted((work / "swinb").glob("shard*.jsonl"))),
+                 "--expect-sha256", M2F_ONLY_SHA256, "--output", str(work / "m2f_only"))], "Mask2Former-only file")
 
 
 def main() -> None:

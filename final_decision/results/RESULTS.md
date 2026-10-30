@@ -5,6 +5,11 @@
 > that: the exp_028 recall probe and exp097 stage1/stage2 behave as per-record scoring predicts,
 > and public is about 0.84 x per-record validation over eleven submissions. The final file stays
 > `submission_exp169_guarded.csv` below; the exp200 files are withdrawn.
+>
+> **One bet on 0.42 (2026-10-30, late): `m2f_only/README.md`.** A Mask2Former-only two-model file
+> (exp139's views plus Swin-B as a voter, no YOLO). It is 0.006 below exp169 on validation, but
+> YOLO-free Mask2Former submissions have reached the board at 0.86 x validation against 0.84 x for
+> the YOLO-voted rules, which projects it to 0.416. Upload it once; keep exp169 + guard otherwise.
 
 ## Primary: Swin-B e32 as a second voter in exp169's rule. Killed.
 
