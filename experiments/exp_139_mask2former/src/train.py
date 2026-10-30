@@ -45,7 +45,8 @@ from torch.utils.data import DataLoader
 
 from experiments.exp_033_inference.src.sweep import records_for
 from experiments.exp_139_mask2former.src.data import (ExtentBatchSampler, FilamentSamples,
-                                                      collate, gpu_pixels, load_records, read_gray)
+                                                      collate, gpu_pixels, load_records, pooled_targets,
+                                                      read_gray)
 from experiments.exp_139_mask2former.src.evaluate import cache_validation, event
 from experiments.exp_139_mask2former.src.fast_ops import (install_batched_loss,
                                                           install_deformable_kernel,
@@ -132,6 +133,9 @@ def parse() -> argparse.Namespace:
     parser.add_argument("--model", choices=("pretrained", "tiny"), default="pretrained")
     parser.add_argument("--max-steps", type=int, default=0, help="smoke tests only")
     parser.add_argument("--eval-every", type=int, default=5, help="0 turns in-run scoring off")
+    parser.add_argument("--targets", choices=("record", "pooled"), default="record",
+                        help="record: one sample per annotation record; pooled: one per photograph with "
+                             "every annotator's filaments, the leaderboard's truth (data.pooled_targets)")
     parser.add_argument("--fold", choices=("train", "all"), default="train",
                         help="train: the canonical 974 records; all: every record, no held-out set")
     parser.add_argument("--save-epochs", type=int, nargs="*", default=[],
@@ -255,6 +259,10 @@ def main() -> int:
         return (time.time() - billing_start) / 3600 * args.price_per_hour
 
     records = load_records(args.annotations, args.fold)
+    if args.targets == "pooled":
+        records = pooled_targets(records)
+    event("TARGETS", log, kind=args.targets, records=len(records),
+          instances=sum(len(record["rles"]) for record in records))
     loading_started = time.time()
     dataset = FilamentSamples(records, args.images, rotate90=not args.no_rotate90,
                               preload=not args.no_preload)

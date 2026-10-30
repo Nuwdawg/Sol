@@ -22,6 +22,7 @@ import json
 import pickle
 from pathlib import Path
 
+import cv2
 import numpy as np
 from pycocotools import mask as mu
 from sklearn.decomposition import PCA
@@ -35,6 +36,7 @@ from experiments.exp_149_evidence_fusion.src import evidence as E
 from experiments.exp_168_joint_tuning.src.joint import scores
 from experiments.exp_200_test_truth.src.hypotheses import as_bytes
 from experiments.exp_200_test_truth.src.tune import greedy, painted_prefix, pq
+from shared.solar_disk import find_disk
 
 FLOOR = 0.30                                   # exp169-score floor of the candidates considered
 GRID = tuple(round(t, 3) for t in np.arange(0.05, 0.951, 0.025))
@@ -72,6 +74,28 @@ def candidate_table(prep: dict, cache: dict, names: list) -> tuple[list, np.ndar
             keys.append((n, i))
             crops.append(p["crops"][i])
     return keys, np.asarray(rows, float), crops
+
+
+def image_features(keys, crops, images: Path) -> np.ndarray:
+    """Distance from the disk centre and limb, contrast with a 6 px ring, darkness, elongation, thickness."""
+    out, gray, disk, median, current = [], None, None, None, None
+    for (n, _), crop in zip(keys, crops):
+        if n != current:
+            gray = cv2.imread(str(images / n), cv2.IMREAD_GRAYSCALE)
+            disk = find_disk(gray)
+            yy, xx = np.ogrid[:E.SIZE, :E.SIZE]
+            inside = (xx - disk[0]) ** 2 + (yy - disk[1]) ** 2 < (0.95 * disk[2]) ** 2
+            median = float(np.median(gray[inside]))
+            current = n
+        ys, xs = np.nonzero(crop.mask)
+        if len(ys) == 0:
+            out.append([0.0] * 6)
+            continue
+        r = np.hypot(xs + crop.x0 - disk[0], ys + crop.y0 - disk[1]) / disk[2]
+        contrast, dark = E.ring_contrast(gray, crop, median)
+        elongation, thickness = E.shape_terms(crop)
+        out.append([float(r.mean()), float(1.0 - r.max()), contrast, dark, np.log(elongation), thickness])
+    return np.asarray(out, float)
 
 
 def labels(keys, crops, passes) -> np.ndarray:
@@ -115,6 +139,7 @@ def main() -> None:
     parser.add_argument("--annotations", type=Path, required=True)
     parser.add_argument("--ingredients", type=Path, required=True)
     parser.add_argument("--cache", type=Path, required=True)
+    parser.add_argument("--images", type=Path, default=None, help="validation photographs: adds image features")
     parser.add_argument("--output", type=Path, required=True)
     args = parser.parse_args()
     records, _ = records_for(args.annotations)
@@ -125,6 +150,8 @@ def main() -> None:
     keys, X, crops = candidate_table(prep, cache, names)
     embed = np.asarray([cache[n]["full"][i]["embedding"] for n, i in keys], float)
     X = np.hstack([X, PCA(16, random_state=0).fit_transform(embed)])     # unsupervised, no labels
+    if args.images:
+        X = np.hstack([X, image_features(keys, crops, args.images)])
     y = labels(keys, crops, passes)
     print(f"candidates {len(y)}, matching some annotator {y.mean():.3f}", flush=True)
     rng = np.random.default_rng(2026)

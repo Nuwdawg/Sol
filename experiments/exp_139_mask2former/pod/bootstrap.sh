@@ -40,6 +40,10 @@ LOG="$ART/events.log"
 # SOL_CHECKPOINT=whole; a full-data run sets SOL_FOLD=all, SOL_EVAL_EVERY=0 (no held-out
 # set to score), SOL_SAVE_EPOCHS and SOL_SANITY.
 : "${SOL_FOLD:=train}"
+# pooled: one sample per photograph with every annotator's filaments (data.pooled_targets), the
+# leaderboard's truth (experiments/exp_200_test_truth). An epoch is then 601 samples, not 974, so
+# SOL_EPOCHS=81 keeps exp139's number of optimiser steps.
+: "${SOL_TARGETS:=record}"
 : "${SOL_MICRO_BATCH:=8}"
 : "${SOL_CHECKPOINT:=none}"
 : "${SOL_SAVE_EPOCHS:=}"
@@ -240,7 +244,8 @@ trap - ERR
 set +e
 python -u -m experiments.exp_139_mask2former.src.train --annotations "$ANNOTATIONS" \
     --images "$IMAGES" --output "$ART/run" --batch 8 --micro-batch "$SOL_MICRO_BATCH" \
-    --checkpoint "$SOL_CHECKPOINT" --fold "$SOL_FOLD" --sanity-photographs "$SOL_SANITY" \
+    --checkpoint "$SOL_CHECKPOINT" --fold "$SOL_FOLD" --targets "$SOL_TARGETS" \
+    --sanity-photographs "$SOL_SANITY" \
     --save-epochs $SOL_SAVE_EPOCHS \
     --bf16 --workers "$WORKERS" --epochs "$SOL_EPOCHS" --epoch-policy fixed \
     --msda "$SOL_MSDA" "${REVISION[@]}" --eval-every "$SOL_EVAL_EVERY" --no-final-d4 \

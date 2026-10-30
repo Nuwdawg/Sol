@@ -110,6 +110,56 @@ def load_records(annotations: Path, fold: str) -> list[dict]:
     return records
 
 
+def pooled_targets(records: list[dict]) -> list[dict]:
+    """One record per photograph, holding a filament whenever any of its annotators drew it.
+
+    The leaderboard scores a photograph against all its annotators' filaments at once, matched one to
+    one (experiments/exp_200_test_truth): a filament one annotator of three drew is a hit there, while
+    per-record training labels it background twice. Here a photograph's filaments are grouped by
+    overlap across annotators, and each group keeps one annotator's version, the one with the highest
+    mean IoU with the group's other versions (ties: the larger). Groups never overlap, so kept
+    instances overlap only where one annotator's own filaments do (5 of the 974 training records; 2 of
+    the 601 pooled photographs keep such a pair, as the per-record targets already did).
+    Measured on validation: these targets, used as predictions, score pooled 0.8085 and per record
+    0.7719. The training fold goes from 974 records / 6,874 instances to 601 photographs / 4,667.
+    """
+    by_name: dict = defaultdict(list)
+    for record in records:
+        by_name[record["file_name"]].append(record)
+    out = []
+    for name, group in by_name.items():
+        if len(group) == 1:
+            out.append(group[0])
+            continue
+        items = [(owner, rle) for owner, record in enumerate(group) for rle in record["rles"]]
+        rles = [rle for _, rle in items]
+        iou = np.asarray(mu.iou(rles, rles, [0] * len(rles))).reshape(len(rles), len(rles))
+        parent = list(range(len(items)))
+
+        def find(i: int) -> int:
+            while parent[i] != i:
+                parent[i] = parent[parent[i]]
+                i = parent[i]
+            return i
+
+        for i in range(len(items)):
+            for j in range(i + 1, len(items)):
+                if items[i][0] != items[j][0] and iou[i, j] > 0:
+                    parent[find(i)] = find(j)
+        members: dict = defaultdict(list)
+        for i in range(len(items)):
+            members[find(i)].append(i)
+
+        def agreement(i: int, group_members: list[int]) -> tuple[float, int]:
+            others = [iou[i, j] for j in group_members if items[j][0] != items[i][0]]
+            return (float(np.mean(others)) if others else 0.0, int(mu.area(rles[i])))
+
+        kept = [rles[max(m, key=lambda i: agreement(i, m))] for m in members.values()]
+        out.append(dict(image_id="+".join(record["image_id"] for record in group), file_name=name, rles=kept,
+                        boxes=[mu.toBbox(rle).tolist() for rle in kept]))
+    return out
+
+
 def read_gray(path: Path) -> np.ndarray:
     image = cv2.imread(str(path), cv2.IMREAD_GRAYSCALE)
     if image is None or image.shape != (NATIVE, NATIVE):

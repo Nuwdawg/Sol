@@ -24,6 +24,27 @@ at its 0.68, 0.3943 at 0.72). The gain that holds on both halves of the validati
 about +0.005, not more. A learned re-ranker and extra YOLO detections did not beat exp169 under
 cross-validation.
 
+## Update, same day: a second model adds about +0.009 (`union.py`, `swinb_infer.py`, `union_test.py`)
+
+Under pooled truth a filament any annotator drew is a hit. exp139 under-scores filaments that only
+some annotators drew: in multi-annotator photographs it keeps 16% of those drawn by 1 of 3, against
+about 90% of those drawn by all. Swin-B (exp190b epoch 32, validation 0.4698 alone; checkpoint now
+in `weights/`) finds some that exp139 misses. Its confident full-view detections that no exp169
+instance covers match a still-unmatched pooled truth 40% of the time, above the 31% break-even.
+Adding them (painted into unclaimed pixels; the same function on validation and test):
+
+| file | rule | pooled gain (val, 95% CI) | half A / half B | per record |
+|---|---|---|---|---|
+| `submission_C1_B_swinb090.csv` | B + guard + Swin-B >= 0.90 | +0.0096 [+0.0017, +0.0176] | +0.0073 / +0.0123 | -0.0064 |
+| `submission_C2_exp169_swinb080.csv` | exp169 + guard + Swin-B >= 0.80 | +0.0085 [+0.0008, +0.0165] | +0.0079 / +0.0094 | -0.0136 |
+| `submission_C3_exp169_swinb090.csv` | exp169 + guard + Swin-B >= 0.90 | +0.0045 [+0.0006, +0.0088] | +0.0020 / +0.0074 | -0.0009 |
+
+Paired photo bootstrap, 5,000 draws; P(gain > 0) is 0.98-0.99 for all three under pooled truth.
+Swin-B was run on the test photographs on this CPU with the same forward pass as its
+validation caches (a validation photograph reproduces its stored candidates exactly). C3 costs
+almost nothing if the board turns out not to be pooled. C1 is the strongest if it is. B was chosen
+from many settings, so C1's in-sample gain is somewhat optimistic.
+
 ## Submit these three (in this order; all non-overlapping, 180 photographs, SHA256 in `SHA256SUMS`)
 
 | file | what it is | pooled (val) | per annotator (val) | expected public if pooled / if per annotator |

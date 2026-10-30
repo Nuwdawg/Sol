@@ -16,6 +16,14 @@ The final submission is exp169's rule with exp199's large-filament guard:
               (`experiments/exp_199_swinb_votes/src/guard.py`); CPU, one minute;
   6. check    compare the result with the submitted file (`final_decision/results/`).
 
+exp200's union files add Swin-B's confident detections that the rule's instances leave uncovered
+(`final_decision/results/exp200/README.md`):
+
+  7. swinb    Swin-B (exp190b epoch 32) full-view candidates on the 180 test photographs
+              (`experiments/exp_200_test_truth/src/swinb_infer.py`); CPU, about 4 h on 4 cores;
+  8. union    rule B (YOLO weight 0, exponent 0.5, threshold 0.78) plus the guard, then the three
+              union files, each compared with the stored one (`union_test.py`); CPU, about 20 min.
+
 Every stage stops on a failed check; none of them changes a model.
 
     python reproduce/run.py [--data /path/to/MAGFiLO_1.0_Kaggle_2026] --work /path/to/work [--stages ...]
@@ -33,7 +41,11 @@ from pathlib import Path
 ROOT = Path(__file__).resolve().parents[1]
 ART = ROOT / "reproduce" / "artefacts"
 SUBMITTED = ROOT / "final_decision" / "results" / "submission_exp169_guarded.csv"
-STAGES = ("weights", "m2f", "yolo", "rule", "guard", "check")
+STAGES = ("weights", "m2f", "yolo", "rule", "guard", "check", "swinb", "union")
+EXP200 = ROOT / "final_decision" / "results" / "exp200"
+UNION = {"submission_C1_B_swinb090.csv": ("B", 0.90),             # file: (base file, Swin-B threshold)
+         "submission_C2_exp169_swinb080.csv": ("exp169", 0.80),
+         "submission_C3_exp169_swinb090.csv": ("exp169", 0.90)}
 LIMIT = 0          # --limit N: smoke test of the GPU stages on N photographs (rule/guard/check need all 180)
 YOLO = {"yolov8l": ("yolov8l_exp097_stage2_best.pt", ART / "exp098_yolov8l_val_pool.json"),
         "yolo11m": ("yolo11m_exp002_best.pt", ART / "exp002_yolo11m_val_pool.json")}
@@ -184,6 +196,39 @@ def stage_check(work: Path, _) -> None:
         report.update(compare_csv(ours, SUBMITTED))
     print("CHECK", json.dumps(report), flush=True)
     (work / "final" / "check.json").write_text(json.dumps(report, indent=1))
+
+
+def stage_swinb(work: Path, data: dict) -> None:
+    (work / "swinb").mkdir(parents=True, exist_ok=True)
+    shards = 2
+    threads = str(max(1, (os.cpu_count() or 2) // shards))
+    wait([python("experiments.exp_200_test_truth.src.swinb_infer",
+                 "--weights", str(work / "weights" / "mask2former_swinb_exp190b_e032.pt"),
+                 "--images", str(data["test"]), "--output", str(work / "swinb" / f"shard{i}.jsonl"),
+                 "--shard", str(i), "--shards", str(shards), "--threads", threads) for i in range(shards)], "Swin-B")
+
+
+def stage_union(work: Path, _) -> None:
+    from experiments.exp_152_rule_and_emit.src.emit import compare_csv
+    out = work / "union"
+    wait([python("experiments.exp_200_test_truth.src.emit_test",
+                 "--test-cache", str(work / "m2f" / "e040_test_cache.json"),
+                 "--yolo", f"yolov8l={work / 'yolo_yolov8l' / 'test_pool.json'}",
+                 "--yolo", f"yolo11m={work / 'yolo_yolo11m' / 'test_pool.json'}",
+                 "--base-csv", str(work / "rule" / "parity_deployed.csv"),
+                 "--expect-csv", str(work / "rule" / "submission_joint.csv"),
+                 "--ingredients", str(out / "test_ingredients.pkl"),
+                 "--point", "0:0.5:0.78:100", "--output", str(out))], "rule B")
+    bases = {"B": out / "exp169_w0_e0.5_c0.78_a100_guarded.csv", "exp169": work / "final" / "submission_guarded.csv"}
+    shards = sorted((work / "swinb").glob("shard*.jsonl"))
+    for name, (base, tau) in UNION.items():
+        wait([python("experiments.exp_200_test_truth.src.union_test", "--base", str(bases[base]), "--tau", str(tau),
+                     "--swinb", *map(str, shards), "--output", str(out / name))], name)
+        exact = sha256(out / name) == sha256(EXP200 / name)
+        report = dict(file=name, identical=exact)
+        if not exact:
+            report.update(compare_csv(out / name, EXP200 / name))
+        print("UNION_CHECK", json.dumps(report), flush=True)
 
 
 def main() -> None:

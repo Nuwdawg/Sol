@@ -69,6 +69,64 @@
      "sha256": "d9c6641edb1fec427212d0c35b008c923361e9fcf5004905a69c883714d93389"
     }
    ]
+  },
+  "mask2former_swinb_exp190b_e032.pt": {
+   "bytes": 431876767,
+   "sha256": "ac9583775f51fbc3ed29f10a75ce19b1cde26b7525cc74041b0a7f51e16498e6",
+   "what": "Mask2Former Swin-B, exp190b epoch 32 (validation PQ 0.4698); exp200's union adds its uncovered confident detections",
+   "origin": "Kaggle kernel cosmicwitness/sol-exp190b-session-long-t4, output longb/model_e032.pt",
+   "parts": [
+    {
+     "file": "mask2former_swinb_exp190b_e032.pt.part00",
+     "bytes": 47185920,
+     "sha256": "a5edf29a6f0e41b361f786a629ac6cd987fe1a08b3044cbf3fb64b67d012b68f"
+    },
+    {
+     "file": "mask2former_swinb_exp190b_e032.pt.part01",
+     "bytes": 47185920,
+     "sha256": "06a8f2836960c36c39ac09c15b407bde0a3bc7b68ec7fa9f42305ae61075ac0c"
+    },
+    {
+     "file": "mask2former_swinb_exp190b_e032.pt.part02",
+     "bytes": 47185920,
+     "sha256": "e14c0759520890d4b284580391143daaacaeb8be70415b8117f67a5d2f17e989"
+    },
+    {
+     "file": "mask2former_swinb_exp190b_e032.pt.part03",
+     "bytes": 47185920,
+     "sha256": "1baa88cb28863744ed06f48577c0103bb9a78828fa2e01a0a74ebc256245ed7f"
+    },
+    {
+     "file": "mask2former_swinb_exp190b_e032.pt.part04",
+     "bytes": 47185920,
+     "sha256": "28510928c8e8d93517190e468d8152fcd83a4c1b36cab41954b27a3025d86a1e"
+    },
+    {
+     "file": "mask2former_swinb_exp190b_e032.pt.part05",
+     "bytes": 47185920,
+     "sha256": "aa607969babbb9b4de6ea2fa42e3e89f4adf93eaf0d90de7f941e23b0c093510"
+    },
+    {
+     "file": "mask2former_swinb_exp190b_e032.pt.part06",
+     "bytes": 47185920,
+     "sha256": "dd2a36016e663b99cbdf99a10bea49284b0b96adb92c9e56996b4a038269a3af"
+    },
+    {
+     "file": "mask2former_swinb_exp190b_e032.pt.part07",
+     "bytes": 47185920,
+     "sha256": "11272bc35af364b1bd5b2f85696c1e127963ee6c5a8809cf0ba49088b5c3b742"
+    },
+    {
+     "file": "mask2former_swinb_exp190b_e032.pt.part08",
+     "bytes": 47185920,
+     "sha256": "4923e446e8879c6abc17cbd5c250e42eac1ebcd791667154aa08c81e6267a7b0"
+    },
+    {
+     "file": "mask2former_swinb_exp190b_e032.pt.part09",
+     "bytes": 7203487,
+     "sha256": "52e38f84adbc15488484b508366ae2cb681d4ccc8056eecbcb5cec720a9d69c1"
+    }
+   ]
   }
  }
 }

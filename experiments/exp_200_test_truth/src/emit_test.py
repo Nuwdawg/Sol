@@ -13,6 +13,7 @@ constants moved (CLAUDE.md section 5). Each setting is written plain and with ex
 from __future__ import annotations
 
 import argparse
+import hashlib
 import json
 import pickle
 import subprocess
@@ -57,6 +58,8 @@ def main() -> None:
     parser.add_argument("--base-csv", type=Path, required=True, help="exp139's submitted file, the guard's base")
     parser.add_argument("--ingredients", type=Path, required=True)
     parser.add_argument("--point", action="append", default=[], help="weight:exponent:conf:min_area")
+    parser.add_argument("--expect-csv", type=Path, default=None,
+                        help="the file exp169's setting must rebuild byte for byte (default: the submitted one)")
     parser.add_argument("--output", type=Path, required=True)
     args = parser.parse_args()
     args.output.mkdir(parents=True, exist_ok=True)
@@ -65,8 +68,9 @@ def main() -> None:
         raise SystemExit(f"expected 180 test photographs, got {len(ingredients)}")
     parity = write_csv(entries(ingredients, 4.0, 0.3), 0.68, 100, args.output / "exp169_rebuilt.csv")
     print("PARITY", json.dumps(parity), flush=True)
-    if parity["sha256"] != EXP169_SHA256:
-        raise SystemExit("exp169's operating point does not rebuild the submitted file")
+    expected = hashlib.sha256(args.expect_csv.read_bytes()).hexdigest().upper() if args.expect_csv else EXP169_SHA256
+    if parity["sha256"] != expected:
+        raise SystemExit("exp169's operating point does not rebuild the expected file")
     for point in args.point:
         weight, exponent, conf, area = (float(v) for v in point.split(":"))
         area = int(area)
