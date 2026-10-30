@@ -63,12 +63,15 @@ Optional: `submission_C2_exp169_swinb080.csv`; `submission_A_conf064_guarded.csv
 | probe | 1,672 | 0.4158 | 0.4555 |
 | A | 1,255 | 0.4184 | 0.4827 |
 | B | 1,335 | 0.4202 | 0.4806 |
-| C1 | see `SHA256SUMS` | 0.4235 | 0.4825 |
-| C2 | | 0.4224 | 0.4754 |
-| C3 | | 0.4184 | 0.4881 |
+| C1 (B + 18 Swin-B filaments) | 1,353 | 0.4235 | 0.4825 |
+| C2 (exp169 + 235 Swin-B filaments) | 1,385 | 0.4224 | 0.4754 |
+| C3 (exp169 + 68 Swin-B filaments) | 1,218 | 0.4184 | 0.4881 |
 
 Review sheets (largest changes at native resolution; red = added, blue = removed):
-`review_probe.jpg`, `review_A.jpg`, `review_B.jpg`, `review_C1.jpg`, `review_C3.jpg`.
+`review_probe.jpg`, `review_A.jpg`, `review_B.jpg`, `review_C1.jpg`, `review_C3.jpg`. The
+Swin-B additions in C1 and C3 are dark, elongated filaments on the disk, some beside active regions.
+None is removed from its base. One exception: C1's largest addition but one (3,817 px,
+20150619133554Bh) runs over the limb. It is the structure B dropped from exp169.
 
 ## How to choose the two final selections
 
