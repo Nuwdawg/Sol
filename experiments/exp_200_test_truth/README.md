@@ -37,6 +37,16 @@ more. So:
 - the union files (C1-C3) and the re-tuned files (probe, A, B) do not gain per record
   (C3 -0.0009, the others -0.006 to -0.033). exp169 + guard stays the final file.
 
+Two per-record checks of exp169's rule made afterwards (scratch analyses on the stored validation
+predictions; no file built):
+- Pixel-vote fraction of the masks, scores and threshold unchanged: 0.3 / 0.4 / **0.5** / 0.6 / 0.7
+  give 0.48154 / 0.48718 / **0.48895** / 0.48830 / 0.48518. exp169's majority vote is the best.
+- Value of each instance per record (IoU sum over matched records minus PQ/2 per record) by score
+  and area: every score band from 0.68 up is positive for small (< 600 px), medium and large
+  instances, and every band below 0.68 is negative for all three. The band 0.60-0.68 holds the
+  Mask2Former instances without YOLO support (match rate per record 0.17-0.34). A size-dependent
+  threshold has nothing to gain.
+
 Everything below is kept as the record of what was measured under the refuted hypothesis.
 
 ---
