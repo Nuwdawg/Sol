@@ -1,0 +1,112 @@
+[
+ {
+  "pool": "yolov8l",
+  "band": [
+   0.7,
+   0.8
+  ],
+  "n": 2,
+  "pooled_rate": 0.0,
+  "record_rate": 0.0,
+  "mean_iou": 0.0
+ },
+ {
+  "pool": "yolov8l",
+  "band": [
+   0.6,
+   0.7
+  ],
+  "n": 2,
+  "pooled_rate": 0.5,
+  "record_rate": 0.5,
+  "mean_iou": 0.7713567839195979
+ },
+ {
+  "pool": "yolov8l",
+  "band": [
+   0.4,
+   0.5
+  ],
+  "n": 8,
+  "pooled_rate": 0.375,
+  "record_rate": 0.3333333333333333,
+  "mean_iou": 0.6998487391759687
+ },
+ {
+  "pool": "yolov8l",
+  "band": [
+   0.25,
+   0.4
+  ],
+  "n": 73,
+  "pooled_rate": 0.3835616438356164,
+  "record_rate": 0.25,
+  "mean_iou": 0.6804699017569723
+ },
+ {
+  "pool": "yolo11m",
+  "band": [
+   0.8,
+   0.9
+  ],
+  "n": 1,
+  "pooled_rate": 0.0,
+  "record_rate": 0.0,
+  "mean_iou": 0.0
+ },
+ {
+  "pool": "yolo11m",
+  "band": [
+   0.7,
+   0.8
+  ],
+  "n": 2,
+  "pooled_rate": 0.0,
+  "record_rate": 0.0,
+  "mean_iou": 0.0
+ },
+ {
+  "pool": "yolo11m",
+  "band": [
+   0.6,
+   0.7
+  ],
+  "n": 5,
+  "pooled_rate": 0.6,
+  "record_rate": 0.3333333333333333,
+  "mean_iou": 0.6546678966598299
+ },
+ {
+  "pool": "yolo11m",
+  "band": [
+   0.5,
+   0.6
+  ],
+  "n": 13,
+  "pooled_rate": 0.23076923076923078,
+  "record_rate": 0.16666666666666666,
+  "mean_iou": 0.6131156793134395
+ },
+ {
+  "pool": "yolo11m",
+  "band": [
+   0.4,
+   0.5
+  ],
+  "n": 51,
+  "pooled_rate": 0.37254901960784315,
+  "record_rate": 0.25609756097560976,
+  "mean_iou": 0.6534867900650237
+ },
+ {
+  "pool": "yolo11m",
+  "band": [
+   0.25,
+   0.4
+  ],
+  "n": 163,
+  "pooled_rate": 0.25153374233128833,
+  "record_rate": 0.17228464419475656,
+  "mean_iou": 0.6716894353480374
+ }
+]

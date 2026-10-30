@@ -1,5 +1,12 @@
 # Results of the final experiment (run 2026-10-29, CPU only)
 
+> **Update 2026-10-30: see `exp200/README.md` first.** The 0.07 gap between validation and the
+> leaderboard is explained. The board behaves as if each photograph's truth holds every annotator's
+> filaments, matched one-to-one, and that puts seven past submissions on their public scores. Three
+> new files are there to submit: a probe that decides the question, and two candidates
+> (`submission_A_conf064_guarded.csv`, `submission_B_no_yolo_veto_guarded.csv`) worth about +0.005
+> if the board is pooled.
+
 ## Primary: Swin-B e32 as a second voter in exp169's rule. Killed.
 
 Code: `experiments/exp_199_swinb_votes/src/votes.py`. Inputs: the cached validation predictions

@@ -1,0 +1,7463 @@
+{
+ "exp169": {
+  "pooled": 0.41379054577002566,
+  "record": 0.48894859995182655
+ },
+ "best_pooled": {
+  "key": {
+   "weight": 8.0,
+   "exponent": 0.3,
+   "conf": 0.5,
+   "min_area": 100
+  },
+  "pooled": 0.4219649878942591,
+  "record": 0.4778584720260728
+ },
+ "cross_validated": {
+  "pooled_choice": 0.41468368234491265,
+  "exp169": 0.41379054577002566,
+  "gain": 0.0008931365748869879
+ },
+ "table": [
+  {
+   "weight": 0.0,
+   "exponent": 0.3,
+   "conf": 0.3,
+   "min_area": 40,
+   "pooled": 0.3881581336533142,
+   "record": 0.4070366514551833
+  },
+  {
+   "weight": 0.0,
+   "exponent": 0.3,
+   "conf": 0.32,
+   "min_area": 40,
+   "pooled": 0.39049099473796783,
+   "record": 0.410801995185787
+  },
+  {
+   "weight": 0.0,
+   "exponent": 0.3,
+   "conf": 0.34,
+   "min_area": 40,
+   "pooled": 0.3926701511454919,
+   "record": 0.4152744403463381
+  },
+  {
+   "weight": 0.0,
+   "exponent": 0.3,
+   "conf": 0.36,
+   "min_area": 40,
+   "pooled": 0.39429979369911977,
+   "record": 0.41847765341044674
+  },
+  {
+   "weight": 0.0,
+   "exponent": 0.3,
+   "conf": 0.38,
+   "min_area": 40,
+   "pooled": 0.39638543939878357,
+   "record": 0.42223093086570423
+  },
+  {
+   "weight": 0.0,
+   "exponent": 0.3,
+   "conf": 0.4,
+   "min_area": 40,
+   "pooled": 0.39921145776399725,
+   "record": 0.42674581318348576
+  },
+  {
+   "weight": 0.0,
+   "exponent": 0.3,
+   "conf": 0.42,
+   "min_area": 40,
+   "pooled": 0.4003166286241287,
+   "record": 0.4285971109938978
+  },
+  {
+   "weight": 0.0,
+   "exponent": 0.3,
+   "conf": 0.44,
+   "min_area": 40,
+   "pooled": 0.4013128488391315,
+   "record": 0.4307369939676417
+  },
+  {
+   "weight": 0.0,
+   "exponent": 0.3,
+   "conf": 0.46,
+   "min_area": 40,
+   "pooled": 0.40322226860596583,
+   "record": 0.4349218404331809
+  },
+  {
+   "weight": 0.0,
+   "exponent": 0.3,
+   "conf": 0.48,
+   "min_area": 40,
+   "pooled": 0.40541283851387655,
+   "record": 0.4390381476347085
+  },
+  {
+   "weight": 0.0,
+   "exponent": 0.3,
+   "conf": 0.5,
+   "min_area": 40,
+   "pooled": 0.40741665760223345,
+   "record": 0.441290425599579
+  },
+  {
+   "weight": 0.0,
+   "exponent": 0.3,
+   "conf": 0.52,
+   "min_area": 40,
+   "pooled": 0.40933122060696203,
+   "record": 0.4448099901086154
+  },
+  {
+   "weight": 0.0,
+   "exponent": 0.3,
+   "conf": 0.54,
+   "min_area": 40,
+   "pooled": 0.4121342045463341,
+   "record": 0.4493715341938212
+  },
+  {
+   "weight": 0.0,
+   "exponent": 0.3,
+   "conf": 0.56,
+   "min_area": 40,
+   "pooled": 0.41242096963095515,
+   "record": 0.45168487313593975
+  },
+  {
+   "weight": 0.0,
+   "exponent": 0.3,
+   "conf": 0.58,
+   "min_area": 40,
+   "pooled": 0.4144319646054925,
+   "record": 0.4543336079301669
+  },
+  {
+   "weight": 0.0,
+   "exponent": 0.3,
+   "conf": 0.6,
+   "min_area": 40,
+   "pooled": 0.41493609348883675,
+   "record": 0.4553528635598169
+  },
+  {
+   "weight": 0.0,
+   "exponent": 0.3,
+   "conf": 0.62,
+   "min_area": 40,
+   "pooled": 0.41591003348931943,
+   "record": 0.45934702221133134
+  },
+  {
+   "weight": 0.0,
+   "exponent": 0.3,
+   "conf": 0.64,
+   "min_area": 40,
+   "pooled": 0.4179089772436271,
+   "record": 0.46309292144050984
+  },
+  {
+   "weight": 0.0,
+   "exponent": 0.3,
+   "conf": 0.66,
+   "min_area": 40,
+   "pooled": 0.41831479398129867,
+   "record": 0.4647260601177131
+  },
+  {
+   "weight": 0.0,
+   "exponent": 0.3,
+   "conf": 0.68,
+   "min_area": 40,
+   "pooled": 0.416852145550227,
+   "record": 0.4642485755304974
+  },
+  {
+   "weight": 0.0,
+   "exponent": 0.3,
+   "conf": 0.7,
+   "min_area": 40,
+   "pooled": 0.41797986954649513,
+   "record": 0.4679662168023085
+  },
+  {
+   "weight": 0.0,
+   "exponent": 0.3,
+   "conf": 0.72,
+   "min_area": 40,
+   "pooled": 0.4193369106571983,
+   "record": 0.47224590096260627
+  },
+  {
+   "weight": 0.0,
+   "exponent": 0.3,
+   "conf": 0.74,
+   "min_area": 40,
+   "pooled": 0.41961117049463176,
+   "record": 0.4747471214731921
+  },
+  {
+   "weight": 0.0,
+   "exponent": 0.3,
+   "conf": 0.76,
+   "min_area": 40,
+   "pooled": 0.4209871136037541,
+   "record": 0.4779619248002957
+  },
+  {
+   "weight": 0.0,
+   "exponent": 0.3,
+   "conf": 0.78,
+   "min_area": 40,
+   "pooled": 0.4158397401353838,
+   "record": 0.4768369731893817
+  },
+  {
+   "weight": 0.0,
+   "exponent": 0.3,
+   "conf": 0.8,
+   "min_area": 40,
+   "pooled": 0.41165008491630445,
+   "record": 0.47682499796114447
+  },
+  {
+   "weight": 0.0,
+   "exponent": 0.3,
+   "conf": 0.82,
+   "min_area": 40,
+   "pooled": 0.4100560180395718,
+   "record": 0.47932052615179155
+  },
+  {
+   "weight": 0.0,
+   "exponent": 0.3,
+   "conf": 0.84,
+   "min_area": 40,
+   "pooled": 0.4034135909785599,
+   "record": 0.4793568787436526
+  },
+  {
+   "weight": 0.0,
+   "exponent": 0.3,
+   "conf": 0.86,
+   "min_area": 40,
+   "pooled": 0.39625251847628873,
+   "record": 0.47631403752286855
+  },
+  {
+   "weight": 0.0,
+   "exponent": 0.3,
+   "conf": 0.88,
+   "min_area": 40,
+   "pooled": 0.386792825234445,
+   "record": 0.47280305960027597
+  },
+  {
+   "weight": 0.0,
+   "exponent": 0.3,
+   "conf": 0.9,
+   "min_area": 40,
+   "pooled": 0.37293579832626245,
+   "record": 0.4642972217880339
+  },
+  {
+   "weight": 0.0,
+   "exponent": 0.5,
+   "conf": 0.3,
+   "min_area": 100,
+   "pooled": 0.3894459084884677,
+   "record": 0.4080649646038275
+  },
+  {
+   "weight": 0.0,
+   "exponent": 0.5,
+   "conf": 0.32,
+   "min_area": 100,
+   "pooled": 0.3925893993522705,
+   "record": 0.4132069236047999
+  },
+  {
+   "weight": 0.0,
+   "exponent": 0.5,
+   "conf": 0.34,
+   "min_area": 100,
+   "pooled": 0.39373815008297436,
+   "record": 0.4153757920472183
+  },
+  {
+   "weight": 0.0,
+   "exponent": 0.5,
+   "conf": 0.36,
+   "min_area": 100,
+   "pooled": 0.39459126060605804,
+   "record": 0.4188379932222121
+  },
+  {
+   "weight": 0.0,
+   "exponent": 0.5,
+   "conf": 0.38,
+   "min_area": 100,
+   "pooled": 0.39630020258148957,
+   "record": 0.4222885391064863
+  },
+  {
+   "weight": 0.0,
+   "exponent": 0.5,
+   "conf": 0.4,
+   "min_area": 100,
+   "pooled": 0.3986921283013822,
+   "record": 0.4265844542774464
+  },
+  {
+   "weight": 0.0,
+   "exponent": 0.5,
+   "conf": 0.42,
+   "min_area": 100,
+   "pooled": 0.3999280287807011,
+   "record": 0.42867099787999935
+  },
+  {
+   "weight": 0.0,
+   "exponent": 0.5,
+   "conf": 0.44,
+   "min_area": 100,
+   "pooled": 0.4018561671275747,
+   "record": 0.4309153486542402
+  },
+  {
+   "weight": 0.0,
+   "exponent": 0.5,
+   "conf": 0.46,
+   "min_area": 100,
+   "pooled": 0.4031076771709069,
+   "record": 0.43377193505323786
+  },
+  {
+   "weight": 0.0,
+   "exponent": 0.5,
+   "conf": 0.48,
+   "min_area": 100,
+   "pooled": 0.4051296660221723,
+   "record": 0.43743012195606357
+  },
+  {
+   "weight": 0.0,
+   "exponent": 0.5,
+   "conf": 0.5,
+   "min_area": 100,
+   "pooled": 0.4075279634916862,
+   "record": 0.44141954473765493
+  },
+  {
+   "weight": 0.0,
+   "exponent": 0.5,
+   "conf": 0.52,
+   "min_area": 100,
+   "pooled": 0.408711113395631,
+   "record": 0.44376000961847395
+  },
+  {
+   "weight": 0.0,
+   "exponent": 0.5,
+   "conf": 0.54,
+   "min_area": 100,
+   "pooled": 0.4106399081278486,
+   "record": 0.4474960650045624
+  },
+  {
+   "weight": 0.0,
+   "exponent": 0.5,
+   "conf": 0.56,
+   "min_area": 100,
+   "pooled": 0.41342254498071707,
+   "record": 0.4518073115278106
+  },
+  {
+   "weight": 0.0,
+   "exponent": 0.5,
+   "conf": 0.58,
+   "min_area": 100,
+   "pooled": 0.41309517047369837,
+   "record": 0.4519759190378152
+  },
+  {
+   "weight": 0.0,
+   "exponent": 0.5,
+   "conf": 0.6,
+   "min_area": 100,
+   "pooled": 0.41626346164162153,
+   "record": 0.45703785771206124
+  },
+  {
+   "weight": 0.0,
+   "exponent": 0.5,
+   "conf": 0.62,
+   "min_area": 100,
+   "pooled": 0.4145679224698922,
+   "record": 0.45654471296125476
+  },
+  {
+   "weight": 0.0,
+   "exponent": 0.5,
+   "conf": 0.64,
+   "min_area": 100,
+   "pooled": 0.41625952262932464,
+   "record": 0.45984150687191505
+  },
+  {
+   "weight": 0.0,
+   "exponent": 0.5,
+   "conf": 0.66,
+   "min_area": 100,
+   "pooled": 0.4178518527064529,
+   "record": 0.4632802756194366
+  },
+  {
+   "weight": 0.0,
+   "exponent": 0.5,
+   "conf": 0.68,
+   "min_area": 100,
+   "pooled": 0.4183275850184348,
+   "record": 0.46516923808170224
+  },
+  {
+   "weight": 0.0,
+   "exponent": 0.5,
+   "conf": 0.7,
+   "min_area": 100,
+   "pooled": 0.41923231892171564,
+   "record": 0.46872028337707045
+  },
+  {
+   "weight": 0.0,
+   "exponent": 0.5,
+   "conf": 0.72,
+   "min_area": 100,
+   "pooled": 0.4191182774797428,
+   "record": 0.4709842115701744
+  },
+  {
+   "weight": 0.0,
+   "exponent": 0.5,
+   "conf": 0.74,
+   "min_area": 100,
+   "pooled": 0.4194209092959517,
+   "record": 0.4740195812576807
+  },
+  {
+   "weight": 0.0,
+   "exponent": 0.5,
+   "conf": 0.76,
+   "min_area": 100,
+   "pooled": 0.4196043321259152,
+   "record": 0.4763132057821033
+  },
+  {
+   "weight": 0.0,
+   "exponent": 0.5,
+   "conf": 0.78,
+   "min_area": 100,
+   "pooled": 0.42024084277457896,
+   "record": 0.48061418853137045
+  },
+  {
+   "weight": 0.0,
+   "exponent": 0.5,
+   "conf": 0.8,
+   "min_area": 100,
+   "pooled": 0.414388282536561,
+   "record": 0.4801110995765858
+  },
+  {
+   "weight": 0.0,
+   "exponent": 0.5,
+   "conf": 0.82,
+   "min_area": 100,
+   "pooled": 0.4097967484462753,
+   "record": 0.47865403887026764
+  },
+  {
+   "weight": 0.0,
+   "exponent": 0.5,
+   "conf": 0.84,
+   "min_area": 100,
+   "pooled": 0.406491828998325,
+   "record": 0.48093056639357346
+  },
+  {
+   "weight": 0.0,
+   "exponent": 0.5,
+   "conf": 0.86,
+   "min_area": 100,
+   "pooled": 0.3976792678767183,
+   "record": 0.4760560028503796
+  },
+  {
+   "weight": 0.0,
+   "exponent": 0.5,
+   "conf": 0.88,
+   "min_area": 100,
+   "pooled": 0.39034614186450955,
+   "record": 0.4745292460590104
+  },
+  {
+   "weight": 0.0,
+   "exponent": 0.5,
+   "conf": 0.9,
+   "min_area": 100,
+   "pooled": 0.37612007370637873,
+   "record": 0.4675591089151729
+  },
+  {
+   "weight": 1.0,
+   "exponent": 0.3,
+   "conf": 0.3,
+   "min_area": 40,
+   "pooled": 0.3925455985379659,
+   "record": 0.41448812812017094
+  },
+  {
+   "weight": 1.0,
+   "exponent": 0.3,
+   "conf": 0.32,
+   "min_area": 40,
+   "pooled": 0.39368850325012955,
+   "record": 0.4168099087686713
+  },
+  {
+   "weight": 1.0,
+   "exponent": 0.3,
+   "conf": 0.34,
+   "min_area": 40,
+   "pooled": 0.39693318871647676,
+   "record": 0.42178822956614725
+  },
+  {
+   "weight": 1.0,
+   "exponent": 0.3,
+   "conf": 0.36,
+   "min_area": 40,
+   "pooled": 0.39936505042453396,
+   "record": 0.42546929317518634
+  },
+  {
+   "weight": 1.0,
+   "exponent": 0.3,
+   "conf": 0.38,
+   "min_area": 40,
+   "pooled": 0.40010566135094217,
+   "record": 0.42758615955476503
+  },
+  {
+   "weight": 1.0,
+   "exponent": 0.3,
+   "conf": 0.4,
+   "min_area": 40,
+   "pooled": 0.40201610535195786,
+   "record": 0.4317900069013371
+  },
+  {
+   "weight": 1.0,
+   "exponent": 0.3,
+   "conf": 0.42,
+   "min_area": 40,
+   "pooled": 0.4046677933245929,
+   "record": 0.43629502463190245
+  },
+  {
+   "weight": 1.0,
+   "exponent": 0.3,
+   "conf": 0.44,
+   "min_area": 40,
+   "pooled": 0.4065417216502431,
+   "record": 0.44001323369085027
+  },
+  {
+   "weight": 1.0,
+   "exponent": 0.3,
+   "conf": 0.46,
+   "min_area": 40,
+   "pooled": 0.40838524377203317,
+   "record": 0.4425520957924857
+  },
+  {
+   "weight": 1.0,
+   "exponent": 0.3,
+   "conf": 0.48,
+   "min_area": 40,
+   "pooled": 0.41054876349185726,
+   "record": 0.44531714543133866
+  },
+  {
+   "weight": 1.0,
+   "exponent": 0.3,
+   "conf": 0.5,
+   "min_area": 40,
+   "pooled": 0.4120087101092945,
+   "record": 0.4493487711981505
+  },
+  {
+   "weight": 1.0,
+   "exponent": 0.3,
+   "conf": 0.52,
+   "min_area": 40,
+   "pooled": 0.41393273190847496,
+   "record": 0.4526789875731896
+  },
+  {
+   "weight": 1.0,
+   "exponent": 0.3,
+   "conf": 0.54,
+   "min_area": 40,
+   "pooled": 0.4172711460924498,
+   "record": 0.45737193614617155
+  },
+  {
+   "weight": 1.0,
+   "exponent": 0.3,
+   "conf": 0.56,
+   "min_area": 40,
+   "pooled": 0.41696799657455047,
+   "record": 0.45956749659661933
+  },
+  {
+   "weight": 1.0,
+   "exponent": 0.3,
+   "conf": 0.58,
+   "min_area": 40,
+   "pooled": 0.41821684171467965,
+   "record": 0.46220820351767195
+  },
+  {
+   "weight": 1.0,
+   "exponent": 0.3,
+   "conf": 0.6,
+   "min_area": 40,
+   "pooled": 0.4195374654780877,
+   "record": 0.4649541977848416
+  },
+  {
+   "weight": 1.0,
+   "exponent": 0.3,
+   "conf": 0.62,
+   "min_area": 40,
+   "pooled": 0.4201056436957152,
+   "record": 0.4663230567211389
+  },
+  {
+   "weight": 1.0,
+   "exponent": 0.3,
+   "conf": 0.64,
+   "min_area": 40,
+   "pooled": 0.4190663827748018,
+   "record": 0.4679594197029015
+  },
+  {
+   "weight": 1.0,
+   "exponent": 0.3,
+   "conf": 0.66,
+   "min_area": 40,
+   "pooled": 0.41951134458674866,
+   "record": 0.47110007129394216
+  },
+  {
+   "weight": 1.0,
+   "exponent": 0.3,
+   "conf": 0.68,
+   "min_area": 40,
+   "pooled": 0.42089837034428795,
+   "record": 0.4751186565150366
+  },
+  {
+   "weight": 1.0,
+   "exponent": 0.3,
+   "conf": 0.7,
+   "min_area": 40,
+   "pooled": 0.42001116974369723,
+   "record": 0.4781374972939832
+  },
+  {
+   "weight": 1.0,
+   "exponent": 0.3,
+   "conf": 0.72,
+   "min_area": 40,
+   "pooled": 0.42058761268305617,
+   "record": 0.4815874786014785
+  },
+  {
+   "weight": 1.0,
+   "exponent": 0.3,
+   "conf": 0.74,
+   "min_area": 40,
+   "pooled": 0.4174670424784971,
+   "record": 0.4820929403179039
+  },
+  {
+   "weight": 1.0,
+   "exponent": 0.3,
+   "conf": 0.76,
+   "min_area": 40,
+   "pooled": 0.41487888059333233,
+   "record": 0.4846270514359675
+  },
+  {
+   "weight": 1.0,
+   "exponent": 0.3,
+   "conf": 0.78,
+   "min_area": 40,
+   "pooled": 0.4089285397756855,
+   "record": 0.4829402066232535
+  },
+  {
+   "weight": 1.0,
+   "exponent": 0.3,
+   "conf": 0.8,
+   "min_area": 40,
+   "pooled": 0.3986527667732566,
+   "record": 0.4796407795173008
+  },
+  {
+   "weight": 1.0,
+   "exponent": 0.3,
+   "conf": 0.82,
+   "min_area": 40,
+   "pooled": 0.3928940063126206,
+   "record": 0.47865447728422006
+  },
+  {
+   "weight": 1.0,
+   "exponent": 0.3,
+   "conf": 0.84,
+   "min_area": 40,
+   "pooled": 0.3818719715703057,
+   "record": 0.4711738686806618
+  },
+  {
+   "weight": 1.0,
+   "exponent": 0.3,
+   "conf": 0.86,
+   "min_area": 40,
+   "pooled": 0.3669214127004752,
+   "record": 0.46225434170225316
+  },
+  {
+   "weight": 1.0,
+   "exponent": 0.3,
+   "conf": 0.88,
+   "min_area": 40,
+   "pooled": 0.34331161928156867,
+   "record": 0.44408101038309117
+  },
+  {
+   "weight": 1.0,
+   "exponent": 0.3,
+   "conf": 0.9,
+   "min_area": 40,
+   "pooled": 0.3216181877793452,
+   "record": 0.4287474166071151
+  },
+  {
+   "weight": 1.0,
+   "exponent": 0.5,
+   "conf": 0.3,
+   "min_area": 100,
+   "pooled": 0.3931978292621539,
+   "record": 0.4144172543710705
+  },
+  {
+   "weight": 1.0,
+   "exponent": 0.5,
+   "conf": 0.32,
+   "min_area": 100,
+   "pooled": 0.39425887714349295,
+   "record": 0.4167899967425501
+  },
+  {
+   "weight": 1.0,
+   "exponent": 0.5,
+   "conf": 0.34,
+   "min_area": 100,
+   "pooled": 0.3956748772495427,
+   "record": 0.4204633346884476
+  },
+  {
+   "weight": 1.0,
+   "exponent": 0.5,
+   "conf": 0.36,
+   "min_area": 100,
+   "pooled": 0.3981385805868833,
+   "record": 0.42439243299682217
+  },
+  {
+   "weight": 1.0,
+   "exponent": 0.5,
+   "conf": 0.38,
+   "min_area": 100,
+   "pooled": 0.3991300877815377,
+   "record": 0.4276229025306594
+  },
+  {
+   "weight": 1.0,
+   "exponent": 0.5,
+   "conf": 0.4,
+   "min_area": 100,
+   "pooled": 0.400889779551316,
+   "record": 0.43012054628967644
+  },
+  {
+   "weight": 1.0,
+   "exponent": 0.5,
+   "conf": 0.42,
+   "min_area": 100,
+   "pooled": 0.40290585177003246,
+   "record": 0.4332813836446667
+  },
+  {
+   "weight": 1.0,
+   "exponent": 0.5,
+   "conf": 0.44,
+   "min_area": 100,
+   "pooled": 0.4044164683305527,
+   "record": 0.4360763484582082
+  },
+  {
+   "weight": 1.0,
+   "exponent": 0.5,
+   "conf": 0.46,
+   "min_area": 100,
+   "pooled": 0.40701713912402054,
+   "record": 0.44055412358586
+  },
+  {
+   "weight": 1.0,
+   "exponent": 0.5,
+   "conf": 0.48,
+   "min_area": 100,
+   "pooled": 0.40887349535628936,
+   "record": 0.4432517459131305
+  },
+  {
+   "weight": 1.0,
+   "exponent": 0.5,
+   "conf": 0.5,
+   "min_area": 100,
+   "pooled": 0.41125013262153254,
+   "record": 0.44760919174456654
+  },
+  {
+   "weight": 1.0,
+   "exponent": 0.5,
+   "conf": 0.52,
+   "min_area": 100,
+   "pooled": 0.4121389298683608,
+   "record": 0.4503149125139852
+  },
+  {
+   "weight": 1.0,
+   "exponent": 0.5,
+   "conf": 0.54,
+   "min_area": 100,
+   "pooled": 0.4137940325746369,
+   "record": 0.45333329299051217
+  },
+  {
+   "weight": 1.0,
+   "exponent": 0.5,
+   "conf": 0.56,
+   "min_area": 100,
+   "pooled": 0.41626346164162153,
+   "record": 0.45703785771206124
+  },
+  {
+   "weight": 1.0,
+   "exponent": 0.5,
+   "conf": 0.58,
+   "min_area": 100,
+   "pooled": 0.4160494043553444,
+   "record": 0.4585001826906165
+  },
+  {
+   "weight": 1.0,
+   "exponent": 0.5,
+   "conf": 0.6,
+   "min_area": 100,
+   "pooled": 0.4173466106040724,
+   "record": 0.4611913964247981
+  },
+  {
+   "weight": 1.0,
+   "exponent": 0.5,
+   "conf": 0.62,
+   "min_area": 100,
+   "pooled": 0.41829634269048943,
+   "record": 0.46375686430546026
+  },
+  {
+   "weight": 1.0,
+   "exponent": 0.5,
+   "conf": 0.64,
+   "min_area": 100,
+   "pooled": 0.41851146527558575,
+   "record": 0.4658126256862412
+  },
+  {
+   "weight": 1.0,
+   "exponent": 0.5,
+   "conf": 0.66,
+   "min_area": 100,
+   "pooled": 0.41874512288629767,
+   "record": 0.46741437183532614
+  },
+  {
+   "weight": 1.0,
+   "exponent": 0.5,
+   "conf": 0.68,
+   "min_area": 100,
+   "pooled": 0.41865197605563065,
+   "record": 0.470688906120588
+  },
+  {
+   "weight": 1.0,
+   "exponent": 0.5,
+   "conf": 0.7,
+   "min_area": 100,
+   "pooled": 0.4197124501025232,
+   "record": 0.47511013003379543
+  },
+  {
+   "weight": 1.0,
+   "exponent": 0.5,
+   "conf": 0.72,
+   "min_area": 100,
+   "pooled": 0.4201586840224426,
+   "record": 0.4783495244244446
+  },
+  {
+   "weight": 1.0,
+   "exponent": 0.5,
+   "conf": 0.74,
+   "min_area": 100,
+   "pooled": 0.4195763368150348,
+   "record": 0.48017227550726355
+  },
+  {
+   "weight": 1.0,
+   "exponent": 0.5,
+   "conf": 0.76,
+   "min_area": 100,
+   "pooled": 0.41746159142842365,
+   "record": 0.4828464477631536
+  },
+  {
+   "weight": 1.0,
+   "exponent": 0.5,
+   "conf": 0.78,
+   "min_area": 100,
+   "pooled": 0.4125332484345928,
+   "record": 0.4828799343697447
+  },
+  {
+   "weight": 1.0,
+   "exponent": 0.5,
+   "conf": 0.8,
+   "min_area": 100,
+   "pooled": 0.4087299451795417,
+   "record": 0.4834771977293218
+  },
+  {
+   "weight": 1.0,
+   "exponent": 0.5,
+   "conf": 0.82,
+   "min_area": 100,
+   "pooled": 0.39926361815445494,
+   "record": 0.48033330051978634
+  },
+  {
+   "weight": 1.0,
+   "exponent": 0.5,
+   "conf": 0.84,
+   "min_area": 100,
+   "pooled": 0.3907528772131102,
+   "record": 0.47604091338527244
+  },
+  {
+   "weight": 1.0,
+   "exponent": 0.5,
+   "conf": 0.86,
+   "min_area": 100,
+   "pooled": 0.37796958030555156,
+   "record": 0.4675024348252243
+  },
+  {
+   "weight": 1.0,
+   "exponent": 0.5,
+   "conf": 0.88,
+   "min_area": 100,
+   "pooled": 0.36107198536409546,
+   "record": 0.4590174086631292
+  },
+  {
+   "weight": 1.0,
+   "exponent": 0.5,
+   "conf": 0.9,
+   "min_area": 100,
+   "pooled": 0.3399685824455819,
+   "record": 0.44149919322639214
+  },
+  {
+   "weight": 2.0,
+   "exponent": 0.3,
+   "conf": 0.3,
+   "min_area": 40,
+   "pooled": 0.3941432596258913,
+   "record": 0.4183082959065216
+  },
+  {
+   "weight": 2.0,
+   "exponent": 0.3,
+   "conf": 0.32,
+   "min_area": 40,
+   "pooled": 0.3972430886437906,
+   "record": 0.42193488501901455
+  },
+  {
+   "weight": 2.0,
+   "exponent": 0.3,
+   "conf": 0.34,
+   "min_area": 40,
+   "pooled": 0.39792435204662274,
+   "record": 0.4241310462363639
+  },
+  {
+   "weight": 2.0,
+   "exponent": 0.3,
+   "conf": 0.36,
+   "min_area": 40,
+   "pooled": 0.39954194750936456,
+   "record": 0.428093753487763
+  },
+  {
+   "weight": 2.0,
+   "exponent": 0.3,
+   "conf": 0.38,
+   "min_area": 40,
+   "pooled": 0.40271753110438147,
+   "record": 0.43362579443445426
+  },
+  {
+   "weight": 2.0,
+   "exponent": 0.3,
+   "conf": 0.4,
+   "min_area": 40,
+   "pooled": 0.4058254243176159,
+   "record": 0.43810596075140384
+  },
+  {
+   "weight": 2.0,
+   "exponent": 0.3,
+   "conf": 0.42,
+   "min_area": 40,
+   "pooled": 0.40755002839325244,
+   "record": 0.4415839915526377
+  },
+  {
+   "weight": 2.0,
+   "exponent": 0.3,
+   "conf": 0.44,
+   "min_area": 40,
+   "pooled": 0.40867524572374725,
+   "record": 0.44332335607419554
+  },
+  {
+   "weight": 2.0,
+   "exponent": 0.3,
+   "conf": 0.46,
+   "min_area": 40,
+   "pooled": 0.4110051677396411,
+   "record": 0.44729820329746395
+  },
+  {
+   "weight": 2.0,
+   "exponent": 0.3,
+   "conf": 0.48,
+   "min_area": 40,
+   "pooled": 0.41263295036006425,
+   "record": 0.450531338197555
+  },
+  {
+   "weight": 2.0,
+   "exponent": 0.3,
+   "conf": 0.5,
+   "min_area": 40,
+   "pooled": 0.4164086693533381,
+   "record": 0.45667165942951626
+  },
+  {
+   "weight": 2.0,
+   "exponent": 0.3,
+   "conf": 0.52,
+   "min_area": 40,
+   "pooled": 0.41679622880584394,
+   "record": 0.45894235162109304
+  },
+  {
+   "weight": 2.0,
+   "exponent": 0.3,
+   "conf": 0.54,
+   "min_area": 40,
+   "pooled": 0.4169844136754429,
+   "record": 0.46057319923559237
+  },
+  {
+   "weight": 2.0,
+   "exponent": 0.3,
+   "conf": 0.56,
+   "min_area": 40,
+   "pooled": 0.41875208038715145,
+   "record": 0.4639582347773786
+  },
+  {
+   "weight": 2.0,
+   "exponent": 0.3,
+   "conf": 0.58,
+   "min_area": 40,
+   "pooled": 0.42066388449816916,
+   "record": 0.4674056961875084
+  },
+  {
+   "weight": 2.0,
+   "exponent": 0.3,
+   "conf": 0.6,
+   "min_area": 40,
+   "pooled": 0.42093785112228804,
+   "record": 0.4694817092986716
+  },
+  {
+   "weight": 2.0,
+   "exponent": 0.3,
+   "conf": 0.62,
+   "min_area": 40,
+   "pooled": 0.4190448598582746,
+   "record": 0.47121422626819964
+  },
+  {
+   "weight": 2.0,
+   "exponent": 0.3,
+   "conf": 0.64,
+   "min_area": 40,
+   "pooled": 0.4193226072739272,
+   "record": 0.4750730052051424
+  },
+  {
+   "weight": 2.0,
+   "exponent": 0.3,
+   "conf": 0.66,
+   "min_area": 40,
+   "pooled": 0.4186275825279641,
+   "record": 0.47731585513743646
+  },
+  {
+   "weight": 2.0,
+   "exponent": 0.3,
+   "conf": 0.68,
+   "min_area": 40,
+   "pooled": 0.42022172116669876,
+   "record": 0.4827082971856591
+  },
+  {
+   "weight": 2.0,
+   "exponent": 0.3,
+   "conf": 0.7,
+   "min_area": 40,
+   "pooled": 0.41880596813587045,
+   "record": 0.48440425646534385
+  },
+  {
+   "weight": 2.0,
+   "exponent": 0.3,
+   "conf": 0.72,
+   "min_area": 40,
+   "pooled": 0.4163899942390831,
+   "record": 0.4866740180424915
+  },
+  {
+   "weight": 2.0,
+   "exponent": 0.3,
+   "conf": 0.74,
+   "min_area": 40,
+   "pooled": 0.40835437352272935,
+   "record": 0.48328996570603205
+  },
+  {
+   "weight": 2.0,
+   "exponent": 0.3,
+   "conf": 0.76,
+   "min_area": 40,
+   "pooled": 0.40030163696032817,
+   "record": 0.4826001673813168
+  },
+  {
+   "weight": 2.0,
+   "exponent": 0.3,
+   "conf": 0.78,
+   "min_area": 40,
+   "pooled": 0.3919370441789203,
+   "record": 0.4777443923691123
+  },
+  {
+   "weight": 2.0,
+   "exponent": 0.3,
+   "conf": 0.8,
+   "min_area": 40,
+   "pooled": 0.3793113427326776,
+   "record": 0.4698275673773098
+  },
+  {
+   "weight": 2.0,
+   "exponent": 0.3,
+   "conf": 0.82,
+   "min_area": 40,
+   "pooled": 0.3688367647614176,
+   "record": 0.4645380072680864
+  },
+  {
+   "weight": 2.0,
+   "exponent": 0.3,
+   "conf": 0.84,
+   "min_area": 40,
+   "pooled": 0.3528055462267859,
+   "record": 0.4538127094646764
+  },
+  {
+   "weight": 2.0,
+   "exponent": 0.3,
+   "conf": 0.86,
+   "min_area": 40,
+   "pooled": 0.3291021916350076,
+   "record": 0.434945549701935
+  },
+  {
+   "weight": 2.0,
+   "exponent": 0.3,
+   "conf": 0.88,
+   "min_area": 40,
+   "pooled": 0.2882685061004779,
+   "record": 0.39294909289442936
+  },
+  {
+   "weight": 2.0,
+   "exponent": 0.3,
+   "conf": 0.9,
+   "min_area": 40,
+   "pooled": 0.24125370447701328,
+   "record": 0.3432554342728969
+  },
+  {
+   "weight": 2.0,
+   "exponent": 0.5,
+   "conf": 0.3,
+   "min_area": 100,
+   "pooled": 0.39497176928978417,
+   "record": 0.4173033169372811
+  },
+  {
+   "weight": 2.0,
+   "exponent": 0.5,
+   "conf": 0.32,
+   "min_area": 100,
+   "pooled": 0.39606504346852334,
+   "record": 0.42061801185709896
+  },
+  {
+   "weight": 2.0,
+   "exponent": 0.5,
+   "conf": 0.34,
+   "min_area": 100,
+   "pooled": 0.39822939925445755,
+   "record": 0.4237550119495744
+  },
+  {
+   "weight": 2.0,
+   "exponent": 0.5,
+   "conf": 0.36,
+   "min_area": 100,
+   "pooled": 0.40001536173687674,
+   "record": 0.4278764122733648
+  },
+  {
+   "weight": 2.0,
+   "exponent": 0.5,
+   "conf": 0.38,
+   "min_area": 100,
+   "pooled": 0.40105010750169284,
+   "record": 0.4296720914781546
+  },
+  {
+   "weight": 2.0,
+   "exponent": 0.5,
+   "conf": 0.4,
+   "min_area": 100,
+   "pooled": 0.40401404890888276,
+   "record": 0.43467008971707227
+  },
+  {
+   "weight": 2.0,
+   "exponent": 0.5,
+   "conf": 0.42,
+   "min_area": 100,
+   "pooled": 0.40646895437766417,
+   "record": 0.4382301703195465
+  },
+  {
+   "weight": 2.0,
+   "exponent": 0.5,
+   "conf": 0.44,
+   "min_area": 100,
+   "pooled": 0.40792386104066364,
+   "record": 0.4413459478165744
+  },
+  {
+   "weight": 2.0,
+   "exponent": 0.5,
+   "conf": 0.46,
+   "min_area": 100,
+   "pooled": 0.4102928505337074,
+   "record": 0.4448990370610324
+  },
+  {
+   "weight": 2.0,
+   "exponent": 0.5,
+   "conf": 0.48,
+   "min_area": 100,
+   "pooled": 0.41199227898167046,
+   "record": 0.44863151464766465
+  },
+  {
+   "weight": 2.0,
+   "exponent": 0.5,
+   "conf": 0.5,
+   "min_area": 100,
+   "pooled": 0.41349334526369924,
+   "record": 0.4513854802421467
+  },
+  {
+   "weight": 2.0,
+   "exponent": 0.5,
+   "conf": 0.52,
+   "min_area": 100,
+   "pooled": 0.4152517736740302,
+   "record": 0.4545951269608341
+  },
+  {
+   "weight": 2.0,
+   "exponent": 0.5,
+   "conf": 0.54,
+   "min_area": 100,
+   "pooled": 0.41676067413531104,
+   "record": 0.45845346627082945
+  },
+  {
+   "weight": 2.0,
+   "exponent": 0.5,
+   "conf": 0.56,
+   "min_area": 100,
+   "pooled": 0.4179583554862971,
+   "record": 0.46096625503933086
+  },
+  {
+   "weight": 2.0,
+   "exponent": 0.5,
+   "conf": 0.58,
+   "min_area": 100,
+   "pooled": 0.42021440370289564,
+   "record": 0.4642533725597855
+  },
+  {
+   "weight": 2.0,
+   "exponent": 0.5,
+   "conf": 0.6,
+   "min_area": 100,
+   "pooled": 0.41992035658028976,
+   "record": 0.46573021354821126
+  },
+  {
+   "weight": 2.0,
+   "exponent": 0.5,
+   "conf": 0.62,
+   "min_area": 100,
+   "pooled": 0.42006207768573406,
+   "record": 0.4679054014456765
+  },
+  {
+   "weight": 2.0,
+   "exponent": 0.5,
+   "conf": 0.64,
+   "min_area": 100,
+   "pooled": 0.4208728849933416,
+   "record": 0.47059428045263735
+  },
+  {
+   "weight": 2.0,
+   "exponent": 0.5,
+   "conf": 0.66,
+   "min_area": 100,
+   "pooled": 0.4193053773890555,
+   "record": 0.4733598619584183
+  },
+  {
+   "weight": 2.0,
+   "exponent": 0.5,
+   "conf": 0.68,
+   "min_area": 100,
+   "pooled": 0.4207133175941063,
+   "record": 0.47804881184010006
+  },
+  {
+   "weight": 2.0,
+   "exponent": 0.5,
+   "conf": 0.7,
+   "min_area": 100,
+   "pooled": 0.4211384209178346,
+   "record": 0.4808463583720868
+  },
+  {
+   "weight": 2.0,
+   "exponent": 0.5,
+   "conf": 0.72,
+   "min_area": 100,
+   "pooled": 0.41983204181941286,
+   "record": 0.48441438633048367
+  },
+  {
+   "weight": 2.0,
+   "exponent": 0.5,
+   "conf": 0.74,
+   "min_area": 100,
+   "pooled": 0.4178732330334008,
+   "record": 0.4861261517880255
+  },
+  {
+   "weight": 2.0,
+   "exponent": 0.5,
+   "conf": 0.76,
+   "min_area": 100,
+   "pooled": 0.4122473474880135,
+   "record": 0.4855993087556735
+  },
+  {
+   "weight": 2.0,
+   "exponent": 0.5,
+   "conf": 0.78,
+   "min_area": 100,
+   "pooled": 0.40622983459346607,
+   "record": 0.48410745657086346
+  },
+  {
+   "weight": 2.0,
+   "exponent": 0.5,
+   "conf": 0.8,
+   "min_area": 100,
+   "pooled": 0.3935385269918144,
+   "record": 0.4770728955033721
+  },
+  {
+   "weight": 2.0,
+   "exponent": 0.5,
+   "conf": 0.82,
+   "min_area": 100,
+   "pooled": 0.38635548295814537,
+   "record": 0.47426847161865743
+  },
+  {
+   "weight": 2.0,
+   "exponent": 0.5,
+   "conf": 0.84,
+   "min_area": 100,
+   "pooled": 0.37324910104846687,
+   "record": 0.46693256186552173
+  },
+  {
+   "weight": 2.0,
+   "exponent": 0.5,
+   "conf": 0.86,
+   "min_area": 100,
+   "pooled": 0.35577697128639274,
+   "record": 0.4553525425950378
+  },
+  {
+   "weight": 2.0,
+   "exponent": 0.5,
+   "conf": 0.88,
+   "min_area": 100,
+   "pooled": 0.33512137459576696,
+   "record": 0.4402901177434479
+  },
+  {
+   "weight": 2.0,
+   "exponent": 0.5,
+   "conf": 0.9,
+   "min_area": 100,
+   "pooled": 0.2931893790948087,
+   "record": 0.3970543721369782
+  },
+  {
+   "weight": 4.0,
+   "exponent": 0.3,
+   "conf": 0.3,
+   "min_area": 40,
+   "pooled": 0.39800133892612105,
+   "record": 0.4235196867651271
+  },
+  {
+   "weight": 4.0,
+   "exponent": 0.3,
+   "conf": 0.32,
+   "min_area": 40,
+   "pooled": 0.3992233335161354,
+   "record": 0.428093753487763
+  },
+  {
+   "weight": 4.0,
+   "exponent": 0.3,
+   "conf": 0.34,
+   "min_area": 40,
+   "pooled": 0.40304243431624465,
+   "record": 0.434298708454371
+  },
+  {
+   "weight": 4.0,
+   "exponent": 0.3,
+   "conf": 0.36,
+   "min_area": 40,
+   "pooled": 0.40550626848635046,
+   "record": 0.4382921494030841
+  },
+  {
+   "weight": 4.0,
+   "exponent": 0.3,
+   "conf": 0.38,
+   "min_area": 40,
+   "pooled": 0.40731356928501283,
+   "record": 0.4411101331230829
+  },
+  {
+   "weight": 4.0,
+   "exponent": 0.3,
+   "conf": 0.4,
+   "min_area": 40,
+   "pooled": 0.4109332405004227,
+   "record": 0.4465912331401824
+  },
+  {
+   "weight": 4.0,
+   "exponent": 0.3,
+   "conf": 0.42,
+   "min_area": 40,
+   "pooled": 0.4125211865019948,
+   "record": 0.450554238853342
+  },
+  {
+   "weight": 4.0,
+   "exponent": 0.3,
+   "conf": 0.44,
+   "min_area": 40,
+   "pooled": 0.41526813541924484,
+   "record": 0.455084591114718
+  },
+  {
+   "weight": 4.0,
+   "exponent": 0.3,
+   "conf": 0.46,
+   "min_area": 40,
+   "pooled": 0.41676283640246137,
+   "record": 0.4589020978058406
+  },
+  {
+   "weight": 4.0,
+   "exponent": 0.3,
+   "conf": 0.48,
+   "min_area": 40,
+   "pooled": 0.41864963194167115,
+   "record": 0.4618775639153931
+  },
+  {
+   "weight": 4.0,
+   "exponent": 0.3,
+   "conf": 0.5,
+   "min_area": 40,
+   "pooled": 0.41952071363621946,
+   "record": 0.4644183123212404
+  },
+  {
+   "weight": 4.0,
+   "exponent": 0.3,
+   "conf": 0.52,
+   "min_area": 40,
+   "pooled": 0.42141790567637966,
+   "record": 0.4687271878634401
+  },
+  {
+   "weight": 4.0,
+   "exponent": 0.3,
+   "conf": 0.54,
+   "min_area": 40,
+   "pooled": 0.42109688261036643,
+   "record": 0.471689153927749
+  },
+  {
+   "weight": 4.0,
+   "exponent": 0.3,
+   "conf": 0.56,
+   "min_area": 40,
+   "pooled": 0.41992504506236145,
+   "record": 0.4737526424015633
+  },
+  {
+   "weight": 4.0,
+   "exponent": 0.3,
+   "conf": 0.58,
+   "min_area": 40,
+   "pooled": 0.4200739614976586,
+   "record": 0.47674365499023175
+  },
+  {
+   "weight": 4.0,
+   "exponent": 0.3,
+   "conf": 0.6,
+   "min_area": 40,
+   "pooled": 0.4205223771078802,
+   "record": 0.48007396807347147
+  },
+  {
+   "weight": 4.0,
+   "exponent": 0.3,
+   "conf": 0.62,
+   "min_area": 40,
+   "pooled": 0.4193721370960722,
+   "record": 0.48142651153924143
+  },
+  {
+   "weight": 4.0,
+   "exponent": 0.3,
+   "conf": 0.64,
+   "min_area": 40,
+   "pooled": 0.4183665629062283,
+   "record": 0.4827419700675843
+  },
+  {
+   "weight": 4.0,
+   "exponent": 0.3,
+   "conf": 0.66,
+   "min_area": 40,
+   "pooled": 0.4172745714625777,
+   "record": 0.4872491726041895
+  },
+  {
+   "weight": 4.0,
+   "exponent": 0.3,
+   "conf": 0.68,
+   "min_area": 40,
+   "pooled": 0.41379054577002566,
+   "record": 0.48894859995182655
+  },
+  {
+   "weight": 4.0,
+   "exponent": 0.3,
+   "conf": 0.7,
+   "min_area": 40,
+   "pooled": 0.4017313766601514,
+   "record": 0.4831589607581958
+  },
+  {
+   "weight": 4.0,
+   "exponent": 0.3,
+   "conf": 0.72,
+   "min_area": 40,
+   "pooled": 0.3942604943188271,
+   "record": 0.4800444819836447
+  },
+  {
+   "weight": 4.0,
+   "exponent": 0.3,
+   "conf": 0.74,
+   "min_area": 40,
+   "pooled": 0.381351658603197,
+   "record": 0.47198629657729857
+  },
+  {
+   "weight": 4.0,
+   "exponent": 0.3,
+   "conf": 0.76,
+   "min_area": 40,
+   "pooled": 0.372880789348759,
+   "record": 0.4679931217674698
+  },
+  {
+   "weight": 4.0,
+   "exponent": 0.3,
+   "conf": 0.78,
+   "min_area": 40,
+   "pooled": 0.36122818315866095,
+   "record": 0.4616578353256339
+  },
+  {
+   "weight": 4.0,
+   "exponent": 0.3,
+   "conf": 0.8,
+   "min_area": 40,
+   "pooled": 0.34236487468383037,
+   "record": 0.4456964697071906
+  },
+  {
+   "weight": 4.0,
+   "exponent": 0.3,
+   "conf": 0.82,
+   "min_area": 40,
+   "pooled": 0.3179822738322878,
+   "record": 0.42354309266138324
+  },
+  {
+   "weight": 4.0,
+   "exponent": 0.3,
+   "conf": 0.84,
+   "min_area": 40,
+   "pooled": 0.2815166972819232,
+   "record": 0.38399098909156
+  },
+  {
+   "weight": 4.0,
+   "exponent": 0.3,
+   "conf": 0.86,
+   "min_area": 40,
+   "pooled": 0.2439967613963807,
+   "record": 0.34265369605961254
+  },
+  {
+   "weight": 4.0,
+   "exponent": 0.3,
+   "conf": 0.88,
+   "min_area": 40,
+   "pooled": 0.18350603997254458,
+   "record": 0.2681947431947039
+  },
+  {
+   "weight": 4.0,
+   "exponent": 0.3,
+   "conf": 0.9,
+   "min_area": 40,
+   "pooled": 0.1336088469686532,
+   "record": 0.19880544333997488
+  },
+  {
+   "weight": 4.0,
+   "exponent": 0.5,
+   "conf": 0.3,
+   "min_area": 100,
+   "pooled": 0.39760646855487314,
+   "record": 0.4226425847743936
+  },
+  {
+   "weight": 4.0,
+   "exponent": 0.5,
+   "conf": 0.32,
+   "min_area": 100,
+   "pooled": 0.3993683150009749,
+   "record": 0.4255983745331323
+  },
+  {
+   "weight": 4.0,
+   "exponent": 0.5,
+   "conf": 0.34,
+   "min_area": 100,
+   "pooled": 0.40128340525528783,
+   "record": 0.4295959618410088
+  },
+  {
+   "weight": 4.0,
+   "exponent": 0.5,
+   "conf": 0.36,
+   "min_area": 100,
+   "pooled": 0.4032219724304341,
+   "record": 0.4331803533644041
+  },
+  {
+   "weight": 4.0,
+   "exponent": 0.5,
+   "conf": 0.38,
+   "min_area": 100,
+   "pooled": 0.4055527398318871,
+   "record": 0.4370550265196075
+  },
+  {
+   "weight": 4.0,
+   "exponent": 0.5,
+   "conf": 0.4,
+   "min_area": 100,
+   "pooled": 0.4072184394907027,
+   "record": 0.43943835923364805
+  },
+  {
+   "weight": 4.0,
+   "exponent": 0.5,
+   "conf": 0.42,
+   "min_area": 100,
+   "pooled": 0.410353632232433,
+   "record": 0.44478030032950683
+  },
+  {
+   "weight": 4.0,
+   "exponent": 0.5,
+   "conf": 0.44,
+   "min_area": 100,
+   "pooled": 0.4111663645039303,
+   "record": 0.44706337726262896
+  },
+  {
+   "weight": 4.0,
+   "exponent": 0.5,
+   "conf": 0.46,
+   "min_area": 100,
+   "pooled": 0.413899185712272,
+   "record": 0.45154137190647053
+  },
+  {
+   "weight": 4.0,
+   "exponent": 0.5,
+   "conf": 0.48,
+   "min_area": 100,
+   "pooled": 0.4156061502204757,
+   "record": 0.4552241822721333
+  },
+  {
+   "weight": 4.0,
+   "exponent": 0.5,
+   "conf": 0.5,
+   "min_area": 100,
+   "pooled": 0.4167164638273189,
+   "record": 0.458669922784857
+  },
+  {
+   "weight": 4.0,
+   "exponent": 0.5,
+   "conf": 0.52,
+   "min_area": 100,
+   "pooled": 0.41769980212815383,
+   "record": 0.4607783252751258
+  },
+  {
+   "weight": 4.0,
+   "exponent": 0.5,
+   "conf": 0.54,
+   "min_area": 100,
+   "pooled": 0.4197840552654659,
+   "record": 0.4642472000252072
+  },
+  {
+   "weight": 4.0,
+   "exponent": 0.5,
+   "conf": 0.56,
+   "min_area": 100,
+   "pooled": 0.42134395283949005,
+   "record": 0.4676333587010214
+  },
+  {
+   "weight": 4.0,
+   "exponent": 0.5,
+   "conf": 0.58,
+   "min_area": 100,
+   "pooled": 0.420486588492083,
+   "record": 0.4693691502155576
+  },
+  {
+   "weight": 4.0,
+   "exponent": 0.5,
+   "conf": 0.6,
+   "min_area": 100,
+   "pooled": 0.42042162578370207,
+   "record": 0.47228805688935666
+  },
+  {
+   "weight": 4.0,
+   "exponent": 0.5,
+   "conf": 0.62,
+   "min_area": 100,
+   "pooled": 0.4186009606269402,
+   "record": 0.4743589543086111
+  },
+  {
+   "weight": 4.0,
+   "exponent": 0.5,
+   "conf": 0.64,
+   "min_area": 100,
+   "pooled": 0.4198168202374548,
+   "record": 0.4782635085698073
+  },
+  {
+   "weight": 4.0,
+   "exponent": 0.5,
+   "conf": 0.66,
+   "min_area": 100,
+   "pooled": 0.42063919749411316,
+   "record": 0.48257103333839346
+  },
+  {
+   "weight": 4.0,
+   "exponent": 0.5,
+   "conf": 0.68,
+   "min_area": 100,
+   "pooled": 0.4197463098219904,
+   "record": 0.4854835645031689
+  },
+  {
+   "weight": 4.0,
+   "exponent": 0.5,
+   "conf": 0.7,
+   "min_area": 100,
+   "pooled": 0.41806460219455005,
+   "record": 0.4866065529738133
+  },
+  {
+   "weight": 4.0,
+   "exponent": 0.5,
+   "conf": 0.72,
+   "min_area": 100,
+   "pooled": 0.411228346049668,
+   "record": 0.4866072771240546
+  },
+  {
+   "weight": 4.0,
+   "exponent": 0.5,
+   "conf": 0.74,
+   "min_area": 100,
+   "pooled": 0.40505677909240223,
+   "record": 0.4853202929425289
+  },
+  {
+   "weight": 4.0,
+   "exponent": 0.5,
+   "conf": 0.76,
+   "min_area": 100,
+   "pooled": 0.39879326282034877,
+   "record": 0.48181478837667446
+  },
+  {
+   "weight": 4.0,
+   "exponent": 0.5,
+   "conf": 0.78,
+   "min_area": 100,
+   "pooled": 0.3803346434404766,
+   "record": 0.4699807202435592
+  },
+  {
+   "weight": 4.0,
+   "exponent": 0.5,
+   "conf": 0.8,
+   "min_area": 100,
+   "pooled": 0.37319636154336033,
+   "record": 0.4679345221288942
+  },
+  {
+   "weight": 4.0,
+   "exponent": 0.5,
+   "conf": 0.82,
+   "min_area": 100,
+   "pooled": 0.3593950858678698,
+   "record": 0.4593533849047491
+  },
+  {
+   "weight": 4.0,
+   "exponent": 0.5,
+   "conf": 0.84,
+   "min_area": 100,
+   "pooled": 0.3380132042467446,
+   "record": 0.4425605138551189
+  },
+  {
+   "weight": 4.0,
+   "exponent": 0.5,
+   "conf": 0.86,
+   "min_area": 100,
+   "pooled": 0.30928062486324037,
+   "record": 0.41342557133761787
+  },
+  {
+   "weight": 4.0,
+   "exponent": 0.5,
+   "conf": 0.88,
+   "min_area": 100,
+   "pooled": 0.26711270107929574,
+   "record": 0.3686637489277573
+  },
+  {
+   "weight": 4.0,
+   "exponent": 0.5,
+   "conf": 0.9,
+   "min_area": 100,
+   "pooled": 0.2076590842519947,
+   "record": 0.2966155246474469
+  },
+  {
+   "weight": 8.0,
+   "exponent": 0.3,
+   "conf": 0.3,
+   "min_area": 40,
+   "pooled": 0.4034464474469117,
+   "record": 0.435162413876598
+  },
+  {
+   "weight": 8.0,
+   "exponent": 0.3,
+   "conf": 0.32,
+   "min_area": 40,
+   "pooled": 0.4069171739017395,
+   "record": 0.44005220233485415
+  },
+  {
+   "weight": 8.0,
+   "exponent": 0.3,
+   "conf": 0.34,
+   "min_area": 40,
+   "pooled": 0.4097498719990629,
+   "record": 0.44566215460706887
+  },
+  {
+   "weight": 8.0,
+   "exponent": 0.3,
+   "conf": 0.36,
+   "min_area": 40,
+   "pooled": 0.41303999335276903,
+   "record": 0.45113251848201724
+  },
+  {
+   "weight": 8.0,
+   "exponent": 0.3,
+   "conf": 0.38,
+   "min_area": 40,
+   "pooled": 0.41530502073297443,
+   "record": 0.4560986283011839
+  },
+  {
+   "weight": 8.0,
+   "exponent": 0.3,
+   "conf": 0.4,
+   "min_area": 40,
+   "pooled": 0.41729909914321783,
+   "record": 0.4608136589145188
+  },
+  {
+   "weight": 8.0,
+   "exponent": 0.3,
+   "conf": 0.42,
+   "min_area": 40,
+   "pooled": 0.41852227419852883,
+   "record": 0.46316628551617994
+  },
+  {
+   "weight": 8.0,
+   "exponent": 0.3,
+   "conf": 0.44,
+   "min_area": 40,
+   "pooled": 0.41823902030234644,
+   "record": 0.4654183601594883
+  },
+  {
+   "weight": 8.0,
+   "exponent": 0.3,
+   "conf": 0.46,
+   "min_area": 40,
+   "pooled": 0.4190649818218999,
+   "record": 0.4701066143923114
+  },
+  {
+   "weight": 8.0,
+   "exponent": 0.3,
+   "conf": 0.48,
+   "min_area": 40,
+   "pooled": 0.4201078241027499,
+   "record": 0.4743011940236959
+  },
+  {
+   "weight": 8.0,
+   "exponent": 0.3,
+   "conf": 0.5,
+   "min_area": 40,
+   "pooled": 0.42177388056278525,
+   "record": 0.47768633280704326
+  },
+  {
+   "weight": 8.0,
+   "exponent": 0.3,
+   "conf": 0.52,
+   "min_area": 40,
+   "pooled": 0.4213384552023147,
+   "record": 0.47985075950849054
+  },
+  {
+   "weight": 8.0,
+   "exponent": 0.3,
+   "conf": 0.54,
+   "min_area": 40,
+   "pooled": 0.4214047969772355,
+   "record": 0.4818874918218321
+  },
+  {
+   "weight": 8.0,
+   "exponent": 0.3,
+   "conf": 0.56,
+   "min_area": 40,
+   "pooled": 0.41844664560517086,
+   "record": 0.481989096115912
+  },
+  {
+   "weight": 8.0,
+   "exponent": 0.3,
+   "conf": 0.58,
+   "min_area": 40,
+   "pooled": 0.4137933324841949,
+   "record": 0.4815016700106073
+  },
+  {
+   "weight": 8.0,
+   "exponent": 0.3,
+   "conf": 0.6,
+   "min_area": 40,
+   "pooled": 0.4122972211020517,
+   "record": 0.4859516919376233
+  },
+  {
+   "weight": 8.0,
+   "exponent": 0.3,
+   "conf": 0.62,
+   "min_area": 40,
+   "pooled": 0.40905823913370304,
+   "record": 0.487327195533437
+  },
+  {
+   "weight": 8.0,
+   "exponent": 0.3,
+   "conf": 0.64,
+   "min_area": 40,
+   "pooled": 0.40086132923983575,
+   "record": 0.4832835894772966
+  },
+  {
+   "weight": 8.0,
+   "exponent": 0.3,
+   "conf": 0.66,
+   "min_area": 40,
+   "pooled": 0.39234734911595476,
+   "record": 0.4792311901055801
+  },
+  {
+   "weight": 8.0,
+   "exponent": 0.3,
+   "conf": 0.68,
+   "min_area": 40,
+   "pooled": 0.3816319943163496,
+   "record": 0.4734804133000577
+  },
+  {
+   "weight": 8.0,
+   "exponent": 0.3,
+   "conf": 0.7,
+   "min_area": 40,
+   "pooled": 0.3721757424495073,
+   "record": 0.46720587848192824
+  },
+  {
+   "weight": 8.0,
+   "exponent": 0.3,
+   "conf": 0.72,
+   "min_area": 40,
+   "pooled": 0.3606678343920516,
+   "record": 0.46036923329530133
+  },
+  {
+   "weight": 8.0,
+   "exponent": 0.3,
+   "conf": 0.74,
+   "min_area": 40,
+   "pooled": 0.34761090367064734,
+   "record": 0.4509473616252803
+  },
+  {
+   "weight": 8.0,
+   "exponent": 0.3,
+   "conf": 0.76,
+   "min_area": 40,
+   "pooled": 0.3289046699890053,
+   "record": 0.43261346798836114
+  },
+  {
+   "weight": 8.0,
+   "exponent": 0.3,
+   "conf": 0.78,
+   "min_area": 40,
+   "pooled": 0.2989077205905632,
+   "record": 0.40389388516798463
+  },
+  {
+   "weight": 8.0,
+   "exponent": 0.3,
+   "conf": 0.8,
+   "min_area": 40,
+   "pooled": 0.2699039802996181,
+   "record": 0.37276788695998925
+  },
+  {
+   "weight": 8.0,
+   "exponent": 0.3,
+   "conf": 0.82,
+   "min_area": 40,
+   "pooled": 0.23723594120892919,
+   "record": 0.3321260993676566
+  },
+  {
+   "weight": 8.0,
+   "exponent": 0.3,
+   "conf": 0.84,
+   "min_area": 40,
+   "pooled": 0.1936478188681247,
+   "record": 0.27868921414067177
+  },
+  {
+   "weight": 8.0,
+   "exponent": 0.3,
+   "conf": 0.86,
+   "min_area": 40,
+   "pooled": 0.15645999502468078,
+   "record": 0.22657654822591014
+  },
+  {
+   "weight": 8.0,
+   "exponent": 0.3,
+   "conf": 0.88,
+   "min_area": 40,
+   "pooled": 0.10274566610927975,
+   "record": 0.1504486448932337
+  },
+  {
+   "weight": 8.0,
+   "exponent": 0.3,
+   "conf": 0.9,
+   "min_area": 40,
+   "pooled": 0.06406160396748115,
+   "record": 0.09365813523607155
+  },
+  {
+   "weight": 8.0,
+   "exponent": 0.5,
+   "conf": 0.3,
+   "min_area": 100,
+   "pooled": 0.4014803022405853,
+   "record": 0.4300188951105133
+  },
+  {
+   "weight": 8.0,
+   "exponent": 0.5,
+   "conf": 0.32,
+   "min_area": 100,
+   "pooled": 0.40396830694802255,
+   "record": 0.43423062696847037
+  },
+  {
+   "weight": 8.0,
+   "exponent": 0.5,
+   "conf": 0.34,
+   "min_area": 100,
+   "pooled": 0.4056606555704305,
+   "record": 0.43701137996251826
+  },
+  {
+   "weight": 8.0,
+   "exponent": 0.5,
+   "conf": 0.36,
+   "min_area": 100,
+   "pooled": 0.40816941110998695,
+   "record": 0.44210775230238875
+  },
+  {
+   "weight": 8.0,
+   "exponent": 0.5,
+   "conf": 0.38,
+   "min_area": 100,
+   "pooled": 0.40933247173500054,
+   "record": 0.4444989433647455
+  },
+  {
+   "weight": 8.0,
+   "exponent": 0.5,
+   "conf": 0.4,
+   "min_area": 100,
+   "pooled": 0.41074273004989464,
+   "record": 0.4486804824722008
+  },
+  {
+   "weight": 8.0,
+   "exponent": 0.5,
+   "conf": 0.42,
+   "min_area": 100,
+   "pooled": 0.41418647747353465,
+   "record": 0.453601601080709
+  },
+  {
+   "weight": 8.0,
+   "exponent": 0.5,
+   "conf": 0.44,
+   "min_area": 100,
+   "pooled": 0.417162907985036,
+   "record": 0.4584621934882556
+  },
+  {
+   "weight": 8.0,
+   "exponent": 0.5,
+   "conf": 0.46,
+   "min_area": 100,
+   "pooled": 0.41837541831459474,
+   "record": 0.46153146607773116
+  },
+  {
+   "weight": 8.0,
+   "exponent": 0.5,
+   "conf": 0.48,
+   "min_area": 100,
+   "pooled": 0.41956286416780825,
+   "record": 0.4637426524953517
+  },
+  {
+   "weight": 8.0,
+   "exponent": 0.5,
+   "conf": 0.5,
+   "min_area": 100,
+   "pooled": 0.41957153523698065,
+   "record": 0.466836784831881
+  },
+  {
+   "weight": 8.0,
+   "exponent": 0.5,
+   "conf": 0.52,
+   "min_area": 100,
+   "pooled": 0.420532930642891,
+   "record": 0.4697505102352952
+  },
+  {
+   "weight": 8.0,
+   "exponent": 0.5,
+   "conf": 0.54,
+   "min_area": 100,
+   "pooled": 0.4185473393944507,
+   "record": 0.47163182661060277
+  },
+  {
+   "weight": 8.0,
+   "exponent": 0.5,
+   "conf": 0.56,
+   "min_area": 100,
+   "pooled": 0.41950008335404515,
+   "record": 0.4763434211077235
+  },
+  {
+   "weight": 8.0,
+   "exponent": 0.5,
+   "conf": 0.58,
+   "min_area": 100,
+   "pooled": 0.41982518909722044,
+   "record": 0.47897017030322414
+  },
+  {
+   "weight": 8.0,
+   "exponent": 0.5,
+   "conf": 0.6,
+   "min_area": 100,
+   "pooled": 0.4184051020156906,
+   "record": 0.47940127467766613
+  },
+  {
+   "weight": 8.0,
+   "exponent": 0.5,
+   "conf": 0.62,
+   "min_area": 100,
+   "pooled": 0.4181104285643738,
+   "record": 0.4820971602627076
+  },
+  {
+   "weight": 8.0,
+   "exponent": 0.5,
+   "conf": 0.64,
+   "min_area": 100,
+   "pooled": 0.4187051008536517,
+   "record": 0.48757877696148816
+  },
+  {
+   "weight": 8.0,
+   "exponent": 0.5,
+   "conf": 0.66,
+   "min_area": 100,
+   "pooled": 0.41458294455414163,
+   "record": 0.4871572581194776
+  },
+  {
+   "weight": 8.0,
+   "exponent": 0.5,
+   "conf": 0.68,
+   "min_area": 100,
+   "pooled": 0.40920222183653765,
+   "record": 0.48757714349733366
+  },
+  {
+   "weight": 8.0,
+   "exponent": 0.5,
+   "conf": 0.7,
+   "min_area": 100,
+   "pooled": 0.4005872459393224,
+   "record": 0.4843502662774474
+  },
+  {
+   "weight": 8.0,
+   "exponent": 0.5,
+   "conf": 0.72,
+   "min_area": 100,
+   "pooled": 0.3920577395639241,
+   "record": 0.4785772246286263
+  },
+  {
+   "weight": 8.0,
+   "exponent": 0.5,
+   "conf": 0.74,
+   "min_area": 100,
+   "pooled": 0.3789259435568312,
+   "record": 0.4724153624103954
+  },
+  {
+   "weight": 8.0,
+   "exponent": 0.5,
+   "conf": 0.76,
+   "min_area": 100,
+   "pooled": 0.3674271217480369,
+   "record": 0.464530173306982
+  },
+  {
+   "weight": 8.0,
+   "exponent": 0.5,
+   "conf": 0.78,
+   "min_area": 100,
+   "pooled": 0.35746660420958787,
+   "record": 0.45891724091141933
+  },
+  {
+   "weight": 8.0,
+   "exponent": 0.5,
+   "conf": 0.8,
+   "min_area": 100,
+   "pooled": 0.3377954491100873,
+   "record": 0.44117826812956856
+  },
+  {
+   "weight": 8.0,
+   "exponent": 0.5,
+   "conf": 0.82,
+   "min_area": 100,
+   "pooled": 0.3077761222236847,
+   "record": 0.4117242398843128
+  },
+  {
+   "weight": 8.0,
+   "exponent": 0.5,
+   "conf": 0.84,
+   "min_area": 100,
+   "pooled": 0.27511692438243296,
+   "record": 0.3788196008873409
+  },
+  {
+   "weight": 8.0,
+   "exponent": 0.5,
+   "conf": 0.86,
+   "min_area": 100,
+   "pooled": 0.23533487039295947,
+   "record": 0.3297949318385041
+  },
+  {
+   "weight": 8.0,
+   "exponent": 0.5,
+   "conf": 0.88,
+   "min_area": 100,
+   "pooled": 0.17686287996687425,
+   "record": 0.257251498862806
+  },
+  {
+   "weight": 8.0,
+   "exponent": 0.5,
+   "conf": 0.9,
+   "min_area": 100,
+   "pooled": 0.12785273500963387,
+   "record": 0.18981922896759953
+  },
+  {
+   "weight": 0.0,
+   "exponent": 0.3,
+   "conf": 0.3,
+   "min_area": 100,
+   "pooled": 0.3902410059688169,
+   "record": 0.4093867475952248
+  },
+  {
+   "weight": 0.0,
+   "exponent": 0.3,
+   "conf": 0.32,
+   "min_area": 100,
+   "pooled": 0.3923002194240125,
+   "record": 0.4127177141956886
+  },
+  {
+   "weight": 0.0,
+   "exponent": 0.3,
+   "conf": 0.34,
+   "min_area": 100,
+   "pooled": 0.3943547734787994,
+   "record": 0.4171157399635994
+  },
+  {
+   "weight": 0.0,
+   "exponent": 0.3,
+   "conf": 0.36,
+   "min_area": 100,
+   "pooled": 0.3955368126597445,
+   "record": 0.419849711290481
+  },
+  {
+   "weight": 0.0,
+   "exponent": 0.3,
+   "conf": 0.38,
+   "min_area": 100,
+   "pooled": 0.39748215800581577,
+   "record": 0.42337553278672574
+  },
+  {
+   "weight": 0.0,
+   "exponent": 0.3,
+   "conf": 0.4,
+   "min_area": 100,
+   "pooled": 0.40016612844816785,
+   "record": 0.42778602235638885
+  },
+  {
+   "weight": 0.0,
+   "exponent": 0.3,
+   "conf": 0.42,
+   "min_area": 100,
+   "pooled": 0.4012781577561322,
+   "record": 0.42964759410907893
+  },
+  {
+   "weight": 0.0,
+   "exponent": 0.3,
+   "conf": 0.44,
+   "min_area": 100,
+   "pooled": 0.4021196700068821,
+   "record": 0.4314010966410423
+  },
+  {
+   "weight": 0.0,
+   "exponent": 0.3,
+   "conf": 0.46,
+   "min_area": 100,
+   "pooled": 0.40403883861124323,
+   "record": 0.4356001340084042
+  },
+  {
+   "weight": 0.0,
+   "exponent": 0.3,
+   "conf": 0.48,
+   "min_area": 100,
+   "pooled": 0.4062415646760063,
+   "record": 0.4397312927999038
+  },
+  {
+   "weight": 0.0,
+   "exponent": 0.3,
+   "conf": 0.5,
+   "min_area": 100,
+   "pooled": 0.4080870264341582,
+   "record": 0.4418516852823765
+  },
+  {
+   "weight": 0.0,
+   "exponent": 0.3,
+   "conf": 0.52,
+   "min_area": 100,
+   "pooled": 0.4100097638653242,
+   "record": 0.44538135811132396
+  },
+  {
+   "weight": 0.0,
+   "exponent": 0.3,
+   "conf": 0.54,
+   "min_area": 100,
+   "pooled": 0.41282281641692115,
+   "record": 0.4499551335888781
+  },
+  {
+   "weight": 0.0,
+   "exponent": 0.3,
+   "conf": 0.56,
+   "min_area": 100,
+   "pooled": 0.41311645187316587,
+   "record": 0.45227919533743444
+  },
+  {
+   "weight": 0.0,
+   "exponent": 0.3,
+   "conf": 0.58,
+   "min_area": 100,
+   "pooled": 0.41495900822304926,
+   "record": 0.4547847833104352
+  },
+  {
+   "weight": 0.0,
+   "exponent": 0.3,
+   "conf": 0.6,
+   "min_area": 100,
+   "pooled": 0.41546670230403987,
+   "record": 0.4558074587647019
+  },
+  {
+   "weight": 0.0,
+   "exponent": 0.3,
+   "conf": 0.62,
+   "min_area": 100,
+   "pooled": 0.41644715363588336,
+   "record": 0.4598121052577822
+  },
+  {
+   "weight": 0.0,
+   "exponent": 0.3,
+   "conf": 0.64,
+   "min_area": 100,
+   "pooled": 0.4180902826567479,
+   "record": 0.4632508119694701
+  },
+  {
+   "weight": 0.0,
+   "exponent": 0.3,
+   "conf": 0.66,
+   "min_area": 100,
+   "pooled": 0.41849810458339387,
+   "record": 0.4648860897527399
+  },
+  {
+   "weight": 0.0,
+   "exponent": 0.3,
+   "conf": 0.68,
+   "min_area": 100,
+   "pooled": 0.4170358617889005,
+   "record": 0.4644094935809413
+  },
+  {
+   "weight": 0.0,
+   "exponent": 0.3,
+   "conf": 0.7,
+   "min_area": 100,
+   "pooled": 0.418165969221271,
+   "record": 0.46813058849770794
+  },
+  {
+   "weight": 0.0,
+   "exponent": 0.3,
+   "conf": 0.72,
+   "min_area": 100,
+   "pooled": 0.4193369106571983,
+   "record": 0.47224590096260627
+  },
+  {
+   "weight": 0.0,
+   "exponent": 0.3,
+   "conf": 0.74,
+   "min_area": 100,
+   "pooled": 0.41961117049463176,
+   "record": 0.4747471214731921
+  },
+  {
+   "weight": 0.0,
+   "exponent": 0.3,
+   "conf": 0.76,
+   "min_area": 100,
+   "pooled": 0.4209871136037541,
+   "record": 0.4779619248002957
+  },
+  {
+   "weight": 0.0,
+   "exponent": 0.3,
+   "conf": 0.78,
+   "min_area": 100,
+   "pooled": 0.4158397401353838,
+   "record": 0.4768369731893817
+  },
+  {
+   "weight": 0.0,
+   "exponent": 0.3,
+   "conf": 0.8,
+   "min_area": 100,
+   "pooled": 0.41165008491630445,
+   "record": 0.47682499796114447
+  },
+  {
+   "weight": 0.0,
+   "exponent": 0.3,
+   "conf": 0.82,
+   "min_area": 100,
+   "pooled": 0.4100560180395718,
+   "record": 0.47932052615179155
+  },
+  {
+   "weight": 0.0,
+   "exponent": 0.3,
+   "conf": 0.84,
+   "min_area": 100,
+   "pooled": 0.4034135909785599,
+   "record": 0.4793568787436526
+  },
+  {
+   "weight": 0.0,
+   "exponent": 0.3,
+   "conf": 0.86,
+   "min_area": 100,
+   "pooled": 0.39625251847628873,
+   "record": 0.47631403752286855
+  },
+  {
+   "weight": 0.0,
+   "exponent": 0.3,
+   "conf": 0.88,
+   "min_area": 100,
+   "pooled": 0.386792825234445,
+   "record": 0.47280305960027597
+  },
+  {
+   "weight": 0.0,
+   "exponent": 0.3,
+   "conf": 0.9,
+   "min_area": 100,
+   "pooled": 0.37293579832626245,
+   "record": 0.4642972217880339
+  },
+  {
+   "weight": 0.0,
+   "exponent": 0.7,
+   "conf": 0.3,
+   "min_area": 40,
+   "pooled": 0.38556675596422024,
+   "record": 0.4039727892813248
+  },
+  {
+   "weight": 0.0,
+   "exponent": 0.7,
+   "conf": 0.32,
+   "min_area": 40,
+   "pooled": 0.3881166965253792,
+   "record": 0.40778187629942353
+  },
+  {
+   "weight": 0.0,
+   "exponent": 0.7,
+   "conf": 0.34,
+   "min_area": 40,
+   "pooled": 0.38911370831409836,
+   "record": 0.41028583193756535
+  },
+  {
+   "weight": 0.0,
+   "exponent": 0.7,
+   "conf": 0.36,
+   "min_area": 40,
+   "pooled": 0.3910588090782204,
+   "record": 0.4134531887635097
+  },
+  {
+   "weight": 0.0,
+   "exponent": 0.7,
+   "conf": 0.38,
+   "min_area": 40,
+   "pooled": 0.39387995984397417,
+   "record": 0.4188368161401865
+  },
+  {
+   "weight": 0.0,
+   "exponent": 0.7,
+   "conf": 0.4,
+   "min_area": 40,
+   "pooled": 0.3959289016577206,
+   "record": 0.4232541706704065
+  },
+  {
+   "weight": 0.0,
+   "exponent": 0.7,
+   "conf": 0.42,
+   "min_area": 40,
+   "pooled": 0.3977302895737042,
+   "record": 0.4261840257012385
+  },
+  {
+   "weight": 0.0,
+   "exponent": 0.7,
+   "conf": 0.44,
+   "min_area": 40,
+   "pooled": 0.3985789573598285,
+   "record": 0.42733214354669313
+  },
+  {
+   "weight": 0.0,
+   "exponent": 0.7,
+   "conf": 0.46,
+   "min_area": 40,
+   "pooled": 0.4014005993326179,
+   "record": 0.4322448376495899
+  },
+  {
+   "weight": 0.0,
+   "exponent": 0.7,
+   "conf": 0.48,
+   "min_area": 40,
+   "pooled": 0.4031129408854366,
+   "record": 0.4353285191447456
+  },
+  {
+   "weight": 0.0,
+   "exponent": 0.7,
+   "conf": 0.5,
+   "min_area": 40,
+   "pooled": 0.40292119727916437,
+   "record": 0.4361088660402241
+  },
+  {
+   "weight": 0.0,
+   "exponent": 0.7,
+   "conf": 0.52,
+   "min_area": 40,
+   "pooled": 0.4057423094512178,
+   "record": 0.4404226423156698
+  },
+  {
+   "weight": 0.0,
+   "exponent": 0.7,
+   "conf": 0.54,
+   "min_area": 40,
+   "pooled": 0.407299346909863,
+   "record": 0.44253733838718173
+  },
+  {
+   "weight": 0.0,
+   "exponent": 0.7,
+   "conf": 0.56,
+   "min_area": 40,
+   "pooled": 0.4096964409836926,
+   "record": 0.44544877491701057
+  },
+  {
+   "weight": 0.0,
+   "exponent": 0.7,
+   "conf": 0.58,
+   "min_area": 40,
+   "pooled": 0.41167218894779006,
+   "record": 0.44956535507414336
+  },
+  {
+   "weight": 0.0,
+   "exponent": 0.7,
+   "conf": 0.6,
+   "min_area": 40,
+   "pooled": 0.41309540851693183,
+   "record": 0.4523891926260557
+  },
+  {
+   "weight": 0.0,
+   "exponent": 0.7,
+   "conf": 0.62,
+   "min_area": 40,
+   "pooled": 0.41333947138296273,
+   "record": 0.45388841344424663
+  },
+  {
+   "weight": 0.0,
+   "exponent": 0.7,
+   "conf": 0.64,
+   "min_area": 40,
+   "pooled": 0.4136316741480166,
+   "record": 0.45583588592894886
+  },
+  {
+   "weight": 0.0,
+   "exponent": 0.7,
+   "conf": 0.66,
+   "min_area": 40,
+   "pooled": 0.41504814593453154,
+   "record": 0.45805761792053035
+  },
+  {
+   "weight": 0.0,
+   "exponent": 0.7,
+   "conf": 0.68,
+   "min_area": 40,
+   "pooled": 0.41655408828221796,
+   "record": 0.4624139755337566
+  },
+  {
+   "weight": 0.0,
+   "exponent": 0.7,
+   "conf": 0.7,
+   "min_area": 40,
+   "pooled": 0.41453344632890027,
+   "record": 0.4621154670466385
+  },
+  {
+   "weight": 0.0,
+   "exponent": 0.7,
+   "conf": 0.72,
+   "min_area": 40,
+   "pooled": 0.41578712442346144,
+   "record": 0.46696351374048173
+  },
+  {
+   "weight": 0.0,
+   "exponent": 0.7,
+   "conf": 0.74,
+   "min_area": 40,
+   "pooled": 0.41829520091132816,
+   "record": 0.47132192083590074
+  },
+  {
+   "weight": 0.0,
+   "exponent": 0.7,
+   "conf": 0.76,
+   "min_area": 40,
+   "pooled": 0.4170141267921809,
+   "record": 0.4728978003177651
+  },
+  {
+   "weight": 0.0,
+   "exponent": 0.7,
+   "conf": 0.78,
+   "min_area": 40,
+   "pooled": 0.416457967268606,
+   "record": 0.4757179328480264
+  },
+  {
+   "weight": 0.0,
+   "exponent": 0.7,
+   "conf": 0.8,
+   "min_area": 40,
+   "pooled": 0.4142343223587948,
+   "record": 0.4777067537864816
+  },
+  {
+   "weight": 0.0,
+   "exponent": 0.7,
+   "conf": 0.82,
+   "min_area": 40,
+   "pooled": 0.41207219111843507,
+   "record": 0.4789217386519861
+  },
+  {
+   "weight": 0.0,
+   "exponent": 0.7,
+   "conf": 0.84,
+   "min_area": 40,
+   "pooled": 0.40634381330878044,
+   "record": 0.4788095062571793
+  },
+  {
+   "weight": 0.0,
+   "exponent": 0.7,
+   "conf": 0.86,
+   "min_area": 40,
+   "pooled": 0.401639955420896,
+   "record": 0.4775726037875869
+  },
+  {
+   "weight": 0.0,
+   "exponent": 0.7,
+   "conf": 0.88,
+   "min_area": 40,
+   "pooled": 0.3899793834843181,
+   "record": 0.4722159611468376
+  },
+  {
+   "weight": 0.0,
+   "exponent": 0.7,
+   "conf": 0.9,
+   "min_area": 40,
+   "pooled": 0.3780570741125374,
+   "record": 0.46763529718989866
+  },
+  {
+   "weight": 1.0,
+   "exponent": 0.3,
+   "conf": 0.3,
+   "min_area": 100,
+   "pooled": 0.39422249235696305,
+   "record": 0.4163156771859565
+  },
+  {
+   "weight": 1.0,
+   "exponent": 0.3,
+   "conf": 0.32,
+   "min_area": 100,
+   "pooled": 0.3950725643943683,
+   "record": 0.4182910218587584
+  },
+  {
+   "weight": 1.0,
+   "exponent": 0.3,
+   "conf": 0.34,
+   "min_area": 100,
+   "pooled": 0.3983401988379609,
+   "record": 0.423304998746487
+  },
+  {
+   "weight": 1.0,
+   "exponent": 0.3,
+   "conf": 0.36,
+   "min_area": 100,
+   "pooled": 0.40047527892055135,
+   "record": 0.42662825916749164
+  },
+  {
+   "weight": 1.0,
+   "exponent": 0.3,
+   "conf": 0.38,
+   "min_area": 100,
+   "pooled": 0.4010647640149876,
+   "record": 0.42862968892524644
+  },
+  {
+   "weight": 1.0,
+   "exponent": 0.3,
+   "conf": 0.4,
+   "min_area": 100,
+   "pooled": 0.40298676798057426,
+   "record": 0.43285681358917244
+  },
+  {
+   "weight": 1.0,
+   "exponent": 0.3,
+   "conf": 0.42,
+   "min_area": 100,
+   "pooled": 0.4054879550459642,
+   "record": 0.4369756720962268
+  },
+  {
+   "weight": 1.0,
+   "exponent": 0.3,
+   "conf": 0.44,
+   "min_area": 100,
+   "pooled": 0.4073727554230359,
+   "record": 0.44070747987843445
+  },
+  {
+   "weight": 1.0,
+   "exponent": 0.3,
+   "conf": 0.46,
+   "min_area": 100,
+   "pooled": 0.40922519696777987,
+   "record": 0.4432559000160743
+  },
+  {
+   "weight": 1.0,
+   "exponent": 0.3,
+   "conf": 0.48,
+   "min_area": 100,
+   "pooled": 0.41123017222794334,
+   "record": 0.44588861433789156
+  },
+  {
+   "weight": 1.0,
+   "exponent": 0.3,
+   "conf": 0.5,
+   "min_area": 100,
+   "pooled": 0.4125260923321191,
+   "record": 0.4497875883575237
+  },
+  {
+   "weight": 1.0,
+   "exponent": 0.3,
+   "conf": 0.52,
+   "min_area": 100,
+   "pooled": 0.41445625559975885,
+   "record": 0.4531251232376835
+  },
+  {
+   "weight": 1.0,
+   "exponent": 0.3,
+   "conf": 0.54,
+   "min_area": 100,
+   "pooled": 0.41780383266192955,
+   "record": 0.45782778857422424
+  },
+  {
+   "weight": 1.0,
+   "exponent": 0.3,
+   "conf": 0.56,
+   "min_area": 100,
+   "pooled": 0.4175050957543373,
+   "record": 0.46003092600495205
+  },
+  {
+   "weight": 1.0,
+   "exponent": 0.3,
+   "conf": 0.58,
+   "min_area": 100,
+   "pooled": 0.4185786209895193,
+   "record": 0.46252167127183785
+  },
+  {
+   "weight": 1.0,
+   "exponent": 0.3,
+   "conf": 0.6,
+   "min_area": 100,
+   "pooled": 0.41972035016225423,
+   "record": 0.4651133196868898
+  },
+  {
+   "weight": 1.0,
+   "exponent": 0.3,
+   "conf": 0.62,
+   "min_area": 100,
+   "pooled": 0.42029022438275193,
+   "record": 0.4664838577751807
+  },
+  {
+   "weight": 1.0,
+   "exponent": 0.3,
+   "conf": 0.64,
+   "min_area": 100,
+   "pooled": 0.4192523039739033,
+   "record": 0.46812292753648044
+  },
+  {
+   "weight": 1.0,
+   "exponent": 0.3,
+   "conf": 0.66,
+   "min_area": 100,
+   "pooled": 0.4196997196853507,
+   "record": 0.47126706883782515
+  },
+  {
+   "weight": 1.0,
+   "exponent": 0.3,
+   "conf": 0.68,
+   "min_area": 100,
+   "pooled": 0.42089837034428795,
+   "record": 0.4751186565150366
+  },
+  {
+   "weight": 1.0,
+   "exponent": 0.3,
+   "conf": 0.7,
+   "min_area": 100,
+   "pooled": 0.42001116974369723,
+   "record": 0.4781374972939832
+  },
+  {
+   "weight": 1.0,
+   "exponent": 0.3,
+   "conf": 0.72,
+   "min_area": 100,
+   "pooled": 0.42058761268305617,
+   "record": 0.4815874786014785
+  },
+  {
+   "weight": 1.0,
+   "exponent": 0.3,
+   "conf": 0.74,
+   "min_area": 100,
+   "pooled": 0.4174670424784971,
+   "record": 0.4820929403179039
+  },
+  {
+   "weight": 1.0,
+   "exponent": 0.3,
+   "conf": 0.76,
+   "min_area": 100,
+   "pooled": 0.41487888059333233,
+   "record": 0.4846270514359675
+  },
+  {
+   "weight": 1.0,
+   "exponent": 0.3,
+   "conf": 0.78,
+   "min_area": 100,
+   "pooled": 0.4089285397756855,
+   "record": 0.4829402066232535
+  },
+  {
+   "weight": 1.0,
+   "exponent": 0.3,
+   "conf": 0.8,
+   "min_area": 100,
+   "pooled": 0.3986527667732566,
+   "record": 0.4796407795173008
+  },
+  {
+   "weight": 1.0,
+   "exponent": 0.3,
+   "conf": 0.82,
+   "min_area": 100,
+   "pooled": 0.3928940063126206,
+   "record": 0.47865447728422006
+  },
+  {
+   "weight": 1.0,
+   "exponent": 0.3,
+   "conf": 0.84,
+   "min_area": 100,
+   "pooled": 0.3818719715703057,
+   "record": 0.4711738686806618
+  },
+  {
+   "weight": 1.0,
+   "exponent": 0.3,
+   "conf": 0.86,
+   "min_area": 100,
+   "pooled": 0.3669214127004752,
+   "record": 0.46225434170225316
+  },
+  {
+   "weight": 1.0,
+   "exponent": 0.3,
+   "conf": 0.88,
+   "min_area": 100,
+   "pooled": 0.34331161928156867,
+   "record": 0.44408101038309117
+  },
+  {
+   "weight": 1.0,
+   "exponent": 0.3,
+   "conf": 0.9,
+   "min_area": 100,
+   "pooled": 0.3216181877793452,
+   "record": 0.4287474166071151
+  },
+  {
+   "weight": 1.0,
+   "exponent": 0.7,
+   "conf": 0.3,
+   "min_area": 40,
+   "pooled": 0.38737648125574603,
+   "record": 0.40648290995711883
+  },
+  {
+   "weight": 1.0,
+   "exponent": 0.7,
+   "conf": 0.32,
+   "min_area": 40,
+   "pooled": 0.38864440622401636,
+   "record": 0.40993083646767
+  },
+  {
+   "weight": 1.0,
+   "exponent": 0.7,
+   "conf": 0.34,
+   "min_area": 40,
+   "pooled": 0.3902489900861026,
+   "record": 0.41207738549851225
+  },
+  {
+   "weight": 1.0,
+   "exponent": 0.7,
+   "conf": 0.36,
+   "min_area": 40,
+   "pooled": 0.39263251301550156,
+   "record": 0.41734961355817995
+  },
+  {
+   "weight": 1.0,
+   "exponent": 0.7,
+   "conf": 0.38,
+   "min_area": 40,
+   "pooled": 0.3945095035094452,
+   "record": 0.42109783032113796
+  },
+  {
+   "weight": 1.0,
+   "exponent": 0.7,
+   "conf": 0.4,
+   "min_area": 40,
+   "pooled": 0.3970878763426895,
+   "record": 0.4255526622553342
+  },
+  {
+   "weight": 1.0,
+   "exponent": 0.7,
+   "conf": 0.42,
+   "min_area": 40,
+   "pooled": 0.3984289500605466,
+   "record": 0.4272083113660074
+  },
+  {
+   "weight": 1.0,
+   "exponent": 0.7,
+   "conf": 0.44,
+   "min_area": 40,
+   "pooled": 0.4009094648232966,
+   "record": 0.43173260076574055
+  },
+  {
+   "weight": 1.0,
+   "exponent": 0.7,
+   "conf": 0.46,
+   "min_area": 40,
+   "pooled": 0.40212820974781016,
+   "record": 0.4339943350054045
+  },
+  {
+   "weight": 1.0,
+   "exponent": 0.7,
+   "conf": 0.48,
+   "min_area": 40,
+   "pooled": 0.4027525740811555,
+   "record": 0.43626134172805814
+  },
+  {
+   "weight": 1.0,
+   "exponent": 0.7,
+   "conf": 0.5,
+   "min_area": 40,
+   "pooled": 0.405242274646011,
+   "record": 0.4397546162341413
+  },
+  {
+   "weight": 1.0,
+   "exponent": 0.7,
+   "conf": 0.52,
+   "min_area": 40,
+   "pooled": 0.40695517409352056,
+   "record": 0.44224802877716807
+  },
+  {
+   "weight": 1.0,
+   "exponent": 0.7,
+   "conf": 0.54,
+   "min_area": 40,
+   "pooled": 0.4093601583473805,
+   "record": 0.44606677456562366
+  },
+  {
+   "weight": 1.0,
+   "exponent": 0.7,
+   "conf": 0.56,
+   "min_area": 40,
+   "pooled": 0.41091550644494446,
+   "record": 0.4490014840303182
+  },
+  {
+   "weight": 1.0,
+   "exponent": 0.7,
+   "conf": 0.58,
+   "min_area": 40,
+   "pooled": 0.41349163561294006,
+   "record": 0.452874079232173
+  },
+  {
+   "weight": 1.0,
+   "exponent": 0.7,
+   "conf": 0.6,
+   "min_area": 40,
+   "pooled": 0.41301284485846096,
+   "record": 0.4544890140498489
+  },
+  {
+   "weight": 1.0,
+   "exponent": 0.7,
+   "conf": 0.62,
+   "min_area": 40,
+   "pooled": 0.41370391364283476,
+   "record": 0.4562855722033421
+  },
+  {
+   "weight": 1.0,
+   "exponent": 0.7,
+   "conf": 0.64,
+   "min_area": 40,
+   "pooled": 0.4154214256149088,
+   "record": 0.45842280407002495
+  },
+  {
+   "weight": 1.0,
+   "exponent": 0.7,
+   "conf": 0.66,
+   "min_area": 40,
+   "pooled": 0.4158731784684239,
+   "record": 0.4617672260844228
+  },
+  {
+   "weight": 1.0,
+   "exponent": 0.7,
+   "conf": 0.68,
+   "min_area": 40,
+   "pooled": 0.4151283037543662,
+   "record": 0.46327852110294326
+  },
+  {
+   "weight": 1.0,
+   "exponent": 0.7,
+   "conf": 0.7,
+   "min_area": 40,
+   "pooled": 0.4159525316310804,
+   "record": 0.46812553811507174
+  },
+  {
+   "weight": 1.0,
+   "exponent": 0.7,
+   "conf": 0.72,
+   "min_area": 40,
+   "pooled": 0.41773944200867036,
+   "record": 0.4716034239600651
+  },
+  {
+   "weight": 1.0,
+   "exponent": 0.7,
+   "conf": 0.74,
+   "min_area": 40,
+   "pooled": 0.4174615761548137,
+   "record": 0.47410886313641565
+  },
+  {
+   "weight": 1.0,
+   "exponent": 0.7,
+   "conf": 0.76,
+   "min_area": 40,
+   "pooled": 0.4178245699391219,
+   "record": 0.47791440335458363
+  },
+  {
+   "weight": 1.0,
+   "exponent": 0.7,
+   "conf": 0.78,
+   "min_area": 40,
+   "pooled": 0.41477632535693976,
+   "record": 0.48071361461902384
+  },
+  {
+   "weight": 1.0,
+   "exponent": 0.7,
+   "conf": 0.8,
+   "min_area": 40,
+   "pooled": 0.4120040204944073,
+   "record": 0.4799530476748966
+  },
+  {
+   "weight": 1.0,
+   "exponent": 0.7,
+   "conf": 0.82,
+   "min_area": 40,
+   "pooled": 0.40683749072860537,
+   "record": 0.47939496678701865
+  },
+  {
+   "weight": 1.0,
+   "exponent": 0.7,
+   "conf": 0.84,
+   "min_area": 40,
+   "pooled": 0.40041351014496523,
+   "record": 0.4789085099144104
+  },
+  {
+   "weight": 1.0,
+   "exponent": 0.7,
+   "conf": 0.86,
+   "min_area": 40,
+   "pooled": 0.3886510933872392,
+   "record": 0.47307590445498104
+  },
+  {
+   "weight": 1.0,
+   "exponent": 0.7,
+   "conf": 0.88,
+   "min_area": 40,
+   "pooled": 0.37612384281460676,
+   "record": 0.4680024479696525
+  },
+  {
+   "weight": 1.0,
+   "exponent": 0.7,
+   "conf": 0.9,
+   "min_area": 40,
+   "pooled": 0.35844347064974974,
+   "record": 0.4564498981863163
+  },
+  {
+   "weight": 2.0,
+   "exponent": 0.3,
+   "conf": 0.3,
+   "min_area": 100,
+   "pooled": 0.39553217479293634,
+   "record": 0.4198013653743616
+  },
+  {
+   "weight": 2.0,
+   "exponent": 0.3,
+   "conf": 0.32,
+   "min_area": 100,
+   "pooled": 0.39865397569895794,
+   "record": 0.4234540025168328
+  },
+  {
+   "weight": 2.0,
+   "exponent": 0.3,
+   "conf": 0.34,
+   "min_area": 100,
+   "pooled": 0.3991901153930931,
+   "record": 0.4255439600790653
+  },
+  {
+   "weight": 2.0,
+   "exponent": 0.3,
+   "conf": 0.36,
+   "min_area": 100,
+   "pooled": 0.40050084818338705,
+   "record": 0.42914171861258005
+  },
+  {
+   "weight": 2.0,
+   "exponent": 0.3,
+   "conf": 0.38,
+   "min_area": 100,
+   "pooled": 0.40369381602827087,
+   "record": 0.43470346027958495
+  },
+  {
+   "weight": 2.0,
+   "exponent": 0.3,
+   "conf": 0.4,
+   "min_area": 100,
+   "pooled": 0.4066512798819578,
+   "record": 0.4387928625399761
+  },
+  {
+   "weight": 2.0,
+   "exponent": 0.3,
+   "conf": 0.42,
+   "min_area": 100,
+   "pooled": 0.40838619997387055,
+   "record": 0.4422838077040682
+  },
+  {
+   "weight": 2.0,
+   "exponent": 0.3,
+   "conf": 0.44,
+   "min_area": 100,
+   "pooled": 0.409519965123755,
+   "record": 0.4440324465349668
+  },
+  {
+   "weight": 2.0,
+   "exponent": 0.3,
+   "conf": 0.46,
+   "min_area": 100,
+   "pooled": 0.41151935268677153,
+   "record": 0.4477326139837354
+  },
+  {
+   "weight": 2.0,
+   "exponent": 0.3,
+   "conf": 0.48,
+   "min_area": 100,
+   "pooled": 0.413153075927745,
+   "record": 0.4509731799806843
+  },
+  {
+   "weight": 2.0,
+   "exponent": 0.3,
+   "conf": 0.5,
+   "min_area": 100,
+   "pooled": 0.4169398028601663,
+   "record": 0.45712651167994406
+  },
+  {
+   "weight": 2.0,
+   "exponent": 0.3,
+   "conf": 0.52,
+   "min_area": 100,
+   "pooled": 0.4173326460887343,
+   "record": 0.459404374122725
+  },
+  {
+   "weight": 2.0,
+   "exponent": 0.3,
+   "conf": 0.54,
+   "min_area": 100,
+   "pooled": 0.41734465938920146,
+   "record": 0.46088481845023077
+  },
+  {
+   "weight": 2.0,
+   "exponent": 0.3,
+   "conf": 0.56,
+   "min_area": 100,
+   "pooled": 0.41911668820638276,
+   "record": 0.46427525441166445
+  },
+  {
+   "weight": 2.0,
+   "exponent": 0.3,
+   "conf": 0.58,
+   "min_area": 100,
+   "pooled": 0.42084871045796624,
+   "record": 0.4675670931820483
+  },
+  {
+   "weight": 2.0,
+   "exponent": 0.3,
+   "conf": 0.6,
+   "min_area": 100,
+   "pooled": 0.4211247684629285,
+   "record": 0.4696456917329359
+  },
+  {
+   "weight": 2.0,
+   "exponent": 0.3,
+   "conf": 0.62,
+   "min_area": 100,
+   "pooled": 0.41923294103415354,
+   "record": 0.4713813827869184
+  },
+  {
+   "weight": 2.0,
+   "exponent": 0.3,
+   "conf": 0.64,
+   "min_area": 100,
+   "pooled": 0.4193226072739272,
+   "record": 0.4750730052051424
+  },
+  {
+   "weight": 2.0,
+   "exponent": 0.3,
+   "conf": 0.66,
+   "min_area": 100,
+   "pooled": 0.4186275825279641,
+   "record": 0.47731585513743646
+  },
+  {
+   "weight": 2.0,
+   "exponent": 0.3,
+   "conf": 0.68,
+   "min_area": 100,
+   "pooled": 0.42022172116669876,
+   "record": 0.4827082971856591
+  },
+  {
+   "weight": 2.0,
+   "exponent": 0.3,
+   "conf": 0.7,
+   "min_area": 100,
+   "pooled": 0.41880596813587045,
+   "record": 0.48440425646534385
+  },
+  {
+   "weight": 2.0,
+   "exponent": 0.3,
+   "conf": 0.72,
+   "min_area": 100,
+   "pooled": 0.4163899942390831,
+   "record": 0.4866740180424915
+  },
+  {
+   "weight": 2.0,
+   "exponent": 0.3,
+   "conf": 0.74,
+   "min_area": 100,
+   "pooled": 0.40835437352272935,
+   "record": 0.48328996570603205
+  },
+  {
+   "weight": 2.0,
+   "exponent": 0.3,
+   "conf": 0.76,
+   "min_area": 100,
+   "pooled": 0.40030163696032817,
+   "record": 0.4826001673813168
+  },
+  {
+   "weight": 2.0,
+   "exponent": 0.3,
+   "conf": 0.78,
+   "min_area": 100,
+   "pooled": 0.3919370441789203,
+   "record": 0.4777443923691123
+  },
+  {
+   "weight": 2.0,
+   "exponent": 0.3,
+   "conf": 0.8,
+   "min_area": 100,
+   "pooled": 0.3793113427326776,
+   "record": 0.4698275673773098
+  },
+  {
+   "weight": 2.0,
+   "exponent": 0.3,
+   "conf": 0.82,
+   "min_area": 100,
+   "pooled": 0.3688367647614176,
+   "record": 0.4645380072680864
+  },
+  {
+   "weight": 2.0,
+   "exponent": 0.3,
+   "conf": 0.84,
+   "min_area": 100,
+   "pooled": 0.3528055462267859,
+   "record": 0.4538127094646764
+  },
+  {
+   "weight": 2.0,
+   "exponent": 0.3,
+   "conf": 0.86,
+   "min_area": 100,
+   "pooled": 0.3291021916350076,
+   "record": 0.434945549701935
+  },
+  {
+   "weight": 2.0,
+   "exponent": 0.3,
+   "conf": 0.88,
+   "min_area": 100,
+   "pooled": 0.2882685061004779,
+   "record": 0.39294909289442936
+  },
+  {
+   "weight": 2.0,
+   "exponent": 0.3,
+   "conf": 0.9,
+   "min_area": 100,
+   "pooled": 0.24125370447701328,
+   "record": 0.3432554342728969
+  },
+  {
+   "weight": 2.0,
+   "exponent": 0.7,
+   "conf": 0.3,
+   "min_area": 40,
+   "pooled": 0.3896839769964798,
+   "record": 0.4110397786687083
+  },
+  {
+   "weight": 2.0,
+   "exponent": 0.7,
+   "conf": 0.32,
+   "min_area": 40,
+   "pooled": 0.389881501641703,
+   "record": 0.4119878350934984
+  },
+  {
+   "weight": 2.0,
+   "exponent": 0.7,
+   "conf": 0.34,
+   "min_area": 40,
+   "pooled": 0.3924098218451193,
+   "record": 0.4171189921349656
+  },
+  {
+   "weight": 2.0,
+   "exponent": 0.7,
+   "conf": 0.36,
+   "min_area": 40,
+   "pooled": 0.39530465015598876,
+   "record": 0.42187877905607224
+  },
+  {
+   "weight": 2.0,
+   "exponent": 0.7,
+   "conf": 0.38,
+   "min_area": 40,
+   "pooled": 0.39669472086927154,
+   "record": 0.42515962255281653
+  },
+  {
+   "weight": 2.0,
+   "exponent": 0.7,
+   "conf": 0.4,
+   "min_area": 40,
+   "pooled": 0.39914696696458135,
+   "record": 0.42877472853207715
+  },
+  {
+   "weight": 2.0,
+   "exponent": 0.7,
+   "conf": 0.42,
+   "min_area": 40,
+   "pooled": 0.4017088148185304,
+   "record": 0.43305215017250204
+  },
+  {
+   "weight": 2.0,
+   "exponent": 0.7,
+   "conf": 0.44,
+   "min_area": 40,
+   "pooled": 0.40294029163036915,
+   "record": 0.43508570212175846
+  },
+  {
+   "weight": 2.0,
+   "exponent": 0.7,
+   "conf": 0.46,
+   "min_area": 40,
+   "pooled": 0.403850812750295,
+   "record": 0.4375659087103708
+  },
+  {
+   "weight": 2.0,
+   "exponent": 0.7,
+   "conf": 0.48,
+   "min_area": 40,
+   "pooled": 0.4051488421393605,
+   "record": 0.4399891737303723
+  },
+  {
+   "weight": 2.0,
+   "exponent": 0.7,
+   "conf": 0.5,
+   "min_area": 40,
+   "pooled": 0.4078712120979177,
+   "record": 0.4440442618551359
+  },
+  {
+   "weight": 2.0,
+   "exponent": 0.7,
+   "conf": 0.52,
+   "min_area": 40,
+   "pooled": 0.4101142785484501,
+   "record": 0.4477411400133138
+  },
+  {
+   "weight": 2.0,
+   "exponent": 0.7,
+   "conf": 0.54,
+   "min_area": 40,
+   "pooled": 0.411702465766645,
+   "record": 0.45097528717549146
+  },
+  {
+   "weight": 2.0,
+   "exponent": 0.7,
+   "conf": 0.56,
+   "min_area": 40,
+   "pooled": 0.4130292487066009,
+   "record": 0.4528809306909592
+  },
+  {
+   "weight": 2.0,
+   "exponent": 0.7,
+   "conf": 0.58,
+   "min_area": 40,
+   "pooled": 0.41416558282205923,
+   "record": 0.45618794728770634
+  },
+  {
+   "weight": 2.0,
+   "exponent": 0.7,
+   "conf": 0.6,
+   "min_area": 40,
+   "pooled": 0.414483657023358,
+   "record": 0.45803704289283637
+  },
+  {
+   "weight": 2.0,
+   "exponent": 0.7,
+   "conf": 0.62,
+   "min_area": 40,
+   "pooled": 0.4160468345938171,
+   "record": 0.46056088359537467
+  },
+  {
+   "weight": 2.0,
+   "exponent": 0.7,
+   "conf": 0.64,
+   "min_area": 40,
+   "pooled": 0.4171330272155363,
+   "record": 0.4639248097626126
+  },
+  {
+   "weight": 2.0,
+   "exponent": 0.7,
+   "conf": 0.66,
+   "min_area": 40,
+   "pooled": 0.41821335567663837,
+   "record": 0.46743823376369154
+  },
+  {
+   "weight": 2.0,
+   "exponent": 0.7,
+   "conf": 0.68,
+   "min_area": 40,
+   "pooled": 0.4167308290912747,
+   "record": 0.4695940003019819
+  },
+  {
+   "weight": 2.0,
+   "exponent": 0.7,
+   "conf": 0.7,
+   "min_area": 40,
+   "pooled": 0.41751448531475266,
+   "record": 0.47227586716868264
+  },
+  {
+   "weight": 2.0,
+   "exponent": 0.7,
+   "conf": 0.72,
+   "min_area": 40,
+   "pooled": 0.41900213117213647,
+   "record": 0.47666478166908954
+  },
+  {
+   "weight": 2.0,
+   "exponent": 0.7,
+   "conf": 0.74,
+   "min_area": 40,
+   "pooled": 0.41934405597232527,
+   "record": 0.48032075717162276
+  },
+  {
+   "weight": 2.0,
+   "exponent": 0.7,
+   "conf": 0.76,
+   "min_area": 40,
+   "pooled": 0.4150887196782556,
+   "record": 0.48248263839922895
+  },
+  {
+   "weight": 2.0,
+   "exponent": 0.7,
+   "conf": 0.78,
+   "min_area": 40,
+   "pooled": 0.41483432266427545,
+   "record": 0.4838244346045756
+  },
+  {
+   "weight": 2.0,
+   "exponent": 0.7,
+   "conf": 0.8,
+   "min_area": 40,
+   "pooled": 0.4076777736424312,
+   "record": 0.4823937098449326
+  },
+  {
+   "weight": 2.0,
+   "exponent": 0.7,
+   "conf": 0.82,
+   "min_area": 40,
+   "pooled": 0.4004551315064621,
+   "record": 0.4798096486309169
+  },
+  {
+   "weight": 2.0,
+   "exponent": 0.7,
+   "conf": 0.84,
+   "min_area": 40,
+   "pooled": 0.39263297080079085,
+   "record": 0.4776312645796314
+  },
+  {
+   "weight": 2.0,
+   "exponent": 0.7,
+   "conf": 0.86,
+   "min_area": 40,
+   "pooled": 0.3764732533682986,
+   "record": 0.4665716362586201
+  },
+  {
+   "weight": 2.0,
+   "exponent": 0.7,
+   "conf": 0.88,
+   "min_area": 40,
+   "pooled": 0.36312628167702304,
+   "record": 0.46210706595800544
+  },
+  {
+   "weight": 2.0,
+   "exponent": 0.7,
+   "conf": 0.9,
+   "min_area": 40,
+   "pooled": 0.34082123697114347,
+   "record": 0.44197468123607286
+  },
+  {
+   "weight": 4.0,
+   "exponent": 0.3,
+   "conf": 0.3,
+   "min_area": 100,
+   "pooled": 0.3994239012971834,
+   "record": 0.4250551055691094
+  },
+  {
+   "weight": 4.0,
+   "exponent": 0.3,
+   "conf": 0.32,
+   "min_area": 100,
+   "pooled": 0.40066111262843845,
+   "record": 0.42966762758146804
+  },
+  {
+   "weight": 4.0,
+   "exponent": 0.3,
+   "conf": 0.34,
+   "min_area": 100,
+   "pooled": 0.40402029707641346,
+   "record": 0.4353797257747304
+  },
+  {
+   "weight": 4.0,
+   "exponent": 0.3,
+   "conf": 0.36,
+   "min_area": 100,
+   "pooled": 0.40649772635551024,
+   "record": 0.4393944245351887
+  },
+  {
+   "weight": 4.0,
+   "exponent": 0.3,
+   "conf": 0.38,
+   "min_area": 100,
+   "pooled": 0.40815235340627526,
+   "record": 0.4418118673469503
+  },
+  {
+   "weight": 4.0,
+   "exponent": 0.3,
+   "conf": 0.4,
+   "min_area": 100,
+   "pooled": 0.41161670534948785,
+   "record": 0.44716692277362124
+  },
+  {
+   "weight": 4.0,
+   "exponent": 0.3,
+   "conf": 0.42,
+   "min_area": 100,
+   "pooled": 0.41321391729376983,
+   "record": 0.45114319864269276
+  },
+  {
+   "weight": 4.0,
+   "exponent": 0.3,
+   "conf": 0.44,
+   "min_area": 100,
+   "pooled": 0.41579624241638674,
+   "record": 0.45553621326931415
+  },
+  {
+   "weight": 4.0,
+   "exponent": 0.3,
+   "conf": 0.46,
+   "min_area": 100,
+   "pooled": 0.4172989807031507,
+   "record": 0.45936392480799343
+  },
+  {
+   "weight": 4.0,
+   "exponent": 0.3,
+   "conf": 0.48,
+   "min_area": 100,
+   "pooled": 0.41901131628892097,
+   "record": 0.46219006565011256
+  },
+  {
+   "weight": 4.0,
+   "exponent": 0.3,
+   "conf": 0.5,
+   "min_area": 100,
+   "pooled": 0.4198861497979235,
+   "record": 0.46473564632350983
+  },
+  {
+   "weight": 4.0,
+   "exponent": 0.3,
+   "conf": 0.52,
+   "min_area": 100,
+   "pooled": 0.42178919898534567,
+   "record": 0.46905201612945774
+  },
+  {
+   "weight": 4.0,
+   "exponent": 0.3,
+   "conf": 0.54,
+   "min_area": 100,
+   "pooled": 0.42128437009149305,
+   "record": 0.47185494976392744
+  },
+  {
+   "weight": 4.0,
+   "exponent": 0.3,
+   "conf": 0.56,
+   "min_area": 100,
+   "pooled": 0.4201142004880652,
+   "record": 0.47392159840812587
+  },
+  {
+   "weight": 4.0,
+   "exponent": 0.3,
+   "conf": 0.58,
+   "min_area": 100,
+   "pooled": 0.4202652520083588,
+   "record": 0.4769163881985615
+  },
+  {
+   "weight": 4.0,
+   "exponent": 0.3,
+   "conf": 0.6,
+   "min_area": 100,
+   "pooled": 0.4205223771078802,
+   "record": 0.48007396807347147
+  },
+  {
+   "weight": 4.0,
+   "exponent": 0.3,
+   "conf": 0.62,
+   "min_area": 100,
+   "pooled": 0.4193721370960722,
+   "record": 0.48142651153924143
+  },
+  {
+   "weight": 4.0,
+   "exponent": 0.3,
+   "conf": 0.64,
+   "min_area": 100,
+   "pooled": 0.4183665629062283,
+   "record": 0.4827419700675843
+  },
+  {
+   "weight": 4.0,
+   "exponent": 0.3,
+   "conf": 0.66,
+   "min_area": 100,
+   "pooled": 0.4172745714625777,
+   "record": 0.4872491726041895
+  },
+  {
+   "weight": 4.0,
+   "exponent": 0.3,
+   "conf": 0.68,
+   "min_area": 100,
+   "pooled": 0.41379054577002566,
+   "record": 0.48894859995182655
+  },
+  {
+   "weight": 4.0,
+   "exponent": 0.3,
+   "conf": 0.7,
+   "min_area": 100,
+   "pooled": 0.4017313766601514,
+   "record": 0.4831589607581958
+  },
+  {
+   "weight": 4.0,
+   "exponent": 0.3,
+   "conf": 0.72,
+   "min_area": 100,
+   "pooled": 0.3942604943188271,
+   "record": 0.4800444819836447
+  },
+  {
+   "weight": 4.0,
+   "exponent": 0.3,
+   "conf": 0.74,
+   "min_area": 100,
+   "pooled": 0.381351658603197,
+   "record": 0.47198629657729857
+  },
+  {
+   "weight": 4.0,
+   "exponent": 0.3,
+   "conf": 0.76,
+   "min_area": 100,
+   "pooled": 0.372880789348759,
+   "record": 0.4679931217674698
+  },
+  {
+   "weight": 4.0,
+   "exponent": 0.3,
+   "conf": 0.78,
+   "min_area": 100,
+   "pooled": 0.36122818315866095,
+   "record": 0.4616578353256339
+  },
+  {
+   "weight": 4.0,
+   "exponent": 0.3,
+   "conf": 0.8,
+   "min_area": 100,
+   "pooled": 0.34236487468383037,
+   "record": 0.4456964697071906
+  },
+  {
+   "weight": 4.0,
+   "exponent": 0.3,
+   "conf": 0.82,
+   "min_area": 100,
+   "pooled": 0.3179822738322878,
+   "record": 0.42354309266138324
+  },
+  {
+   "weight": 4.0,
+   "exponent": 0.3,
+   "conf": 0.84,
+   "min_area": 100,
+   "pooled": 0.2815166972819232,
+   "record": 0.38399098909156
+  },
+  {
+   "weight": 4.0,
+   "exponent": 0.3,
+   "conf": 0.86,
+   "min_area": 100,
+   "pooled": 0.2439967613963807,
+   "record": 0.34265369605961254
+  },
+  {
+   "weight": 4.0,
+   "exponent": 0.3,
+   "conf": 0.88,
+   "min_area": 100,
+   "pooled": 0.18350603997254458,
+   "record": 0.2681947431947039
+  },
+  {
+   "weight": 4.0,
+   "exponent": 0.3,
+   "conf": 0.9,
+   "min_area": 100,
+   "pooled": 0.1336088469686532,
+   "record": 0.19880544333997488
+  },
+  {
+   "weight": 4.0,
+   "exponent": 0.7,
+   "conf": 0.3,
+   "min_area": 40,
+   "pooled": 0.3911994194809708,
+   "record": 0.41296886792584764
+  },
+  {
+   "weight": 4.0,
+   "exponent": 0.7,
+   "conf": 0.32,
+   "min_area": 40,
+   "pooled": 0.393738085998797,
+   "record": 0.4183562033159738
+  },
+  {
+   "weight": 4.0,
+   "exponent": 0.7,
+   "conf": 0.34,
+   "min_area": 40,
+   "pooled": 0.3957070801228891,
+   "record": 0.4219854866873941
+  },
+  {
+   "weight": 4.0,
+   "exponent": 0.7,
+   "conf": 0.36,
+   "min_area": 40,
+   "pooled": 0.3981521074236313,
+   "record": 0.4255727638975252
+  },
+  {
+   "weight": 4.0,
+   "exponent": 0.7,
+   "conf": 0.38,
+   "min_area": 40,
+   "pooled": 0.40050498160614645,
+   "record": 0.43031013615260016
+  },
+  {
+   "weight": 4.0,
+   "exponent": 0.7,
+   "conf": 0.4,
+   "min_area": 40,
+   "pooled": 0.40291361187271174,
+   "record": 0.4337956861402995
+  },
+  {
+   "weight": 4.0,
+   "exponent": 0.7,
+   "conf": 0.42,
+   "min_area": 40,
+   "pooled": 0.40398704290857745,
+   "record": 0.43569431880891274
+  },
+  {
+   "weight": 4.0,
+   "exponent": 0.7,
+   "conf": 0.44,
+   "min_area": 40,
+   "pooled": 0.4057290035805455,
+   "record": 0.4391405120501697
+  },
+  {
+   "weight": 4.0,
+   "exponent": 0.7,
+   "conf": 0.46,
+   "min_area": 40,
+   "pooled": 0.40763256745971105,
+   "record": 0.44189479476748167
+  },
+  {
+   "weight": 4.0,
+   "exponent": 0.7,
+   "conf": 0.48,
+   "min_area": 40,
+   "pooled": 0.40995418806935374,
+   "record": 0.44680097597703927
+  },
+  {
+   "weight": 4.0,
+   "exponent": 0.7,
+   "conf": 0.5,
+   "min_area": 40,
+   "pooled": 0.41086098647688524,
+   "record": 0.449027524886754
+  },
+  {
+   "weight": 4.0,
+   "exponent": 0.7,
+   "conf": 0.52,
+   "min_area": 40,
+   "pooled": 0.412776631882561,
+   "record": 0.45166791713573573
+  },
+  {
+   "weight": 4.0,
+   "exponent": 0.7,
+   "conf": 0.54,
+   "min_area": 40,
+   "pooled": 0.41448212995030687,
+   "record": 0.4550832421906682
+  },
+  {
+   "weight": 4.0,
+   "exponent": 0.7,
+   "conf": 0.56,
+   "min_area": 40,
+   "pooled": 0.416598562439362,
+   "record": 0.4588585254446457
+  },
+  {
+   "weight": 4.0,
+   "exponent": 0.7,
+   "conf": 0.58,
+   "min_area": 40,
+   "pooled": 0.4170182561638982,
+   "record": 0.46050283024026306
+  },
+  {
+   "weight": 4.0,
+   "exponent": 0.7,
+   "conf": 0.6,
+   "min_area": 40,
+   "pooled": 0.41823496786387443,
+   "record": 0.4639471776634528
+  },
+  {
+   "weight": 4.0,
+   "exponent": 0.7,
+   "conf": 0.62,
+   "min_area": 40,
+   "pooled": 0.4188707689278701,
+   "record": 0.4666571600735522
+  },
+  {
+   "weight": 4.0,
+   "exponent": 0.7,
+   "conf": 0.64,
+   "min_area": 40,
+   "pooled": 0.41883618629103375,
+   "record": 0.4681789156563097
+  },
+  {
+   "weight": 4.0,
+   "exponent": 0.7,
+   "conf": 0.66,
+   "min_area": 40,
+   "pooled": 0.4174549983398208,
+   "record": 0.47085851346461927
+  },
+  {
+   "weight": 4.0,
+   "exponent": 0.7,
+   "conf": 0.68,
+   "min_area": 40,
+   "pooled": 0.4184020660237008,
+   "record": 0.47442827958544226
+  },
+  {
+   "weight": 4.0,
+   "exponent": 0.7,
+   "conf": 0.7,
+   "min_area": 40,
+   "pooled": 0.4214021274516202,
+   "record": 0.4808795853316125
+  },
+  {
+   "weight": 4.0,
+   "exponent": 0.7,
+   "conf": 0.72,
+   "min_area": 40,
+   "pooled": 0.4182592691519696,
+   "record": 0.4822291380681561
+  },
+  {
+   "weight": 4.0,
+   "exponent": 0.7,
+   "conf": 0.74,
+   "min_area": 40,
+   "pooled": 0.41737031233720573,
+   "record": 0.4861479576969121
+  },
+  {
+   "weight": 4.0,
+   "exponent": 0.7,
+   "conf": 0.76,
+   "min_area": 40,
+   "pooled": 0.4112243551665057,
+   "record": 0.48504576958035406
+  },
+  {
+   "weight": 4.0,
+   "exponent": 0.7,
+   "conf": 0.78,
+   "min_area": 40,
+   "pooled": 0.4066253360725566,
+   "record": 0.48294113251947923
+  },
+  {
+   "weight": 4.0,
+   "exponent": 0.7,
+   "conf": 0.8,
+   "min_area": 40,
+   "pooled": 0.3995360482302591,
+   "record": 0.48049240843898333
+  },
+  {
+   "weight": 4.0,
+   "exponent": 0.7,
+   "conf": 0.82,
+   "min_area": 40,
+   "pooled": 0.39028400018611115,
+   "record": 0.4762691956619337
+  },
+  {
+   "weight": 4.0,
+   "exponent": 0.7,
+   "conf": 0.84,
+   "min_area": 40,
+   "pooled": 0.3712612743918144,
+   "record": 0.4649082127162299
+  },
+  {
+   "weight": 4.0,
+   "exponent": 0.7,
+   "conf": 0.86,
+   "min_area": 40,
+   "pooled": 0.3592422028786209,
+   "record": 0.45955719322974636
+  },
+  {
+   "weight": 4.0,
+   "exponent": 0.7,
+   "conf": 0.88,
+   "min_area": 40,
+   "pooled": 0.3390904880334053,
+   "record": 0.4417755244346031
+  },
+  {
+   "weight": 4.0,
+   "exponent": 0.7,
+   "conf": 0.9,
+   "min_area": 40,
+   "pooled": 0.29965936948949634,
+   "record": 0.40322686416890935
+  },
+  {
+   "weight": 8.0,
+   "exponent": 0.3,
+   "conf": 0.3,
+   "min_area": 100,
+   "pooled": 0.4047595359658602,
+   "record": 0.4366634444669531
+  },
+  {
+   "weight": 8.0,
+   "exponent": 0.3,
+   "conf": 0.32,
+   "min_area": 100,
+   "pooled": 0.4077534196351997,
+   "record": 0.4410297857738716
+  },
+  {
+   "weight": 8.0,
+   "exponent": 0.3,
+   "conf": 0.34,
+   "min_area": 100,
+   "pooled": 0.41060174283481976,
+   "record": 0.4466681639854144
+  },
+  {
+   "weight": 8.0,
+   "exponent": 0.3,
+   "conf": 0.36,
+   "min_area": 100,
+   "pooled": 0.41373388666373545,
+   "record": 0.45172204153785783
+  },
+  {
+   "weight": 8.0,
+   "exponent": 0.3,
+   "conf": 0.38,
+   "min_area": 100,
+   "pooled": 0.41601132178864275,
+   "record": 0.456704739435139
+  },
+  {
+   "weight": 8.0,
+   "exponent": 0.3,
+   "conf": 0.4,
+   "min_area": 100,
+   "pooled": 0.41765791178220596,
+   "record": 0.4611243896352973
+  },
+  {
+   "weight": 8.0,
+   "exponent": 0.3,
+   "conf": 0.42,
+   "min_area": 100,
+   "pooled": 0.41888525969219625,
+   "record": 0.4634814718282018
+  },
+  {
+   "weight": 8.0,
+   "exponent": 0.3,
+   "conf": 0.44,
+   "min_area": 100,
+   "pooled": 0.418605896635945,
+   "record": 0.4657393383389086
+  },
+  {
+   "weight": 8.0,
+   "exponent": 0.3,
+   "conf": 0.46,
+   "min_area": 100,
+   "pooled": 0.4194369880197001,
+   "record": 0.47043639805726567
+  },
+  {
+   "weight": 8.0,
+   "exponent": 0.3,
+   "conf": 0.48,
+   "min_area": 100,
+   "pooled": 0.4204856189085977,
+   "record": 0.4746397387731775
+  },
+  {
+   "weight": 8.0,
+   "exponent": 0.3,
+   "conf": 0.5,
+   "min_area": 100,
+   "pooled": 0.4219649878942591,
+   "record": 0.4778584720260728
+  },
+  {
+   "weight": 8.0,
+   "exponent": 0.3,
+   "conf": 0.52,
+   "min_area": 100,
+   "pooled": 0.42153181842177423,
+   "record": 0.48002633607618483
+  },
+  {
+   "weight": 8.0,
+   "exponent": 0.3,
+   "conf": 0.54,
+   "min_area": 100,
+   "pooled": 0.4214047969772355,
+   "record": 0.4818874918218321
+  },
+  {
+   "weight": 8.0,
+   "exponent": 0.3,
+   "conf": 0.56,
+   "min_area": 100,
+   "pooled": 0.41844664560517086,
+   "record": 0.481989096115912
+  },
+  {
+   "weight": 8.0,
+   "exponent": 0.3,
+   "conf": 0.58,
+   "min_area": 100,
+   "pooled": 0.4137933324841949,
+   "record": 0.4815016700106073
+  },
+  {
+   "weight": 8.0,
+   "exponent": 0.3,
+   "conf": 0.6,
+   "min_area": 100,
+   "pooled": 0.4122972211020517,
+   "record": 0.4859516919376233
+  },
+  {
+   "weight": 8.0,
+   "exponent": 0.3,
+   "conf": 0.62,
+   "min_area": 100,
+   "pooled": 0.40905823913370304,
+   "record": 0.487327195533437
+  },
+  {
+   "weight": 8.0,
+   "exponent": 0.3,
+   "conf": 0.64,
+   "min_area": 100,
+   "pooled": 0.40086132923983575,
+   "record": 0.4832835894772966
+  },
+  {
+   "weight": 8.0,
+   "exponent": 0.3,
+   "conf": 0.66,
+   "min_area": 100,
+   "pooled": 0.39234734911595476,
+   "record": 0.4792311901055801
+  },
+  {
+   "weight": 8.0,
+   "exponent": 0.3,
+   "conf": 0.68,
+   "min_area": 100,
+   "pooled": 0.3816319943163496,
+   "record": 0.4734804133000577
+  },
+  {
+   "weight": 8.0,
+   "exponent": 0.3,
+   "conf": 0.7,
+   "min_area": 100,
+   "pooled": 0.3721757424495073,
+   "record": 0.46720587848192824
+  },
+  {
+   "weight": 8.0,
+   "exponent": 0.3,
+   "conf": 0.72,
+   "min_area": 100,
+   "pooled": 0.3606678343920516,
+   "record": 0.46036923329530133
+  },
+  {
+   "weight": 8.0,
+   "exponent": 0.3,
+   "conf": 0.74,
+   "min_area": 100,
+   "pooled": 0.34761090367064734,
+   "record": 0.4509473616252803
+  },
+  {
+   "weight": 8.0,
+   "exponent": 0.3,
+   "conf": 0.76,
+   "min_area": 100,
+   "pooled": 0.3289046699890053,
+   "record": 0.43261346798836114
+  },
+  {
+   "weight": 8.0,
+   "exponent": 0.3,
+   "conf": 0.78,
+   "min_area": 100,
+   "pooled": 0.2989077205905632,
+   "record": 0.40389388516798463
+  },
+  {
+   "weight": 8.0,
+   "exponent": 0.3,
+   "conf": 0.8,
+   "min_area": 100,
+   "pooled": 0.2699039802996181,
+   "record": 0.37276788695998925
+  },
+  {
+   "weight": 8.0,
+   "exponent": 0.3,
+   "conf": 0.82,
+   "min_area": 100,
+   "pooled": 0.23723594120892919,
+   "record": 0.3321260993676566
+  },
+  {
+   "weight": 8.0,
+   "exponent": 0.3,
+   "conf": 0.84,
+   "min_area": 100,
+   "pooled": 0.1936478188681247,
+   "record": 0.27868921414067177
+  },
+  {
+   "weight": 8.0,
+   "exponent": 0.3,
+   "conf": 0.86,
+   "min_area": 100,
+   "pooled": 0.15645999502468078,
+   "record": 0.22657654822591014
+  },
+  {
+   "weight": 8.0,
+   "exponent": 0.3,
+   "conf": 0.88,
+   "min_area": 100,
+   "pooled": 0.10274566610927975,
+   "record": 0.1504486448932337
+  },
+  {
+   "weight": 8.0,
+   "exponent": 0.3,
+   "conf": 0.9,
+   "min_area": 100,
+   "pooled": 0.06406160396748115,
+   "record": 0.09365813523607155
+  },
+  {
+   "weight": 8.0,
+   "exponent": 0.7,
+   "conf": 0.3,
+   "min_area": 40,
+   "pooled": 0.3950853879310228,
+   "record": 0.42034548330116506
+  },
+  {
+   "weight": 8.0,
+   "exponent": 0.7,
+   "conf": 0.32,
+   "min_area": 40,
+   "pooled": 0.39702227076711666,
+   "record": 0.42410464644046453
+  },
+  {
+   "weight": 8.0,
+   "exponent": 0.7,
+   "conf": 0.34,
+   "min_area": 40,
+   "pooled": 0.39965234044593145,
+   "record": 0.4281298134170792
+  },
+  {
+   "weight": 8.0,
+   "exponent": 0.7,
+   "conf": 0.36,
+   "min_area": 40,
+   "pooled": 0.4021153755812415,
+   "record": 0.4319028942136215
+  },
+  {
+   "weight": 8.0,
+   "exponent": 0.7,
+   "conf": 0.38,
+   "min_area": 40,
+   "pooled": 0.40394312165956237,
+   "record": 0.43562098923936815
+  },
+  {
+   "weight": 8.0,
+   "exponent": 0.7,
+   "conf": 0.4,
+   "min_area": 40,
+   "pooled": 0.4053118474405068,
+   "record": 0.4380664314035856
+  },
+  {
+   "weight": 8.0,
+   "exponent": 0.7,
+   "conf": 0.42,
+   "min_area": 40,
+   "pooled": 0.4073931914541326,
+   "record": 0.44094710276430016
+  },
+  {
+   "weight": 8.0,
+   "exponent": 0.7,
+   "conf": 0.44,
+   "min_area": 40,
+   "pooled": 0.40967219078865336,
+   "record": 0.4450610917488771
+  },
+  {
+   "weight": 8.0,
+   "exponent": 0.7,
+   "conf": 0.46,
+   "min_area": 40,
+   "pooled": 0.41118268290244947,
+   "record": 0.4486081571928006
+  },
+  {
+   "weight": 8.0,
+   "exponent": 0.7,
+   "conf": 0.48,
+   "min_area": 40,
+   "pooled": 0.4120791084473249,
+   "record": 0.4514081344278523
+  },
+  {
+   "weight": 8.0,
+   "exponent": 0.7,
+   "conf": 0.5,
+   "min_area": 40,
+   "pooled": 0.41386048450102464,
+   "record": 0.4539417745506104
+  },
+  {
+   "weight": 8.0,
+   "exponent": 0.7,
+   "conf": 0.52,
+   "min_area": 40,
+   "pooled": 0.4160626294688139,
+   "record": 0.4587044943854162
+  },
+  {
+   "weight": 8.0,
+   "exponent": 0.7,
+   "conf": 0.54,
+   "min_area": 40,
+   "pooled": 0.4173947801944203,
+   "record": 0.4613476783976817
+  },
+  {
+   "weight": 8.0,
+   "exponent": 0.7,
+   "conf": 0.56,
+   "min_area": 40,
+   "pooled": 0.4192200624722248,
+   "record": 0.4652454732430549
+  },
+  {
+   "weight": 8.0,
+   "exponent": 0.7,
+   "conf": 0.58,
+   "min_area": 40,
+   "pooled": 0.41988288968173937,
+   "record": 0.4673741964404815
+  },
+  {
+   "weight": 8.0,
+   "exponent": 0.7,
+   "conf": 0.6,
+   "min_area": 40,
+   "pooled": 0.4186589264865119,
+   "record": 0.46873030645616304
+  },
+  {
+   "weight": 8.0,
+   "exponent": 0.7,
+   "conf": 0.62,
+   "min_area": 40,
+   "pooled": 0.4178255600333831,
+   "record": 0.4714812421247491
+  },
+  {
+   "weight": 8.0,
+   "exponent": 0.7,
+   "conf": 0.64,
+   "min_area": 40,
+   "pooled": 0.41856636023616267,
+   "record": 0.475289695190697
+  },
+  {
+   "weight": 8.0,
+   "exponent": 0.7,
+   "conf": 0.66,
+   "min_area": 40,
+   "pooled": 0.4206268684718044,
+   "record": 0.4807925111309822
+  },
+  {
+   "weight": 8.0,
+   "exponent": 0.7,
+   "conf": 0.68,
+   "min_area": 40,
+   "pooled": 0.4194103885089558,
+   "record": 0.48422118817044757
+  },
+  {
+   "weight": 8.0,
+   "exponent": 0.7,
+   "conf": 0.7,
+   "min_area": 40,
+   "pooled": 0.41756472750170875,
+   "record": 0.4848509261089969
+  },
+  {
+   "weight": 8.0,
+   "exponent": 0.7,
+   "conf": 0.72,
+   "min_area": 40,
+   "pooled": 0.4127479874237125,
+   "record": 0.4845688596854112
+  },
+  {
+   "weight": 8.0,
+   "exponent": 0.7,
+   "conf": 0.74,
+   "min_area": 40,
+   "pooled": 0.40918432877860683,
+   "record": 0.4866712888449922
+  },
+  {
+   "weight": 8.0,
+   "exponent": 0.7,
+   "conf": 0.76,
+   "min_area": 40,
+   "pooled": 0.40283570740315205,
+   "record": 0.48331250682451377
+  },
+  {
+   "weight": 8.0,
+   "exponent": 0.7,
+   "conf": 0.78,
+   "min_area": 40,
+   "pooled": 0.3940058898817819,
+   "record": 0.4790575876492948
+  },
+  {
+   "weight": 8.0,
+   "exponent": 0.7,
+   "conf": 0.8,
+   "min_area": 40,
+   "pooled": 0.37998450330912764,
+   "record": 0.4709715606057785
+  },
+  {
+   "weight": 8.0,
+   "exponent": 0.7,
+   "conf": 0.82,
+   "min_area": 40,
+   "pooled": 0.3658627853074649,
+   "record": 0.4628286833193899
+  },
+  {
+   "weight": 8.0,
+   "exponent": 0.7,
+   "conf": 0.84,
+   "min_area": 40,
+   "pooled": 0.3506930100185142,
+   "record": 0.4537457379475611
+  },
+  {
+   "weight": 8.0,
+   "exponent": 0.7,
+   "conf": 0.86,
+   "min_area": 40,
+   "pooled": 0.3273354000531998,
+   "record": 0.431399304847932
+  },
+  {
+   "weight": 8.0,
+   "exponent": 0.7,
+   "conf": 0.88,
+   "min_area": 40,
+   "pooled": 0.28701821699103786,
+   "record": 0.39040387229151274
+  },
+  {
+   "weight": 8.0,
+   "exponent": 0.7,
+   "conf": 0.9,
+   "min_area": 40,
+   "pooled": 0.23880022723659206,
+   "record": 0.33469735100823006
+  },
+  {
+   "weight": 0.0,
+   "exponent": 0.5,
+   "conf": 0.3,
+   "min_area": 40,
+   "pooled": 0.3879606075407619,
+   "record": 0.4066598628605719
+  },
+  {
+   "weight": 0.0,
+   "exponent": 0.5,
+   "conf": 0.32,
+   "min_area": 40,
+   "pooled": 0.39122729272383167,
+   "record": 0.41188369910417316
+  },
+  {
+   "weight": 0.0,
+   "exponent": 0.5,
+   "conf": 0.34,
+   "min_area": 40,
+   "pooled": 0.3925167831963269,
+   "record": 0.4141576812201004
+  },
+  {
+   "weight": 0.0,
+   "exponent": 0.5,
+   "conf": 0.36,
+   "min_area": 40,
+   "pooled": 0.39382087548187594,
+   "record": 0.41821620285222666
+  },
+  {
+   "weight": 0.0,
+   "exponent": 0.5,
+   "conf": 0.38,
+   "min_area": 40,
+   "pooled": 0.39551885360163647,
+   "record": 0.42165351874692764
+  },
+  {
+   "weight": 0.0,
+   "exponent": 0.5,
+   "conf": 0.4,
+   "min_area": 40,
+   "pooled": 0.3980582775409666,
+   "record": 0.42606533720500656
+  },
+  {
+   "weight": 0.0,
+   "exponent": 0.5,
+   "conf": 0.42,
+   "min_area": 40,
+   "pooled": 0.39928942114991356,
+   "record": 0.4281463087761071
+  },
+  {
+   "weight": 0.0,
+   "exponent": 0.5,
+   "conf": 0.44,
+   "min_area": 40,
+   "pooled": 0.401211391889504,
+   "record": 0.43038515443873204
+  },
+  {
+   "weight": 0.0,
+   "exponent": 0.5,
+   "conf": 0.46,
+   "min_area": 40,
+   "pooled": 0.40245645313670514,
+   "record": 0.43323325522082157
+  },
+  {
+   "weight": 0.0,
+   "exponent": 0.5,
+   "conf": 0.48,
+   "min_area": 40,
+   "pooled": 0.4044698457192046,
+   "record": 0.4368811039178382
+  },
+  {
+   "weight": 0.0,
+   "exponent": 0.5,
+   "conf": 0.5,
+   "min_area": 40,
+   "pooled": 0.4068585130383117,
+   "record": 0.4408588339790171
+  },
+  {
+   "weight": 0.0,
+   "exponent": 0.5,
+   "conf": 0.52,
+   "min_area": 40,
+   "pooled": 0.40803583687618344,
+   "record": 0.4431921785121163
+  },
+  {
+   "weight": 0.0,
+   "exponent": 0.5,
+   "conf": 0.54,
+   "min_area": 40,
+   "pooled": 0.40995579332880183,
+   "record": 0.44691715677040383
+  },
+  {
+   "weight": 0.0,
+   "exponent": 0.5,
+   "conf": 0.56,
+   "min_area": 40,
+   "pooled": 0.41272800899586914,
+   "record": 0.4512159407012035
+  },
+  {
+   "weight": 0.0,
+   "exponent": 0.5,
+   "conf": 0.58,
+   "min_area": 40,
+   "pooled": 0.41257226519461776,
+   "record": 0.45153032989647
+  },
+  {
+   "weight": 0.0,
+   "exponent": 0.5,
+   "conf": 0.6,
+   "min_area": 40,
+   "pooled": 0.4157318352538289,
+   "record": 0.4565814284267296
+  },
+  {
+   "weight": 0.0,
+   "exponent": 0.5,
+   "conf": 0.62,
+   "min_area": 40,
+   "pooled": 0.41421237536657324,
+   "record": 0.45623861526567233
+  },
+  {
+   "weight": 0.0,
+   "exponent": 0.5,
+   "conf": 0.64,
+   "min_area": 40,
+   "pooled": 0.41589959221632916,
+   "record": 0.45953006663698653
+  },
+  {
+   "weight": 0.0,
+   "exponent": 0.5,
+   "conf": 0.66,
+   "min_area": 40,
+   "pooled": 0.4174873940473108,
+   "record": 0.46296306899456874
+  },
+  {
+   "weight": 0.0,
+   "exponent": 0.5,
+   "conf": 0.68,
+   "min_area": 40,
+   "pooled": 0.41814386627226946,
+   "record": 0.465008668789993
+  },
+  {
+   "weight": 0.0,
+   "exponent": 0.5,
+   "conf": 0.7,
+   "min_area": 40,
+   "pooled": 0.41904615892219443,
+   "record": 0.46855605062185773
+  },
+  {
+   "weight": 0.0,
+   "exponent": 0.5,
+   "conf": 0.72,
+   "min_area": 40,
+   "pooled": 0.4189305004737035,
+   "record": 0.47081713664588554
+  },
+  {
+   "weight": 0.0,
+   "exponent": 0.5,
+   "conf": 0.74,
+   "min_area": 40,
+   "pooled": 0.419230954173988,
+   "record": 0.4738490092601068
+  },
+  {
+   "weight": 0.0,
+   "exponent": 0.5,
+   "conf": 0.76,
+   "min_area": 40,
+   "pooled": 0.4196043321259152,
+   "record": 0.4763132057821033
+  },
+  {
+   "weight": 0.0,
+   "exponent": 0.5,
+   "conf": 0.78,
+   "min_area": 40,
+   "pooled": 0.42024084277457896,
+   "record": 0.48061418853137045
+  },
+  {
+   "weight": 0.0,
+   "exponent": 0.5,
+   "conf": 0.8,
+   "min_area": 40,
+   "pooled": 0.414388282536561,
+   "record": 0.4801110995765858
+  },
+  {
+   "weight": 0.0,
+   "exponent": 0.5,
+   "conf": 0.82,
+   "min_area": 40,
+   "pooled": 0.4097967484462753,
+   "record": 0.47865403887026764
+  },
+  {
+   "weight": 0.0,
+   "exponent": 0.5,
+   "conf": 0.84,
+   "min_area": 40,
+   "pooled": 0.406491828998325,
+   "record": 0.48093056639357346
+  },
+  {
+   "weight": 0.0,
+   "exponent": 0.5,
+   "conf": 0.86,
+   "min_area": 40,
+   "pooled": 0.3976792678767183,
+   "record": 0.4760560028503796
+  },
+  {
+   "weight": 0.0,
+   "exponent": 0.5,
+   "conf": 0.88,
+   "min_area": 40,
+   "pooled": 0.39034614186450955,
+   "record": 0.4745292460590104
+  },
+  {
+   "weight": 0.0,
+   "exponent": 0.5,
+   "conf": 0.9,
+   "min_area": 40,
+   "pooled": 0.37612007370637873,
+   "record": 0.4675591089151729
+  },
+  {
+   "weight": 0.0,
+   "exponent": 0.7,
+   "conf": 0.3,
+   "min_area": 100,
+   "pooled": 0.3864500704108737,
+   "record": 0.4046690940028669
+  },
+  {
+   "weight": 0.0,
+   "exponent": 0.7,
+   "conf": 0.32,
+   "min_area": 100,
+   "pooled": 0.3890140761705246,
+   "record": 0.40849271048239755
+  },
+  {
+   "weight": 0.0,
+   "exponent": 0.7,
+   "conf": 0.34,
+   "min_area": 100,
+   "pooled": 0.39001827330824196,
+   "record": 0.4110068966685628
+  },
+  {
+   "weight": 0.0,
+   "exponent": 0.7,
+   "conf": 0.36,
+   "min_area": 100,
+   "pooled": 0.3919746376709094,
+   "record": 0.4141866953077383
+  },
+  {
+   "weight": 0.0,
+   "exponent": 0.7,
+   "conf": 0.38,
+   "min_area": 100,
+   "pooled": 0.3946547040608191,
+   "record": 0.41946438104300365
+  },
+  {
+   "weight": 0.0,
+   "exponent": 0.7,
+   "conf": 0.4,
+   "min_area": 100,
+   "pooled": 0.3967150988413142,
+   "record": 0.42389702329900675
+  },
+  {
+   "weight": 0.0,
+   "exponent": 0.7,
+   "conf": 0.42,
+   "min_area": 100,
+   "pooled": 0.39852479674424696,
+   "record": 0.4268364813437695
+  },
+  {
+   "weight": 0.0,
+   "exponent": 0.7,
+   "conf": 0.44,
+   "min_area": 100,
+   "pooled": 0.39921873096714766,
+   "record": 0.4278577673394935
+  },
+  {
+   "weight": 0.0,
+   "exponent": 0.7,
+   "conf": 0.46,
+   "min_area": 100,
+   "pooled": 0.4020511675649236,
+   "record": 0.4327836283478131
+  },
+  {
+   "weight": 0.0,
+   "exponent": 0.7,
+   "conf": 0.48,
+   "min_area": 100,
+   "pooled": 0.4037700116937258,
+   "record": 0.4358755860868062
+  },
+  {
+   "weight": 0.0,
+   "exponent": 0.7,
+   "conf": 0.5,
+   "min_area": 100,
+   "pooled": 0.40358145323537764,
+   "record": 0.4366607279396739
+  },
+  {
+   "weight": 0.0,
+   "exponent": 0.7,
+   "conf": 0.52,
+   "min_area": 100,
+   "pooled": 0.4064118512159888,
+   "record": 0.44098548275313393
+  },
+  {
+   "weight": 0.0,
+   "exponent": 0.7,
+   "conf": 0.54,
+   "min_area": 100,
+   "pooled": 0.4079764863062219,
+   "record": 0.4431070678218611
+  },
+  {
+   "weight": 0.0,
+   "exponent": 0.7,
+   "conf": 0.56,
+   "min_area": 100,
+   "pooled": 0.4103824124210868,
+   "record": 0.4460265294888874
+  },
+  {
+   "weight": 0.0,
+   "exponent": 0.7,
+   "conf": 0.58,
+   "min_area": 100,
+   "pooled": 0.4121935129523673,
+   "record": 0.45000827660623616
+  },
+  {
+   "weight": 0.0,
+   "exponent": 0.7,
+   "conf": 0.6,
+   "min_area": 100,
+   "pooled": 0.4134466801228136,
+   "record": 0.4526889866569544
+  },
+  {
+   "weight": 0.0,
+   "exponent": 0.7,
+   "conf": 0.62,
+   "min_area": 100,
+   "pooled": 0.4136932064889815,
+   "record": 0.4541917134198191
+  },
+  {
+   "weight": 0.0,
+   "exponent": 0.7,
+   "conf": 0.64,
+   "min_area": 100,
+   "pooled": 0.41398779267935365,
+   "record": 0.4561429495099047
+  },
+  {
+   "weight": 0.0,
+   "exponent": 0.7,
+   "conf": 0.66,
+   "min_area": 100,
+   "pooled": 0.41540749497863066,
+   "record": 0.4583681654581036
+  },
+  {
+   "weight": 0.0,
+   "exponent": 0.7,
+   "conf": 0.68,
+   "min_area": 100,
+   "pooled": 0.41691836820201,
+   "record": 0.4627318950769218
+  },
+  {
+   "weight": 0.0,
+   "exponent": 0.7,
+   "conf": 0.7,
+   "min_area": 100,
+   "pooled": 0.41489948027709356,
+   "record": 0.4624369386758883
+  },
+  {
+   "weight": 0.0,
+   "exponent": 0.7,
+   "conf": 0.72,
+   "min_area": 100,
+   "pooled": 0.41597282657818385,
+   "record": 0.4671287520680615
+  },
+  {
+   "weight": 0.0,
+   "exponent": 0.7,
+   "conf": 0.74,
+   "min_area": 100,
+   "pooled": 0.41848430362421757,
+   "record": 0.47149115671411834
+  },
+  {
+   "weight": 0.0,
+   "exponent": 0.7,
+   "conf": 0.76,
+   "min_area": 100,
+   "pooled": 0.4172044572927707,
+   "record": 0.47306982570893197
+  },
+  {
+   "weight": 0.0,
+   "exponent": 0.7,
+   "conf": 0.78,
+   "min_area": 100,
+   "pooled": 0.41665006042694025,
+   "record": 0.47589347452066405
+  },
+  {
+   "weight": 0.0,
+   "exponent": 0.7,
+   "conf": 0.8,
+   "min_area": 100,
+   "pooled": 0.4144280708725267,
+   "record": 0.4778865455643463
+  },
+  {
+   "weight": 0.0,
+   "exponent": 0.7,
+   "conf": 0.82,
+   "min_area": 100,
+   "pooled": 0.41207219111843507,
+   "record": 0.4789217386519861
+  },
+  {
+   "weight": 0.0,
+   "exponent": 0.7,
+   "conf": 0.84,
+   "min_area": 100,
+   "pooled": 0.40634381330878044,
+   "record": 0.4788095062571793
+  },
+  {
+   "weight": 0.0,
+   "exponent": 0.7,
+   "conf": 0.86,
+   "min_area": 100,
+   "pooled": 0.401639955420896,
+   "record": 0.4775726037875869
+  },
+  {
+   "weight": 0.0,
+   "exponent": 0.7,
+   "conf": 0.88,
+   "min_area": 100,
+   "pooled": 0.3899793834843181,
+   "record": 0.4722159611468376
+  },
+  {
+   "weight": 0.0,
+   "exponent": 0.7,
+   "conf": 0.9,
+   "min_area": 100,
+   "pooled": 0.3780570741125374,
+   "record": 0.46763529718989866
+  },
+  {
+   "weight": 1.0,
+   "exponent": 0.5,
+   "conf": 0.3,
+   "min_area": 40,
+   "pooled": 0.39183150475892636,
+   "record": 0.413086279247543
+  },
+  {
+   "weight": 1.0,
+   "exponent": 0.5,
+   "conf": 0.32,
+   "min_area": 40,
+   "pooled": 0.3928803496010332,
+   "record": 0.41544036766861187
+  },
+  {
+   "weight": 1.0,
+   "exponent": 0.5,
+   "conf": 0.34,
+   "min_area": 40,
+   "pooled": 0.39459126060605804,
+   "record": 0.4195865865970507
+  },
+  {
+   "weight": 1.0,
+   "exponent": 0.5,
+   "conf": 0.36,
+   "min_area": 40,
+   "pooled": 0.3975083651842923,
+   "record": 0.42387972694669007
+  },
+  {
+   "weight": 1.0,
+   "exponent": 0.5,
+   "conf": 0.38,
+   "min_area": 40,
+   "pooled": 0.39849402389662686,
+   "record": 0.42710077444454136
+  },
+  {
+   "weight": 1.0,
+   "exponent": 0.5,
+   "conf": 0.4,
+   "min_area": 40,
+   "pooled": 0.40024809923190613,
+   "record": 0.429592304906453
+  },
+  {
+   "weight": 1.0,
+   "exponent": 0.5,
+   "conf": 0.42,
+   "min_area": 40,
+   "pooled": 0.40225678877886045,
+   "record": 0.43274481227173206
+  },
+  {
+   "weight": 1.0,
+   "exponent": 0.5,
+   "conf": 0.44,
+   "min_area": 40,
+   "pooled": 0.4037610121420105,
+   "record": 0.4355319335412816
+  },
+  {
+   "weight": 1.0,
+   "exponent": 0.5,
+   "conf": 0.46,
+   "min_area": 40,
+   "pooled": 0.40635044438344065,
+   "record": 0.4399968128665863
+  },
+  {
+   "weight": 1.0,
+   "exponent": 0.5,
+   "conf": 0.48,
+   "min_area": 40,
+   "pooled": 0.4081996206214623,
+   "record": 0.4426863737882413
+  },
+  {
+   "weight": 1.0,
+   "exponent": 0.5,
+   "conf": 0.5,
+   "min_area": 40,
+   "pooled": 0.4105667090525728,
+   "record": 0.4470316314971542
+  },
+  {
+   "weight": 1.0,
+   "exponent": 0.5,
+   "conf": 0.52,
+   "min_area": 40,
+   "pooled": 0.41162029866466743,
+   "record": 0.4498737156695888
+  },
+  {
+   "weight": 1.0,
+   "exponent": 0.5,
+   "conf": 0.54,
+   "min_area": 40,
+   "pooled": 0.4132700215582908,
+   "record": 0.45288503989922296
+  },
+  {
+   "weight": 1.0,
+   "exponent": 0.5,
+   "conf": 0.56,
+   "min_area": 40,
+   "pooled": 0.4157318352538289,
+   "record": 0.4565814284267296
+  },
+  {
+   "weight": 1.0,
+   "exponent": 0.5,
+   "conf": 0.58,
+   "min_area": 40,
+   "pooled": 0.4155139482364829,
+   "record": 0.45803814018202665
+  },
+  {
+   "weight": 1.0,
+   "exponent": 0.5,
+   "conf": 0.6,
+   "min_area": 40,
+   "pooled": 0.4169854279034198,
+   "record": 0.460878512166708
+  },
+  {
+   "weight": 1.0,
+   "exponent": 0.5,
+   "conf": 0.62,
+   "min_area": 40,
+   "pooled": 0.4179318142872733,
+   "record": 0.4634394400314661
+  },
+  {
+   "weight": 1.0,
+   "exponent": 0.5,
+   "conf": 0.64,
+   "min_area": 40,
+   "pooled": 0.4183275850184348,
+   "record": 0.46565161198914956
+  },
+  {
+   "weight": 1.0,
+   "exponent": 0.5,
+   "conf": 0.66,
+   "min_area": 40,
+   "pooled": 0.4185596733190318,
+   "record": 0.4672512254577222
+  },
+  {
+   "weight": 1.0,
+   "exponent": 0.5,
+   "conf": 0.68,
+   "min_area": 40,
+   "pooled": 0.41846407121898094,
+   "record": 0.4705216986939022
+  },
+  {
+   "weight": 1.0,
+   "exponent": 0.5,
+   "conf": 0.7,
+   "min_area": 40,
+   "pooled": 0.41952244899337765,
+   "record": 0.47493904248246893
+  },
+  {
+   "weight": 1.0,
+   "exponent": 0.5,
+   "conf": 0.72,
+   "min_area": 40,
+   "pooled": 0.4199663036726155,
+   "record": 0.47817456117483803
+  },
+  {
+   "weight": 1.0,
+   "exponent": 0.5,
+   "conf": 0.74,
+   "min_area": 40,
+   "pooled": 0.4195763368150348,
+   "record": 0.48017227550726355
+  },
+  {
+   "weight": 1.0,
+   "exponent": 0.5,
+   "conf": 0.76,
+   "min_area": 40,
+   "pooled": 0.41746159142842365,
+   "record": 0.4828464477631536
+  },
+  {
+   "weight": 1.0,
+   "exponent": 0.5,
+   "conf": 0.78,
+   "min_area": 40,
+   "pooled": 0.4125332484345928,
+   "record": 0.4828799343697447
+  },
+  {
+   "weight": 1.0,
+   "exponent": 0.5,
+   "conf": 0.8,
+   "min_area": 40,
+   "pooled": 0.4087299451795417,
+   "record": 0.4834771977293218
+  },
+  {
+   "weight": 1.0,
+   "exponent": 0.5,
+   "conf": 0.82,
+   "min_area": 40,
+   "pooled": 0.39926361815445494,
+   "record": 0.48033330051978634
+  },
+  {
+   "weight": 1.0,
+   "exponent": 0.5,
+   "conf": 0.84,
+   "min_area": 40,
+   "pooled": 0.3907528772131102,
+   "record": 0.47604091338527244
+  },
+  {
+   "weight": 1.0,
+   "exponent": 0.5,
+   "conf": 0.86,
+   "min_area": 40,
+   "pooled": 0.37796958030555156,
+   "record": 0.4675024348252243
+  },
+  {
+   "weight": 1.0,
+   "exponent": 0.5,
+   "conf": 0.88,
+   "min_area": 40,
+   "pooled": 0.36107198536409546,
+   "record": 0.4590174086631292
+  },
+  {
+   "weight": 1.0,
+   "exponent": 0.5,
+   "conf": 0.9,
+   "min_area": 40,
+   "pooled": 0.3399685824455819,
+   "record": 0.44149919322639214
+  },
+  {
+   "weight": 1.0,
+   "exponent": 0.7,
+   "conf": 0.3,
+   "min_area": 100,
+   "pooled": 0.3882700832886313,
+   "record": 0.40718901808095864
+  },
+  {
+   "weight": 1.0,
+   "exponent": 0.7,
+   "conf": 0.32,
+   "min_area": 100,
+   "pooled": 0.3895478802408099,
+   "record": 0.4106512773050473
+  },
+  {
+   "weight": 1.0,
+   "exponent": 0.7,
+   "conf": 0.34,
+   "min_area": 100,
+   "pooled": 0.39116114199125124,
+   "record": 0.41280608114041945
+  },
+  {
+   "weight": 1.0,
+   "exponent": 0.7,
+   "conf": 0.36,
+   "min_area": 100,
+   "pooled": 0.3935578056620424,
+   "record": 0.41809822273048164
+  },
+  {
+   "weight": 1.0,
+   "exponent": 0.7,
+   "conf": 0.38,
+   "min_area": 100,
+   "pooled": 0.39529101995855265,
+   "record": 0.421734699393009
+  },
+  {
+   "weight": 1.0,
+   "exponent": 0.7,
+   "conf": 0.4,
+   "min_area": 100,
+   "pooled": 0.39788078344401273,
+   "record": 0.426203752619862
+  },
+  {
+   "weight": 1.0,
+   "exponent": 0.7,
+   "conf": 0.42,
+   "min_area": 100,
+   "pooled": 0.3990682263542659,
+   "record": 0.4277336213092795
+  },
+  {
+   "weight": 1.0,
+   "exponent": 0.7,
+   "conf": 0.44,
+   "min_area": 100,
+   "pooled": 0.4015592370515353,
+   "record": 0.43227058531498136
+  },
+  {
+   "weight": 1.0,
+   "exponent": 0.7,
+   "conf": 0.46,
+   "min_area": 100,
+   "pooled": 0.40278287512794503,
+   "record": 0.4345385285289223
+  },
+  {
+   "weight": 1.0,
+   "exponent": 0.7,
+   "conf": 0.48,
+   "min_area": 100,
+   "pooled": 0.40341201341653193,
+   "record": 0.4368128731335298
+  },
+  {
+   "weight": 1.0,
+   "exponent": 0.7,
+   "conf": 0.5,
+   "min_area": 100,
+   "pooled": 0.40591099127083935,
+   "record": 0.44031624409650927
+  },
+  {
+   "weight": 1.0,
+   "exponent": 0.7,
+   "conf": 0.52,
+   "min_area": 100,
+   "pooled": 0.40763117936610116,
+   "record": 0.44281701948643426
+  },
+  {
+   "weight": 1.0,
+   "exponent": 0.7,
+   "conf": 0.54,
+   "min_area": 100,
+   "pooled": 0.4100458537549975,
+   "record": 0.44664664687575123
+  },
+  {
+   "weight": 1.0,
+   "exponent": 0.7,
+   "conf": 0.56,
+   "min_area": 100,
+   "pooled": 0.41143631190304963,
+   "record": 0.4494441407677783
+  },
+  {
+   "weight": 1.0,
+   "exponent": 0.7,
+   "conf": 0.58,
+   "min_area": 100,
+   "pooled": 0.4140197219930332,
+   "record": 0.4533248497158148
+  },
+  {
+   "weight": 1.0,
+   "exponent": 0.7,
+   "conf": 0.6,
+   "min_area": 100,
+   "pooled": 0.4133673623218588,
+   "record": 0.45479393791033185
+  },
+  {
+   "weight": 1.0,
+   "exponent": 0.7,
+   "conf": 0.62,
+   "min_area": 100,
+   "pooled": 0.4140610167189183,
+   "record": 0.45659376914505323
+  },
+  {
+   "weight": 1.0,
+   "exponent": 0.7,
+   "conf": 0.64,
+   "min_area": 100,
+   "pooled": 0.41578187804494343,
+   "record": 0.4587341268571693
+  },
+  {
+   "weight": 1.0,
+   "exponent": 0.7,
+   "conf": 0.66,
+   "min_area": 100,
+   "pooled": 0.4162373406211984,
+   "record": 0.46208491939442237
+  },
+  {
+   "weight": 1.0,
+   "exponent": 0.7,
+   "conf": 0.68,
+   "min_area": 100,
+   "pooled": 0.4154953491157759,
+   "record": 0.46360158841194116
+  },
+  {
+   "weight": 1.0,
+   "exponent": 0.7,
+   "conf": 0.7,
+   "min_area": 100,
+   "pooled": 0.41613922486789867,
+   "record": 0.46829213083326215
+  },
+  {
+   "weight": 1.0,
+   "exponent": 0.7,
+   "conf": 0.72,
+   "min_area": 100,
+   "pooled": 0.4179286355965366,
+   "record": 0.47177306547947523
+  },
+  {
+   "weight": 1.0,
+   "exponent": 0.7,
+   "conf": 0.74,
+   "min_area": 100,
+   "pooled": 0.41765280912602526,
+   "record": 0.47428208522744103
+  },
+  {
+   "weight": 1.0,
+   "exponent": 0.7,
+   "conf": 0.76,
+   "min_area": 100,
+   "pooled": 0.41801818651462663,
+   "record": 0.4780917370849564
+  },
+  {
+   "weight": 1.0,
+   "exponent": 0.7,
+   "conf": 0.78,
+   "min_area": 100,
+   "pooled": 0.41497142240555546,
+   "record": 0.48089584115981954
+  },
+  {
+   "weight": 1.0,
+   "exponent": 0.7,
+   "conf": 0.8,
+   "min_area": 100,
+   "pooled": 0.4120040204944073,
+   "record": 0.4799530476748966
+  },
+  {
+   "weight": 1.0,
+   "exponent": 0.7,
+   "conf": 0.82,
+   "min_area": 100,
+   "pooled": 0.40683749072860537,
+   "record": 0.47939496678701865
+  },
+  {
+   "weight": 1.0,
+   "exponent": 0.7,
+   "conf": 0.84,
+   "min_area": 100,
+   "pooled": 0.40041351014496523,
+   "record": 0.4789085099144104
+  },
+  {
+   "weight": 1.0,
+   "exponent": 0.7,
+   "conf": 0.86,
+   "min_area": 100,
+   "pooled": 0.3886510933872392,
+   "record": 0.47307590445498104
+  },
+  {
+   "weight": 1.0,
+   "exponent": 0.7,
+   "conf": 0.88,
+   "min_area": 100,
+   "pooled": 0.37612384281460676,
+   "record": 0.4680024479696525
+  },
+  {
+   "weight": 1.0,
+   "exponent": 0.7,
+   "conf": 0.9,
+   "min_area": 100,
+   "pooled": 0.35844347064974974,
+   "record": 0.4564498981863163
+  },
+  {
+   "weight": 2.0,
+   "exponent": 0.5,
+   "conf": 0.3,
+   "min_area": 40,
+   "pooled": 0.39359182133807297,
+   "record": 0.41595401167969437
+  },
+  {
+   "weight": 2.0,
+   "exponent": 0.5,
+   "conf": 0.32,
+   "min_area": 40,
+   "pooled": 0.39482588807245445,
+   "record": 0.41936766104896256
+  },
+  {
+   "weight": 2.0,
+   "exponent": 0.5,
+   "conf": 0.34,
+   "min_area": 40,
+   "pooled": 0.39744362695916463,
+   "record": 0.42311797795686606
+  },
+  {
+   "weight": 2.0,
+   "exponent": 0.5,
+   "conf": 0.36,
+   "min_area": 40,
+   "pooled": 0.39937814092964957,
+   "record": 0.42735508859103355
+  },
+  {
+   "weight": 2.0,
+   "exponent": 0.5,
+   "conf": 0.38,
+   "min_area": 40,
+   "pooled": 0.4004086838991312,
+   "record": 0.42914585499134733
+  },
+  {
+   "weight": 2.0,
+   "exponent": 0.5,
+   "conf": 0.4,
+   "min_area": 40,
+   "pooled": 0.4033624133461265,
+   "record": 0.4341311311433375
+  },
+  {
+   "weight": 2.0,
+   "exponent": 0.5,
+   "conf": 0.42,
+   "min_area": 40,
+   "pooled": 0.4058085661495932,
+   "record": 0.43768186857376035
+  },
+  {
+   "weight": 2.0,
+   "exponent": 0.5,
+   "conf": 0.44,
+   "min_area": 40,
+   "pooled": 0.4072559545960616,
+   "record": 0.4407881646281806
+  },
+  {
+   "weight": 2.0,
+   "exponent": 0.5,
+   "conf": 0.46,
+   "min_area": 40,
+   "pooled": 0.4096160788214868,
+   "record": 0.44433102041620504
+  },
+  {
+   "weight": 2.0,
+   "exponent": 0.5,
+   "conf": 0.48,
+   "min_area": 40,
+   "pooled": 0.41130619691842035,
+   "record": 0.4480511375265163
+  },
+  {
+   "weight": 2.0,
+   "exponent": 0.5,
+   "conf": 0.5,
+   "min_area": 40,
+   "pooled": 0.4129727913250542,
+   "record": 0.45094309002956046
+  },
+  {
+   "weight": 2.0,
+   "exponent": 0.5,
+   "conf": 0.52,
+   "min_area": 40,
+   "pooled": 0.41472547231322665,
+   "record": 0.4541456261761002
+  },
+  {
+   "weight": 2.0,
+   "exponent": 0.5,
+   "conf": 0.54,
+   "min_area": 40,
+   "pooled": 0.4162256796884108,
+   "record": 0.45799332562218026
+  },
+  {
+   "weight": 2.0,
+   "exponent": 0.5,
+   "conf": 0.56,
+   "min_area": 40,
+   "pooled": 0.41741882232517025,
+   "record": 0.46050016175819913
+  },
+  {
+   "weight": 2.0,
+   "exponent": 0.5,
+   "conf": 0.58,
+   "min_area": 40,
+   "pooled": 0.4198497925066242,
+   "record": 0.46393755393899655
+  },
+  {
+   "weight": 2.0,
+   "exponent": 0.5,
+   "conf": 0.6,
+   "min_area": 40,
+   "pooled": 0.4197366643858102,
+   "record": 0.46557027872213014
+  },
+  {
+   "weight": 2.0,
+   "exponent": 0.5,
+   "conf": 0.62,
+   "min_area": 40,
+   "pooled": 0.41987686512943523,
+   "record": 0.46774310335291003
+  },
+  {
+   "weight": 2.0,
+   "exponent": 0.5,
+   "conf": 0.64,
+   "min_area": 40,
+   "pooled": 0.4206852466139419,
+   "record": 0.4704288694577507
+  },
+  {
+   "weight": 2.0,
+   "exponent": 0.5,
+   "conf": 0.66,
+   "min_area": 40,
+   "pooled": 0.419116245509313,
+   "record": 0.47319050243714517
+  },
+  {
+   "weight": 2.0,
+   "exponent": 0.5,
+   "conf": 0.68,
+   "min_area": 40,
+   "pooled": 0.42052147385603333,
+   "record": 0.4778751653410662
+  },
+  {
+   "weight": 2.0,
+   "exponent": 0.5,
+   "conf": 0.7,
+   "min_area": 40,
+   "pooled": 0.4211384209178346,
+   "record": 0.4808463583720868
+  },
+  {
+   "weight": 2.0,
+   "exponent": 0.5,
+   "conf": 0.72,
+   "min_area": 40,
+   "pooled": 0.41983204181941286,
+   "record": 0.48441438633048367
+  },
+  {
+   "weight": 2.0,
+   "exponent": 0.5,
+   "conf": 0.74,
+   "min_area": 40,
+   "pooled": 0.4178732330334008,
+   "record": 0.4861261517880255
+  },
+  {
+   "weight": 2.0,
+   "exponent": 0.5,
+   "conf": 0.76,
+   "min_area": 40,
+   "pooled": 0.4122473474880135,
+   "record": 0.4855993087556735
+  },
+  {
+   "weight": 2.0,
+   "exponent": 0.5,
+   "conf": 0.78,
+   "min_area": 40,
+   "pooled": 0.40622983459346607,
+   "record": 0.48410745657086346
+  },
+  {
+   "weight": 2.0,
+   "exponent": 0.5,
+   "conf": 0.8,
+   "min_area": 40,
+   "pooled": 0.3935385269918144,
+   "record": 0.4770728955033721
+  },
+  {
+   "weight": 2.0,
+   "exponent": 0.5,
+   "conf": 0.82,
+   "min_area": 40,
+   "pooled": 0.38635548295814537,
+   "record": 0.47426847161865743
+  },
+  {
+   "weight": 2.0,
+   "exponent": 0.5,
+   "conf": 0.84,
+   "min_area": 40,
+   "pooled": 0.37324910104846687,
+   "record": 0.46693256186552173
+  },
+  {
+   "weight": 2.0,
+   "exponent": 0.5,
+   "conf": 0.86,
+   "min_area": 40,
+   "pooled": 0.35577697128639274,
+   "record": 0.4553525425950378
+  },
+  {
+   "weight": 2.0,
+   "exponent": 0.5,
+   "conf": 0.88,
+   "min_area": 40,
+   "pooled": 0.33512137459576696,
+   "record": 0.4402901177434479
+  },
+  {
+   "weight": 2.0,
+   "exponent": 0.5,
+   "conf": 0.9,
+   "min_area": 40,
+   "pooled": 0.2931893790948087,
+   "record": 0.3970543721369782
+  },
+  {
+   "weight": 2.0,
+   "exponent": 0.7,
+   "conf": 0.3,
+   "min_area": 100,
+   "pooled": 0.3905884659179416,
+   "record": 0.41176069029455226
+  },
+  {
+   "weight": 2.0,
+   "exponent": 0.7,
+   "conf": 0.32,
+   "min_area": 100,
+   "pooled": 0.39079066954292735,
+   "record": 0.41271423151152986
+  },
+  {
+   "weight": 2.0,
+   "exponent": 0.7,
+   "conf": 0.34,
+   "min_area": 100,
+   "pooled": 0.3933327771297413,
+   "record": 0.4178647352675073
+  },
+  {
+   "weight": 2.0,
+   "exponent": 0.7,
+   "conf": 0.36,
+   "min_area": 100,
+   "pooled": 0.396085884642463,
+   "record": 0.42251490507998063
+  },
+  {
+   "weight": 2.0,
+   "exponent": 0.7,
+   "conf": 0.38,
+   "min_area": 100,
+   "pooled": 0.3974849493968996,
+   "record": 0.4258077317335373
+  },
+  {
+   "weight": 2.0,
+   "exponent": 0.7,
+   "conf": 0.4,
+   "min_area": 100,
+   "pooled": 0.3997876523048134,
+   "record": 0.42930245127488587
+  },
+  {
+   "weight": 2.0,
+   "exponent": 0.7,
+   "conf": 0.42,
+   "min_area": 100,
+   "pooled": 0.4023585662375656,
+   "record": 0.4335909397839142
+  },
+  {
+   "weight": 2.0,
+   "exponent": 0.7,
+   "conf": 0.44,
+   "min_area": 100,
+   "pooled": 0.40359574554111394,
+   "record": 0.43563058089711443
+  },
+  {
+   "weight": 2.0,
+   "exponent": 0.7,
+   "conf": 0.46,
+   "min_area": 100,
+   "pooled": 0.404511239263378,
+   "record": 0.43811821657873357
+  },
+  {
+   "weight": 2.0,
+   "exponent": 0.7,
+   "conf": 0.48,
+   "min_area": 100,
+   "pooled": 0.4058163031643018,
+   "record": 0.4405498480517872
+  },
+  {
+   "weight": 2.0,
+   "exponent": 0.7,
+   "conf": 0.5,
+   "min_area": 100,
+   "pooled": 0.4085493022260938,
+   "record": 0.4446162995515676
+  },
+  {
+   "weight": 2.0,
+   "exponent": 0.7,
+   "conf": 0.52,
+   "min_area": 100,
+   "pooled": 0.4106294974913502,
+   "record": 0.44817796063771703
+  },
+  {
+   "weight": 2.0,
+   "exponent": 0.7,
+   "conf": 0.54,
+   "min_area": 100,
+   "pooled": 0.4122238281124871,
+   "record": 0.4514201822302519
+  },
+  {
+   "weight": 2.0,
+   "exponent": 0.7,
+   "conf": 0.56,
+   "min_area": 100,
+   "pooled": 0.41355607172791037,
+   "record": 0.45333125975694294
+  },
+  {
+   "weight": 2.0,
+   "exponent": 0.7,
+   "conf": 0.58,
+   "min_area": 100,
+   "pooled": 0.41452093724747496,
+   "record": 0.45649390835228565
+  },
+  {
+   "weight": 2.0,
+   "exponent": 0.7,
+   "conf": 0.6,
+   "min_area": 100,
+   "pooled": 0.4148415876425492,
+   "record": 0.45834673663380515
+  },
+  {
+   "weight": 2.0,
+   "exponent": 0.7,
+   "conf": 0.62,
+   "min_area": 100,
+   "pooled": 0.41640830013212626,
+   "record": 0.46087451034620575
+  },
+  {
+   "weight": 2.0,
+   "exponent": 0.7,
+   "conf": 0.64,
+   "min_area": 100,
+   "pooled": 0.41749845255694285,
+   "record": 0.46424431720735265
+  },
+  {
+   "weight": 2.0,
+   "exponent": 0.7,
+   "conf": 0.66,
+   "min_area": 100,
+   "pooled": 0.4183984058340174,
+   "record": 0.4676014454374917
+  },
+  {
+   "weight": 2.0,
+   "exponent": 0.7,
+   "conf": 0.68,
+   "min_area": 100,
+   "pooled": 0.41691770390252636,
+   "record": 0.46976087805617595
+  },
+  {
+   "weight": 2.0,
+   "exponent": 0.7,
+   "conf": 0.7,
+   "min_area": 100,
+   "pooled": 0.41770349141946733,
+   "record": 0.47244568948697413
+  },
+  {
+   "weight": 2.0,
+   "exponent": 0.7,
+   "conf": 0.72,
+   "min_area": 100,
+   "pooled": 0.4191938941612313,
+   "record": 0.4768388104320209
+  },
+  {
+   "weight": 2.0,
+   "exponent": 0.7,
+   "conf": 0.74,
+   "min_area": 100,
+   "pooled": 0.41953882794444436,
+   "record": 0.48049938147700455
+  },
+  {
+   "weight": 2.0,
+   "exponent": 0.7,
+   "conf": 0.76,
+   "min_area": 100,
+   "pooled": 0.4152841475123791,
+   "record": 0.4826658828498174
+  },
+  {
+   "weight": 2.0,
+   "exponent": 0.7,
+   "conf": 0.78,
+   "min_area": 100,
+   "pooled": 0.41483432266427545,
+   "record": 0.4838244346045756
+  },
+  {
+   "weight": 2.0,
+   "exponent": 0.7,
+   "conf": 0.8,
+   "min_area": 100,
+   "pooled": 0.4076777736424312,
+   "record": 0.4823937098449326
+  },
+  {
+   "weight": 2.0,
+   "exponent": 0.7,
+   "conf": 0.82,
+   "min_area": 100,
+   "pooled": 0.4004551315064621,
+   "record": 0.4798096486309169
+  },
+  {
+   "weight": 2.0,
+   "exponent": 0.7,
+   "conf": 0.84,
+   "min_area": 100,
+   "pooled": 0.39263297080079085,
+   "record": 0.4776312645796314
+  },
+  {
+   "weight": 2.0,
+   "exponent": 0.7,
+   "conf": 0.86,
+   "min_area": 100,
+   "pooled": 0.3764732533682986,
+   "record": 0.4665716362586201
+  },
+  {
+   "weight": 2.0,
+   "exponent": 0.7,
+   "conf": 0.88,
+   "min_area": 100,
+   "pooled": 0.36312628167702304,
+   "record": 0.46210706595800544
+  },
+  {
+   "weight": 2.0,
+   "exponent": 0.7,
+   "conf": 0.9,
+   "min_area": 100,
+   "pooled": 0.34082123697114347,
+   "record": 0.44197468123607286
+  },
+  {
+   "weight": 4.0,
+   "exponent": 0.5,
+   "conf": 0.3,
+   "min_area": 40,
+   "pooled": 0.3965119953815015,
+   "record": 0.4215050897794864
+  },
+  {
+   "weight": 4.0,
+   "exponent": 0.5,
+   "conf": 0.32,
+   "min_area": 40,
+   "pooled": 0.3985771733310047,
+   "record": 0.42495528239875163
+  },
+  {
+   "weight": 4.0,
+   "exponent": 0.5,
+   "conf": 0.34,
+   "min_area": 40,
+   "pooled": 0.4004811593431421,
+   "record": 0.42893868527760454
+  },
+  {
+   "weight": 4.0,
+   "exponent": 0.5,
+   "conf": 0.36,
+   "min_area": 40,
+   "pooled": 0.40257370559372924,
+   "record": 0.43264556280469496
+  },
+  {
+   "weight": 4.0,
+   "exponent": 0.5,
+   "conf": 0.38,
+   "min_area": 40,
+   "pooled": 0.4048954420363735,
+   "record": 0.4365097301671189
+  },
+  {
+   "weight": 4.0,
+   "exponent": 0.5,
+   "conf": 0.4,
+   "min_area": 40,
+   "pooled": 0.4065546767531465,
+   "record": 0.43888647432409245
+  },
+  {
+   "weight": 4.0,
+   "exponent": 0.5,
+   "conf": 0.42,
+   "min_area": 40,
+   "pooled": 0.40967787491298885,
+   "record": 0.4442138816089344
+  },
+  {
+   "weight": 4.0,
+   "exponent": 0.5,
+   "conf": 0.44,
+   "min_area": 40,
+   "pooled": 0.4106536882389628,
+   "record": 0.4466310142285258
+  },
+  {
+   "weight": 4.0,
+   "exponent": 0.5,
+   "conf": 0.46,
+   "min_area": 40,
+   "pooled": 0.4133783394215267,
+   "record": 0.4510991178693437
+  },
+  {
+   "weight": 4.0,
+   "exponent": 0.5,
+   "conf": 0.48,
+   "min_area": 40,
+   "pooled": 0.4150785080492267,
+   "record": 0.45477316756050307
+  },
+  {
+   "weight": 4.0,
+   "exponent": 0.5,
+   "conf": 0.5,
+   "min_area": 40,
+   "pooled": 0.41618244016585715,
+   "record": 0.45820987271185315
+  },
+  {
+   "weight": 4.0,
+   "exponent": 0.5,
+   "conf": 0.52,
+   "min_area": 40,
+   "pooled": 0.4171603706144283,
+   "record": 0.46031226493263583
+  },
+  {
+   "weight": 4.0,
+   "exponent": 0.5,
+   "conf": 0.54,
+   "min_area": 40,
+   "pooled": 0.41941965938415904,
+   "record": 0.46393106301463505
+  },
+  {
+   "weight": 4.0,
+   "exponent": 0.5,
+   "conf": 0.56,
+   "min_area": 40,
+   "pooled": 0.42115890938194084,
+   "record": 0.467472050195088
+  },
+  {
+   "weight": 4.0,
+   "exponent": 0.5,
+   "conf": 0.58,
+   "min_area": 40,
+   "pooled": 0.42030045011736317,
+   "record": 0.46920549291074043
+  },
+  {
+   "weight": 4.0,
+   "exponent": 0.5,
+   "conf": 0.6,
+   "min_area": 40,
+   "pooled": 0.4202332648402506,
+   "record": 0.47212075683378124
+  },
+  {
+   "weight": 4.0,
+   "exponent": 0.5,
+   "conf": 0.62,
+   "min_area": 40,
+   "pooled": 0.41841129095742186,
+   "record": 0.47418813725628534
+  },
+  {
+   "weight": 4.0,
+   "exponent": 0.5,
+   "conf": 0.64,
+   "min_area": 40,
+   "pooled": 0.4196244202281801,
+   "record": 0.4780888323431565
+  },
+  {
+   "weight": 4.0,
+   "exponent": 0.5,
+   "conf": 0.66,
+   "min_area": 40,
+   "pooled": 0.42063919749411316,
+   "record": 0.48257103333839346
+  },
+  {
+   "weight": 4.0,
+   "exponent": 0.5,
+   "conf": 0.68,
+   "min_area": 40,
+   "pooled": 0.4197463098219904,
+   "record": 0.4854835645031689
+  },
+  {
+   "weight": 4.0,
+   "exponent": 0.5,
+   "conf": 0.7,
+   "min_area": 40,
+   "pooled": 0.41806460219455005,
+   "record": 0.4866065529738133
+  },
+  {
+   "weight": 4.0,
+   "exponent": 0.5,
+   "conf": 0.72,
+   "min_area": 40,
+   "pooled": 0.411228346049668,
+   "record": 0.4866072771240546
+  },
+  {
+   "weight": 4.0,
+   "exponent": 0.5,
+   "conf": 0.74,
+   "min_area": 40,
+   "pooled": 0.40505677909240223,
+   "record": 0.4853202929425289
+  },
+  {
+   "weight": 4.0,
+   "exponent": 0.5,
+   "conf": 0.76,
+   "min_area": 40,
+   "pooled": 0.39879326282034877,
+   "record": 0.48181478837667446
+  },
+  {
+   "weight": 4.0,
+   "exponent": 0.5,
+   "conf": 0.78,
+   "min_area": 40,
+   "pooled": 0.3803346434404766,
+   "record": 0.4699807202435592
+  },
+  {
+   "weight": 4.0,
+   "exponent": 0.5,
+   "conf": 0.8,
+   "min_area": 40,
+   "pooled": 0.37319636154336033,
+   "record": 0.4679345221288942
+  },
+  {
+   "weight": 4.0,
+   "exponent": 0.5,
+   "conf": 0.82,
+   "min_area": 40,
+   "pooled": 0.3593950858678698,
+   "record": 0.4593533849047491
+  },
+  {
+   "weight": 4.0,
+   "exponent": 0.5,
+   "conf": 0.84,
+   "min_area": 40,
+   "pooled": 0.3380132042467446,
+   "record": 0.4425605138551189
+  },
+  {
+   "weight": 4.0,
+   "exponent": 0.5,
+   "conf": 0.86,
+   "min_area": 40,
+   "pooled": 0.30928062486324037,
+   "record": 0.41342557133761787
+  },
+  {
+   "weight": 4.0,
+   "exponent": 0.5,
+   "conf": 0.88,
+   "min_area": 40,
+   "pooled": 0.26711270107929574,
+   "record": 0.3686637489277573
+  },
+  {
+   "weight": 4.0,
+   "exponent": 0.5,
+   "conf": 0.9,
+   "min_area": 40,
+   "pooled": 0.2076590842519947,
+   "record": 0.2966155246474469
+  },
+  {
+   "weight": 4.0,
+   "exponent": 0.7,
+   "conf": 0.3,
+   "min_area": 100,
+   "pooled": 0.3921113062396677,
+   "record": 0.4136961391931077
+  },
+  {
+   "weight": 4.0,
+   "exponent": 0.7,
+   "conf": 0.32,
+   "min_area": 100,
+   "pooled": 0.39466380250192895,
+   "record": 0.4191037129109398
+  },
+  {
+   "weight": 4.0,
+   "exponent": 0.7,
+   "conf": 0.34,
+   "min_area": 100,
+   "pooled": 0.39664329561213885,
+   "record": 0.422746735310402
+  },
+  {
+   "weight": 4.0,
+   "exponent": 0.7,
+   "conf": 0.36,
+   "min_area": 100,
+   "pooled": 0.3989439771679105,
+   "record": 0.4262191380832748
+  },
+  {
+   "weight": 4.0,
+   "exponent": 0.7,
+   "conf": 0.38,
+   "min_area": 100,
+   "pooled": 0.40114758887707486,
+   "record": 0.4308397486278649
+  },
+  {
+   "weight": 4.0,
+   "exponent": 0.7,
+   "conf": 0.4,
+   "min_area": 100,
+   "pooled": 0.4035647853868495,
+   "record": 0.4343343954680118
+  },
+  {
+   "weight": 4.0,
+   "exponent": 0.7,
+   "conf": 0.42,
+   "min_area": 100,
+   "pooled": 0.40464339878657674,
+   "record": 0.4362387665674993
+  },
+  {
+   "weight": 4.0,
+   "exponent": 0.7,
+   "conf": 0.44,
+   "min_area": 100,
+   "pooled": 0.4063930445029359,
+   "record": 0.4396948074266925
+  },
+  {
+   "weight": 4.0,
+   "exponent": 0.7,
+   "conf": 0.46,
+   "min_area": 100,
+   "pooled": 0.40830467391883674,
+   "record": 0.44245771807291795
+  },
+  {
+   "weight": 4.0,
+   "exponent": 0.7,
+   "conf": 0.48,
+   "min_area": 100,
+   "pooled": 0.41063659204450037,
+   "record": 0.4473780518258957
+  },
+  {
+   "weight": 4.0,
+   "exponent": 0.7,
+   "conf": 0.5,
+   "min_area": 100,
+   "pooled": 0.41137757614973963,
+   "record": 0.44946660004146727
+  },
+  {
+   "weight": 4.0,
+   "exponent": 0.7,
+   "conf": 0.52,
+   "min_area": 100,
+   "pooled": 0.41329935450630423,
+   "record": 0.45211334900667827
+  },
+  {
+   "weight": 4.0,
+   "exponent": 0.7,
+   "conf": 0.54,
+   "min_area": 100,
+   "pooled": 0.4150119324172225,
+   "record": 0.4555371151050871
+  },
+  {
+   "weight": 4.0,
+   "exponent": 0.7,
+   "conf": 0.56,
+   "min_area": 100,
+   "pooled": 0.41695661878868673,
+   "record": 0.4591668981095951
+  },
+  {
+   "weight": 4.0,
+   "exponent": 0.7,
+   "conf": 0.58,
+   "min_area": 100,
+   "pooled": 0.417379154698008,
+   "record": 0.4608147183745267
+  },
+  {
+   "weight": 4.0,
+   "exponent": 0.7,
+   "conf": 0.6,
+   "min_area": 100,
+   "pooled": 0.41859991984281325,
+   "record": 0.4642649497029483
+  },
+  {
+   "weight": 4.0,
+   "exponent": 0.7,
+   "conf": 0.62,
+   "min_area": 100,
+   "pooled": 0.41923916890054197,
+   "record": 0.466980106205091
+  },
+  {
+   "weight": 4.0,
+   "exponent": 0.7,
+   "conf": 0.64,
+   "min_area": 100,
+   "pooled": 0.4190222530108432,
+   "record": 0.4683427864703301
+  },
+  {
+   "weight": 4.0,
+   "exponent": 0.7,
+   "conf": 0.66,
+   "min_area": 100,
+   "pooled": 0.41764261856379375,
+   "record": 0.4710261981204115
+  },
+  {
+   "weight": 4.0,
+   "exponent": 0.7,
+   "conf": 0.68,
+   "min_area": 100,
+   "pooled": 0.41859216237355257,
+   "record": 0.4745996770852925
+  },
+  {
+   "weight": 4.0,
+   "exponent": 0.7,
+   "conf": 0.7,
+   "min_area": 100,
+   "pooled": 0.4215968604125498,
+   "record": 0.4810570316730633
+  },
+  {
+   "weight": 4.0,
+   "exponent": 0.7,
+   "conf": 0.72,
+   "min_area": 100,
+   "pooled": 0.4184549002413765,
+   "record": 0.48241022298669467
+  },
+  {
+   "weight": 4.0,
+   "exponent": 0.7,
+   "conf": 0.74,
+   "min_area": 100,
+   "pooled": 0.41737031233720573,
+   "record": 0.4861479576969121
+  },
+  {
+   "weight": 4.0,
+   "exponent": 0.7,
+   "conf": 0.76,
+   "min_area": 100,
+   "pooled": 0.4112243551665057,
+   "record": 0.48504576958035406
+  },
+  {
+   "weight": 4.0,
+   "exponent": 0.7,
+   "conf": 0.78,
+   "min_area": 100,
+   "pooled": 0.4066253360725566,
+   "record": 0.48294113251947923
+  },
+  {
+   "weight": 4.0,
+   "exponent": 0.7,
+   "conf": 0.8,
+   "min_area": 100,
+   "pooled": 0.3995360482302591,
+   "record": 0.48049240843898333
+  },
+  {
+   "weight": 4.0,
+   "exponent": 0.7,
+   "conf": 0.82,
+   "min_area": 100,
+   "pooled": 0.39028400018611115,
+   "record": 0.4762691956619337
+  },
+  {
+   "weight": 4.0,
+   "exponent": 0.7,
+   "conf": 0.84,
+   "min_area": 100,
+   "pooled": 0.3712612743918144,
+   "record": 0.4649082127162299
+  },
+  {
+   "weight": 4.0,
+   "exponent": 0.7,
+   "conf": 0.86,
+   "min_area": 100,
+   "pooled": 0.3592422028786209,
+   "record": 0.45955719322974636
+  },
+  {
+   "weight": 4.0,
+   "exponent": 0.7,
+   "conf": 0.88,
+   "min_area": 100,
+   "pooled": 0.3390904880334053,
+   "record": 0.4417755244346031
+  },
+  {
+   "weight": 4.0,
+   "exponent": 0.7,
+   "conf": 0.9,
+   "min_area": 100,
+   "pooled": 0.29965936948949634,
+   "record": 0.40322686416890935
+  },
+  {
+   "weight": 8.0,
+   "exponent": 0.5,
+   "conf": 0.3,
+   "min_area": 40,
+   "pooled": 0.40035705599131105,
+   "record": 0.42883499481807075
+  },
+  {
+   "weight": 8.0,
+   "exponent": 0.5,
+   "conf": 0.32,
+   "min_area": 40,
+   "pooled": 0.4031541829920612,
+   "record": 0.43355844333539223
+  },
+  {
+   "weight": 8.0,
+   "exponent": 0.5,
+   "conf": 0.34,
+   "min_area": 40,
+   "pooled": 0.4050029163639929,
+   "record": 0.43646613806612083
+  },
+  {
+   "weight": 8.0,
+   "exponent": 0.5,
+   "conf": 0.36,
+   "min_area": 40,
+   "pooled": 0.40750055504917587,
+   "record": 0.4415474129458585
+  },
+  {
+   "weight": 8.0,
+   "exponent": 0.5,
+   "conf": 0.38,
+   "min_area": 40,
+   "pooled": 0.4088258721412691,
+   "record": 0.4440724973045938
+  },
+  {
+   "weight": 8.0,
+   "exponent": 0.5,
+   "conf": 0.4,
+   "min_area": 40,
+   "pooled": 0.4102277997573123,
+   "record": 0.44824260301630736
+  },
+  {
+   "weight": 8.0,
+   "exponent": 0.5,
+   "conf": 0.42,
+   "min_area": 40,
+   "pooled": 0.4136617479834922,
+   "record": 0.45315337815473994
+  },
+  {
+   "weight": 8.0,
+   "exponent": 0.5,
+   "conf": 0.44,
+   "min_area": 40,
+   "pooled": 0.4166299059731301,
+   "record": 0.45800388406457526
+  },
+  {
+   "weight": 8.0,
+   "exponent": 0.5,
+   "conf": 0.46,
+   "min_area": 40,
+   "pooled": 0.41783650622573953,
+   "record": 0.4610652726776526
+  },
+  {
+   "weight": 8.0,
+   "exponent": 0.5,
+   "conf": 0.48,
+   "min_area": 40,
+   "pooled": 0.41919881829868216,
+   "record": 0.46342718130317795
+  },
+  {
+   "weight": 8.0,
+   "exponent": 0.5,
+   "conf": 0.5,
+   "min_area": 40,
+   "pooled": 0.41920365138319987,
+   "record": 0.46651471737080347
+  },
+  {
+   "weight": 8.0,
+   "exponent": 0.5,
+   "conf": 0.52,
+   "min_area": 40,
+   "pooled": 0.42034668930956814,
+   "record": 0.4695865484516179
+  },
+  {
+   "weight": 8.0,
+   "exponent": 0.5,
+   "conf": 0.54,
+   "min_area": 40,
+   "pooled": 0.4183598181850446,
+   "record": 0.4714646405678482
+  },
+  {
+   "weight": 8.0,
+   "exponent": 0.5,
+   "conf": 0.56,
+   "min_area": 40,
+   "pooled": 0.4193097475630497,
+   "record": 0.4761714559737496
+  },
+  {
+   "weight": 8.0,
+   "exponent": 0.5,
+   "conf": 0.58,
+   "min_area": 40,
+   "pooled": 0.41963278525253794,
+   "record": 0.47879498004342047
+  },
+  {
+   "weight": 8.0,
+   "exponent": 0.5,
+   "conf": 0.6,
+   "min_area": 40,
+   "pooled": 0.4182113062296713,
+   "record": 0.4792238500756389
+  },
+  {
+   "weight": 8.0,
+   "exponent": 0.5,
+   "conf": 0.62,
+   "min_area": 40,
+   "pooled": 0.4181104285643738,
+   "record": 0.4820971602627076
+  },
+  {
+   "weight": 8.0,
+   "exponent": 0.5,
+   "conf": 0.64,
+   "min_area": 40,
+   "pooled": 0.4187051008536517,
+   "record": 0.48757877696148816
+  },
+  {
+   "weight": 8.0,
+   "exponent": 0.5,
+   "conf": 0.66,
+   "min_area": 40,
+   "pooled": 0.41458294455414163,
+   "record": 0.4871572581194776
+  },
+  {
+   "weight": 8.0,
+   "exponent": 0.5,
+   "conf": 0.68,
+   "min_area": 40,
+   "pooled": 0.40920222183653765,
+   "record": 0.48757714349733366
+  },
+  {
+   "weight": 8.0,
+   "exponent": 0.5,
+   "conf": 0.7,
+   "min_area": 40,
+   "pooled": 0.4005872459393224,
+   "record": 0.4843502662774474
+  },
+  {
+   "weight": 8.0,
+   "exponent": 0.5,
+   "conf": 0.72,
+   "min_area": 40,
+   "pooled": 0.3920577395639241,
+   "record": 0.4785772246286263
+  },
+  {
+   "weight": 8.0,
+   "exponent": 0.5,
+   "conf": 0.74,
+   "min_area": 40,
+   "pooled": 0.3789259435568312,
+   "record": 0.4724153624103954
+  },
+  {
+   "weight": 8.0,
+   "exponent": 0.5,
+   "conf": 0.76,
+   "min_area": 40,
+   "pooled": 0.3674271217480369,
+   "record": 0.464530173306982
+  },
+  {
+   "weight": 8.0,
+   "exponent": 0.5,
+   "conf": 0.78,
+   "min_area": 40,
+   "pooled": 0.35746660420958787,
+   "record": 0.45891724091141933
+  },
+  {
+   "weight": 8.0,
+   "exponent": 0.5,
+   "conf": 0.8,
+   "min_area": 40,
+   "pooled": 0.3377954491100873,
+   "record": 0.44117826812956856
+  },
+  {
+   "weight": 8.0,
+   "exponent": 0.5,
+   "conf": 0.82,
+   "min_area": 40,
+   "pooled": 0.3077761222236847,
+   "record": 0.4117242398843128
+  },
+  {
+   "weight": 8.0,
+   "exponent": 0.5,
+   "conf": 0.84,
+   "min_area": 40,
+   "pooled": 0.27511692438243296,
+   "record": 0.3788196008873409
+  },
+  {
+   "weight": 8.0,
+   "exponent": 0.5,
+   "conf": 0.86,
+   "min_area": 40,
+   "pooled": 0.23533487039295947,
+   "record": 0.3297949318385041
+  },
+  {
+   "weight": 8.0,
+   "exponent": 0.5,
+   "conf": 0.88,
+   "min_area": 40,
+   "pooled": 0.17686287996687425,
+   "record": 0.257251498862806
+  },
+  {
+   "weight": 8.0,
+   "exponent": 0.5,
+   "conf": 0.9,
+   "min_area": 40,
+   "pooled": 0.12785273500963387,
+   "record": 0.18981922896759953
+  },
+  {
+   "weight": 8.0,
+   "exponent": 0.7,
+   "conf": 0.3,
+   "min_area": 100,
+   "pooled": 0.3960186605009386,
+   "record": 0.4211008210968545
+  },
+  {
+   "weight": 8.0,
+   "exponent": 0.7,
+   "conf": 0.32,
+   "min_area": 100,
+   "pooled": 0.3979660638038055,
+   "record": 0.42487434634326027
+  },
+  {
+   "weight": 8.0,
+   "exponent": 0.7,
+   "conf": 0.34,
+   "min_area": 100,
+   "pooled": 0.40045132553278856,
+   "record": 0.4287846464140463
+  },
+  {
+   "weight": 8.0,
+   "exponent": 0.7,
+   "conf": 0.36,
+   "min_area": 100,
+   "pooled": 0.40276316515124755,
+   "record": 0.4324364370106735
+  },
+  {
+   "weight": 8.0,
+   "exponent": 0.7,
+   "conf": 0.38,
+   "min_area": 100,
+   "pooled": 0.4045983416460337,
+   "record": 0.43616466598100856
+  },
+  {
+   "weight": 8.0,
+   "exponent": 0.7,
+   "conf": 0.4,
+   "min_area": 100,
+   "pooled": 0.40597358106898107,
+   "record": 0.438617458361326
+  },
+  {
+   "weight": 8.0,
+   "exponent": 0.7,
+   "conf": 0.42,
+   "min_area": 100,
+   "pooled": 0.40806269546638263,
+   "record": 0.4415059710821256
+  },
+  {
+   "weight": 8.0,
+   "exponent": 0.7,
+   "conf": 0.44,
+   "min_area": 100,
+   "pooled": 0.4101819446552506,
+   "record": 0.44549013521778663
+  },
+  {
+   "weight": 8.0,
+   "exponent": 0.7,
+   "conf": 0.46,
+   "min_area": 100,
+   "pooled": 0.4116981647447843,
+   "record": 0.4490452551049729
+  },
+  {
+   "weight": 8.0,
+   "exponent": 0.7,
+   "conf": 0.48,
+   "min_area": 100,
+   "pooled": 0.4126007275719418,
+   "record": 0.45185345649404224
+  },
+  {
+   "weight": 8.0,
+   "exponent": 0.7,
+   "conf": 0.5,
+   "min_area": 100,
+   "pooled": 0.414388592307704,
+   "record": 0.4543933081459857
+  },
+  {
+   "weight": 8.0,
+   "exponent": 0.7,
+   "conf": 0.52,
+   "min_area": 100,
+   "pooled": 0.416598562439362,
+   "record": 0.4591668981095951
+  },
+  {
+   "weight": 8.0,
+   "exponent": 0.7,
+   "conf": 0.54,
+   "min_area": 100,
+   "pooled": 0.4177552247369025,
+   "record": 0.46166003295313035
+  },
+  {
+   "weight": 8.0,
+   "exponent": 0.7,
+   "conf": 0.56,
+   "min_area": 100,
+   "pooled": 0.4195863534835592,
+   "record": 0.4655647906577722
+  },
+  {
+   "weight": 8.0,
+   "exponent": 0.7,
+   "conf": 0.58,
+   "min_area": 100,
+   "pooled": 0.4200678601177225,
+   "record": 0.4675360856668204
+  },
+  {
+   "weight": 8.0,
+   "exponent": 0.7,
+   "conf": 0.6,
+   "min_area": 100,
+   "pooled": 0.4188450798553365,
+   "record": 0.4688947155429593
+  },
+  {
+   "weight": 8.0,
+   "exponent": 0.7,
+   "conf": 0.62,
+   "min_area": 100,
+   "pooled": 0.4180132624413047,
+   "record": 0.47164902904365474
+  },
+  {
+   "weight": 8.0,
+   "exponent": 0.7,
+   "conf": 0.64,
+   "min_area": 100,
+   "pooled": 0.4187566176726336,
+   "record": 0.4754615901979993
+  },
+  {
+   "weight": 8.0,
+   "exponent": 0.7,
+   "conf": 0.66,
+   "min_area": 100,
+   "pooled": 0.4208212431799707,
+   "record": 0.4809701219588843
+  },
+  {
+   "weight": 8.0,
+   "exponent": 0.7,
+   "conf": 0.68,
+   "min_area": 100,
+   "pooled": 0.41960664980446766,
+   "record": 0.484403294672204
+  },
+  {
+   "weight": 8.0,
+   "exponent": 0.7,
+   "conf": 0.7,
+   "min_area": 100,
+   "pooled": 0.4177623445047858,
+   "record": 0.4850357016143738
+  },
+  {
+   "weight": 8.0,
+   "exponent": 0.7,
+   "conf": 0.72,
+   "min_area": 100,
+   "pooled": 0.4127479874237125,
+   "record": 0.4845688596854112
+  },
+  {
+   "weight": 8.0,
+   "exponent": 0.7,
+   "conf": 0.74,
+   "min_area": 100,
+   "pooled": 0.40918432877860683,
+   "record": 0.4866712888449922
+  },
+  {
+   "weight": 8.0,
+   "exponent": 0.7,
+   "conf": 0.76,
+   "min_area": 100,
+   "pooled": 0.40283570740315205,
+   "record": 0.48331250682451377
+  },
+  {
+   "weight": 8.0,
+   "exponent": 0.7,
+   "conf": 0.78,
+   "min_area": 100,
+   "pooled": 0.3940058898817819,
+   "record": 0.4790575876492948
+  },
+  {
+   "weight": 8.0,
+   "exponent": 0.7,
+   "conf": 0.8,
+   "min_area": 100,
+   "pooled": 0.37998450330912764,
+   "record": 0.4709715606057785
+  },
+  {
+   "weight": 8.0,
+   "exponent": 0.7,
+   "conf": 0.82,
+   "min_area": 100,
+   "pooled": 0.3658627853074649,
+   "record": 0.4628286833193899
+  },
+  {
+   "weight": 8.0,
+   "exponent": 0.7,
+   "conf": 0.84,
+   "min_area": 100,
+   "pooled": 0.3506930100185142,
+   "record": 0.4537457379475611
+  },
+  {
+   "weight": 8.0,
+   "exponent": 0.7,
+   "conf": 0.86,
+   "min_area": 100,
+   "pooled": 0.3273354000531998,
+   "record": 0.431399304847932
+  },
+  {
+   "weight": 8.0,
+   "exponent": 0.7,
+   "conf": 0.88,
+   "min_area": 100,
+   "pooled": 0.28701821699103786,
+   "record": 0.39040387229151274
+  },
+  {
+   "weight": 8.0,
+   "exponent": 0.7,
+   "conf": 0.9,
+   "min_area": 100,
+   "pooled": 0.23880022723659206,
+   "record": 0.33469735100823006
+  }
+ ]
+}
