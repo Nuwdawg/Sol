@@ -1,5 +1,13 @@
 # A Mask2Former-only two-model file: the one bet on public 0.42 (2026-10-30)
 
+> **Result (uploaded 2026-10-30 20:45 UTC): public 0.41.** exp169 + guard, uploaded at the same time,
+> also scored 0.41. So this file's public / validation ratio is 0.839-0.859, the range of the tuned
+> YOLO rules, not the 0.861-0.864 of the single-model submissions. The family pattern below does not
+> hold for a rule tuned on validation. A simpler reading fits all the points: rules whose constants
+> were searched on validation reach the board at about 0.845 x validation, and single models with a
+> fixed rule at about 0.86 x. Neither file is a climb. The final picks stay exp169 + guard and exp139
+> (or this file: also 0.41, validation 0.4830 against exp139's 0.4705).
+
 **File:** `submission_m2f_only_w8.csv` (1,167 instances, 180 photographs, SHA256 `0EF5A352...`).
 exp139's 11 views plus Swin-B e32 as a voter, no YOLO:
 score = s^0.3 x mean^0.7, with mean = (11 exp139 view scores + 8 x Swin-B's partner score) / 19.

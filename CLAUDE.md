@@ -183,6 +183,11 @@ the decision, stop.
 - Over eleven submissions with public scores from 0.20 to 0.41, public is
   about 0.84 x per-record validation PQ (ten inside the rounding interval;
   `experiments/exp_200_test_truth/README.md`). Pooled truth is refuted (section 17).
+- Rules whose constants were searched on validation (exp162, exp162b, exp169,
+  exp169 + guard, the YOLO-free m2f_only file) all print 0.41 from validation
+  0.483-0.489: about 0.845 x. Single models with a fixed rule (exp139 e40, e50,
+  soup) reach about 0.86 x. Public 0.42 from a tuned rule needs validation
+  of about 0.491 or more (`final_decision/results/m2f_only/README.md`).
 - The public leaderboard shows two decimals. A local spread of 0.013 is
   invisible there — four genuinely different models all printed 0.36.
 - CPU inference is bit-for-bit identical to GPU inference here (same CSV MD5).
