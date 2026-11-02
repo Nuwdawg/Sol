@@ -57,3 +57,4 @@ that range: roughly a 30-40% chance, not a sure gain.
 | decoder-layer agreement instead of the final class probability | 0.4889 / 0.4882 / 0.4855 | `remnants_val.json` |
 | add uncovered Swin-B detections that a YOLO model confirms | best +0.0012 in-sample, cross-validated -0.006 | `orphans_val.json` |
 | merge fragments another model sees as one filament | -0.003 to -0.006 | `merges_val.json` |
+| more rescues: 2-3 of exp184a's three models agree, or Swin-B >= 0.97 in [0.50, 0.60) | no change (0.49095 in every case) | |
