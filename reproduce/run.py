@@ -30,6 +30,10 @@ One optional stage builds the Mask2Former-only two-model file (`final_decision/r
   9. m2f_only exp139's views plus Swin-B as a voter, no YOLO (`experiments/exp_200_test_truth/src/
               m2f_only_test.py`); needs the m2f and swinb stages; CPU, about 10 min; must rebuild the
               stored file byte for byte.
+ 10. remnant_rescue  exp169 + guard, dropping instances that keep under 70% of their own vote mask
+              and rescuing borderline ones Swin-B confirms (`combo_test.py`,
+              `final_decision/results/remnant_rescue/`); needs m2f, yolo, rule and swinb; CPU, about
+              25 min; first rebuilds submission_exp169_guarded.csv byte for byte.
 
 Every stage stops on a failed check; none of them changes a model.
 
@@ -48,10 +52,11 @@ from pathlib import Path
 ROOT = Path(__file__).resolve().parents[1]
 ART = ROOT / "reproduce" / "artefacts"
 SUBMITTED = ROOT / "final_decision" / "results" / "submission_exp169_guarded.csv"
-STAGES = ("weights", "m2f", "yolo", "rule", "guard", "check", "swinb", "union", "m2f_only")
+STAGES = ("weights", "m2f", "yolo", "rule", "guard", "check", "swinb", "union", "m2f_only", "remnant_rescue")
 FINAL = STAGES[:6]                 # the submitted file; swinb and union rebuild withdrawn files
 EXP200 = ROOT / "final_decision" / "results" / "exp200" / "withdrawn"
 M2F_ONLY_SHA256 = "0EF5A352C9DCF86BECD3F198FB5C49F73021C6F2779C23F055CE7908F32E88AB"   # final_decision/results/m2f_only
+REMNANT_RESCUE_SHA256 = "F9423B74429F34130BF70C9421B2416AAFD3C3852D9E465FC9F117C0FADA162D"   # final_decision/results/remnant_rescue
 UNION = {"submission_C1_B_swinb090.csv": ("B", 0.90),             # file: (base file, Swin-B threshold)
          "submission_C2_exp169_swinb080.csv": ("exp169", 0.80),
          "submission_C3_exp169_swinb090.csv": ("exp169", 0.90)}
@@ -245,6 +250,26 @@ def stage_m2f_only(work: Path, data: dict) -> None:
                  "--test-cache", str(work / "m2f" / "e040_test_cache.json"),
                  "--test-swinb", *map(str, sorted((work / "swinb").glob("shard*.jsonl"))),
                  "--expect-sha256", M2F_ONLY_SHA256, "--output", str(work / "m2f_only"))], "Mask2Former-only file")
+
+
+def stage_remnant_rescue(work: Path, _) -> None:
+    out = work / "remnant_rescue"
+    wait([python("experiments.exp_200_test_truth.src.emit_test",
+                 "--test-cache", str(work / "m2f" / "e040_test_cache.json"),
+                 "--yolo", f"yolov8l={work / 'yolo_yolov8l' / 'test_pool.json'}",
+                 "--yolo", f"yolo11m={work / 'yolo_yolo11m' / 'test_pool.json'}",
+                 "--base-csv", str(work / "rule" / "parity_deployed.csv"),
+                 "--expect-csv", str(work / "rule" / "submission_joint.csv"),
+                 "--ingredients", str(out / "test_ingredients.pkl"), "--output", str(out))], "exp169 ingredients")
+    wait([python("experiments.exp_200_test_truth.src.combo_test", "--ingredients", str(out / "test_ingredients.pkl"),
+                 "--test-cache", str(work / "m2f" / "e040_test_cache.json"),
+                 "--test-swinb", *map(str, sorted((work / "swinb").glob("shard*.jsonl"))),
+                 "--exp139-csv", str(work / "rule" / "parity_deployed.csv"), "--expect-guarded", str(SUBMITTED),
+                 "--output", str(out))], "remnant + rescue file")
+    digest = sha256(out / "submission_exp169_remnant_rescue.csv").upper()
+    print("REMNANT_RESCUE_CHECK", json.dumps(dict(identical=digest == REMNANT_RESCUE_SHA256, sha256=digest)), flush=True)
+    if digest != REMNANT_RESCUE_SHA256:
+        raise SystemExit("the remnant + rescue file differs from the stored one")
 
 
 def main() -> None:

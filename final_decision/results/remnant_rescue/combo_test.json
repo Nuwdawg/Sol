@@ -1,0 +1,12 @@
+{
+ "rows": 1149,
+ "guard_added": 9,
+ "photographs_with_rows": 179,
+ "sha256": "F9423B74429F34130BF70C9421B2416AAFD3C3852D9E465FC9F117C0FADA162D",
+ "parity": "EC00408E7F8ED78A350EEC50FCC1F96824A9851D972310F9408B4B64D7D966A7",
+ "rule": {
+  "fraction": 0.7,
+  "rescue_low": 0.6,
+  "rescue_tau": 0.95
+ }
+}
