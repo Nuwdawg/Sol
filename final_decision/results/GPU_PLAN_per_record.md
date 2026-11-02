@@ -1,5 +1,8 @@
 # GPU plan for the per-record board: a better anchor model (drafted 2026-10-31, not run)
 
+> **Withdrawn 2026-11-02 by the user: no budget for GPU credits.** Work continues with the existing
+> models and caches, at inference and ensemble construction only.
+
 **Why GPU.** Six submissions print 0.41: exp139, exp162, exp162b, exp169, exp169 + guard, and the
 YOLO-free file. Their per-record validation ranges from 0.4705 to 0.4889. Rules tuned on validation reach
 the board at about 0.845 x validation, so a rule needs validation of about 0.491 to print 0.42. Every
