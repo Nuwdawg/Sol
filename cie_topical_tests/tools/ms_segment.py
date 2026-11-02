@@ -3,7 +3,7 @@ import sys, os, re, json
 sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
 import pymupdf, wmclean
 
-LABEL_RX = re.compile(r"^\s*\.?\s*(\d{1,2})\s*((\([a-z]{1,2}\)|\([ivx]{1,4}\))\s*)*$")
+LABEL_RX = re.compile(r"^\s*[.Q]?\s*(\d{1,2})\s*((\([a-z]{1,2}\)|\([ivx]{1,4}\))\s*)*$")
 
 def normalized(path):
     """Watermark-free copy with every page unrotated in displayed orientation."""
@@ -28,19 +28,25 @@ def lines_of(page):
     return res
 
 def page_window(page, lines):
+    """Content window between the mark-scheme running header and footer (positions vary by year)."""
     H = page.rect.height
-    top, bottom = 48.0, H - 40.0
+    top, bottom = 0.0, H
     for r, t in lines:
-        if r.y1 < 60 and re.search(r"(Mark Scheme|PUBLISHED|\d{4}/\d{2}|20\d\d)", t):
+        if r.y0 < 0.12 * H and re.search(r"(Mark Scheme|PUBLISHED|^\s*\d{4}/\d{2}\s*$|(January|February|March|May|June|October|November)[/ ].*20\d\d)", t):
             top = max(top, r.y1 + 1)
-        if r.y0 > H - 60 and re.search(r"(©|UCLES|Cambridge University Press|Page \d+ of \d+)", t):
+        if r.y0 > 0.4 * H and re.search(r"(©|UCLES|Cambridge University Press|Page \d+ of \d+)", t):
             bottom = min(bottom, r.y0 - 1)
+    if top == 0.0:
+        top = 48.0
+    if bottom == H:
+        bottom = H - 40.0
     return top, bottom
 
 def segment_ms(path):
     doc = normalized(path)
     info, heads, labels = {}, [], []
     started = False
+    col = (0, 0)
     for pno, page in enumerate(doc):
         lines = lines_of(page)
         top, bottom = page_window(page, lines)
@@ -48,13 +54,14 @@ def segment_ms(path):
         for r, t in lines:
             if r.y0 < top - 1 or r.y1 > bottom + 1:
                 continue
-            if t.strip().startswith("Question") and r.x0 < 140:
+            if t.strip().startswith("Question") and r.x0 < 160:
                 row = [t2.strip() for r2, t2 in lines if abs(r2.y0 - r.y0) < 4 and r2.x0 > r.x1]
                 row += t.strip().split()[1:]
                 if any(x in ("Answer", "Marks", "Answers", "Mark") for x in row):
                     heads.append((pno, r.y0, r)); started = True
+                    col = (r.x0 - 25, r.x1 + 5)
                     continue
-            if started and r.x0 < 100 and r.x1 < 125:
+            if started and col[0] <= r.x0 and r.x1 <= col[1] + 6 and r.x0 < col[1]:
                 m = LABEL_RX.match(t)
                 if m:
                     labels.append((pno, r.y0, int(m.group(1)), t.strip(), r))

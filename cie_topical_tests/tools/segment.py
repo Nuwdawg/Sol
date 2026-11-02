@@ -8,7 +8,7 @@ import sys, os, re, json, glob
 sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
 import pymupdf, wmclean
 
-X0, X1 = 38.0, 557.0          # horizontal content window (excludes margin bars/text, corner marks)
+X0, X1 = 39.5, 556.0          # horizontal content window (excludes margin bars/text and the stroked corner marks)
 FOOT_RX = re.compile(r"(©|UCLES|Cambridge University Press|Turn over|97\d\d/\d\d/[A-Z]/[A-Z]/\d\d)")
 SKIP_RX = re.compile(r"(BLANK PAGE|Additional [Pp]age|If you use the following lined page|"
                      r"Permission to reproduce items|Local Examinations Syndicate)")
@@ -62,7 +62,7 @@ def cut_lines(page, lines, graphics):
             top = max(top, r.y1 + 0.5)                     # page number, barcode text/label
     for g in graphics:
         if g.y0 < 58 and (g.x1 < 62 or g.x0 > W - 66) and g.height < 30:
-            top = max(top, g.y1 + 0.5)                     # corner marks, black square
+            top = max(top, g.y1 + 2.0)                     # corner marks (stroke ~2.8pt), black square
         elif g.y1 <= 52:
             top = max(top, g.y1 + 0.5)
     bottom = H - 30.0
@@ -74,7 +74,7 @@ def cut_lines(page, lines, graphics):
             bottom = min(bottom, r.y0 - 0.5)
     for g in graphics:
         if g.y0 > H - 70 and (g.x1 < 62 or g.x0 > W - 66):
-            bottom = min(bottom, g.y0 - 0.5)               # bottom corner marks
+            bottom = min(bottom, g.y0 - 2.0)               # bottom corner marks (stroke ~2.8pt)
     return top, bottom
 
 def qnum_of_line(l, top, bottom):
@@ -185,7 +185,7 @@ def segment(path):
         info[pno] = (lines, graphics, top, bottom, skip)
     qn = find_qnums(doc, info)
     cover = doc[0].get_text()
-    m = re.search(r"total mark for this paper is (\d+)", cover)
+    m = re.search(r"total (?:number of )?marks? for this paper (?:is|will be) (\d+)", cover)
     paper_total = int(m.group(1)) if m else None
     questions = []
     tops = [start_top(info[pno][0], info[pno][1], r) for (n, pno, r, base, size) in qn]
@@ -216,8 +216,8 @@ def segment(path):
                 continue
             seg = [p, X0, max(y0, lo - 2), X1, min(y1, hi + 3)]
             segs.append(seg)
-            body = [l for l in lines if l["bbox"].y0 >= seg[2] - 1 and l["bbox"].y1 <= seg[4] + 1
-                    and l["bbox"].x0 >= X0 - 1 and l["bbox"].x1 <= X1 + 1]
+            body = [l for l in lines if seg[2] - 1 <= (l["bbox"].y0 + l["bbox"].y1) / 2 <= seg[4] + 1
+                    and l["bbox"].x0 < X1 and l["bbox"].x1 > X0]
             body.sort(key=lambda l: (round(l["bbox"].y0 / 3), l["bbox"].x0))
             texts.append("\n".join(l["text"] for l in body))
         text = "\n".join(texts)

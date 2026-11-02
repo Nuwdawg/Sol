@@ -17,6 +17,12 @@ import pymupdf, wmclean, topics
 SP = sys.argv[1]
 R = json.load(open(os.path.join(SP, "work/questions.json")))
 ER = json.load(open(os.path.join(SP, "work/er.json")))
+# Year window: nine years (2018-2026) for Maths P3, Maths P4 (Mechanics) and Physics P4; five years (2022-2026) otherwise
+NINE_YEAR = {("9709", 3), ("9709", 4), ("9702", 4)}
+R = [r for r in R if r["year"] >= (2018 if (r["subj"], r["comp"]) in NINE_YEAR else 2022)]
+def _datafile(name, fallback):
+    here = os.path.join(os.path.dirname(os.path.abspath(__file__)), name)
+    return here if os.path.exists(here) else os.path.join(SP, "work", fallback)
 TARGET = 40
 
 # ---------------- features
@@ -129,9 +135,7 @@ for slot, rs in by_slot.items():
         else:
             canon[r["id"]] = r["id"]; reps.append(r)
 # ---------------- optional manual topic overrides (id -> topic code)
-ovf = os.path.join(os.path.dirname(os.path.abspath(__file__)), "topic_overrides.json")
-if not os.path.exists(ovf):
-    ovf = os.path.join(SP, "work/overrides.json")
+ovf = _datafile("topic_overrides.json", "overrides.json")
 OV = json.load(open(ovf)) if os.path.exists(ovf) else {}
 names = {}
 for comp, spec in topics.MATH.items():
@@ -148,7 +152,14 @@ for qid, code in OV.items():
     r = RID[canon[qid]]
     r["topic"] = code; r["topic_name"] = names[(r["subj"], code)]; r["topic_override"] = True
 
-UNIQUE = [r for r in R if canon[r["id"]] == r["id"]]
+# questions on content removed from the current syllabus (id -> reason), e.g. pre-2022 Physics communication/electronics
+off_f = _datafile("off_syllabus.json", "off_syllabus.json")
+OFF = json.load(open(off_f)) if os.path.exists(off_f) else {}
+for qid, why in OFF.items():
+    if qid in RID:
+        RID[canon[qid]]["off_syllabus"] = why
+UNIQUE = [r for r in R if canon[r["id"]] == r["id"] and not r.get("off_syllabus")]
+print("excluded as off-syllabus:", sum(1 for r in R if r.get("off_syllabus")))
 print("unique questions:", len(UNIQUE), "of", len(R))
 
 # ---------------- tests

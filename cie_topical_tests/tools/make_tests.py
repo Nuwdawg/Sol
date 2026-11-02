@@ -91,7 +91,7 @@ def build_markscheme(items, path, title):
         segs = r.get("ms_segs") or []
         if segs:
             sw0 = ms_doc(r["ms_paper"])[segs[0][0]].rect.width
-            sc0 = min(1.0, (W - 2 * M) / (sw0 - 60.0))
+            sc0 = min(1.6, (W - 2 * M) / (sw0 - 60.0))
             need = LBL + min((segs[0][4] - segs[0][2]) * sc0, H - 24 - 28 - LBL)
         else:
             need = LBL + 20
@@ -109,7 +109,7 @@ def build_markscheme(items, path, title):
             h = y1 - y0
             sw = src[pno].rect.width
             x0, x1 = 30.0, sw - 30.0
-            scale = min(1.0, (W - 2 * M) / (x1 - x0))
+            scale = min(1.6, (W - 2 * M) / (x1 - x0))
             th = h * scale
             if y + th > H - 24:
                 page, y = new_page()
@@ -182,8 +182,18 @@ for t in S["tests"]:
     summary.append((folder, name, len(items), npg, t["pool_primary"]))
     print(f"{folder}/{name}: {len(items)} questions, {npg} pages", flush=True)
 
-if not ONLY:
-    with open(os.path.join(OUT, "index.csv"), "w", newline="") as f:
-        w = csv.DictWriter(f, fieldnames=list(rows[0].keys()))
-        w.writeheader(); w.writerows(rows)
-    json.dump(summary, open(os.path.join(SP, "work/build_summary.json"), "w"))
+idx = os.path.join(OUT, "index.csv")
+if ONLY and os.path.exists(idx):
+    # keep rows of tests that were not rebuilt in this run
+    rebuilt = {r["test"] for r in rows}
+    with open(idx, newline="") as f:
+        rows = [r for r in csv.DictReader(f) if r["test"] not in rebuilt] + rows
+    rows.sort(key=lambda r: (r["test"], int(r["question"])))
+with open(idx, "w", newline="") as f:
+    w = csv.DictWriter(f, fieldnames=list(rows[0].keys()))
+    w.writeheader(); w.writerows(rows)
+sf = os.path.join(SP, "work/build_summary.json")
+if ONLY and os.path.exists(sf):
+    done = {(a, b) for a, b, *_ in summary}
+    summary = [x for x in json.load(open(sf)) if (x[0], x[1]) not in done] + summary
+json.dump(summary, open(sf, "w"))
