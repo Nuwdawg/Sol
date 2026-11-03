@@ -17,8 +17,9 @@ import pymupdf, wmclean, topics
 SP = sys.argv[1]
 R = json.load(open(os.path.join(SP, "work/questions.json")))
 ER = json.load(open(os.path.join(SP, "work/er.json")))
-# Year window: nine years (2018-2026) for Maths P3, Maths P4 (Mechanics) and Physics P4; five years (2022-2026) otherwise
-NINE_YEAR = {("9709", 3), ("9709", 4), ("9702", 4)}
+# Year window: nine years (Feb/Mar 2018 - May/Jun 2026) for Maths P2, P3, P4 (Mechanics) and Physics P4, P5;
+# five years (Feb/Mar 2022 - May/Jun 2026) for everything else
+NINE_YEAR = {("9709", 2), ("9709", 3), ("9709", 4), ("9702", 4), ("9702", 5)}
 R = [r for r in R if r["year"] >= (2018 if (r["subj"], r["comp"]) in NINE_YEAR else 2022)]
 def _datafile(name, fallback):
     here = os.path.join(os.path.dirname(os.path.abspath(__file__)), name)

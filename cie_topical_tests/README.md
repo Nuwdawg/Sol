@@ -5,7 +5,7 @@ past papers. All papers, mark schemes and examiner reports were downloaded from 
 
 | Papers | Years covered |
 |---|---|
-| Maths P3 Pure 3, Maths P4 Mechanics, Physics P4 | **9 years**: Feb/Mar 2018 to May/Jun 2026 |
+| Maths P2 Pure 2, P3 Pure 3, P4 Mechanics; Physics P4, P5 | **9 years**: Feb/Mar 2018 to May/Jun 2026 |
 | All other papers | **5 years**: Feb/Mar 2022 to May/Jun 2026 |
 
 Oct/Nov 2026 has not been sat yet.
@@ -40,7 +40,7 @@ questions are allowed into both topics (`cross_topic` in `index.csv`).
 | Paper | Years | Tests | Questions per test |
 |---|---|---|---|
 | 9709 P1 Pure 1 | 2022-26 | 8 topics (1.1-1.8) | 33-40 |
-| 9709 P2 Pure 2 | 2022-26 | 6 topics (2.1-2.6) | 23-37 |
+| 9709 P2 Pure 2 | 2018-26 | 6 topics (2.1-2.6) | 40 each |
 | 9709 P3 Pure 3 | 2018-26 | 9 topics (3.1-3.9) | 40 each |
 | 9709 P4 Mechanics | 2018-26 | 5 topics (4.1-4.5) | 40 each |
 | 9709 P5 Probability & Statistics 1 | 2022-26 | 5 topics (5.1-5.5) | 34-40 |
@@ -48,11 +48,11 @@ questions are allowed into both topics (`cross_topic` in `index.csv`).
 | 9702 P1 Multiple choice | 2022-26 | syllabus topics 1-11 | 40 each |
 | 9702 P2 AS structured | 2022-26 | syllabus topics 1-11 | 16-35 |
 | 9702 P4 A Level structured | 2018-26 | syllabus topics 12-25 | 11-40 |
-| 9702 P5 Planning, analysis and evaluation | 2022-26 | planning; data analysis | 26 each |
+| 9702 P5 Planning, analysis and evaluation | 2018-26 | planning; data analysis | 40 each |
 
 Paper 3 (Physics practical) is excluded, because its questions need apparatus.
 
-**Why some Physics P4 tests stay below 40, even over nine years.** A Paper 4 has about 10
+**Why 8 Physics P4 tests stay below 40, even over nine years.** A Paper 4 has about 10
 questions covering 14 topics, so most topics appear at most once per paper. Variants 41 and 43
 are the same paper in every May/Jun and Oct/Nov session, which leaves about 5 distinct papers a
 year. Some topics are also rarely examined on their own:
@@ -79,18 +79,21 @@ excluded questions are listed in `tools/off_syllabus.json`.
 | Physics P4 | Communication, Electronics, NMRI, band theory, transformers | 55 | 9702 syllabus "Changes to this syllabus" page; transformers no longer in topic 21 |
 | Maths P3 | Equations of planes (P3 vectors now covers lines only) | 11 | 9709 syllabus, topic 3.7 |
 
+No exclusions were needed for Maths P2, P4 or Physics P5. Physics P5 is a skills paper, and its
+2018-2021 contexts are ordinary laboratory set-ups.
+
 May/Jun 2020 papers are included. That series was cancelled, so no examiner report exists for
 it.
 
 ## How questions were chosen
 
-1. **Download.** The script fetched 434 question papers, 433 mark schemes and 38 examiner
+1. **Download.** The script fetched 490 question papers, 489 mark schemes and 38 examiner
    reports.
 2. **Split into questions.** Question numbers are found in sequence at the left margin. Each
    question is cropped page by page between the exam's header and footer.
-   - 385 written papers: the question marks add up to the total printed on the cover.
-   - 14 older Physics P4 papers: the cover prints no total, so the marks were checked against
-     Paper 4's fixed 100.
+   - 427 written papers: the question marks add up to the total printed on the cover.
+   - 28 older Physics P4 and P5 papers: the cover prints no total, so the marks were checked
+     against the paper's fixed total (100 and 30).
    - 35 MCQ papers: each yields 40 questions.
 3. **De-duplicate.** Cambridge reuses identical papers across time-zone variants. For
    example, 9702/41 and /43 are the same paper, as are 9709/22, /23 and /25. Only one copy of
@@ -135,12 +138,12 @@ This needs Python 3 with `pymupdf` and `fonttools`.
 ```bash
 export SP=/path/to/scratch            # downloads and intermediate files
 mkdir -p $SP/papers $SP/work
-cat tools/wanted.txt tools/wanted_2018_2021.txt | xargs -P 12 -I{} tools/dl.sh {} $SP/papers
+cat tools/wanted*.txt | xargs -P 12 -I{} tools/dl.sh {} $SP/papers
 python3 tools/segment.py    $SP/work/seg $SP/papers/97*_qp_*.pdf
 python3 tools/ms_segment.py $SP/work/ms  $SP/papers/97*_ms_*.pdf
 python3 tools/analyze.py    $SP
 python3 tools/er.py         $SP
-python3 tools/select_q.py   $SP       # 9-year window for 9709 P3/P4 and 9702 P4, 5-year otherwise
+python3 tools/select_q.py   $SP       # 9-year window for 9709 P2/P3/P4 and 9702 P4/P5, 5-year otherwise
 python3 tools/make_tests.py $SP .     # writes Maths_9709/, Physics_9702/, index.csv
 python3 tools/leakscan.py   .         # checks no exam header/footer text survived
 ```
@@ -160,16 +163,16 @@ python3 tools/leakscan.py   .         # checks no exam header/footer text surviv
 | 1.7 Differentiation | 40 | 69 | 47 |
 | 1.8 Integration | 40 | 73 | 55 |
 
-**Maths 9709 / P2 Pure Mathematics 2** (papers 2022-2026)
+**Maths 9709 / P2 Pure Mathematics 2** (papers 2018-2026)
 
 | Test | Questions | Pages | Unique questions on this topic |
 |---|---:|---:|---:|
-| 2.1 Algebra | 36 | 53 | 36 |
-| 2.2 Logarithmic and exponential functions | 27 | 31 | 18 |
-| 2.3 Trigonometry | 37 | 56 | 33 |
-| 2.4 Differentiation | 34 | 52 | 34 |
-| 2.5 Integration | 30 | 47 | 29 |
-| 2.6 Numerical solution of equations | 23 | 41 | 22 |
+| 2.1 Algebra | 40 | 71 | 72 |
+| 2.2 Logarithmic and exponential functions | 40 | 49 | 38 |
+| 2.3 Trigonometry | 40 | 78 | 58 |
+| 2.4 Differentiation | 40 | 71 | 58 |
+| 2.5 Integration | 40 | 68 | 47 |
+| 2.6 Numerical solution of equations | 40 | 76 | 42 |
 
 **Maths 9709 / P3 Pure Mathematics 3** (papers 2018-2026)
 
@@ -266,9 +269,9 @@ python3 tools/leakscan.py   .         # checks no exam header/footer text surviv
 | T24 Medical physics | 40 | 61 | 41 |
 | T25 Astronomy and cosmology | 18 | 27 | 16 |
 
-**Physics 9702 / P5 Planning Analysis Evaluation** (papers 2022-2026)
+**Physics 9702 / P5 Planning Analysis Evaluation** (papers 2018-2026)
 
 | Test | Questions | Pages | Unique questions on this topic |
 |---|---:|---:|---:|
-| Planning | 26 | 78 | 26 |
-| Data analysis and evaluation | 26 | 104 | 26 |
+| Data analysis and evaluation | 40 | 160 | 46 |
+| Planning | 40 | 120 | 46 |
