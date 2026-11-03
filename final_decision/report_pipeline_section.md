@@ -65,8 +65,17 @@ test photographs.
 - **Transfer check.** Applied unchanged to the Swin-B model (8 views), the vote of steps 1-3 raises
   its validation PQ from 0.46796 to 0.48290 (+0.0149). That is 81% of the gain it gives exp139
   (+0.0184), so the gain is mostly not tuned to one model.
-- **Fragmentation and merging** (exp139, validation): 37 of 1,325 ground-truth filaments overlap two
-  or more predictions, and 40 of 1,242 predictions overlap two or more ground-truth filaments. The
+- **The rubric's quantitative items** (validation, per record, the self-evaluation notebook's
+  definitions: every ground-truth / prediction pair with IoU > 0;
+  `analysis/outputs/rubric_quantities.json`):
+
+  | file | PQ | mean IoU | mean Dice | GT overlapped by 2+ predictions (1:n) | predictions overlapping 2+ GT (n:1) |
+  |---|---|---|---|---|---|
+  | exp139 single view (second pick) | 0.47052 | 0.6045 | 0.7337 | 37 of 1,325 | 40 of 1,242 |
+  | exp169 + guard | 0.48893 | 0.6203 | 0.7476 | 30 of 1,325 | 30 of 1,199 |
+  | **remnant + rescue (first pick)** | **0.49095** | **0.6225** | **0.7502** | **26 of 1,325** | **29 of 1,199** |
+
+  The first pick is better on every quantitative item. The vote removes spurious fragments, and the
   remnant filter removes lower-ranked duplicates of filaments already held by another instance.
 - **What did not help** (validation, per record): learned rescorers (logistic, boosted trees, CNN),
   boundary snapping to image intensity, mask erosion or dilation, other mask-fusion rules
