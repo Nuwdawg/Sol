@@ -65,3 +65,4 @@ that range: roughly a 30-40% chance, not a sure gain.
 | merge fragments another model sees as one filament | -0.003 to -0.006 | `merges_val.json` |
 | more rescues: 2-3 of exp184a's three models agree, or Swin-B >= 0.97 in [0.50, 0.60) | no change (0.49095 in every case) | |
 | pixel vote weighted by each view's score instead of majority (on this file's rule) | 0.49037 against 0.49095 | |
+| fusing each instance's member masks by expected-IoU-optimal level (Nowozin 2014; Ahmed et al. 2015), signed-distance shape averaging (Leventon et al. 2000) or STAPLE (Warfield et al. 2004) instead of the majority vote | 0.49040 / 0.48880 / 0.48783 against 0.49095 | `fusion_math_val.json` |
