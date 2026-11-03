@@ -65,8 +65,9 @@ Rule transfer: every constant was tuned on exp139, yet Swin-B keeps most of the 
 | exp139 e40 (11 views) | 0.47052 | 0.48895 (+0.0184) | 0.49095 (+0.0204) |
 | Swin-B e32 (8 views: full + dihedral) | 0.46796 | 0.48290 (+0.0149) | 0.48468 (+0.0167) |
 
-The combo rule gives Swin-B 82% of the gain it gives exp139, with three fewer views and constants
-chosen on another model. So most of the rule's validation gain is real, not threshold noise fitted
+exp169's rule gives Swin-B 81% of the gain it gives exp139 (+0.0149 against +0.0184), with three
+fewer views and constants chosen on another model. The combo row shows 82%, but there Swin-B's
+rescue checks Swin-B against itself, so the exp169 row is the clean comparison. So most of the rule's validation gain is real, not threshold noise fitted
 to exp139 (decision rule 2: well above half). That favours the remnant + rescue file over exp139
 on the private board, and supports using the unchanged rule on exp201's models.
 
