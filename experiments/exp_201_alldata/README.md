@@ -35,4 +35,20 @@ dihedral, 3 half-stride shifts), on CPU with `exp_147_candidate_cache` (two proc
 **Parity on exp139 (smoke test).** Single view 0.47052 at 0.85, exp169's rule 0.48895 at 0.68, the
 remnant + rescue rule 0.49095 at 0.68. All three match the recorded values exactly.
 
-**Result.** Pending (the cache takes about 9 h on this CPU).
+**Decision rule, written before the result (2026-11-03 21:00 UTC).**
+1. Gate: exp190b Swin-S e50's single view at 0.85 must score 0.4677 +- 0.005 (its training-time
+   evaluation on GPU). Otherwise the cache is wrong and nothing below is read.
+2. Transfer: report the exp169-rule and combo-rule gains over the single view for both models,
+   at the deployed 0.68 and at each model's own cross-validated threshold. If the second model's
+   gain at 0.68 is under half of exp139's (+0.0204), most of the rule's validation gain is tuning
+   noise. exp139 would then stay a final pick on equal terms, and exp201's file would use the
+   single-view rule as its second file.
+3. Two-model file: build a test file from the best pair variant (pair22, pair22_w8,
+   pair_scores_w8, pair_masks) only if all of these hold against the combo rule on exp139
+   (0.49095; halves 0.49618 / 0.48511):
+   - its cross-validated PQ (threshold chosen on the other fold) is at least +0.003 higher;
+   - its in-sample PQ is at least +0.003 higher;
+   - neither half is lower.
+   Otherwise no file is built, and the test caching of the second model is stopped.
+
+**Result.** Pending (the cache takes about 10 h on this CPU).
