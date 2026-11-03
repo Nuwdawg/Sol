@@ -1,6 +1,9 @@
-"""Rebuild the final submission from the weights in this repository, stage by stage.
+"""Rebuild both final picks from the weights in this repository, stage by stage.
 
-The final submission is exp169's rule with exp199's large-filament guard:
+First pick: the remnant + rescue file (final_decision/results/remnant_rescue/), which is exp169's
+rule with exp199's large-filament guard (stages 1-6), a remnant filter and a Swin-B rescue
+(stages 7 and 10). Second pick: exp139's single-view file, rebuilt byte for byte by stage 4 as
+rule/parity_deployed.csv. The default run is stages 1-7 and 10:
 
   1. weights  reassemble the three checkpoints from `weights/` and check their SHA256;
   2. m2f      Mask2Former (exp139 epoch 40) candidates on the 180 test photographs:
@@ -16,9 +19,10 @@ The final submission is exp169's rule with exp199's large-filament guard:
               (`experiments/exp_199_swinb_votes/src/guard.py`); CPU, one minute;
   6. check    compare the result with the submitted file (`final_decision/results/`).
 
-Two optional stages rebuild exp200's union files, which add Swin-B's confident detections that the
-rule's instances leave uncovered. Those files were withdrawn (they lose per record;
-`final_decision/results/exp200/README.md`), so these stages run only when named in --stages:
+Stage 7 is part of the default run (the rescue needs it). Stage 8 rebuilds exp200's union files, which
+add Swin-B's confident detections that the rule's instances leave uncovered. Those files were
+withdrawn (they lose per record; `final_decision/results/exp200/README.md`), so stage 8 runs only
+when named in --stages:
 
   7. swinb    Swin-B (exp190b epoch 32) full-view candidates on the 180 test photographs
               (`experiments/exp_200_test_truth/src/swinb_infer.py`); CPU, about 4 h on 4 cores;
@@ -32,8 +36,9 @@ One optional stage builds the Mask2Former-only two-model file (`final_decision/r
               stored file byte for byte.
  10. remnant_rescue  exp169 + guard, dropping instances that keep under 70% of their own vote mask
               and rescuing borderline ones Swin-B confirms (`combo_test.py`,
-              `final_decision/results/remnant_rescue/`); needs m2f, yolo, rule and swinb; CPU, about
-              25 min; first rebuilds submission_exp169_guarded.csv byte for byte.
+              `final_decision/results/remnant_rescue/`); needs m2f, yolo, rule, guard and swinb; CPU,
+              about 25 min; first rebuilds this run's exp169 + guard file byte for byte, then compares
+              the result with the stored file (hash, else instance by instance, as `check` does).
 
 Every stage stops on a failed check; none of them changes a model.
 
@@ -52,8 +57,9 @@ from pathlib import Path
 ROOT = Path(__file__).resolve().parents[1]
 ART = ROOT / "reproduce" / "artefacts"
 SUBMITTED = ROOT / "final_decision" / "results" / "submission_exp169_guarded.csv"
+REMNANT_RESCUE = ROOT / "final_decision" / "results" / "remnant_rescue" / "submission_exp169_remnant_rescue.csv"
 STAGES = ("weights", "m2f", "yolo", "rule", "guard", "check", "swinb", "union", "m2f_only", "remnant_rescue")
-FINAL = STAGES[:6]                 # the submitted file; swinb and union rebuild withdrawn files
+FINAL = (*STAGES[:7], "remnant_rescue")   # both final picks: the remnant + rescue file and exp139's file
 EXP200 = ROOT / "final_decision" / "results" / "exp200" / "withdrawn"
 M2F_ONLY_SHA256 = "0EF5A352C9DCF86BECD3F198FB5C49F73021C6F2779C23F055CE7908F32E88AB"   # final_decision/results/m2f_only
 REMNANT_RESCUE_SHA256 = "F9423B74429F34130BF70C9421B2416AAFD3C3852D9E465FC9F117C0FADA162D"   # final_decision/results/remnant_rescue
@@ -208,6 +214,8 @@ def stage_check(work: Path, _) -> None:
     report = dict(ours=sha256(ours).upper(), submitted=sha256(SUBMITTED).upper(), identical=exact)
     if not exact:
         report.update(compare_csv(ours, SUBMITTED))
+    exp139 = work / "rule" / "parity_deployed.csv"           # the second final pick, exp139's single view
+    report["exp139_identical"] = sha256(exp139) == sha256(ART / "exp139_submission.csv")
     print("CHECK", json.dumps(report), flush=True)
     (work / "final" / "check.json").write_text(json.dumps(report, indent=1))
 
@@ -264,12 +272,17 @@ def stage_remnant_rescue(work: Path, _) -> None:
     wait([python("experiments.exp_200_test_truth.src.combo_test", "--ingredients", str(out / "test_ingredients.pkl"),
                  "--test-cache", str(work / "m2f" / "e040_test_cache.json"),
                  "--test-swinb", *map(str, sorted((work / "swinb").glob("shard*.jsonl"))),
-                 "--exp139-csv", str(work / "rule" / "parity_deployed.csv"), "--expect-guarded", str(SUBMITTED),
+                 "--exp139-csv", str(work / "rule" / "parity_deployed.csv"),
+                 "--expect-guarded", str(work / "final" / "submission_guarded.csv"),
                  "--output", str(out))], "remnant + rescue file")
-    digest = sha256(out / "submission_exp169_remnant_rescue.csv").upper()
-    print("REMNANT_RESCUE_CHECK", json.dumps(dict(identical=digest == REMNANT_RESCUE_SHA256, sha256=digest)), flush=True)
-    if digest != REMNANT_RESCUE_SHA256:
-        raise SystemExit("the remnant + rescue file differs from the stored one")
+    from experiments.exp_152_rule_and_emit.src.emit import compare_csv
+    ours = out / "submission_exp169_remnant_rescue.csv"
+    digest = sha256(ours).upper()
+    report = dict(ours=digest, stored=REMNANT_RESCUE_SHA256, identical=digest == REMNANT_RESCUE_SHA256)
+    if not report["identical"]:                  # GPU arithmetic can move a few boundary pixels (README)
+        report.update(compare_csv(ours, REMNANT_RESCUE))
+    print("REMNANT_RESCUE_CHECK", json.dumps(report), flush=True)
+    (out / "check.json").write_text(json.dumps(report, indent=1))
 
 
 def main() -> None:
