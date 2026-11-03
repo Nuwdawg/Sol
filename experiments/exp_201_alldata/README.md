@@ -50,5 +50,10 @@ remnant + rescue rule 0.49095 at 0.68. All three match the recorded values exact
    - its in-sample PQ is at least +0.003 higher;
    - neither half is lower.
    Otherwise no file is built, and the test caching of the second model is stopped.
+4. The same bar applies to Swin-B e32 as the second model. It votes through its 8 cached views
+   (full + 7 dihedral; exp198 cached no shift views). Variants: pair19, pair19_wkeep (YOLO weight
+   6.91 keeps the two YOLO votes at 8 of 19 slots), pair_scores_wkeep, pair_masks. It runs on the
+   existing validation caches. Its test file would first need Swin-B's dihedral views cached on test
+   (about 15 h of CPU).
 
 **Result.** Pending (the cache takes about 10 h on this CPU).
