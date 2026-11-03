@@ -188,6 +188,9 @@ the decision, stop.
   0.483-0.489: about 0.845 x. Single models with a fixed rule (exp139 e40, e50,
   soup) reach about 0.86 x. Public 0.42 from a tuned rule needs validation
   of about 0.491 or more (`final_decision/results/m2f_only/README.md`).
+- The remnant + rescue file (validation 0.49095, `final_decision/results/
+  remnant_rescue/`) also printed 0.41, so a tuned rule needs more than
+  0.491 on validation to print 0.42.
 - The public leaderboard shows two decimals. A local spread of 0.013 is
   invisible there — four genuinely different models all printed 0.36.
 - CPU inference is bit-for-bit identical to GPU inference here (same CSV MD5).

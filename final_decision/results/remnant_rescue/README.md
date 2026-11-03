@@ -1,5 +1,11 @@
 # exp169 + guard, minus remnants, plus Swin-B rescues: a learning-free +0.0020 (2026-11-02)
 
+> **Result (uploaded 2026-11-03 03:20 UTC): public 0.41.** Validation 0.49095 gives a public /
+> validation ratio of 0.825-0.845, inside the tuned-rule range. exp169 + guard, exp169, exp162,
+> exp162b, the YOLO-free file and this one all print 0.41. This file is the strongest of them on
+> validation and changes 11 instances, so it is a reasonable first final: expected private score
+> slightly above exp169 + guard. exp139 remains the most different second final.
+
 **File:** `submission_exp169_remnant_rescue.csv` (1,149 instances, 179 photographs, SHA256 `F9423B74...`).
 Code: `experiments/exp_200_test_truth/src/combo.py` (validation) and `combo_test.py` (test).
 `reproduce/run.py --stages ... remnant_rescue` rebuilds it.
