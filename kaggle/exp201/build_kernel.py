@@ -21,6 +21,33 @@ from pathlib import Path
 
 ROOT = Path(__file__).resolve().parents[2]
 CODE = ROOT / "final_decision" / "recovered_code" / "sol-exp190b-session-long-t4"
+CACHE_FILES = ["experiments/exp_147_candidate_cache/__init__.py", "experiments/exp_147_candidate_cache/src/__init__.py",
+               "experiments/exp_147_candidate_cache/src/cache.py"]   # session 2 only, from this repository
+CACHE_BLOCK = """
+# exp201 session 2: cache the final checkpoints on the 180 test photographs, as run.py's m2f stage does
+# (Swin-S: full, dihedral and shift views; Swin-B: full view). Skipped late in the session.
+elapsed = (time.time() - KERNEL_START) / 3600
+print("CACHE_CHECK", round(elapsed, 2), flush=True)
+if elapsed < 10.0:
+    jobs = []
+    for gpu, (name, modes) in enumerate((("swins", "full,d4,shift"), ("swinb", "full"))):
+        found = sorted((Path("/kaggle/working") / name).glob("model_e[0-9][0-9][0-9].pt"))
+        if not found:
+            print("CACHE_SKIPPED", name, "no checkpoint", flush=True)
+            continue
+        out = Path("/kaggle/working") / ("cache_" + name)
+        out.mkdir(parents=True, exist_ok=True)
+        command = [sys.executable, "-u", "-m", "experiments.exp_147_candidate_cache.src.cache", "--weights", str(found[-1]),
+                   "--annotations", str(annotations), "--train-images", str(train_images), "--test-images", str(test_images),
+                   "--output", str(out), "--no-val", "--test-modes", modes, "--tag", found[-1].stem]
+        jobs.append((name, subprocess.Popen(command, cwd=root, env=gpu_env(gpu), stdout=open(out / "stdout.log", "w"),
+                                            stderr=subprocess.STDOUT)))
+        print("CACHE_STARTED", name, found[-1].name, modes, "gpu", gpu, flush=True)
+    for name, job in jobs:
+        print("CACHE_EXIT", name, job.wait(), flush=True)
+else:
+    print("CACHE_SKIPPED late in the session; cache on CPU instead", flush=True)
+"""
 RUNS = [["swins", "experiments.exp_173_quality_ema.src.train",
          ["--quality-target", "none", "--ema", "0", "--epoch-policy", "session", "--epochs", "50", "--seed", "7",
           "--fold", "all", "--eval-every", "0", "--save-epochs", "40", "45", "50", "--sanity-photographs", "12"]],
@@ -50,12 +77,22 @@ def main() -> None:
     manifest = json.loads(re.search(r"manifest = (\{.*?\})\n", driver).group(1))
     for name, digest in manifest.items():
         assert hashlib.sha256((CODE / name).read_bytes()).hexdigest() == digest, name
+    if args.session == 2:
+        for name in CACHE_FILES:
+            manifest[name] = hashlib.sha256((ROOT / name).read_bytes()).hexdigest()
     buffer = io.BytesIO()
     with tarfile.open(fileobj=buffer, mode="w:gz") as tar:
         for name in sorted(manifest):
-            tar.add(CODE / name, arcname=name)
+            tar.add((ROOT / name) if name in CACHE_FILES else (CODE / name), arcname=name)
     payload = base64.b64encode(buffer.getvalue()).decode("ascii")
     text = driver.replace("<payload: the files in this folder, verified against the manifest below>", payload)
+    old_manifest = re.search(r"manifest = (\{.*?\})\n", text).group(1)
+    text = text.replace(old_manifest, json.dumps(manifest))
+    text = text.replace("import base64, hashlib, io, json, os, subprocess, sys, tarfile\n",
+                        "import base64, hashlib, io, json, os, subprocess, sys, tarfile, time\nKERNEL_START = time.time()\n", 1)
+    if args.session == 2:
+        assert text.count('print("KERNEL_COMPLETE", flush=True)') == 1
+        text = text.replace('print("KERNEL_COMPLETE", flush=True)', CACHE_BLOCK + 'print("KERNEL_COMPLETE", flush=True)')
     text = text.replace("# Driver of the Kaggle kernel, recovered read-only; the base64 code payload is replaced by\n"
                         "# the files in this folder (each matches the SHA256 manifest below).\n",
                         "# exp201 session %d: kaggle/exp201/build_kernel.py (exp190b's driver, all-data arguments).\n" % args.session)

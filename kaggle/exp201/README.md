@@ -41,8 +41,12 @@ the competition data, and Save Version (Save & Run All).
 
 ## What happens after
 
-Session 2 ends with `swins/model_e050.pt` (and e040, e045) and `swinb/model_e032.pt`. Then:
-1. cache the new Swin-S on the 180 test photographs (all 11 views), and the new Swin-B's full view;
+Session 2 ends with `swins/model_e050.pt` (and e040, e045) and `swinb/model_e032.pt`. It then caches
+them on the 180 test photographs (GPU 0: Swin-S full, dihedral and shift views; GPU 1: Swin-B full view)
+with this repository's `cache.py`, unless the session is already past 10 h. A CPU test of that path,
+on the recovered code with a checkpoint written by the recovered trainer, produced the expected views.
+Then:
+1. (only if session 2 skipped it) cache the new models on CPU;
 2. build exp169's rule + guard + remnant filter + Swin-B rescue on the new models (`combo_test.py`);
 3. review the changed instances at native resolution and upload once.
 
