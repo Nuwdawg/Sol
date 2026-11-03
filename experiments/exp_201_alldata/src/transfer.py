@@ -62,6 +62,7 @@ def load_other(paths: list[Path], names: list[str]) -> dict:
             if name in merged:
                 raise SystemExit(f"{name} appears twice")
             merged[name] = entry
+    merged = {n: merged[n] for n in names if n in merged}
     if sorted(merged) != sorted(names):
         raise SystemExit(f"the other model covers {len(merged)} of {len(names)} validation photographs")
     for name, entry in merged.items():
@@ -94,15 +95,17 @@ def cross(entry: dict, other: dict) -> tuple[np.ndarray, list[list[dict]]]:
     return total, masks
 
 
-def pair_ingredients(entry: dict, other: dict, pools: list[list[dict]]) -> dict:
-    """exp168's ingredients with the other model's 11 views added as voters (scores and masks)."""
+def pair_ingredients(entry: dict, other: dict, pools: list[list[dict]], use_scores: bool = True,
+                     use_masks: bool = True) -> dict:
+    """exp168's ingredients with the other model's 11 views added as voters (scores and/or masks)."""
     from experiments.exp_157_shift_views.src.views import partners
     from experiments.exp_159_yolo_votes.src.votes import yolo_support
     from experiments.exp_166_yolo_mask_votes.src.mask_votes import yolo_partners
     groups, total, views = partners(entry, ("d4", "shift"))
     extra_total, extra_masks = cross(entry, other)
-    for i, ms in enumerate(extra_masks):
-        groups[i].extend(ms)
+    if use_masks:
+        for i, ms in enumerate(extra_masks):
+            groups[i].extend(ms)
     yolo = [yolo_support(entry, p) for p in pools]
     for pool_entries in pools:
         for i, extra in enumerate(yolo_partners(entry, pool_entries, 1)):
@@ -113,7 +116,9 @@ def pair_ingredients(entry: dict, other: dict, pools: list[list[dict]]) -> dict:
         mask = entry["full"][i]["rle"] if len(group) == 1 else as_text(vote_rle(group, max(1, math.ceil(0.5 * len(group)))))
         crops.append(E.Crop(mask))
     s = np.array([c["score"] for c in entry["full"]], np.float64)
-    return dict(crops=crops, s=s, total=total + extra_total, views=views + 11, yolo=yolo)
+    if use_scores:
+        return dict(crops=crops, s=s, total=total + extra_total, views=views + 11, yolo=yolo)
+    return dict(crops=crops, s=s, total=total, views=views, yolo=yolo)
 
 
 def main() -> None:
@@ -125,9 +130,13 @@ def main() -> None:
     parser.add_argument("--yolo", action="append", default=[])
     parser.add_argument("--swinb", type=Path, nargs="+", required=True)
     parser.add_argument("--output", type=Path, required=True)
+    parser.add_argument("--limit", type=int, default=0, help="smoke test: first N photographs (no parity)")
     args = parser.parse_args()
     records, _ = records_for(args.annotations)
     names = sorted(records)
+    if args.limit:
+        names = names[:args.limit]
+        records = {n: records[n] for n in names}
     passes = {n: [[as_bytes(t) for t in truth] for _, truth in sorted(records[n])] for n in names}
     rng = np.random.default_rng(2026)
     order = rng.permutation(len(names))
@@ -137,7 +146,7 @@ def main() -> None:
     tags = sorted(pools)
     if tags != ["yolo11m", "yolov8l"]:
         raise SystemExit(f"expected the yolo11m and yolov8l pools, got {tags}")
-    swinb, _ = merge_shards(args.swinb, names)
+    swinb, _ = merge_shards(args.swinb, sorted(records_for(args.annotations)[0]))
     swinb_full = {n: [c for c in swinb[n]["full"] if c["p"] >= 0.5] for n in names}
 
     def sums(final, n):
@@ -201,6 +210,11 @@ def main() -> None:
     rule_rows(ingredients, singles["exp139"], s_b, "pair22")
     # 22 view slots dilute the two YOLO votes (8 of 19 slots in exp169, 8 of 30 here); weight 8 keeps their share
     rule_rows(ingredients, singles["exp139"], s_b, "pair22_w8", weight=8.0)
+    # which half carries any effect: the second model's view scores only, or its masks only
+    for tag, use_scores, use_masks, weight in (("pair_scores_w8", True, False, 8.0), ("pair_masks", False, True, 4.0)):
+        ingredients = {n: pair_ingredients(models["exp139"][n], models["s7e050"][n], [pools[t].get(n, []) for t in tags],
+                                           use_scores=use_scores, use_masks=use_masks) for n in names}
+        rule_rows(ingredients, singles["exp139"], s_b, tag, weight=weight)
     args.output.write_text(json.dumps(out, indent=1))
 
 
