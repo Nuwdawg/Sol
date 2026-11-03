@@ -47,7 +47,15 @@ with this repository's `cache.py`, unless the session is already past 10 h. A CP
 on the recovered code with a checkpoint written by the recovered trainer, produced the expected views.
 Then:
 1. (only if session 2 skipped it) cache the new models on CPU;
-2. build exp169's rule + guard + remnant filter + Swin-B rescue on the new models (`combo_test.py`);
+2. build exp169's rule + guard + remnant filter + Swin-B rescue on the new models, with no constant
+   changed:
+   ```bash
+   python -m experiments.exp_201_alldata.src.build --swins-cache OUT/cache_swins/model_e050_test_cache.json --swinb OUT/cache_swinb/model_e032_test_cache.json --yolo yolov8l=WORK/yolo_yolov8l/test_pool.json --yolo yolo11m=WORK/yolo_yolo11m/test_pool.json --output exp201_file
+   ```
+   (`OUT` = session 2's output, `WORK` = `reproduce/run.py --stages weights yolo`). Rehearsed on
+   exp139 e40's test cache and the old Swin-B candidates (2026-11-03), the same command rebuilt all
+   three deployed files byte for byte: exp139's single-view file (`CCA9C06E...`), exp169 + guard
+   (`EC00408E...`) and the remnant + rescue file (`F9423B74...`);
 3. review the changed instances at native resolution and upload once.
 
 There is no held-out set left, so the board is the only judge. Honest odds of printing 0.42: about
