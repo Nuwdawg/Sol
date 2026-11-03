@@ -55,7 +55,7 @@ def pq_of(sums) -> float:
     return (iou / tp) * (tp / (tp + 0.5 * fp + 0.5 * fn)) if tp else 0.0
 
 
-def load_other(paths: list[Path], names: list[str]) -> dict:
+def load_other(paths: list[Path], names: list[str], modes: tuple[str, ...] = ("full", "d4", "shift")) -> dict:
     merged = {}
     for path in paths:
         for name, entry in json.loads(Path(path).read_text())["photographs"].items():
@@ -66,13 +66,17 @@ def load_other(paths: list[Path], names: list[str]) -> dict:
     if sorted(merged) != sorted(names):
         raise SystemExit(f"the other model covers {len(merged)} of {len(names)} validation photographs")
     for name, entry in merged.items():
-        for mode in ("full", "d4", "shift"):
+        for mode in modes:
             if mode not in entry:
                 raise SystemExit(f"{name}: no {mode} view")
     return merged
 
 
-def cross(entry: dict, other: dict) -> tuple[np.ndarray, list[list[dict]]]:
+def n_views(modes: tuple[str, ...]) -> int:
+    return 1 + sum(len(VIEWS[s]) for s in modes if s != "full")
+
+
+def cross(entry: dict, other: dict, modes: tuple[str, ...] = ("full", "d4", "shift")) -> tuple[np.ndarray, list[list[dict]]]:
     """For each of entry's full candidates: summed best-partner scores over the other model's 11
     views (0 without a partner at IoU > 0.5) and those partners' masks."""
     rles = [E.as_rle(c["rle"]) for c in entry["full"]]
@@ -80,7 +84,7 @@ def cross(entry: dict, other: dict) -> tuple[np.ndarray, list[list[dict]]]:
     masks = [[] for _ in rles]
     if not rles:
         return total, masks
-    views = [("full", None)] + [(s, v) for s in ("d4", "shift") for v in VIEWS[s]]
+    views = [("full", None)] + [(s, v) for s in modes if s != "full" for v in VIEWS[s]]
     for source, view in views:
         members = [c for c in other.get(source, []) if view is None or c["view"] == view]
         if not members:
@@ -96,13 +100,13 @@ def cross(entry: dict, other: dict) -> tuple[np.ndarray, list[list[dict]]]:
 
 
 def pair_ingredients(entry: dict, other: dict, pools: list[list[dict]], use_scores: bool = True,
-                     use_masks: bool = True) -> dict:
+                     use_masks: bool = True, modes: tuple[str, ...] = ("full", "d4", "shift")) -> dict:
     """exp168's ingredients with the other model's 11 views added as voters (scores and/or masks)."""
     from experiments.exp_157_shift_views.src.views import partners
     from experiments.exp_159_yolo_votes.src.votes import yolo_support
     from experiments.exp_166_yolo_mask_votes.src.mask_votes import yolo_partners
     groups, total, views = partners(entry, ("d4", "shift"))
-    extra_total, extra_masks = cross(entry, other)
+    extra_total, extra_masks = cross(entry, other, modes)
     if use_masks:
         for i, ms in enumerate(extra_masks):
             groups[i].extend(ms)
@@ -117,7 +121,7 @@ def pair_ingredients(entry: dict, other: dict, pools: list[list[dict]], use_scor
         crops.append(E.Crop(mask))
     s = np.array([c["score"] for c in entry["full"]], np.float64)
     if use_scores:
-        return dict(crops=crops, s=s, total=total + extra_total, views=views + 11, yolo=yolo)
+        return dict(crops=crops, s=s, total=total + extra_total, views=views + n_views(modes), yolo=yolo)
     return dict(crops=crops, s=s, total=total, views=views, yolo=yolo)
 
 
@@ -131,6 +135,8 @@ def main() -> None:
     parser.add_argument("--swinb", type=Path, nargs="+", required=True)
     parser.add_argument("--output", type=Path, required=True)
     parser.add_argument("--limit", type=int, default=0, help="smoke test: first N photographs (no parity)")
+    parser.add_argument("--other-modes", default="full,d4,shift", help="views the second model's cache holds")
+    parser.add_argument("--other-name", default="s7e050")
     args = parser.parse_args()
     records, _ = records_for(args.annotations)
     names = sorted(records)
@@ -141,7 +147,9 @@ def main() -> None:
     rng = np.random.default_rng(2026)
     order = rng.permutation(len(names))
     folds = [set(names[i] for i in order[:len(names) // 2]), set(names[i] for i in order[len(names) // 2:])]
-    models = {"exp139": merged_cache(args.cache, args.shift), "s7e050": load_other(args.other, names)}
+    modes = tuple(args.other_modes.split(","))
+    other_name = args.other_name
+    models = {"exp139": merged_cache(args.cache, args.shift), other_name: load_other(args.other, names, modes)}
     pools = {t: load_pool(Path(p)) for t, p in (s.split("=", 1) for s in args.yolo)}
     tags = sorted(pools)
     if tags != ["yolo11m", "yolov8l"]:
@@ -201,19 +209,24 @@ def main() -> None:
                   round(row["pq"][str(row["best"])], 5), "cv", round(row["cv"], 5), row["fold_choices"], flush=True)
 
     for model, cache in models.items():
-        ingredients = {n: prepared(cache[n], [pools[t].get(n, []) for t in tags], ("d4", "shift")) for n in names}
+        sources = ("d4", "shift") if model == "exp139" else tuple(m for m in modes if m != "full")
+        ingredients = {n: prepared(cache[n], [pools[t].get(n, []) for t in tags], sources) for n in names}
         s_b = {n: support(cache[n]["full"], swinb_full[n]) for n in names}
         rule_rows(ingredients, singles[model], s_b, model)
-    ingredients = {n: pair_ingredients(models["exp139"][n], models["s7e050"][n], [pools[t].get(n, []) for t in tags])
-                   for n in names}
+    v = n_views(modes)
+    prefix = f"pair{11 + v}"
+    w_keep = 4.0 + 4.0 * v / 11.0          # keeps the two YOLO votes at exp169's 8 of 19 slots
+    suffix = "_w8" if v == 11 else "_wkeep"
+    ingredients = {n: pair_ingredients(models["exp139"][n], models[other_name][n], [pools[t].get(n, []) for t in tags],
+                                       modes=modes) for n in names}
     s_b = {n: support(models["exp139"][n]["full"], swinb_full[n]) for n in names}
-    rule_rows(ingredients, singles["exp139"], s_b, "pair22")
-    # 22 view slots dilute the two YOLO votes (8 of 19 slots in exp169, 8 of 30 here); weight 8 keeps their share
-    rule_rows(ingredients, singles["exp139"], s_b, "pair22_w8", weight=8.0)
+    rule_rows(ingredients, singles["exp139"], s_b, prefix)
+    # more view slots dilute the two YOLO votes (8 of 19 slots in exp169); w_keep restores their share
+    rule_rows(ingredients, singles["exp139"], s_b, prefix + suffix, weight=w_keep)
     # which half carries any effect: the second model's view scores only, or its masks only
-    for tag, use_scores, use_masks, weight in (("pair_scores_w8", True, False, 8.0), ("pair_masks", False, True, 4.0)):
-        ingredients = {n: pair_ingredients(models["exp139"][n], models["s7e050"][n], [pools[t].get(n, []) for t in tags],
-                                           use_scores=use_scores, use_masks=use_masks) for n in names}
+    for tag, use_scores, use_masks, weight in (("pair_scores" + suffix, True, False, w_keep), ("pair_masks", False, True, 4.0)):
+        ingredients = {n: pair_ingredients(models["exp139"][n], models[other_name][n], [pools[t].get(n, []) for t in tags],
+                                           use_scores=use_scores, use_masks=use_masks, modes=modes) for n in names}
         rule_rows(ingredients, singles["exp139"], s_b, tag, weight=weight)
     args.output.write_text(json.dumps(out, indent=1))
 
