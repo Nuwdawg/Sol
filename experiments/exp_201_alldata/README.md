@@ -56,4 +56,34 @@ remnant + rescue rule 0.49095 at 0.68. All three match the recorded values exact
    existing validation caches. Its test file would first need Swin-B's dihedral views cached on test
    (about 15 h of CPU).
 
-**Result.** Pending (the cache takes about 10 h on this CPU).
+**Result, Swin-B e32 as the second model (2026-11-03, `swinb_pair_val.json`).**
+
+Rule transfer: every constant was tuned on exp139, yet Swin-B keeps most of the gain.
+
+| model | single view (0.85) | exp169 rule (0.68) | combo rule (0.68) |
+|---|---|---|---|
+| exp139 e40 (11 views) | 0.47052 | 0.48895 (+0.0184) | 0.49095 (+0.0204) |
+| Swin-B e32 (8 views: full + dihedral) | 0.46796 | 0.48290 (+0.0149) | 0.48468 (+0.0167) |
+
+The combo rule gives Swin-B 82% of the gain it gives exp139, with three fewer views and constants
+chosen on another model. So most of the rule's validation gain is real, not threshold noise fitted
+to exp139 (decision rule 2: well above half). That favours the remnant + rescue file over exp139
+on the private board, and supports using the unchanged rule on exp201's models.
+
+Two-model rule (exp139's candidates, Swin-B's views as extra voters), combo rule. The bar was 0.49095
++ 0.003 in-sample and cross-validated, with no half lower.
+
+| variant | in-sample | cross-validated |
+|---|---|---|
+| pair19 (YOLO weight 4) | 0.48526 | 0.48280 |
+| pair19_wkeep (YOLO weight 6.91) | 0.48764 | 0.48332 |
+| pair_scores_wkeep (Swin-B scores only) | 0.48792 | 0.48323 |
+| pair_masks (Swin-B masks only) | 0.49067 | 0.49067 |
+
+No variant passes. Swin-B's view scores lower PQ even when YOLO keeps its share of the score, and
+its masks in the pixel vote are neutral (-0.0003). This is exp199's finding, now with all eight
+views: on validation, a second Mask2Former adds mostly errors that are correlated with exp139's
+own. No Swin-B dihedral caching on test was started.
+
+**Result, exp190b Swin-S e50 as the second model.** Pending (the cache takes about 10 h on this
+CPU).
