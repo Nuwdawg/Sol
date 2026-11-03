@@ -66,3 +66,14 @@ that range: roughly a 30-40% chance, not a sure gain.
 | more rescues: 2-3 of exp184a's three models agree, or Swin-B >= 0.97 in [0.50, 0.60) | no change (0.49095 in every case) | |
 | pixel vote weighted by each view's score instead of majority (on this file's rule) | 0.49037 against 0.49095 | |
 | fusing each instance's member masks by expected-IoU-optimal level (Nowozin 2014; Ahmed et al. 2015), signed-distance shape averaging (Leventon et al. 2000) or STAPLE (Warfield et al. 2004) instead of the majority vote | 0.49040 / 0.48880 / 0.48783 against 0.49095 | `fusion_math_val.json` |
+
+## Also tried on 2026-11-03, per record, no file (against this file's 0.49095)
+
+| idea | result | file |
+|---|---|---|
+| threshold per photograph, t = t0 + beta x z(feature), fitted on one fold, scored on the other; features: kept count, borderline count, mean score, kept area, contrast, sharpness, dark fraction, disk radius | for every feature the in-sample best slope is 0 (0.68 everywhere); cross-validated 0.4749-0.49095. An oracle choosing each photo's threshold from its own labels reaches only 0.51118 | `adaptive_photo_val.json` (`adaptive.py`) |
+| threshold per instance, same form; features: log area, elongation, distance from disk centre, darkness against the local background, Swin-B's continuous support | in-sample best slope 0 for every feature; cross-validated 0.4753-0.49095 | `adaptive_instance_val.json` (`instance_adaptive.py`) |
+
+The rule's threshold sits on a narrow peak (0.66: 0.48845, 0.68: 0.49095, 0.70: 0.4855), so part of
+its validation score is selection noise. That fits the tuned rules reaching the board at about
+0.845 x validation, against about 0.86 x for the untuned single models.
