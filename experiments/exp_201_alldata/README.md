@@ -94,6 +94,25 @@ its masks in the pixel vote are neutral (-0.0003). This is exp199's finding, now
 views: on validation, a second Mask2Former adds mostly errors that are correlated with exp139's
 own. No Swin-B dihedral caching on test was started.
 
-**Result, exp190b Swin-S e50 as the second model.** Pending. The first cache run was lost at 10 of 53
-photographs per process when the idle session's container was reclaimed (CLAUDE.md section 18). It
-restarted 2026-11-04 05:07 UTC, resumable one photograph at a time, and takes about 10 h on this CPU.
+**Result, exp190b Swin-S e50 (2026-11-04, `s7e050_transfer_val.json`).** The cache ran on CPU, one
+photograph per call, and finished at 12:15 UTC. The first run had been lost in a container reclaim
+(CLAUDE.md section 18).
+
+1. Gate: single view 0.46770 at 0.85, exactly its training-time evaluation (passes).
+2. Transfer:
+
+   | model | single view (0.85) | exp169 rule (0.68) | combo rule (0.68) |
+   |---|---|---|---|
+   | exp139 e40 | 0.47052 | 0.48895 (+0.0184) | 0.49095 (+0.0204) |
+   | exp190b Swin-S e50 | 0.46770 | 0.48087 (+0.0132) | 0.48286 (+0.0152) |
+   | Swin-B e32 (8 views) | 0.46796 | 0.48290 (+0.0149) | (self-rescue, not comparable) |
+
+   The second Swin-S keeps 72-75% of the rule's gain, and Swin-B keeps 81%. Both are well above
+   half, so the gain is mostly real, not tuned to exp139.
+3. Two-model file (combo rule; bar 0.49395 in-sample and cross-validated): pair22 0.48692 / 0.48639;
+   pair22_w8 0.48861 / 0.48700; pair_scores_w8 0.48950 / 0.48793; pair_masks 0.49005 / 0.49005. None
+   passes, so no test caching was run. A second Mask2Former of the same family adds correlated
+   errors rather than independent evidence (Swin-B gave the same result).
+4. See the Swin-B result above.
+5. Threshold for exp201's file: on the combo rule the two folds choose 0.67 and 0.76 (not the same),
+   and the best in-sample threshold (0.69) beats 0.68 by only +0.0016. **exp201's file keeps 0.68.**
