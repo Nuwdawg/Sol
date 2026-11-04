@@ -86,5 +86,6 @@ its masks in the pixel vote are neutral (-0.0003). This is exp199's finding, now
 views: on validation, a second Mask2Former adds mostly errors that are correlated with exp139's
 own. No Swin-B dihedral caching on test was started.
 
-**Result, exp190b Swin-S e50 as the second model.** Pending (the cache takes about 10 h on this
-CPU).
+**Result, exp190b Swin-S e50 as the second model.** Pending. The first cache run was lost at 10 of 53
+photographs per process when the idle session's container was reclaimed (CLAUDE.md section 18). It
+restarted 2026-11-04 05:07 UTC, resumable one photograph at a time, and takes about 10 h on this CPU.

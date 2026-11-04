@@ -269,3 +269,16 @@ scoring predicted both.
 emit (recall probes, degraded models), before building on it. A fit to the level is one
 number; the differences between submissions are the evidence. Before overriding a finding
 recorded here, rerun the experiment that established it.
+
+## 18. A cloud session's container dies when the session idles
+
+The exp190b Swin-S validation cache (two CPU processes, about 10 h) was started with `nohup` and the
+turn ended. Nothing the harness tracks was running. The session went idle, the container was
+reclaimed, and every background process died at 10 of 53 photographs each. `cache.py` writes its
+output only when a process finishes, so the 10 hours left nothing. A scheduled check-in booted a
+fresh container the next morning, and the lost run was found then.
+
+**Rule:** in a cloud session a long job must be resumable at a fine grain: one photograph (or
+other small unit) per output file, with finished units skipped on a rerun. Something must also wake
+the session to restart it: a harness-tracked waiter re-armed at its time limit, plus a scheduled
+check-in that relaunches the job if the container was reclaimed anyway.
