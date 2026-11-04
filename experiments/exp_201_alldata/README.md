@@ -50,6 +50,11 @@ remnant + rescue rule 0.49095 at 0.68. All three match the recorded values exact
    - its in-sample PQ is at least +0.003 higher;
    - neither half is lower.
    Otherwise no file is built, and the test caching of the second model is stopped.
+4. The same bar applies to Swin-B e32 as the second model. It votes through its 8 cached views
+   (full + 7 dihedral; exp198 cached no shift views). Variants: pair19, pair19_wkeep (YOLO weight
+   6.91 keeps the two YOLO votes at 8 of 19 slots), pair_scores_wkeep, pair_masks. It runs on the
+   existing validation caches. Its test file would first need Swin-B's dihedral views cached on test
+   (about 15 h of CPU).
 5. exp201's file (written 2026-11-04 07:10 UTC, before the exp190b Swin-S result): build it with
    exp169's constants unchanged (threshold 0.68). Move the threshold to t' only if exp190b Swin-S
    e50 (the same recipe without the validation photographs) shows all of these on the combo rule:
@@ -58,11 +63,6 @@ remnant + rescue rule 0.49095 at 0.68. All three match the recorded values exact
    - its cross-validated PQ is at least that at 0.68.
    Otherwise keep 0.68. Either way, the second final file stays exp139 unless exp201 is reviewed
    and clearly sound.
-4. The same bar applies to Swin-B e32 as the second model. It votes through its 8 cached views
-   (full + 7 dihedral; exp198 cached no shift views). Variants: pair19, pair19_wkeep (YOLO weight
-   6.91 keeps the two YOLO votes at 8 of 19 slots), pair_scores_wkeep, pair_masks. It runs on the
-   existing validation caches. Its test file would first need Swin-B's dihedral views cached on test
-   (about 15 h of CPU).
 
 **Result, Swin-B e32 as the second model (2026-11-03, `swinb_pair_val.json`).**
 
