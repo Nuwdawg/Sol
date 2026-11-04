@@ -116,3 +116,12 @@ photograph per call, and finished at 12:15 UTC. The first run had been lost in a
 4. See the Swin-B result above.
 5. Threshold for exp201's file: on the combo rule the two folds choose 0.67 and 0.76 (not the same),
    and the best in-sample threshold (0.69) beats 0.68 by only +0.0016. **exp201's file keeps 0.68.**
+
+**Large orphans from the second model (2026-11-04, `large_orphans_val.json`).** exp201's file found long
+dark filaments that the first pick misses, so the idea was tested on validation with its train-only
+analogue. exp190b Swin-S's full-view instances (score >= c, area >= A) that the first pick's instances
+cover by less than 10% were added (exp199's guard rule, with the second model as the source).
+- Best in-sample: 0.49127 (c 0.90, A 3,000 or 5,000), +0.0003.
+- Cross-validated: 0.49053 (-0.0004).
+
+It fails the bar, so no file was built.
