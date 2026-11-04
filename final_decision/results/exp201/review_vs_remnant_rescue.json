@@ -1,0 +1,28 @@
+{
+ "photographs": 179,
+ "base_instances": 1149,
+ "candidate_instances": 1196,
+ "kept": 1117,
+ "kept_iou_median": 0.9664492078285182,
+ "kept_iou_p10": 0.9270915629573326,
+ "added": {
+  "n": 79,
+  "area_median": 1368.0,
+  "area_bins": {
+   "<300": 1,
+   "<1000": 29,
+   "<3000": 56
+  },
+  "limb_share": 0.02531645569620253
+ },
+ "removed": {
+  "n": 32,
+  "area_median": 984.5,
+  "area_bins": {
+   "<300": 0,
+   "<1000": 16,
+   "<3000": 27
+  },
+  "limb_share": 0.0
+ }
+}

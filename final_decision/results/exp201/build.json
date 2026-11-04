@@ -1,0 +1,37 @@
+{
+ "model": {
+  "checkpoint": "model_e050.pt",
+  "sha256": "6abc7ac8799b6518d7cc2cf2651e512f2de7566d638195e99daccbd0d5e9b257",
+  "epoch": 50
+ },
+ "single_view": {
+  "path": "single_view.csv",
+  "rows": 1282,
+  "photographs_with_rows": 180,
+  "conf": 0.85,
+  "min_area": 100,
+  "sha256": "A1D5E7E313EA336A2088711943AF4E5B2880FB47FB24827DB9E9BB15E80451E7"
+ },
+ "exp169_guarded": {
+  "rows": 1203,
+  "guard_added": 20,
+  "photographs_with_rows": 177,
+  "sha256": "19CB1BFC8F8A4E07DBCB1439F54971EFC2603469182ED5745ACDBFED2EDA1073"
+ },
+ "remnant_rescue": {
+  "rows": 1196,
+  "guard_added": 19,
+  "photographs_with_rows": 178,
+  "sha256": "14F581B02BF036496ABFDA5A5E461432CD0D3DD7668F9C7F0C488BE77AAFB04C"
+ },
+ "inputs": {
+  "swins_cache": "/tmp/claude-0/-home-user-Sol/0eec4821-d98e-5686-ae6e-c208e208ec1e/scratchpad/data/dl/exp201_s2/cache_swins/model_e050_test_cache.json",
+  "swinb": [
+   "/tmp/claude-0/-home-user-Sol/0eec4821-d98e-5686-ae6e-c208e208ec1e/scratchpad/data/dl/exp201_s2/cache_swinb/model_e032_test_cache.json"
+  ],
+  "yolo": [
+   "yolo11m=/tmp/claude-0/-home-user-Sol/0eec4821-d98e-5686-ae6e-c208e208ec1e/scratchpad/runs/plumbing/yolo_yolo11m/test_pool.json",
+   "yolov8l=/tmp/claude-0/-home-user-Sol/0eec4821-d98e-5686-ae6e-c208e208ec1e/scratchpad/runs/plumbing/yolo_yolov8l/test_pool.json"
+  ]
+ }
+}
