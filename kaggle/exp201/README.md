@@ -71,5 +71,6 @@ than cover that difference first.
   - Swin-B: 6.95 s/step, stopped on budget at 9.82 h, kept `last.pt` and `model_e017.pt`;
   - in-sample sanity check on 12 photographs: PQ 0.452 (Swin-S) and 0.451 (Swin-B), mid-schedule.
     This only shows the run is not broken.
-- **Session 2:** to push now. It needs about 21 more Swin-S epochs (about 7.1 h) and 15 more Swin-B
-  epochs (about 8.3 h), then the test caching.
+- **Session 2: RUNNING** (pushed by the user, started 2026-11-04 07:08 UTC). It needs about 21 more
+  Swin-S epochs (about 7.1 h) and 15 more Swin-B epochs (about 8.3 h), then the test caching.
+  Expected end about 17:40 UTC.
