@@ -1,7 +1,12 @@
 # exp201: the deployed rule on models retrained on all 707 labelled photographs (2026-11-04)
 
-**File:** `submission_exp201.csv` (1,196 instances, 178 photographs, SHA256 `14F581B0...`). It has not
-been uploaded yet.
+> **Result (uploaded 2026-11-04 17:34 UTC): public 0.40**, one step below the 0.41 of every rule file on
+> exp139. Under the pre-registered rule (below), the finals stay the remnant + rescue file and exp139.
+> The retrained models do not help on the board. The likely reason: the T4 recipe (batch 2) is weaker than
+> exp139's H100 run (batch 8). On validation it reached 0.4677 against 0.4705, and 18% more data did not
+> close that gap. `kaggle/exp201/README.md` predicted this risk ("has to more than cover that difference first").
+
+**File:** `submission_exp201.csv` (1,196 instances, 178 photographs, SHA256 `14F581B0...`).
 
 ## What it is
 

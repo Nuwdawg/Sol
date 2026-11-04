@@ -71,9 +71,11 @@ than cover that difference first.
   - Swin-B: 6.95 s/step, stopped on budget at 9.82 h, kept `last.pt` and `model_e017.pt`;
   - in-sample sanity check on 12 photographs: PQ 0.452 (Swin-S) and 0.451 (Swin-B), mid-schedule.
     This only shows the run is not broken.
-- **Session 2: RUNNING** (pushed by the user, started 2026-11-04 07:08 UTC). It needs about 21 more
-  Swin-S epochs (about 7.1 h) and 15 more Swin-B epochs (about 8.3 h), then the test caching.
-  Expected end about 17:40 UTC.
+- **Session 2: COMPLETE** (07:08-16:42 UTC 4 Nov): both runs resumed and finished (Swin-S 50/50, Swin-B
+  32/32 epochs), and both cached the test photographs.
+- **File:** `final_decision/results/exp201/submission_exp201.csv`, the deployed rule unchanged.
+  **Public 0.40** (uploaded 17:34 UTC), against 0.41 for the same rule on exp139. The finals stay the
+  remnant + rescue file and exp139.
 
 ## Final-pick rule for exp201's file (written 2026-11-04 13:40 UTC, before the file exists)
 

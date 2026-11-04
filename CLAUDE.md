@@ -196,6 +196,10 @@ the decision, stop.
 - CPU inference is bit-for-bit identical to GPU inference here (same CSV MD5).
   GPU hours belong to training.
 - The public MAGFiLO release contains the test annotations. Do not train on it.
+- exp201 retrained exp139's Swin-S recipe and the Swin-B voter on all 707 labelled photographs, with
+  the T4 recipe (batch 2). With the deployed rule unchanged it printed **0.40**, against 0.41 on
+  exp139 (H100, batch 8). On free T4s, more data did not beat the stronger single run
+  (`final_decision/results/exp201/`).
 
 ## 14. Enumerate what is running before you launch
 
