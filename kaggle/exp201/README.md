@@ -74,3 +74,16 @@ than cover that difference first.
 - **Session 2: RUNNING** (pushed by the user, started 2026-11-04 07:08 UTC). It needs about 21 more
   Swin-S epochs (about 7.1 h) and 15 more Swin-B epochs (about 8.3 h), then the test caching.
   Expected end about 17:40 UTC.
+
+## Final-pick rule for exp201's file (written 2026-11-04 13:40 UTC, before the file exists)
+
+exp201's models have no held-out photographs, so its file cannot be scored on validation. The rule:
+1. Build it with the deployed rule unchanged (threshold 0.68; `experiments/exp_201_alldata/README.md`
+   item 5), review the changed masks at native resolution, and upload it once.
+2. If it prints **0.42 or more**: final picks are exp201's file and `submission_exp169_remnant_rescue.csv`.
+3. If it prints **0.41**: the same two picks. The board cannot separate them, and exp201's models
+   saw 18% more labelled data, so they are the better-informed estimate, and the pair is diverse.
+4. If it prints **0.40 or less**: the picks stay `submission_exp169_remnant_rescue.csv` and exp139.
+5. Whatever is picked must be reproducible from the repository before the 15 Nov deadline. For
+   exp201 that means its two checkpoints go into `weights/` as parts, plus a `reproduce/run.py`
+   path for them.
