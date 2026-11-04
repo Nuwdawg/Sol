@@ -61,3 +61,15 @@ Then:
 There is no held-out set left, so the board is the only judge. Honest odds of printing 0.42: about
 1 in 4. Swin-S trained on a T4 reached 0.4677 against exp139's 0.4705, so 18% more data has to more
 than cover that difference first.
+
+## Status
+
+- **Session 1: COMPLETE** (pushed by the user, started 2026-11-03 20:34 UTC; read back from its log on
+  2026-11-04 06:47 UTC):
+  - data: 1,154 records, `--fold all`;
+  - Swin-S: 4.35 s/step, stopped on budget at 9.82 h, kept `last.pt` and `model_e029.pt`;
+  - Swin-B: 6.95 s/step, stopped on budget at 9.82 h, kept `last.pt` and `model_e017.pt`;
+  - in-sample sanity check on 12 photographs: PQ 0.452 (Swin-S) and 0.451 (Swin-B), mid-schedule.
+    This only shows the run is not broken.
+- **Session 2:** to push now. It needs about 21 more Swin-S epochs (about 7.1 h) and 15 more Swin-B
+  epochs (about 8.3 h), then the test caching.
