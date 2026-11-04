@@ -58,11 +58,15 @@ ROOT = Path(__file__).resolve().parents[1]
 ART = ROOT / "reproduce" / "artefacts"
 SUBMITTED = ROOT / "final_decision" / "results" / "submission_exp169_guarded.csv"
 REMNANT_RESCUE = ROOT / "final_decision" / "results" / "remnant_rescue" / "submission_exp169_remnant_rescue.csv"
-STAGES = ("weights", "m2f", "yolo", "rule", "guard", "check", "swinb", "union", "m2f_only", "remnant_rescue")
+STAGES = ("weights", "m2f", "yolo", "rule", "guard", "check", "swinb", "union", "m2f_only", "remnant_rescue", "exp201")
 FINAL = (*STAGES[:7], "remnant_rescue")   # both final picks: the remnant + rescue file and exp139's file
 EXP200 = ROOT / "final_decision" / "results" / "exp200" / "withdrawn"
 M2F_ONLY_SHA256 = "0EF5A352C9DCF86BECD3F198FB5C49F73021C6F2779C23F055CE7908F32E88AB"   # final_decision/results/m2f_only
 REMNANT_RESCUE_SHA256 = "F9423B74429F34130BF70C9421B2416AAFD3C3852D9E465FC9F117C0FADA162D"   # final_decision/results/remnant_rescue
+# exp201: the same rule on Swin-S and Swin-B retrained on all 707 labelled photographs (kaggle/exp201).
+# Filled in when its file is built; the stage refuses to run while they are empty.
+EXP201 = dict(swins=("mask2former_exp201_swins_e050.pt", ""), swinb=("mask2former_exp201_swinb_e032.pt", ""),
+              file=ROOT / "final_decision" / "results" / "exp201" / "submission_exp201.csv", file_sha256="")
 UNION = {"submission_C1_B_swinb090.csv": ("B", 0.90),             # file: (base file, Swin-B threshold)
          "submission_C2_exp169_swinb080.csv": ("exp169", 0.80),
          "submission_C3_exp169_swinb090.csv": ("exp169", 0.90)}
@@ -282,6 +286,41 @@ def stage_remnant_rescue(work: Path, _) -> None:
     if not report["identical"]:                  # GPU arithmetic can move a few boundary pixels (README)
         report.update(compare_csv(ours, REMNANT_RESCUE))
     print("REMNANT_RESCUE_CHECK", json.dumps(report), flush=True)
+    (out / "check.json").write_text(json.dumps(report, indent=1))
+
+
+def stage_exp201(work: Path, data: dict) -> None:
+    """The retrained models' file: cache both new checkpoints on the test photographs with exp147's
+    cache.py (Swin-S: 11 views; Swin-B: full view), then the deployed rule unchanged (build.py),
+    compared with the stored file like `check` does. Needs the weights and yolo stages."""
+    from experiments.exp_152_rule_and_emit.src.emit import compare_csv
+    if not (EXP201["file_sha256"] and EXP201["swins"][1] and EXP201["swinb"][1]):
+        raise SystemExit("exp201's file and checkpoints are not in this repository yet")
+    caches = {}
+    for key, tag, modes in (("swins", "exp201s", "full,d4,shift"), ("swinb", "exp201b", "full")):
+        weights, digest = EXP201[key]
+        out = work / f"m2f_{tag}"
+        wait([python("experiments.exp_147_candidate_cache.src.cache", "--weights", str(work / "weights" / weights),
+                     "--annotations", str(data["annotations"]), "--train-images", str(data["train"]),
+                     "--test-images", str(data["test"]), "--output", str(out), "--no-val", "--test-modes", modes,
+                     "--tag", tag, "--no-parity", *(["--limit", str(LIMIT)] if LIMIT else []))], f"exp201 {key} cache")
+        caches[key] = out / f"{tag}_test_cache.json"
+        if json.loads(caches[key].read_text())["model"]["sha256"] != digest:
+            raise SystemExit(f"the {key} cache was not made with exp201's checkpoint")
+    if LIMIT:
+        print("EXP201 smoke test: caches written, build skipped (it needs all 180 photographs)", flush=True)
+        return
+    out = work / "exp201"
+    wait([python("experiments.exp_201_alldata.src.build", "--swins-cache", str(caches["swins"]),
+                 "--swinb", str(caches["swinb"]),
+                 "--yolo", f"yolov8l={work / 'yolo_yolov8l' / 'test_pool.json'}",
+                 "--yolo", f"yolo11m={work / 'yolo_yolo11m' / 'test_pool.json'}",
+                 "--output", str(out))], "exp201 file")
+    ours = out / "submission_remnant_rescue.csv"
+    report = dict(ours=sha256(ours).upper(), stored=EXP201["file_sha256"], identical=sha256(ours).upper() == EXP201["file_sha256"])
+    if not report["identical"]:                  # GPU arithmetic can move a few boundary pixels (README)
+        report.update(compare_csv(ours, EXP201["file"]))
+    print("EXP201_CHECK", json.dumps(report), flush=True)
     (out / "check.json").write_text(json.dumps(report, indent=1))
 
 
