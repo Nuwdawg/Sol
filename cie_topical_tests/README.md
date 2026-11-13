@@ -144,6 +144,7 @@ python3 tools/ms_segment.py $SP/work/ms  $SP/papers/97*_ms_*.pdf
 python3 tools/analyze.py    $SP
 python3 tools/er.py         $SP
 python3 tools/select_q.py   $SP       # 9-year window for 9709 P2/P3/P4 and 9702 P4/P5, 5-year otherwise
+# add --fifty to select up to 50 questions per topic for 9709 P2/P3/P4 and 9702 P4/P5
 python3 tools/make_tests.py $SP .     # writes Maths_9709/, Physics_9702/, index.csv
 python3 tools/leakscan.py   .         # checks no exam header/footer text survived
 ```

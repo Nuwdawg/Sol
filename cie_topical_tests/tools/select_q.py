@@ -25,6 +25,9 @@ def _datafile(name, fallback):
     here = os.path.join(os.path.dirname(os.path.abspath(__file__)), name)
     return here if os.path.exists(here) else os.path.join(SP, "work", fallback)
 TARGET = 40
+# optional: "--fifty" selects 50 questions per topic for Maths P2, P3, P4 and Physics P4, P5
+FIFTY = "--fifty" in sys.argv[2:]
+TARGET_KIND = {("9709", "P2"): 50, ("9709", "P3"): 50, ("9709", "P4"): 50, ("9702", "P4"): 50, ("9702", "P5"): 50} if FIFTY else {}
 
 # ---------------- features
 def words(t):
@@ -171,7 +174,7 @@ def add_test(subj, kind, comp_filter, topic_code, title, slug):
            and topic_code in r.get("topics_2nd", []) and not r.get("topic_override") and kind != "P1-MCQ"]
     ranked = sorted([(r["difficulty"], r, 1) for r in prim] + [(r["difficulty"] - 0.4, r, 2) for r in sec],
                     key=lambda x: -x[0])
-    chosen = [(r, k) for d, r, k in ranked[:TARGET]]
+    chosen = [(r, k) for d, r, k in ranked[:TARGET_KIND.get((subj, kind), TARGET)]]
     chosen.sort(key=lambda x: x[0]["difficulty"])      # within a test: hard -> hardest
     tests.append({"subj": subj, "kind": kind, "topic": topic_code, "title": title, "slug": slug,
                   "pool_primary": len(prim), "pool_secondary": len(sec),
