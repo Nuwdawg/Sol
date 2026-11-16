@@ -65,6 +65,28 @@ def segment_ms(path):
                 m = LABEL_RX.match(t)
                 if m:
                     labels.append((pno, r.y0, int(m.group(1)), t.strip(), r))
+    if not heads:
+        # pre-2017 layout: no "Question | Answer | Marks" table; question numbers stand alone at the left margin
+        for pno in info:
+            lines, top, bottom = info[pno]
+            for r, t in lines:
+                if r.y0 < top - 1 or r.y1 > bottom + 1:
+                    continue
+                m = re.match(r"(\d{1,2})(\s*$|\s+\S)", t)          # "7", "7 (a) ...", "11 either ..."
+                if m and 44 <= r.x0 <= 58:
+                    labels.append((pno, r.y0, int(m.group(1)), t.strip(), r))
+        if len(labels) < 2:
+            # 2004-2006 layouts: the number sits at the page's own left text edge (x = 35, 71 or 92)
+            for pno in info:
+                lines, top, bottom = info[pno]
+                body = [(r, t) for r, t in lines if top - 1 <= r.y0 and r.y1 <= bottom + 1 and t.strip()]
+                if not body:
+                    continue
+                left = min(r.x0 for r, t in body)
+                for r, t in body:
+                    m = re.match(r"(\d{1,2})(\s*$|\s+\S)", t)
+                    if m and 28 <= r.x0 <= 110 and r.x0 <= left + 3:
+                        labels.append((pno, r.y0, int(m.group(1)), t.strip(), r))
     labels.sort(key=lambda x: (x[0], x[1]))
     starts, expect = [], 1
     for pno, y, n, txt, r in labels:

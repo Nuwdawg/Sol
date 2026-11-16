@@ -90,6 +90,8 @@ if __name__ == "__main__":
     allr = {}
     for f in sorted(glob.glob(os.path.join(SP, "papers/97*_er.pdf"))):
         r = parse(f)
+        # 2002-2009 question papers are filed as ..._qp_4, the reports call them Paper 9702/04
+        r.update({k[:-2] + k[-1]: v for k, v in list(r.items()) if re.search(r"_qp_0\d$", k)})
         allr.update(r)
         print(os.path.basename(f), len(r), "papers", sum(len(v) for v in r.values()), "question comments")
     json.dump(allr, open(os.path.join(SP, "work/er.json"), "w"))

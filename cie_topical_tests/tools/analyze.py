@@ -46,7 +46,7 @@ for f in sorted(glob.glob(os.path.join(SP, "work/seg/*.json"))):
     d = json.load(open(f))
     paper = d["paper"]
     subj, sess, _, cv = paper.split("_")
-    comp, var = int(cv[0]), cv[1]
+    comp, var = int(cv[0]), cv[1:]
     msf = os.path.join(SP, "work/ms", paper.replace("_qp_", "_ms_") + ".json")
     ms = json.load(open(msf)) if os.path.exists(msf) else None
     msq = {}

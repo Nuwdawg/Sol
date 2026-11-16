@@ -20,10 +20,19 @@ ER = json.load(open(os.path.join(SP, "work/er.json")))
 # Year window: nine years (Feb/Mar 2018 - May/Jun 2026) for Maths P2, P3, P4 (Mechanics) and Physics P4, P5;
 # five years (Feb/Mar 2022 - May/Jun 2026) for everything else
 NINE_YEAR = {("9709", 2), ("9709", 3), ("9709", 4), ("9702", 4), ("9702", 5)}
-R = [r for r in R if r["year"] >= (2018 if (r["subj"], r["comp"]) in NINE_YEAR else 2022)]
 def _datafile(name, fallback):
     here = os.path.join(os.path.dirname(os.path.abspath(__file__)), name)
     return here if os.path.exists(here) else os.path.join(SP, "work", fallback)
+def in_window(r):
+    return r["year"] >= (2018 if (r["subj"], r["comp"]) in NINE_YEAR else 2022)
+# Older Physics P4 questions (2004-2017), each reviewed by hand, extend the thinner topics
+# (12 Motion in a circle, 14 Temperature, 16 Thermodynamics, 19 Capacitance, 21 Alternating currents).
+# id -> the tests it may appear in; it is used nowhere else.
+_wl = _datafile("old_p4_whitelist.json", "old_p4_whitelist.json")
+OLD_OK = json.load(open(_wl)) if os.path.exists(_wl) else {}
+R = [r for r in R if in_window(r) or r["id"] in OLD_OK]
+for r in R:
+    r["old"] = not in_window(r)
 TARGET = 40
 # optional: "--fifty" selects 50 questions per topic for Maths P2, P3, P4 and Physics P4, P5
 FIFTY = "--fifty" in sys.argv[2:]
@@ -83,7 +92,7 @@ def zfill(key):
     by = collections.defaultdict(list)
     for r in R:
         v = r.get(key)
-        if v is not None:
+        if v is not None and not r["old"]:
             by[group(r)].append(v)
     stats = {g: (sum(v) / len(v), math.sqrt(sum((x - sum(v) / len(v)) ** 2 for x in v) / max(1, len(v) - 1)) or 1.0) for g, v in by.items()}
     for r in R:
@@ -97,7 +106,8 @@ for r in R:
     r["z_marks"] = 0.0
 by = collections.defaultdict(list)
 for r in R:
-    by[group(r)].append(r["marks"])
+    if not r["old"]:
+        by[group(r)].append(r["marks"])
 for r in R:
     v = by[group(r)]; m = sum(v) / len(v); s = math.sqrt(sum((x - m) ** 2 for x in v) / max(1, len(v) - 1)) or 1.0
     r["z_marks"] = (r["marks"] - m) / s
@@ -163,15 +173,26 @@ for qid, why in OFF.items():
     if qid in RID:
         RID[canon[qid]]["off_syllabus"] = why
 UNIQUE = [r for r in R if canon[r["id"]] == r["id"] and not r.get("off_syllabus")]
+# Physics P4 orbit questions (gravitational or electric force providing the centripetal force, shown by the mark
+# scheme) are circular-motion questions too: they also count towards 12 Motion in a circle, as cross-topic.
+CIRC_MS = re.compile(r"centripetal|ω\s*2|v\s*2\s*/\s*[rx]\b|v\s*2\s*r\b", re.I)
+CIRC_Q = re.compile(r"orbit|circular|circle", re.I)
+for r in UNIQUE:
+    if (r["subj"], r["comp"]) == ("9702", 4) and r["topic"] in ("13", "18") \
+            and CIRC_MS.search(topics.norm(r["ms_text"])) and CIRC_Q.search(topics.norm(r["text"])):
+        r["topics_x"] = ["12"]
+def allowed(r, code):
+    return not r["old"] or code in OLD_OK.get(r["id"], [])
 print("excluded as off-syllabus:", sum(1 for r in R if r.get("off_syllabus")))
 print("unique questions:", len(UNIQUE), "of", len(R))
 
 # ---------------- tests
 tests = []
 def add_test(subj, kind, comp_filter, topic_code, title, slug):
-    prim = [r for r in UNIQUE if r["subj"] == subj and comp_filter(r) and r["topic"] == topic_code]
-    sec = [r for r in UNIQUE if r["subj"] == subj and comp_filter(r) and r["topic"] != topic_code
-           and topic_code in r.get("topics_2nd", []) and not r.get("topic_override") and kind != "P1-MCQ"]
+    prim = [r for r in UNIQUE if r["subj"] == subj and comp_filter(r) and r["topic"] == topic_code and allowed(r, topic_code)]
+    sec = [r for r in UNIQUE if r["subj"] == subj and comp_filter(r) and r["topic"] != topic_code and kind != "P1-MCQ"
+           and allowed(r, topic_code)
+           and ((topic_code in r.get("topics_2nd", []) and not r.get("topic_override")) or topic_code in r.get("topics_x", []))]
     ranked = sorted([(r["difficulty"], r, 1) for r in prim] + [(r["difficulty"] - 0.4, r, 2) for r in sec],
                     key=lambda x: -x[0])
     chosen = [(r, k) for d, r, k in ranked[:TARGET_KIND.get((subj, kind), TARGET)]]

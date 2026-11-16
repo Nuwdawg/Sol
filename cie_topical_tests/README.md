@@ -7,6 +7,7 @@ past papers. All papers, mark schemes and examiner reports were downloaded from 
 |---|---|
 | Maths P2 Pure 2, P3 Pure 3, P4 Mechanics; Physics P4, P5 | **9 years**: Feb/Mar 2018 to May/Jun 2026 |
 | All other papers | **5 years**: Feb/Mar 2022 to May/Jun 2026 |
+| Physics P4 topics 12, 14, 16, 19, 21 (extra) | hand-checked questions from Oct/Nov 2004 to Oct/Nov 2017 |
 
 Oct/Nov 2026 has not been sat yet.
 
@@ -47,26 +48,35 @@ questions are allowed into both topics (`cross_topic` in `index.csv`).
 | 9709 P6 Probability & Statistics 2 | 2022-26 | 5 topics (6.1-6.5) | 30-40 |
 | 9702 P1 Multiple choice | 2022-26 | syllabus topics 1-11 | 40 each |
 | 9702 P2 AS structured | 2022-26 | syllabus topics 1-11 | 16-35 |
-| 9702 P4 A Level structured | 2018-26 | syllabus topics 12-25 | 11-40 |
+| 9702 P4 A Level structured | 2018-26 (2004-26 for topics 12, 14, 16, 19, 21) | syllabus topics 12-25 | 18-40 |
 | 9702 P5 Planning, analysis and evaluation | 2018-26 | planning; data analysis | 40 each |
 
 Paper 3 (Physics practical) is excluded, because its questions need apparatus.
 
-**Why 8 Physics P4 tests stay below 40, even over nine years.** A Paper 4 has about 10
-questions covering 14 topics, so most topics appear at most once per paper. Variants 41 and 43
-are the same paper in every May/Jun and Oct/Nov session, which leaves about 5 distinct papers a
-year. Some topics are also rarely examined on their own:
+**Five thin Physics P4 topics use older papers too.** A Paper 4 has about 10 questions covering
+14 topics, and variants 41 and 43 are the same paper, so over 2018-2026 Motion in a circle had
+only 11 questions, Alternating currents 23, Temperature 24, Thermodynamics 26 and Capacitance 28.
+For these five topics the pool also takes Paper 4 questions from Oct/Nov 2004 to Oct/Nov 2017.
+Each of those 100 questions was read and checked against the current syllabus before it was
+admitted; they are listed in `tools/old_p4_whitelist.json` with the test each may appear in.
+Questions on transformers, power transmission or modulation were left out (no longer on the
+syllabus), as were 2002-2004 papers whose mark scheme is missing or only a scanned image.
+Their difficulty uses the same statistics as the 2018-2026 questions, so no other test changes.
 
-| Topic | Questions | Reason |
-|---|---:|---|
-| Motion in a circle | 11 | usually examined inside gravitational-field questions |
-| Astronomy and cosmology | 18 | only on the syllabus since 2022 |
-| Alternating currents | 23 | |
-| Temperature | 24 | |
-| Thermodynamics | 26 | |
-| Capacitance | 28 | |
-| Ideal gases | 34 | |
-| Quantum physics | 39 | |
+Circular motion is mostly examined inside orbit questions, so a Paper 4 question on gravitational
+or electric fields also counts for Motion in a circle (as cross-topic) when its mark scheme uses
+the centripetal force (`centripetal`, `ω²`, `v²/r`) and the question involves an orbit or circle.
+
+| Topic | 2018-2026 only | With 2004-2017 (40 / 50 version) |
+|---|---:|---:|
+| Motion in a circle | 11 | 40 / 50 |
+| Temperature | 24 | 40 / 44 |
+| Thermodynamics | 26 | 40 / 43 |
+| Capacitance | 28 | 40 / 49 |
+| Alternating currents | 23 | 37 / 37 |
+
+Three other Physics P4 tests stay below 40: Astronomy and cosmology (18, on the syllabus only
+since 2022), Ideal gases (34) and Quantum physics (39).
 
 ## Older papers: content no longer on the syllabus
 
@@ -87,8 +97,8 @@ it.
 
 ## How questions were chosen
 
-1. **Download.** The script fetched 490 question papers, 489 mark schemes and 38 examiner
-   reports.
+1. **Download.** The script fetched 557 question papers, 553 mark schemes and 72 examiner
+   reports (including Physics Paper 4 back to 2002).
 2. **Split into questions.** Question numbers are found in sequence at the left margin. Each
    question is cropped page by page between the exam's header and footer.
    - 427 written papers: the question marks add up to the total printed on the cover.
@@ -143,7 +153,8 @@ python3 tools/segment.py    $SP/work/seg $SP/papers/97*_qp_*.pdf
 python3 tools/ms_segment.py $SP/work/ms  $SP/papers/97*_ms_*.pdf
 python3 tools/analyze.py    $SP
 python3 tools/er.py         $SP
-python3 tools/select_q.py   $SP       # 9-year window for 9709 P2/P3/P4 and 9702 P4/P5, 5-year otherwise
+python3 tools/select_q.py   $SP       # 9-year window for 9709 P2/P3/P4 and 9702 P4/P5, 5-year otherwise,
+                                      # plus the reviewed 2004-2017 P4 questions in tools/old_p4_whitelist.json
 # add --fifty to select up to 50 questions per topic for 9709 P2/P3/P4 and 9702 P4/P5
 python3 tools/make_tests.py $SP .     # writes Maths_9709/, Physics_9702/, index.csv
 python3 tools/leakscan.py   .         # checks no exam header/footer text survived
@@ -251,20 +262,20 @@ python3 tools/leakscan.py   .         # checks no exam header/footer text surviv
 | T10 D.C. circuits | 25 | 56 | 23 |
 | T11 Particle physics | 35 | 42 | 35 |
 
-**Physics 9702 / P4 A Level Structured** (papers 2018-2026)
+**Physics 9702 / P4 A Level Structured** (papers 2018-2026; topics 12, 14, 16, 19, 21 also 2004-2017)
 
 | Test | Questions | Pages | Unique questions on this topic |
 |---|---:|---:|---:|
-| T12 Motion in a circle | 11 | 23 | 10 |
+| T12 Motion in a circle | 40 | 81 | 20 (+40 orbit questions) |
 | T13 Gravitational fields | 40 | 78 | 42 |
-| T14 Temperature | 24 | 46 | 20 |
+| T14 Temperature | 40 | 70 | 40 |
 | T15 Ideal gases | 34 | 65 | 29 |
-| T16 Thermodynamics | 26 | 43 | 23 |
+| T16 Thermodynamics | 40 | 63 | 40 |
 | T17 Oscillations | 40 | 87 | 46 |
 | T18 Electric fields | 40 | 78 | 41 |
-| T19 Capacitance | 28 | 54 | 25 |
+| T19 Capacitance | 40 | 79 | 46 |
 | T20 Magnetic fields | 40 | 84 | 58 |
-| T21 Alternating currents | 23 | 46 | 22 |
+| T21 Alternating currents | 37 | 72 | 36 |
 | T22 Quantum physics | 39 | 67 | 38 |
 | T23 Nuclear physics | 40 | 67 | 39 |
 | T24 Medical physics | 40 | 61 | 41 |

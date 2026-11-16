@@ -22,7 +22,7 @@ COMP_NAME = {
 def ref(r):
     """CIE-style reference, e.g. 9709/12/M/J/23 Q7"""
     subj, sess, _, cv = r["paper"].split("_")
-    return f"{subj}/{cv}/{SERIES[sess[0]]}/{sess[1:]} Q{r['q']}"
+    return f"{subj}/{cv.zfill(2)}/{SERIES[sess[0]]}/{sess[1:]} Q{r['q']}"
 
 # ------------------------------------------------------------------ sources
 _qp, _ms = {}, {}
