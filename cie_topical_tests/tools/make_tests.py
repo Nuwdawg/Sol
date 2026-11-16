@@ -8,7 +8,8 @@ import pymupdf, wmclean, ms_segment
 
 SP, OUT = sys.argv[1], sys.argv[2]
 ONLY = sys.argv[3:]
-S = json.load(open(os.path.join(SP, "work/selection.json")))
+# SELECTION / SUMMARY env vars pick another selection file (e.g. work/selection_sub.json) and its build summary
+S = json.load(open(os.path.join(SP, os.environ.get("SELECTION", "work/selection.json"))))
 Q = S["questions"]
 
 A4P = (595.28, 841.89)
@@ -140,7 +141,15 @@ def build_mcq_key(items, path, title):
     out.save(path, garbage=4, deflate=True, clean=True)
 
 # ------------------------------------------------------------------ main
+def safe(s):
+    s = s.replace("/", "-").replace(":", " -")
+    return re.sub(r"[^A-Za-z0-9.()+=&-]+", "_", s).strip("_")
+
 def folder_and_name(t):
+    if t.get("sub"):                                   # Maths subtopic test, inside its syllabus-topic folder
+        comp = int(t["kind"][1])
+        folder = os.path.join("Maths_9709", COMP_NAME[("9709", comp)].replace(" ", "_"), safe(f'{t["topic"]} {t["topic_name"]}'))
+        return folder, safe(f'{t["sub"]} {t["sub_name"]}')
     if t["subj"] == "9709":
         comp = int(t["kind"][1])
         folder = os.path.join("Maths_9709", COMP_NAME[("9709", comp)].replace(" ", "_"))
@@ -192,7 +201,7 @@ if ONLY and os.path.exists(idx):
 with open(idx, "w", newline="") as f:
     w = csv.DictWriter(f, fieldnames=list(rows[0].keys()))
     w.writeheader(); w.writerows(rows)
-sf = os.path.join(SP, "work/build_summary.json")
+sf = os.path.join(SP, os.environ.get("SUMMARY", "work/build_summary.json"))
 if ONLY and os.path.exists(sf):
     done = {(a, b) for a, b, *_ in summary}
     summary = [x for x in json.load(open(sf)) if (x[0], x[1]) not in done] + summary

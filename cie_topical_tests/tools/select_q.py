@@ -129,6 +129,7 @@ def shingles(t):
     return {c[i:i + 8] for i in range(max(1, len(c) - 7))}
 
 SH = {r["id"]: shingles(r["text"]) for r in R}
+MSH = {r["id"]: (shingles(r["ms_text"]) if len(r.get("ms_text") or "") > 40 else set()) for r in R}
 canon = {}
 by_slot = collections.defaultdict(list)
 for r in R:
@@ -143,6 +144,15 @@ for slot, rs in by_slot.items():
             t = SH[rep["id"]]
             if len(s) > 12 and len(s & t) / (len(s | t) or 1) > 0.75:
                 hit = rep; break
+        if not hit:
+            # same question in another variant whose symbols were extracted differently (e.g. theta lost):
+            # same session and marks, and a near-identical mark scheme
+            ms = MSH[r["id"]]
+            for rep in reps:
+                if rep["sess"] == r["sess"] and rep["marks"] == r["marks"] and rep["paper"] != r["paper"] and ms:
+                    t = MSH[rep["id"]]
+                    if t and len(ms & t) / (len(ms | t) or 1) > 0.8:
+                        hit = rep; break
         if hit:
             canon[r["id"]] = hit["id"]
             hit.setdefault("dup_of_this", []).append(r["id"])

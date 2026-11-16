@@ -78,6 +78,31 @@ the centripetal force (`centripetal`, `ω²`, `v²/r`) and the question involves
 Three other Physics P4 tests stay below 40: Astronomy and cosmology (18, on the syllabus only
 since 2022), Ideal gases (34) and Quantum physics (39).
 
+## Maths by subtopic
+
+Maths P2, P3 and P4 (Mechanics) are also available split into subtopics, in the style of
+Past Paper Penguin's 9709 topical pages (pastpaperpenguin.com). Each question belongs to exactly
+one subtopic, and each subtopic test holds that subtopic's hardest questions over 2018-2026 (up to
+50), least hard first. The files sit inside their syllabus-topic folder, for example
+`Maths_9709/P3_Pure_Mathematics_3/3.5_Integration/3.5.2_Integration_by_Parts.pdf`.
+`index_subtopics.csv` lists every question with its source.
+
+| Paper | Subtopics | Questions | Names |
+|---|---:|---:|---|
+| P2 Pure 2 | 14 | 309 | Past Paper Penguin has no Pure 2 page: Pure 3 names where the content is shared, plus "Integration of Exponentials and 1/(ax+b)" and "Trapezium Rule" |
+| P3 Pure 3 | 23 | 613 | Past Paper Penguin's 22 Pure 3 subtopics, plus "Trapezium Rule" (2 questions) |
+| P4 Mechanics | 16 | 413 (of 436; three subtopics have more than 50) | Past Paper Penguin's 16 Mechanics subtopics |
+
+Subtopics are assigned by rules on the question and mark-scheme text (`tools/subtopics.py`).
+Every list was then read through, and 79 questions were moved by hand
+(`tools/subtopic_overrides.json`). Mark schemes rarely name the integration method, so most of
+those moves are integration questions (by parts, substitution, trig). About a fifth of the older
+question texts were extracted without spaces, so the Mechanics keywords are matched with
+whitespace removed.
+
+Some subtopics are small because Cambridge rarely sets them on their own since 2018, for example
+Connected Particles: Vertical (2 questions) and Pure 3 Trapezium Rule (2).
+
 ## Older papers: content no longer on the syllabus
 
 The 2018-2021 papers were checked against the current syllabuses (9709 for 2026-27, 9702 for
@@ -107,7 +132,8 @@ it.
    - 35 MCQ papers: each yields 40 questions.
 3. **De-duplicate.** Cambridge reuses identical papers across time-zone variants. For
    example, 9702/41 and /43 are the same paper, as are 9709/22, /23 and /25. Only one copy of
-   each question is used.
+   each question is used. Copies are matched on the question text and, where the text extracted
+   differently (a lost θ symbol), on a near-identical mark scheme from the same session.
 4. **Classify by topic.** Classification uses keyword evidence from the question and its mark
    scheme. Physics multiple-choice papers also use Cambridge's syllabus-order layout.
    Uncertain cases were checked by hand, and so was every Physics P2/P4 question that could be
@@ -157,6 +183,10 @@ python3 tools/select_q.py   $SP       # 9-year window for 9709 P2/P3/P4 and 9702
                                       # plus the reviewed 2004-2017 P4 questions in tools/old_p4_whitelist.json
 # add --fifty to select up to 50 questions per topic for 9709 P2/P3/P4 and 9702 P4/P5
 python3 tools/make_tests.py $SP .     # writes Maths_9709/, Physics_9702/, index.csv
+# Maths by subtopic (after select_q.py --fifty):
+python3 tools/subtopics.py      $SP   # one subtopic per question -> work/subtopics.json
+python3 tools/subtopic_tests.py $SP   # hardest 50 per subtopic   -> work/selection_sub.json
+SELECTION=work/selection_sub.json SUMMARY=work/build_summary_sub.json python3 tools/make_tests.py $SP out_sub
 python3 tools/leakscan.py   .         # checks no exam header/footer text survived
 ```
 
@@ -181,9 +211,9 @@ python3 tools/leakscan.py   .         # checks no exam header/footer text surviv
 |---|---:|---:|---:|
 | 2.1 Algebra | 40 | 71 | 72 |
 | 2.2 Logarithmic and exponential functions | 40 | 49 | 38 |
-| 2.3 Trigonometry | 40 | 78 | 58 |
+| 2.3 Trigonometry | 40 | 77 | 55 |
 | 2.4 Differentiation | 40 | 71 | 58 |
-| 2.5 Integration | 40 | 68 | 47 |
+| 2.5 Integration | 40 | 67 | 44 |
 | 2.6 Numerical solution of equations | 40 | 76 | 42 |
 
 **Maths 9709 / P3 Pure Mathematics 3** (papers 2018-2026)
