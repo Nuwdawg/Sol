@@ -47,7 +47,8 @@ def save_small(doc, path):
     doc.save(path, garbage=4, deflate=True, clean=True)
 
 # ------------------------------------------------------------------ question test
-def build_questions(items, path, font):
+def build_questions(items, path, font, newpage=False):
+    """newpage: start every question on a fresh page (Past Paper Penguin layout)."""
     _qp.clear()                                   # fresh copies: number redactions are per test
     by_page = collections.defaultdict(list)
     for r in items:
@@ -66,7 +67,7 @@ def build_questions(items, path, font):
         for si, (pno, x0, y0, x1, y1) in enumerate(r["segs"]):
             h = y1 - y0
             gap = (GAPQ if si == 0 else GAPS) if page is not None else 0.0
-            if page is None or y + gap + h > A4P[1] - BOT:
+            if page is None or (newpage and si == 0) or y + gap + h > A4P[1] - BOT:
                 page = out.new_page(width=A4P[0], height=A4P[1]); y, gap = TOP, 0.0
             y += gap
             page.show_pdf_page(pymupdf.Rect(x0, y, x1, y + h), src, pno, clip=pymupdf.Rect(x0, y0, x1, y1))
@@ -146,6 +147,8 @@ def safe(s):
     return re.sub(r"[^A-Za-z0-9.()+=&-]+", "_", s).strip("_")
 
 def folder_and_name(t):
+    if t.get("folder"):                                # explicit location (Past Paper Penguin-style sets)
+        return t["folder"], t["name"]
     if t.get("sub"):                                   # Maths subtopic test, inside its syllabus-topic folder
         comp = int(t["kind"][1])
         folder = os.path.join("Maths_9709", COMP_NAME[("9709", comp)].replace(" ", "_"), safe(f'{t["topic"]} {t["topic_name"]}'))
@@ -175,7 +178,7 @@ for t in S["tests"]:
     os.makedirs(os.path.join(OUT, folder), exist_ok=True)
     qpath = os.path.join(OUT, folder, name + ".pdf")
     font = "tibo" if t["subj"] == "9709" else "hebo"
-    npg = build_questions(items, qpath, font)
+    npg = build_questions(items, qpath, font, t.get("newpage", False))
     if t["kind"] == "P1-MCQ":
         apath = os.path.join(OUT, folder, name + "_answers.pdf")
         build_mcq_key(items, apath, name + " answers")

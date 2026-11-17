@@ -78,30 +78,40 @@ the centripetal force (`centripetal`, `ω²`, `v²/r`) and the question involves
 Three other Physics P4 tests stay below 40: Astronomy and cosmology (18, on the syllabus only
 since 2022), Ideal gases (34) and Quantum physics (39).
 
-## Maths by subtopic
+## Maths by subtopic (Past Paper Penguin layout)
 
-Maths P2, P3 and P4 (Mechanics) are also available split into subtopics, in the style of
-Past Paper Penguin's 9709 topical pages (pastpaperpenguin.com). Each question belongs to exactly
-one subtopic, and each subtopic test holds that subtopic's hardest questions over 2018-2026 (up to
-50), least hard first. The files sit inside their syllabus-topic folder, for example
-`Maths_9709/P3_Pure_Mathematics_3/3.5_Integration/3.5.2_Integration_by_Parts.pdf`.
-`index_subtopics.csv` lists every question with its source.
+Maths P2, P3 and P4 (Mechanics) are also available arranged the way Past Paper Penguin
+(pastpaperpenguin.com) arranges its 9709 topicals:
 
-| Paper | Subtopics | Questions | Names |
-|---|---:|---:|---|
-| P2 Pure 2 | 14 | 309 | Past Paper Penguin has no Pure 2 page: Pure 3 names where the content is shared, plus "Integration of Exponentials and 1/(ax+b)" and "Trapezium Rule" |
-| P3 Pure 3 | 23 | 613 | Past Paper Penguin's 22 Pure 3 subtopics, plus "Trapezium Rule" (2 questions) |
-| P4 Mechanics | 16 | 413 (of 436; three subtopics have more than 50) | Past Paper Penguin's 16 Mechanics subtopics |
+- **Pure Mathematics 2 and 3 form one list**, in the order of their Pure 3 topical page. Pure 2
+  questions sit in the same subtopic as Pure 3 questions on the same content. Two rows are added
+  for Pure 2 content that page has no row for: "Integration of Exponentials and 1/(ax+b)" and
+  "Trapezium Rule".
+- **Mechanics** follows the order of their Mechanics 1 page (16 subtopics).
+- **Sets.** A subtopic with more than 25 questions is split into Set A and Set B, as they split
+  large subtopics. Each set has a mark-scheme file, their "Answers" column.
+- **One question per page**, as in their PDFs. Exam headers, footers and margins are still removed.
 
-Subtopics are assigned by rules on the question and mark-scheme text (`tools/subtopics.py`).
-Every list was then read through, and 79 questions were moved by hand
-(`tools/subtopic_overrides.json`). Mark schemes rarely name the integration method, so most of
-those moves are integration questions (by parts, substitution, trig). About a fifth of the older
-question texts were extracted without spaces, so the Mechanics keywords are matched with
-whitespace removed.
+Each subtopic keeps its hardest questions from Feb/Mar 2018 to May/Jun 2026 (up to 50), least
+hard first, so Set B holds the hardest. Files are `Maths_9709/Pure_Mathematics_2_and_3/` and
+`Maths_9709/Mechanics/`, named like `11_Integration_by_Parts_Set_A.pdf`;
+`index_ppp_sets.csv` lists every question with its source.
 
-Some subtopics are small because Cambridge rarely sets them on their own since 2018, for example
-Connected Particles: Vertical (2 questions) and Pure 3 Trapezium Rule (2).
+**Placement.** Their set PDFs show the paper and question number on every page.
+`tools/ppp_read.py` reads them, and the 606 Pure 3 and Mechanics questions they contain (2020 to
+Feb/Mar 2025) go in the subtopic they chose (`tools/ppp_placements.json`). Seven of those are in two
+subtopics on their site, and here too. Every other question (2018-2019, May/Jun 2025 onwards, all of
+Pure 2) is placed by `tools/subtopics.py`. Its rules were checked against their placements and agree
+on 579 of the 606 (96%). The rules follow their conventions:
+
+- A curve question that finds a stationary point and then an area goes under Product and Quotient Rule.
+- "Divide, then integrate" and plain partial fractions go under Partial Fractions and Integration.
+- A differential equation that is given in context is Differential Equations. One that must be
+  formed (tanks, containers, geometry) is Modelling.
+- A car towing a trailer with work or power goes under Power and F=ma with Connected Particles.
+
+Questions their sets do not contain were also read through by hand: 76 corrections are in
+`tools/subtopic_overrides.json`.
 
 ## Older papers: content no longer on the syllabus
 
@@ -183,10 +193,12 @@ python3 tools/select_q.py   $SP       # 9-year window for 9709 P2/P3/P4 and 9702
                                       # plus the reviewed 2004-2017 P4 questions in tools/old_p4_whitelist.json
 # add --fifty to select up to 50 questions per topic for 9709 P2/P3/P4 and 9702 P4/P5
 python3 tools/make_tests.py $SP .     # writes Maths_9709/, Physics_9702/, index.csv
-# Maths by subtopic (after select_q.py --fifty):
-python3 tools/subtopics.py      $SP   # one subtopic per question -> work/subtopics.json
-python3 tools/subtopic_tests.py $SP   # hardest 50 per subtopic   -> work/selection_sub.json
-SELECTION=work/selection_sub.json SUMMARY=work/build_summary_sub.json python3 tools/make_tests.py $SP out_sub
+# Maths in Past Paper Penguin layout (after select_q.py --fifty):
+python3 tools/subtopics.py   $SP      # rules + overrides       -> work/subtopics.json
+python3 tools/ppp_sets.py    $SP      # their placements, sets  -> work/selection_ppp.json
+SELECTION=work/selection_ppp.json SUMMARY=work/build_summary_ppp.json python3 tools/make_tests.py $SP out_ppp
+# re-reading their placements: download their Q-*.pdf sets into a folder, then
+#   python3 tools/ppp_read.py <folder> work/ppp_assign.json && python3 tools/ppp_compare.py $SP
 python3 tools/leakscan.py   .         # checks no exam header/footer text survived
 ```
 

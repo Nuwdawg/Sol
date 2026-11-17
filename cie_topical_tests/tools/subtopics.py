@@ -29,6 +29,7 @@ SUB = {
         ("2.5.1", "Integration of Trig Functions", "2.5"),
         ("2.5.2", "Integration of Exponentials and 1/(ax+b)", "2.5"),
         ("2.5.3", "Trapezium Rule", "2.5"),
+        ("2.5.4", "Division and Integration", "2.5"),
         ("2.6.1", "Iteration with Calculus", "2.6"),
         ("2.6.2", "Iteration with Graph Sketching or Radians", "2.6"),
     ],
@@ -83,6 +84,7 @@ def has(rx, s):
 
 INTEGRAL = r"Ó|∫|integral|integrat|\barea\b"
 TRIGF = r"\b(sin|cos|tan|sec|cosec|cot)"
+STATPT = r"stationary|maximum point|minimum point|turning point|its maximum|its minimum|tangent|normal to|f\s*′|f\s*'\s*\(|gradient of the curve"
 DERIV = r"d\s*y\s*/?\s*d\s*x|d\s*y\s+d\s*x|differentiat|stationary|gradient|tangent|normal to|maximum|minimum|turning point"
 
 def implicit_curve(q):
@@ -98,36 +100,47 @@ def implicit_curve(q):
 def pure(comp, r, q, m):
     p = f"{comp}."
     T = r["topic"]
+    z = re.sub(r"\s+", "", q).lower()          # some texts were extracted without spaces
+    def k(rx):
+        return re.search(rx, z) is not None
     # ---- topics that only exist in P3
     if comp == 3 and (T == "3.9" or has(r"complex number|argand|\barg\b", q)):
         return "3.9.2" if has(r"shade|locus|loci|region|satisfying the inequalit|satisf(y|ies) the inequalit", q) else "3.9.1"
     if comp == 3 and T == "3.7":
         return "3.7.1"
-    if comp == 3 and (T == "3.8" or has(r"differential equation", q)):
-        ctx = r"proportional|modell?ed|\bmodel\b|population|tank|liquid|water|bacteria|insect|cells|chemical|substance|reaction|organism|spread|leak|\boil\b|temperature|forest|fish|virus|weed|algae|disease|rumour|crystal|drug|bird|animal|rabbit|plant|tree|money|price|company|salt|sugar|snow|ice|balloon|bowl|vessel|container|cylinder"
-        return "3.8.2" if has(ctx, q) else "3.8.1"
+    if comp == 3 and (T == "3.8" or k(r"differentialequation")):
+        # Past Paper Penguin: forming the equation from a situation is Modelling; a given equation in a
+        # context (insects, chemical reaction) is plain Differential Equations
+        if has(r"tank|container|pool|balloon|vessel|bowl|cylind|hemisphere|cuboid|plantation|field|disease|infected|normal to the curve|tangent to the curve|meets the (x|y)-axis", q):
+            return "3.8.2"
+        if has(r"(modell?ed by|satisfied by|satisfy|given by|relating [^.]{0,30}is) (the|a) differential equation|differential equation (satisfied|relating)", q):
+            return "3.8.1"
+        return "3.8.2" if has(r"proportional|rate of (increase|decrease|change)", q) else "3.8.1"
     # ---- numerical solution
-    if T == f"{comp}.6" or has(r"iterati|x\s*n\s*\+\s*1|x\s*\n?\s*n\s*\+\s*1", q):
-        if has(r"\brad(ians?)?\b|sector|\barc\b|semicircle|segment", q) and not has(DERIV, q):
+    if T == f"{comp}.6" or k(r"iterati|xn\+1"):
+        if has(r"\brad(ians?)?\b|sector|\barc\b|semicircle|segment|circle with centre", q) and \
+                not has(r"stationary|maximum|minimum|d\s*y\s*/?\s*d\s*x|differentiat|Ó|∫|integral", q):
             return p + "6.2"                                  # geometry in radians
         return p + ("6.1" if has(DERIV + r"|Ó|∫|integral|integrat", q) else "6.2")
-    pf = has(r"partial fraction", q)
+    pf = k(r"partialfraction")
     # ---- binomial / partial fractions (P3)
-    if comp == 3 and has(r"expansion|ascending powers|\bexpand\b", q):
+    if comp == 3 and k(r"ascendingpowers|binomial|coefficientofx"):
         return "3.1.4" if pf else "3.1.3"
     if comp == 3 and pf:
-        return "3.5.4" if (has(INTEGRAL, q) or T == "3.5") else "3.1.4"
+        return "3.5.4"                     # Past Paper Penguin files plain partial fractions here too
     # ---- integration
     if T == f"{comp}.5" or (has(INTEGRAL, q) and not has(DERIV, q)):
+        if has(STATPT, q) and not k(r"trapezium"):
+            return p + "4.1"               # curve analysed first, then integrated: Past Paper Penguin files it under Product and Quotient Rule
         if comp == 2:
-            if has(r"trapezium", q):
+            if k(r"trapezium"):
                 return "2.5.3"
             return "2.5.1" if has(TRIGF, q) else "2.5.2"
-        if has(r"trapezium", q):
+        if k(r"trapezium"):
             return "3.5.5"
-        if has(r"substitution", q):
+        if k(r"substitution"):
             return "3.5.3"
-        if has(r"by parts", q) or has(r"by parts", m):
+        if k(r"byparts") or has(r"by parts", m):
             return "3.5.2"
         if has(r"substitut", m):
             return "3.5.3"
@@ -148,6 +161,8 @@ def pure(comp, r, q, m):
     # ---- algebra
     if T == f"{comp}.1":
         if has(r"factor|remainder|polynomial|divided by|quotient|\bp\s*\(\s*x\s*\)", q):
+            if has(r"Ó|∫|Ô|integral|integrat", q):
+                return "3.5.4" if comp == 3 else "2.5.4"   # divide, then integrate
             return p + "1.1"
         return p + "1.2"                      # modulus signs are lost in extraction: the rest of 2.1/3.1 is modulus work
     raise ValueError(r["id"] + " " + T)
@@ -167,21 +182,24 @@ def mech(r, q, m):
     rough = k(r"friction|(?<!th)rough")
     incline = k(r"inclined|slope|hill|descends")
     momentum = k(r"momentum|collid|collision|coalesc|impulse")
+    impact = k(r"hammer|nail|drivenvertically|drivenintotheground|metalpost|pile")
     # variable acceleration: the mark scheme integrates or differentiates
     if T == "4.2" and has(r"integrat|differentiat|∫|Ó|d\s*v\s*/?\s*d\s*t|d\s*s\s*/?\s*d\s*t", m):
         return "4.2.4"
+    if impact:
+        return "4.3.1"
     if momentum:
         return "4.3.2" if (rough or energy) else "4.3.1"
     if pulley:
         return "4.5.4" if energy else "4.4.3"
-    if power:
+    if power or (connected and energy):
         return "4.5.3" if connected else "4.5.2"
     if T == "4.2":
         if k(r"coefficientoffriction"):
             return "4.1.3" if incline else "4.1.2"
         if energy:
             return "4.5.1"
-        if k(r"timegraph|sketch|graph"):
+        if k(r"timegraph|sketch|graph") or (k(r"constantspeed") and k(r"decelerat|retard|comestorest|cometorest")):
             return "4.2.1"
         if k(r"vertically|dropped|releasedfromrest|thrown|projected|falls|heightof"):
             return "4.2.3"
